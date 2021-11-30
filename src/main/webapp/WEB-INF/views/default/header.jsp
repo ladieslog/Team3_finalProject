@@ -36,13 +36,13 @@
 					<li><a href="#my" class="ab">My</a></li>
 					<li><a href="#diary" class="ab">Diary</a></li>
 					<li><a href="#calendar" class="ab">Calendar</a></li>
-					<li><a href="#CS" class="ab">CS</a></
+					<li><a href="#CS" class="ab">Cs</a></
 				</ul>
 			</nav>
 		</div>
 	</div>
 		<div class="logout log">
-			<a href="#logout" class="a">logout</a>
+			<a href="#logout" class="a">감자</a>
 		</div>
 
 
