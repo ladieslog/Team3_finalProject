@@ -8,10 +8,15 @@ public class DefaultController {
 
 	@GetMapping("main")
 	public String login() {
-		System.out.println("main");
+		System.out.println("main1");
 		return "default/main";
 	}
 	
+	@GetMapping("first")
+	public String main() {
+		System.out.println("main");
+		return "main/first";
+	}
 	
 	
 }
