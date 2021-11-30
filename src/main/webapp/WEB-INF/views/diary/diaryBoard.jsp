@@ -10,28 +10,65 @@
 <link rel="stylesheet" href="${contextPath}/resources/bootstrap.css">
 <script src="${contextPath }/resources/jquery-3.6.0.min.js"></script>
 <script src="${contextPath }/resources/bootstrap.js"></script>
+<style type="text/css">
+	.diary-box {
+		background-color: #B2CCFF;
+		width: 250px;
+		height: 300px;
+		display: flex;
+   		justify-content: center;
+    	align-items: center;
+	}
+	.flex-con-be {
+		display: flex;
+		justify-content: space-around;
+	}
+	.diary-box-img {
+		width: 200px;
+	}
+	.mt-30 {
+		margin-top: 30px;
+	}
+	.fl {
+		float: left;
+	}
+	.fr {
+		float: right;
+	}
+</style>
 </head>
 <body>
 	<jsp:include page="../default/header.jsp"/>
 	
 	<div class="diary-wrap">
-		<div>
-			<span>닉네임</span>
-			<span>글 갯수</span>
-		</div>
-		<div>
+		<div class="container">
 			<div>
-				
+				<span>닉네임</span>
+				<span>글 갯수</span>
 			</div>
-			<div>
-				
+			<div class="flex-con-be mt-30">
+				<div class="diary-box">
+					<a href="#">
+						<img src="${contextPath }/resources/diary_plus.png" class="diary-box-img"/>
+					</a>
+				</div>
+				<div class="diary-box">
+					<a href="#">
+						<img src="${contextPath }/resources/diary_plus.png" class="diary-box-img"/>
+					</a>
+				</div>
+				<div class="diary-box">
+					<div>
+						제목
+						<div style="width: 200px; height:200px; background-color: #FAED7D;"></div>
+						<div>
+							<span class="fl">몇월몇일</span>
+							<span class="fr">누구랑</span>
+						</div>
+					</div>
+				</div>
 			</div>
-			<div>
-				
-			</div>
-			<div>
-				
-			</div>
+			
 		</div>
 	</div>
 	
