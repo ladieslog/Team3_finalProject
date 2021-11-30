@@ -7,16 +7,16 @@
 <title>Insert title here</title>
 <style type="text/css">
 	*{margin: 0;}
-	.wrap{width: 1920px; background-color: black;}
+	.wrap{width: 1920px; background-color: white;}
 	.header{display: flex; justify-content: space-between;}
 	nav ul {list-style: none; display: flex; justify-content: flex-end;}
 	nav ul li { margin: 0 3px; padding: 30px 30px;}
-	nav ul li a { text-decoration: none; color: #D1B2FF; font-family: Georgia; font-size: 20px; }
-	.ab:hover { color: black; padding-bottom: 3px; border-bottom: 1px solid black; transition: all 0.25s;}
+	nav ul li a { text-decoration: none; color: black; font-family: Georgia; font-size: 20px; }
+	.ab:hover { color: red; padding-bottom: 3px; border-bottom: 1px solid red; transition: all 0.25s;}
 	
-	.trip{font-size: 25px;}
+	.trip{font-size: 30px; color:#6E94CC; }
 	.menu{ margin-right: 50px; }
-	.log{ margin-right: 80px; margin-top: 10px; height: 100px; background-color: black;}
+	.log{ margin-right: 80px; margin-top: 10px; height: 100px; background-color: white;}
 	.logout{ display:flex; justify-content: flex-end;}
 	.a{ text-decoration: none; font-size: 15px; color:gray; }
 	
