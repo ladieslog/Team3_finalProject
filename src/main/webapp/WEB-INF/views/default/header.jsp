@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 	*{margin: 0;}
+	
 	.wrap{width: 1920px; background-color: black;}
 	.header{display: flex; justify-content: space-between;}
 	nav ul {list-style: none; display: flex; justify-content: flex-end;}
