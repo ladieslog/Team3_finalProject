@@ -8,25 +8,27 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-	*{margin: 0; margin: auto;background-color: gray;}
-	.wrap{width: 1920px; background-color: gray; height: 0px;}
-	.ta{ margin-top: 300px;  }
+	*{margin: 0; margin: auto;background-color: white;}
+	.wrap{width: 1920px;  height: 0px;}
+	.ta{ margin-top: 150px;  }
+	.img{ margin-top:60px; width: 70px; height: 70px; }
+	.img1{ width: 600px; height: 600px; }
 </style>
 
 </head>
 <body>
 	<div class="wrap">
-		<table border="1px" class="ta" >
+		<table  class="ta" >
 			<tr>
-				<td rowspan="3"><img src="${contextPath }/resources/tripmain.png"> </td>	<td>1</td>
+				<td rowspan="3"><img src="${contextPath }/resources/tripmain.png" class="img1"> </td>	<td></td>
 			</tr>
 			
 			<tr>
-						<td>2</td>
+						<td><a href=""><img src="${contextPath }/resources/open.png" class="img"></a></td>
 			</tr>
 			
 			<tr>
-						<td>3</td>
+						<td></td>
 			</tr>
 		</table>
 	</div>

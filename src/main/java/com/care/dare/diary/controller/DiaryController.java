@@ -9,4 +9,9 @@ public class DiaryController {
 	public String diaryBoard() {
 		return "diary/diaryBoard";
 	}
+	
+	@RequestMapping("diaryWrite")
+	public String diaryWrite() {
+		return "diary/diaryWrite";
+	}
 }
