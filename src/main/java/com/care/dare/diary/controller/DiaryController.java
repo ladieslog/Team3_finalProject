@@ -14,4 +14,9 @@ public class DiaryController {
 	public String diaryWrite() {
 		return "diary/diaryWrite";
 	}
+	
+	@RequestMapping("diaryView")
+	public String diaryView() {
+		return "diary/diaryView";
+	}
 }
