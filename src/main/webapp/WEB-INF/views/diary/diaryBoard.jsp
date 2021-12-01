@@ -13,7 +13,7 @@
 <style type="text/css">
 	.diary-wrap {
 		background-color: #DEF4F9;
-		padding: 80px 0;
+		padding: 100px 0 140px 0;
 	}
 	.diary-container {
 		padding: 0 80px;
@@ -45,7 +45,7 @@
 	}
 </style>
 </head>
-<body>
+<body style="overflow-x: hidden;">
 	<jsp:include page="../default/header.jsp"/>
 	
 	<div class="diary-wrap">
