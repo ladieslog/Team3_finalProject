@@ -11,17 +11,25 @@
 <script src="${contextPath }/resources/jquery-3.6.0.min.js"></script>
 <script src="${contextPath }/resources/bootstrap.js"></script>
 <style type="text/css">
+	.diary-wrap {
+		background-color: #DEF4F9;
+		padding: 80px 0;
+	}
+	.diary-container {
+		padding: 0 80px;
+	}
 	.diary-box {
 		background-color: #B2CCFF;
-		width: 250px;
-		height: 300px;
+		width: 300px;
+		height: 360px;
 		display: flex;
    		justify-content: center;
     	align-items: center;
+    	margin: 0 50px;
 	}
 	.flex-con-be {
 		display: flex;
-		justify-content: space-around;
+		justify-content: center;
 	}
 	.diary-box-img {
 		width: 200px;
@@ -41,10 +49,10 @@
 	<jsp:include page="../default/header.jsp"/>
 	
 	<div class="diary-wrap">
-		<div class="container">
+		<div class="diary-container">
 			<div>
-				<span>닉네임</span>
-				<span>글 갯수</span>
+				<span><b style="font-size: 18px;">닉네임</b></span>
+				<span><b style="font-size: 18px;">글 갯수</b></span>
 			</div>
 			<div class="flex-con-be mt-30">
 				<div class="diary-box">
@@ -56,6 +64,16 @@
 					<a href="#">
 						<img src="${contextPath }/resources/diary_plus.png" class="diary-box-img"/>
 					</a>
+				</div>
+				<div class="diary-box">
+					<div>
+						제목
+						<div style="width: 200px; height:200px; background-color: #FAED7D;"></div>
+						<div>
+							<span class="fl">몇월몇일</span>
+							<span class="fr">누구랑</span>
+						</div>
+					</div>
 				</div>
 				<div class="diary-box">
 					<div>
