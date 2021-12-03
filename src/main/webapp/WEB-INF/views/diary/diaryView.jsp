@@ -9,63 +9,94 @@
 <title>diaryView</title>
 <style type="text/css">
 	.writewrap{ margin:auto; height: 650px;  background-color: #DEF4F9; color:black;}
-	.img{height: 40px; width: 40px;}
-	.div{ text-align: center;}
-	.div2{ margin-right: 120px;}
+	.img{ height: 90px; width: 190px;}
+	.div{ text-align: center; display: flex; justify-content: center; align-items: center;}
 	.text{font-size: 15px; border-radius: 5px; border-color: white;}
-	.table{display: flex; justify-content: center; align-items: center; margin-top: 20px;}
-	.te1{ width:300px; border-radius: 5px; border-color: white;}
+	.table{ margin-top: 60px;}
+	.te1{ width:200px; border-radius: 5px; border-color: white;}
 	.te2{ width:150px; border-radius: 5px; border-color: white;}
-	.te3{ width:100px; border-radius: 5px; border-color: white;}
-	.te4{ width:100px; border-radius: 5px; border-color: white;}
+	.te3{ width:150px; border-radius: 5px; border-color: white;}
+	.te4{ width:150px; border-radius: 5px; border-color: white;}
 	
-	.td1{ width: 200px; background-color: blue;}
+	.td1{ width: 200px; background-color: #DEF4F9;}
 	.submit{ width:80px; height:20px; }
-	.sub{ background-color: #DEF4F9 ; font-size: 15px; color:black; border-radius: 5px; border-color: #DEF4F9; font-family: Georgia; }
+	.sub{ background-color: #DEF4F9 ; font-size: 15px; color:black; border-radius: 5px; border-color: #DEF4F9; font-family: Georgia; margin-bottom:70px; }
 	.b{ font-family: Georgia; font-size:20px;}
+	
+	.divsize{ width: 600px; height: 500px; background-color: white; display: flex; justify-content: center; align-items: center; border-radius: 10px;}
+	.imgsize{ width: 550px; height: 400px; margin:auto; background-color: #DEF4F9; display: flex; justify-content: center; align-items: center;}
+	.siz{ width:550px; height: 400px; }
+	.textbox{ width:550px; height: 60px; margin:auto; background-color:#DEF4F9; display: flex; justify-content: center; align-items: center;}
+	.box{ width: 520px; height:30px; border-radius: 5px; border-color: white; }
+	td{ height: 100px; }
+	.td{ width: 30px; height: 30px; }
 </style>
 </head>
 <body style="overflow-x: hidden ">
 	<jsp:include page="../default/header.jsp"/>
 	
 	<div class="writewrap">
-	
 	<div class="div">
 	<form action="">
-	<div class="div2">
-
-	</div>
-	
-		<table class="table" border="1px">
+		<table class="table" >
 			<tr>
 				<td class="b">Title</td> <td><input type="text" name="" class="te1"></td>
+				<td class="td" rowspan="5"></td>
+				<td class="td" rowspan="5"></td>
 				<td rowspan="5" colspan="1">
-				<div><img class="img" src="${contextPath }/resources/ppp.png"></div>
+				<div class="divsize">
+				<div>
+				<div class="imgsize"><img class="siz" src="${contextPath }/resources/plus.png"></div>
+				<div class="textbox"><input type="text" name="" class="box"></div>
+				</div>
+				</div>
 				</td>
+				<td class="td"></td>
+				<td class="td"></td>
 				<td class="td1"><img class="img" src="${contextPath }/resources/ppp.png"></td>
 			</tr>
 				
 			<tr>
 				<td class="b">Place</td> <td><input type="text" name="" class="te2"></td>
+				<td class="td"></td>
+				<td class="td"></td>
 				<td class="td1"><img class="img" src="${contextPath }/resources/ppp.png"></td>
 			</tr>
 				
 			<tr>
 				<td class="b">Who</td> <td><input type="text" name="" class="te3"></td>
+				<td class="td"></td>
+				<td class="td"></td>
 				<td class="td1"><img class="img" src="${contextPath }/resources/ppp.png"></td>
 			</tr>
 			
 			<tr>
 				<td class="b">Date</td> <td><input type="text" name="" class="te4"></td>
+				<td class="td"></td>
+				<td class="td"></td>
 				<td class="td1"><img class="img" src="${contextPath }/resources/ppp.png"></td>
 			</tr>
 			
 			<tr>
 				<td class="b">Writing time</td> <td><input type="text" name="" class="te2"></td>
+				<td class="td"></td>
+				<td class="td"></td>
 				<td class="td1"><img class="img" src="${contextPath }/resources/ppp.png"></td>
-				<td class="submit"><input type="button" value="Modify" class="sub"></td>
-				<td class="submit"><input type="button" value="Delete" class="sub"></td>
-				<td class="submit"><input type="button" value="Cancel" class="sub"></td>
+			
+				
+			</tr>
+			
+			<tr>
+				<td></td>
+				<td></td>
+				<td class="td"></td>
+				<td class="td"></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td class="submit"><input type="button" value="Modify" class="sub">
+				<input type="button" value="Delete" class="sub">
+				<input type="button" value="Cancel" class="sub"></td>
 			</tr>
 			
 						
