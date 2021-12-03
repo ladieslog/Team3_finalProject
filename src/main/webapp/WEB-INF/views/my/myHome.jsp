@@ -18,7 +18,7 @@
 		background-color: #D5D5D5;
 		display: flex;
 		justify-content: center;
-		height: 655.7px;
+		height: 650px;
     	align-items: center;
 	}
 	.input-box>div {
