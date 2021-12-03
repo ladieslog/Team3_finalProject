@@ -25,7 +25,7 @@
 	.b{ font-family: Georgia; font-size:20px;}
 </style>
 </head>
-<body>
+<body style="overflow-x: hidden">
 	<jsp:include page="../default/header.jsp"/>
 	
 	<div class="writewrap">
