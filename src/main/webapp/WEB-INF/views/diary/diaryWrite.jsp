@@ -11,7 +11,7 @@
 	.writewrap{ margin:auto; height: 650px;  background-color: #DEF4F9; color:black;}
 	.img{height: 40px; width: 40px;}
 	.div{ text-align: center;}
-	.div2{ margin-right: 120px;}
+	.div2{ margin-right: 130px;}
 	.text{font-size: 15px; border-radius: 5px; border-color: white;}
 	.table{display: flex; justify-content: center; align-items: center; margin-top: 20px;}
 	.te1{ width:300px; border-radius: 5px; border-color: white;}
@@ -23,6 +23,10 @@
 	.submit{ width:80px; height:20px; }
 	.sub{ background-color: #DEF4F9 ; font-size: 15px; color:black; border-radius: 5px; border-color: #DEF4F9; font-family: Georgia; }
 	.b{ font-family: Georgia; font-size:20px;}
+	
+	.tdwr{ width:80px; height:20px; }
+	.btnwi{ background-color: #DEF4F9 ; color:black; border-radius: 5px; border-color: #DEF4F9; 
+			font-family: Georgia; font-size:18px;}
 </style>
 </head>
 <body style="overflow-x: hidden">
@@ -33,17 +37,22 @@
 	<div class="div">
 	<form action="">
 	<div class="div2">
-	<br><br><br>
+	<br><br><br><!-- 
 	<b class="b">Title</b> <input type="text" name="" class="te1">
 	<b class="b">Place</b> <input type="text" name="" class="te2">
 	<b class="b">Who</b> <input type="text" name="" class="te3">
-	<b class="b">Date</b> <input type="text" name="" class="te4">
+	<b class="b">Date</b> <input type="text" name="" class="te4"> -->
+	<sapn class="b">Title</sapn> <input type="text" name="" class="te1">
+	<sapn class="b">Place</sapn> <input type="text" name="" class="te2">
+	<sapn class="b">Who</sapn> <input type="text" name="" class="te3">
+	<sapn class="b">Date</sapn> <input type="text" name="" class="te4">
 	</div>
 	
 		<table class="table">
 			<tr>
-				<th colspan="1" class="b">Writing</th> <th colspan="1" class="b">Image</th> 
 				
+				<td colspan="1" class="tdwr b"><input type="button" value="Writing" class="btnwi"></td>
+				<td colspan="1" class="tdwr b"><input type="button" value="Image" class="btnwi"></td>
 			</tr>
 			
 			<tr>
