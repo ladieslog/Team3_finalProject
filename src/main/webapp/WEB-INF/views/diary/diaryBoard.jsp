@@ -7,13 +7,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${contextPath}/resources/bootstrap.css">
 <script src="${contextPath }/resources/jquery-3.6.0.min.js"></script>
-<script src="${contextPath }/resources/bootstrap.js"></script>
 <style type="text/css">
 	.diary-wrap {
 		background-color: #DEF4F9;
-		padding: 100px 0 140px 0;
+		padding: 98px 0 138px 0;
 	}
 	.diary-container {
 		padding: 0 80px;
@@ -91,5 +89,6 @@
 	</div>
 	
 	<jsp:include page="../default/footer.jsp"/>
+
 </body>
 </html>

@@ -7,17 +7,14 @@
 <title>Insert title here</title>
 <style type="text/css">
 	*{margin: 0;}
-<<<<<<< HEAD
-	.wrap{width: 1920px; background-color: white;}
-=======
 	
-	.wrap{width: 1920px; background-color: black;}
->>>>>>> sjh
+	.wrap{width: 100%; background-color: white;}
+
 	.header{display: flex; justify-content: space-between;}
 	nav ul {list-style: none; display: flex; justify-content: flex-end;}
 	nav ul li { margin: 0 3px; padding: 30px 30px;}
 	nav ul li a { text-decoration: none; color: black; font-family: Georgia; font-size: 20px; }
-	.ab:hover { color: red; padding-bottom: 3px; border-bottom: 1px solid red; transition: all 0.25s;}
+	.ab:hover { color: #6E94CC; padding-bottom: 3px; border-bottom: 1px solid #6E94CC; transition: all 0.25s;}
 	
 	.trip{font-size: 30px; color:#6E94CC; }
 	.menu{ margin-right: 50px; }
@@ -41,7 +38,7 @@
 					<li><a href="#my" class="ab">My</a></li>
 					<li><a href="#diary" class="ab">Diary</a></li>
 					<li><a href="#calendar" class="ab">Calendar</a></li>
-					<li><a href="#CS" class="ab">CS</a></
+					<li><a href="#CS" class="ab">Cs</a></
 				</ul>
 			</nav>
 		</div>
