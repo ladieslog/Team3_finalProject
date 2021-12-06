@@ -112,7 +112,7 @@ input {
 
 								</tr>
 								<tr>
-									<td>Name</td>
+									<td>Nickname</td>
 									<td><input name="name" size="15"></td>
 
 								</tr>
@@ -125,7 +125,7 @@ input {
 								</tr>
 								<tr>
 									<td>Address</td>
-									<td><input name="address" size="20" id="address"></td>									
+									<td><input name="address" size="30" id="address"></td>									
 								</tr>
 								
 								<tr>
