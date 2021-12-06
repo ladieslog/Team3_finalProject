@@ -39,7 +39,7 @@
 	}
 	input, button {
 		border-radius: 5px;
-		border-color: #fff;
+		border-color: #D5D5D5;
 		font-size: 20px;
 	}
 	button {
