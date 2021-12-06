@@ -31,9 +31,21 @@ public class Controller01 {
 	}
 	
 	@GetMapping("cs4")
-	public String second() {
+	public String cs4() {
 		System.out.println("five");
 		return "Cs/cs04";
+	}
+	
+	@GetMapping("cs5")
+	public String cs5() {
+		System.out.println("six");
+		return "Cs/cs05";
+	}
+	
+	@GetMapping("cs6")
+	public String cs6() {
+		System.out.println("seven");
+		return "Cs/cs06";
 	}
 	
 	

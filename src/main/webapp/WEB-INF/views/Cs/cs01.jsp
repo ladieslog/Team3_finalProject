@@ -12,14 +12,15 @@
 <script src="${contextPath }/resources/bootstrap.js"></script>
 <style type ="text/css">
 .in1{ background-color: gray; padding: 100px 0 140px 0}
-.in2{ padding: 0 80px}
-.in3{display: flex; justify-content: center;}
-.in4{ 
-	background-color: black; width :1500px; height:250px; 
+.in2{ padding: 0 180px}
+
+.ch1{ 
+	background-color: black; width :1300px; height:250px; 
 }
-.in5{ 
-	background-color: red; width :1500px; height:250px; 
+.ch2{ 
+	background-color: red; width :1300px; height:250px; 
 }
+
 
 </style>
 </head>
@@ -28,23 +29,24 @@
 	<jsp:include page="../default/header.jsp"/>
 	<div class="in1">
 		<div class="in2">
-			<div>
-				<span><b style="font-size: 18px;">공지사항</b></span>
-			</div>
-			<div class="in3">
-				<div class="in4">
-				 그림
-				</div>
-			</div>
-			<div>
-				<span><b style="font-size: 18px;">Q & N</b></span>
-			</div>
-			<div class="in3">
-				<div class="in5">
-				 skr
-				</div>
-			</div>
 		
+			<div>
+				<span><b style="font-size: 30px;">공지사항</b></span>
+				<br><br>
+			</div>
+				<input type="text" name="" class="ch1">	
+			
+				
+			
+			<div>
+				<br>
+				<span><b style="font-size: 30px;">Q & N</b></span>
+				<br><br>
+			</div>
+				<input type="text" name="" class="ch2">
+			<div class="in3">
+				
+			</div>
 		</div>
 	
 	</div>
