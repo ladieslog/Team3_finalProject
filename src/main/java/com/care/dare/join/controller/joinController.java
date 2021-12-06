@@ -11,4 +11,8 @@ public class joinController {
 	{
 		return "join/member";
 	}
+	@GetMapping("login")
+	public String login() {
+		return "join/login";
+	}
 }

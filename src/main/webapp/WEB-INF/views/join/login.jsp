@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원가입</title>
+<title>로그인</title>
 
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/bootstrap.css">
@@ -41,31 +41,48 @@
 */
 </script>
 <style type="text/css">
-td {
-	height: 50px;
-}
 
 .membership-form {
 	background-image:
-		url("<%=request.getContextPath()%>/resources/membership.png");
+		url("<%=request.getContextPath()%>/resources/welcome.png");
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-size: 820px;
 	height: 620px;
+	margin-top: 50px;
+	display:flex;
+	
+}
+.table{
+	text-align:
+	center;
 	display: flex;
+	justify-content: center;
+	margin-top:160px;
+
+}
+td{
+	height:70px;
+	width:200px;
 }
 .membership-box {
 	display: flex;
+	height: 500px;
     justify-content: center;
     width: 100%;
-    padding-right: 10px;
-    padding-top: 20px;
+    padding-right: 110px;
+    padding-top: 40px;
+    background-color:black;
 }
 
 .membership-table {
 	position: relative;
-	left: 60px;
-	top: 130px;
+	left: 10px;
+	top: 80px;
+	width:400px;
+	height:150px;
+	
+	
 }
 
 input {
@@ -78,6 +95,12 @@ input {
 	border-radius: 5px;
 	background-color: #B0C6E7;
 }
+#form{
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	width:100%; 
+}
 </style>
 </head>
 <body onLoad="reFrm.id.focus()">
@@ -87,68 +110,33 @@ input {
 		</div>
 		<br />
 		<br />
-		<div class="membership-box">
-			<form name="reFrm" method="post" action="memberProc.jsp" id="form">
-				<table align="center" border="0" cellspacing="0" cellpadding="5"
-					class="membership-table">
-					<tr>
-						<td align="center" valign="middle">
-							<table cellspacing="0" cellpadding="2" align="center" width="600">
+
+			<form name="reFrm" method="post" action="memberProc.jsp" id="form">			
+					
+					
+							<table cellspacing="0"  cellpadding="2" align="center" class="membership-table">
 
 								<tr>
-									<td width="20%">ID</td>
-									<td width="50%"><input name="id" size="20">
-										<button type="button" onClick="idCheck(this.form.id.value)"
-											class="but">ID 중복확인</button></td>
-
+									<td >ID</td>
+									<td><input name="id" size="15">
+										</td>
+									<td rowspan ="2" ><button type="button" onClick="idCheck(this.form.id.value)"
+											class="but">로그인</button></td>
 								</tr>
 								<tr>
 									<td>Password</td>
 									<td><input type="password" name="repwd" size="20"></td>
 								</tr>
 								<tr>
-									<td>Password 확인</td>
-									<td><input type="password" name="repwd" size="20"></td>
-
-								</tr>
-								<tr>
-									<td>Name</td>
-									<td><input name="name" size="15"></td>
-
-								</tr>
-								<tr>
-									<td>Mail number</td>
-									<td><input name="zipcode" id="zipcode" size="5" readonly>
-										<button type="button" onClick="mailnum()" class="but">우편번호
-											찾기</button></td>
-
-								</tr>
-								<tr>
-									<td>Address</td>
-									<td><input name="address" size="20" id="address"></td>									
-								</tr>
-								
-								<tr>
-									<td>Detailed Address</td>
-									<td><input name="address" size="20" id="detailed address"></td>	
-								</tr>
-								<tr>
-									<td>Email</td>
-									<td><input name="email" size="30"></td>
-
-								</tr>
-								<tr>
 									<td colspan="3" align="center"><button type="button"
 											onclick="idCheck()"
-											style="margin-right: 185px; width: 100px; height: 30px;"
+											style="margin-right: 80px; width: 100px; height: 30px;"
 											class="but">회원가입</button></td>
 								</tr>
 							</table>
-						</td>
-					</tr>
-				</table>
+						
 			</form>
-		</div>
+
 
 	</div>
 </body>
