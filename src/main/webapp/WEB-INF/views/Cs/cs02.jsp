@@ -15,14 +15,17 @@
 .in2{ padding: 0 450px;  }
 
 .n1{font-size: 15px; border-radius: 5px; border-color: white;}
-.n2{ width:80px; height:20px; }
+.n2{ width:120px; height:30px; }
 .n3{display: flex; justify-content: center; align-items: center; margin-top: 20px;}
 .n4{background-color: #DEF4F9 ; font-size: 15px; color:black; border-radius: 5px; border-color: #DEF4F9; font-family: Georgia; margin-bottom:70px;}
 
-.ch{background-color: skyblue; width :250px; height:25px; }
-.chb{background-color: white; width :1000px; height:300px; }
+.ch{background-color: white; width :250px; height:25px; border-radius: 5px; border-color: #DEF4F9;}
+.chb{background-color: white; width :1000px; height:350px; border-radius: 5px; border-color: #DEF4F9;}
 
 .b{ font-family: Georgia; font-size:24px;}
+.ws{width: 90px;}
+.hb {height: 50px;}
+
 
 
 </style>
@@ -32,25 +35,28 @@
 	<jsp:include page="../default/header.jsp"/>
 	<div class="in1">
 		<div class="in2">
-			<br><br></br>			
+			<br>			
 				<br>
 			 
 				<table class="n3">
 				<tr>
-					<td colspan="1"> <b class="b">Q&A class &nbsp;</b> </td>
-					<td colspan="1"> <input type="text" name="" class="ch"></td>
-					<td colspan="1"> <b class="b">&nbsp; writer &nbsp;</b></td>
-					<td colspan="1"> <input type="text" name="" class="ch"></td>
+					<td class="wb"colspan="2"> <b class="b">Q&A class &nbsp;</b> </td>
+					<td class="wb"colspan="1"> <input type="text" name="" class="ch"></td>
+					<td class="ws"colspan="1"> </td>
+					<td class="wb"colspan="2"> <b class="b">&nbsp; writer &nbsp;</b></td>
+					<td class="wb"colspan="1"> <input type="text" name="" class="ch"></td>
 				</tr>
 				<tr>
-					<td colspan="1"> <b class="b">Q&A title &nbsp;</b>  </td>
-					<td colspan="1"> <input type="text" name="" class="ch"></td>
-					<td colspan="1"><b class="b">&nbsp; write date &nbsp;</b> </td>
-					<td colspan="1"> <input type="text" name="" class="ch"></td>
+					<td class="wb"colspan="2"> <b class="b">Q&A title &nbsp;</b>  </td>
+					<td class="wb"colspan="1"> <input type="text" name="" class="ch"></td>
+					<td class="ws"colspan="1"> </td>
+					<td class="wb"colspan="2"><b class="b">&nbsp; write date &nbsp;</b> </td>
+					<td class="wb"colspan="1"> <input type="text" name="" class="ch"></td>
 				</tr>
-				<tr></tr>
+				<tr class ="hb"></tr>
+			
 				<tr>
-					<td colspan="1"><b class="b">Q&A content &nbsp;</b> </td>
+					<td colspan="2"><b class="b">Q&A content &nbsp;</b> </td>
 				</tr>
 				<tr> 
 					<td colspan="15">
