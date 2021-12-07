@@ -7,13 +7,10 @@
 <title>Insert title here</title>
 <style type="text/css">
 	*{margin: 0;}
-<<<<<<< HEAD
-	.wrap{width: 100%; background-color: white;}
-=======
+
 	
 	.wrap{width: 100%; background-color: white;}
 
->>>>>>> master
 	.header{display: flex; justify-content: space-between;}
 	nav ul {list-style: none; display: flex; justify-content: flex-end;}
 	nav ul li { margin: 0 3px; padding: 30px 30px;}
