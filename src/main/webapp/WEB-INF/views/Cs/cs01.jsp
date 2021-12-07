@@ -11,15 +11,13 @@
 <script src="${contextPath }/resources/jquery-3.6.0.min.js"></script>
 <script src="${contextPath }/resources/bootstrap.js"></script>
 <style type ="text/css">
-.in1{ background-color: gray; padding: 100px 0 140px 0}
+.in1{background-position: center center; height: 650px;  background-color: #DEF4F9;}
 .in2{ padding: 0 180px}
 
-.ch1{ 
-	background-color: black; width :1300px; height:250px; 
+.che{ 
+	background-color: white; width :1300px; height:250px; 
 }
-.ch2{ 
-	background-color: red; width :1300px; height:250px; 
-}
+
 
 
 </style>
@@ -31,19 +29,20 @@
 		<div class="in2">
 		
 			<div>
-				<span><b style="font-size: 30px;">공지사항</b></span>
-				<br><br>
+			<br>
+				<span><b style="font-size: 30px;">notice</b></span>
+				
 			</div>
-				<input type="text" name="" class="ch1">	
+				<input type="text" name="" class="che">	
 			
 				
 			
 			<div>
 				<br>
 				<span><b style="font-size: 30px;">Q & N</b></span>
-				<br><br>
+				
 			</div>
-				<input type="text" name="" class="ch2">
+				<input type="text" name="" class="che">
 			<div class="in3">
 				
 			</div>
