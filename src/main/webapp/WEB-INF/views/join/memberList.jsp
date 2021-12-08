@@ -15,19 +15,24 @@ table {
 	border-collapse: collapse
 }
 tr {
-	border-bottom: 1px solid #8C8C8C;
+	border-bottom: 1px solid #D5D5D5;
 	border-top: none;
+	height:65px;
 }
 td {
 	height: 50px;
 	padding: 0 40px;
 	
 }
+.tableHeader div{
+	margin-bottom : -10px !important;
+}
 td>div{
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	width: 100%;
+	margin-bottom : 20px;
 }
 tr>td:nth-of-type(4)>.address {
 	width: 200px;
@@ -37,9 +42,13 @@ tr>td:nth-of-type(5)>.address {
 }
 #addressInfo{
 	position: absolute;
+	margin-top: -20px;
 }
 body{
 	overflow-x: hidden;
+}
+.tableHeader{
+	border-bottom: 1px solid #000;
 }
 </style>
 	<script src = "${path }/resources/jquery-3.6.0.min.js">
@@ -66,7 +75,7 @@ body{
 		<div class="listwrap">
 			<table align="center" border="0" bordercolor="white" 
 					class="memberList-table">
-				<tr>
+				<tr class= "tableHeader">
 					<td><div>회원ID</div></td> <td><div>회원비번</div></td> <td><div>회원닉네임</div></td> <td><div>회원주소</div></td> <td ><div>회원이메일</div></td> <td><div>게시글수</div></td>				
 				</tr>
 				<tr>
