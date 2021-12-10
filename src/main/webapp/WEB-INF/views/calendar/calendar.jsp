@@ -44,6 +44,5 @@
 		</div>
 	</div>
 	<script src="<c:url value="/resources/calendar/calendar.js" />"></script>
-
 </body>
 </html>
