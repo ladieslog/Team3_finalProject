@@ -11,22 +11,39 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin-bottom:50px;
 }
 
-.header {
-	margin-top:50px;
-	display: flex;
-	justify-content: space-between;
+.calendar-wrap{
+	text-align: center;
+	height: 100%; 
+	width: 100%;
+}
+
+.background {
+	margin-top : -50px;
+	display: inline-block;
+	width: 100%;
+	background-color: #D4F4FA;
+}
+
+.frame{height: 750px; 
+	display: inline-block;
+	width: 800px;
+}
+
+.title {
+	display: inline-block;
+	margin-top : 20px;
 	align-items: center;
+	width: 800px;
 }
 
 .year {
-	font-size: 30px;
+	font-size: 40px;
 }
 
 .month {
-	font-size: 40px;
+	font-size: 45px;
 }
 
 .nav {
@@ -35,25 +52,31 @@ body {
 }
 
 .nav-btn {
-	width: 25px;
+	width: 30px;
 	height: 30px;
 	border: none;
-	font-size: 16px;
+	font-size: 20px;
 	background-color: transparent;
 	cursor: pointer;
 }
 
 .go-today {
-	width: 75px;
+	width: 80px;
+}
+
+.main{
+	display: inline-block;
+	width: 750px;
 }
 
 .days {
 	display: flex;
 	margin: 25px 0 10px;
+	font-size: 20px;
 }
 
 .day {
-	width: calc(1000px/ 7);
+	width: calc(100%/ 7);
 	text-align: center;
 }
 
@@ -62,15 +85,19 @@ body {
 	flex-flow: row wrap;
 	border-top: 1px solid #333333;
 	border-right: 1px solid #333333;
+	background-color: #ffffff
 }
 
 .date {
 	width: calc(100%/ 7);
-	height: 100px;
+	height: 95px;
 	padding: 15px;
 	text-align: left;
 	border-bottom: 1px solid #333333;
 	border-left: 1px solid #333333;
+	position: relative;
+	z-index: 0;
+	background-color: #ffffff
 }
 
 .day:nth-child(7n+1), .date:nth-child(7n+1) {
