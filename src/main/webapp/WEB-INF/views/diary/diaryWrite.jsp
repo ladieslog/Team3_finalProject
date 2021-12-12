@@ -10,6 +10,7 @@
 <style type="text/css">
 	.writewrap{ margin:auto; height: 650px;  background-color: #DEF4F9; color:black;}
 	.img{height: 50px; width: 80px;}
+	.img2{right: 28px; height: 20px; width: 20px; position: relative; top: 6px}
 	.div{ text-align: center;}
 	.div2{ margin-right: 105px;}
 	.text{font-size: 15px; border-radius: 5px; border-color: white;}
@@ -17,7 +18,7 @@
 	.te1{ width:300px; border-radius: 5px; border-color: white;}
 	.te2{ width:150px; border-radius: 5px; border-color: white;}
 	.te3{ width:100px; border-radius: 5px; border-color: white;}
-	.te4{ width:100px; border-radius: 5px; border-color: white;}
+	.te4{ width:125px; border-radius: 5px; border-color: white;}
 	
 	.td1{ width: 110px; height: 50px;   text-align: center;}
 	.td2{ height: 0px; width: 0px; }
@@ -31,6 +32,16 @@
 	.btnwi{ background-color: #DEF4F9 ; color:black; border-radius: 5px; border-color: #DEF4F9; 
 			font-family: Georgia; font-size:18px;}
 	
+	.modal{   position: fixed;  top: 29%;  left: 37.28%; }
+	.placeList{ width: 158px;  background-color: white;  left: 37.3%;  border-radius: 5px;  position: absolute; }
+	.placeList>div{ display: flex; justify-content: space-between;  align-items: center; }
+	.placeList>div:nth-of-type(1){ border-bottom: 3px solid #DEF4F9; }
+	.placeList>div:nth-of-type(2){ border-bottom: 3px solid #DEF4F9; }
+	.placeList>div:nth-of-type(3){ border-bottom: 3px solid #DEF4F9; }
+	.placeList>div:hover>.placedel{ height: 10px; width: 10px; }
+	
+	.placedel{ height: 0px; width: 0px; }
+
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.min.js"></script>
 
@@ -1102,20 +1113,159 @@ function register(){
 	document.getElementById("form").submit()
 }
 
+function modal(){
+	document.getElementById("modal").style.display='block';
+	document.getElementById("place").value = "";
+}
+
+function cancle(){
+	document.getElementById("modal").style.display='none';
+}
+
+function save(){
+	if(document.getElementById("place1").value == ""){
+		document.getElementById("place1").value = document.getElementById("place").value
+	}else if(document.getElementById("place2").value == ""){
+		document.getElementById("place2").value = document.getElementById("place").value
+	}else if(document.getElementById("place3").value == ""){
+		document.getElementById("place3").value = document.getElementById("place").value
+	}else{
+		alert('경유지는 3개만 등록가능합니다')
+	}
+	document.getElementById("modal").style.display='none';
+}
+
+var end = 0;
+
+function placeList(){
+	if(end == 1){
+		end = 0
+		document.getElementById('placeList').style.display='none';
+		return;
+	}
+	if(document.getElementById('placename1') != null){
+		document.getElementById('pla1').remove();
+	
+	}
+	if(document.getElementById('placename2') != null){
+		document.getElementById('pla2').remove();
+		
+	}
+	if(document.getElementById('placename3') != null){
+		document.getElementById('pla3').remove();
+	
+	}
+	end = 1;
+		
+	var pla1 = "";
+	var pla2 = "";
+	var pla3 = "";
+	
+	if(document.getElementById("place1").value != ""){
+		pla1 = document.createElement('div')
+		pla1.setAttribute('id', 'pla1')
+		pla1.setAttribute('class', 'pla')
+		var place1 = "";
+		var placedel1 = "";
+		place1 = document.createElement('div')
+		place1.innerHTML = document.getElementById("place1").value
+		place1.setAttribute('id', 'placename1')
+		placedel1 = document.createElement('img')
+		placedel1.setAttribute('src', '${contextPath }/resources/delete.png')
+		placedel1.setAttribute('class', 'placedel')
+		placedel1.setAttribute('id', 'placedel1')	
+		placedel1.setAttribute('onclick', 'delete1()')
+		
+		document.getElementById("pla1").appendChild(place1)
+		document.getElementById("pla1").appendChild(placedel1)
+	}
+	if(document.getElementById("place2").value != ""){
+		pla2 = document.createElement('div')
+		pla2.setAttribute('id', 'pla2')
+		pla2.setAttribute('class', 'pla')
+		var place2 = "";
+		var placedel2 = "";
+		place2 = document.createElement('div')
+		place2.innerHTML = document.getElementById("place2").value
+		place2.setAttribute('id', 'placename2')
+		placedel2 = document.createElement('img')
+		placedel2.setAttribute('src', '${contextPath }/resources/delete.png')
+		placedel2.setAttribute('class', 'placedel')
+		placedel1.setAttribute('id', 'placedel2')
+		placedel2.setAttribute('onclick', 'delete2()')
+		
+		document.getElementById("pla2").appendChild(place2)
+		document.getElementById("pla2").appendChild(placedel2)
+	}
+	if(document.getElementById("place3").value != ""){
+		pla3 = document.createElement('div')
+		pla3.setAttribute('id', 'pla3')
+		pla3.setAttribute('class', 'pla')
+		var place3 = "";
+		var placedel3 = "";
+		place3 = document.createElement('div')
+		place3.innerHTML = document.getElementById("place3").value
+		place3.setAttribute('id', 'placename3')
+		placedel3 = document.createElement('img')
+		placedel3.setAttribute('src', '${contextPath }/resources/delete.png')
+		placedel3.setAttribute('class', 'placedel')
+		placedel1.setAttribute('id', 'placedel3')
+		placedel3.setAttribute('onclick', 'delete3()')
+		
+		document.getElementById("pla3").appendChild(place3)
+		document.getElementById("pla3").appendChild(placedel3)
+	}
+	document.getElementById("placeList").style.display='inline-block';
+	document.getElementById('placeList').appendChild(pla1)
+	document.getElementById('placeList').appendChild(pla2)
+	document.getElementById('placeList').appendChild(pla3)
+}
+
+function delete1(){
+	document.getElementById('place1').value = document.getElementById('place2').value
+	document.getElementById('place2').value = document.getElementById('place3').value
+	document.getElementById('place3').value = "";
+	document.getElementById('pla1').remove();
+	document.getElementById("placeList").style.display='none';
+	end = 0;
+}
+function delete2(){
+	document.getElementById('place2').value = document.getElementById('place3').value
+	document.getElementById('place3').value = "";
+	document.getElementById('pla2').remove();
+	document.getElementById("placeList").style.display='none';
+	end = 0;
+}
+function delete3(){
+	document.getElementById('place3').value = "";
+	document.getElementById('pla3').remove();
+	document.getElementById("placeList").style.display='none';	
+	end = 0;
+}
+
 </script>
 
 </head>
 <body style="overflow-x: hidden">
 	<jsp:include page="../default/header.jsp"/>
-	
 	<div class="writewrap">
-	
 	<div class="div">
 	<form id="form" action="" method="post">
+	<div class="modal" id="modal" style="display:none;">
+		<div class="b">
+		<input type="text" id="place" class="te2">
+		<input type="button" value="Save" onclick="save()" class="sub">
+		<input type="button" value="Cancle" onclick="cancle()" class="sub">
+		<input type="hidden" name="place1" id="place1" value="">
+		<input type="hidden" name="place2" id="place2" value="">
+		<input type="hidden" name="place3" id="place3" value="">
+		</div>
+	</div>
 	<div class="div2">
 	<br><br>
 	<sapn class="b">Title</sapn> <input type="text" id="title"name="title" class="te1">&nbsp;&nbsp;
-	<sapn class="b">Place</sapn> <input type="text" id="place"name="place" class="te2">&nbsp;&nbsp;
+	<sapn class="b">Place</sapn> <input type="text" onclick="placeList()" class="te2" autocomplete="off">
+	<img class="img2" onclick="modal()" src="${contextPath }/resources/diary_plus.png">
 	<sapn class="b">Who</sapn> <!--<input type="text" name="" class="te3"> -->
 	<select name="who" id="who" class="te3">
 		<option value="1">혼자</option>
@@ -1123,21 +1273,14 @@ function register(){
 		<option value="3">친구</option>
 		<option value="4">연인</option>
 	</select>&nbsp;&nbsp;
+	<sapn class="b">Start Date</sapn> <input type="date" name="" class="te4">
+	<sapn class="b">End Date</sapn> <input type="date" name="" class="te4">
+	</div>
 	
-	<sapn class="b">Date</sapn> <!--<input type="text" name="" class="te4">-->
-	<select name="date" id="date" class="te4">
-		<option value="1">당일치기</option>
-		<option value="2">1박2일</option>
-		<option value="3">2박3일</option>
-		<option value="4">3박4일</option>
-		<option value="5">4박5일</option>
-		<option value="6">5박6일</option>
-		<option value="7">6박7일</option>
-		<option value="8">7박8일</option>
-		<option value="9">8박9일</option>
-		<option value="10">9박10일</option>
-		<option value="11">10일 ~ </option>
-	</select>
+	<div class="placeList" id="placeList" style="display: none;">
+		<div id="pla1"></div>
+		<div id="pla2"></div>
+		<div id="pla3"></div>
 	</div>
 	
 		<table class="table" border="1px;" >
