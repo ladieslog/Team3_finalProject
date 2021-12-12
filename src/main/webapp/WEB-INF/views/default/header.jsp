@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 	*{margin: 0;}
+
 	
 	.wrap{width: 100%; background-color: white;}
 
