@@ -7,4 +7,14 @@
 
 
 
+<insert id="writeSave">
+		insert into diary_board(
+		num,title,time,person,indate,outdate,id,location1,image1,image2,image3,image4,image5,coment1,coment2,coment3,coment4,coment5,location2,location3)
+		values(
+		diary_board_seq.nextval,#{title},sysdate,#{person},#{indate},#{outdate},#{id},#{location1,jdbcType=VARCHAR},
+		#{fis1, jdbcType=BLOB},#{fis2, jdbcType=BLOB},#{fis3, jdbcType=BLOB},#{fis4, jdbcType=BLOB},#{fis5, jdbcType=BLOB},
+		#{coment1,jdbcType=VARCHAR},#{coment2,jdbcType=VARCHAR},#{coment3,jdbcType=VARCHAR},#{coment4,jdbcType=VARCHAR},#{coment5,jdbcType=VARCHAR},
+		#{location2,jdbcType=VARCHAR},#{location3,jdbcType=VARCHAR})
+	</insert>
+
 </mapper>
