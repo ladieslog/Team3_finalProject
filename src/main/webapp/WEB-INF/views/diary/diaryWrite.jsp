@@ -32,9 +32,15 @@
 	.btnwi{ background-color: #DEF4F9 ; color:black; border-radius: 5px; border-color: #DEF4F9; 
 			font-family: Georgia; font-size:18px;}
 	
+<<<<<<< HEAD
 	.modal{   position: fixed;  top: 29%;  left: 45.6%; }
 	.placeList{ width: 158px;  background-color: white;  left: 45.6%;  border-radius: 5px;  position: absolute; }
 	.placeList>div{ display: flex; justify-content: space-between;  align-items: center; }
+=======
+	.modal{   position: fixed;  top: 29%;  left: 37.28%; }
+	.placeList{ width: 158px;  background-color: white;  left: 37.3%;  border-radius: 5px;  position: absolute; }
+	.placeList>div{ display: flex; justify-content: space-between;  align-items: center; display: none;}
+>>>>>>> master
 	.placeList>div:nth-of-type(1){ border-bottom: 3px solid #DEF4F9; }
 	.placeList>div:nth-of-type(2){ border-bottom: 3px solid #DEF4F9; }
 	.placeList>div:nth-of-type(3){ border-bottom: 3px solid #DEF4F9; }
@@ -1123,125 +1129,75 @@ function cancle(){
 }
 
 function save(){
+	// 저장시 해당하는 div의 값만 바꿔줌
 	if(document.getElementById("place1").value == ""){
 		document.getElementById("place1").value = document.getElementById("place").value
+		document.getElementById("placename1").innerHTML = document.getElementById("place1").value;
 	}else if(document.getElementById("place2").value == ""){
 		document.getElementById("place2").value = document.getElementById("place").value
+		document.getElementById("placename2").innerHTML = document.getElementById("place2").value;
 	}else if(document.getElementById("place3").value == ""){
 		document.getElementById("place3").value = document.getElementById("place").value
+		document.getElementById("placename3").innerHTML = document.getElementById("place3").value;
 	}else{
 		alert('경유지는 3개만 등록가능합니다')
 	}
 	document.getElementById("modal").style.display='none';
 }
 
-var end = 0;
 
 function placeList(){
-	if(end == 1){
-		end = 0
-		document.getElementById('placeList').style.display='none';
-		return;
-	}
-	if(document.getElementById('placename1') != null){
-		document.getElementById('pla1').remove();
-	
-	}
-	if(document.getElementById('placename2') != null){
-		document.getElementById('pla2').remove();
-		
-	}
-	if(document.getElementById('placename3') != null){
-		document.getElementById('pla3').remove();
-	
-	}
-	end = 1;
-		
-	var pla1 = "";
-	var pla2 = "";
-	var pla3 = "";
-	
+	// 해당 div에 값이 있다면 디스플레이에 flex값을 줘서 보여줌 (평상시에는 none상태)
 	if(document.getElementById("place1").value != ""){
-		pla1 = document.createElement('div')
-		pla1.setAttribute('id', 'pla1')
-		pla1.setAttribute('class', 'pla')
-		var place1 = "";
-		var placedel1 = "";
-		place1 = document.createElement('div')
-		place1.innerHTML = document.getElementById("place1").value
-		place1.setAttribute('id', 'placename1')
-		placedel1 = document.createElement('img')
-		placedel1.setAttribute('src', '${contextPath }/resources/delete.png')
-		placedel1.setAttribute('class', 'placedel')
-		placedel1.setAttribute('id', 'placedel1')	
-		placedel1.setAttribute('onclick', 'delete1()')
-		
-		document.getElementById("pla1").appendChild(place1)
-		document.getElementById("pla1").appendChild(placedel1)
+		document.getElementById('pla1').style.display='flex';
 	}
 	if(document.getElementById("place2").value != ""){
-		pla2 = document.createElement('div')
-		pla2.setAttribute('id', 'pla2')
-		pla2.setAttribute('class', 'pla')
-		var place2 = "";
-		var placedel2 = "";
-		place2 = document.createElement('div')
-		place2.innerHTML = document.getElementById("place2").value
-		place2.setAttribute('id', 'placename2')
-		placedel2 = document.createElement('img')
-		placedel2.setAttribute('src', '${contextPath }/resources/delete.png')
-		placedel2.setAttribute('class', 'placedel')
-		placedel1.setAttribute('id', 'placedel2')
-		placedel2.setAttribute('onclick', 'delete2()')
-		
-		document.getElementById("pla2").appendChild(place2)
-		document.getElementById("pla2").appendChild(placedel2)
+		document.getElementById('pla2').style.display='flex';
 	}
 	if(document.getElementById("place3").value != ""){
-		pla3 = document.createElement('div')
-		pla3.setAttribute('id', 'pla3')
-		pla3.setAttribute('class', 'pla')
-		var place3 = "";
-		var placedel3 = "";
-		place3 = document.createElement('div')
-		place3.innerHTML = document.getElementById("place3").value
-		place3.setAttribute('id', 'placename3')
-		placedel3 = document.createElement('img')
-		placedel3.setAttribute('src', '${contextPath }/resources/delete.png')
-		placedel3.setAttribute('class', 'placedel')
-		placedel1.setAttribute('id', 'placedel3')
-		placedel3.setAttribute('onclick', 'delete3()')
-		
-		document.getElementById("pla3").appendChild(place3)
-		document.getElementById("pla3").appendChild(placedel3)
+		document.getElementById('pla3').style.display='flex';
 	}
 	document.getElementById("placeList").style.display='inline-block';
-	document.getElementById('placeList').appendChild(pla1)
-	document.getElementById('placeList').appendChild(pla2)
-	document.getElementById('placeList').appendChild(pla3)
+	
 }
 
 function delete1(){
+	// 삭제시 해당하는 div의 값들을 하나씩 가져와서 마지막 div의 값을 비우고 none시킴
 	document.getElementById('place1').value = document.getElementById('place2').value
 	document.getElementById('place2').value = document.getElementById('place3').value
 	document.getElementById('place3').value = "";
-	document.getElementById('pla1').remove();
-	document.getElementById("placeList").style.display='none';
-	end = 0;
+	
+	document.getElementById("placename1").innerHTML = document.getElementById('place1').value
+	document.getElementById("placename2").innerHTML = document.getElementById('place2').value
+	document.getElementById("placename3").innerHTML = document.getElementById('place3').value
+	document.getElementById("pla3").style.display='none';
+	document.getElementById("placeList").style.display='none';	
 }
 function delete2(){
 	document.getElementById('place2').value = document.getElementById('place3').value
 	document.getElementById('place3').value = "";
-	document.getElementById('pla2').remove();
-	document.getElementById("placeList").style.display='none';
-	end = 0;
+	
+	document.getElementById("placename2").innerHTML = document.getElementById('place2').value
+	document.getElementById("placename3").innerHTML = document.getElementById('place3').value
+	document.getElementById("pla3").style.display='none';
+	document.getElementById("placeList").style.display='none';	
 }
 function delete3(){
 	document.getElementById('place3').value = "";
-	document.getElementById('pla3').remove();
+	document.getElementById("placename3").innerHTML = document.getElementById('place3').value
+	document.getElementById("pla3").style.display='none';
 	document.getElementById("placeList").style.display='none';	
-	end = 0;
 }
+
+// 다른곳 클릭시 placeList 닫힘
+$(document).click(function(e){
+// 현재 문서를 클릭했을때 이벤트 발생
+    if (!$(e.target).is('#placeList')) { // 클릭한 영역의 id가 placeList가 아니라면
+    	if(!$(e.target).is('#placeinput')) // 클릭한 영역의 id가 placeinput이 아니라면 (이거 넣어줘야 input창을 클릭했을때 placeinput가 보여짐)
+    	document.getElementById("placeList").style.display='none';
+    }
+
+});
 
 </script>
 
@@ -1264,7 +1220,7 @@ function delete3(){
 	<div class="div2">
 	<br><br>
 	<sapn class="b">Title</sapn> <input type="text" id="title"name="title" class="te1">&nbsp;&nbsp;
-	<sapn class="b">Place</sapn> <input type="text" onclick="placeList()" class="te2" autocomplete="off">
+	<sapn class="b">Place</sapn> <input type="text" onclick="placeList()" class="te2" autocomplete="off" id="placeinput">
 	<img class="img2" onclick="modal()" src="${contextPath }/resources/diary_plus.png">
 	<sapn class="b">Who</sapn> <!--<input type="text" name="" class="te3"> -->
 	<select name="who" id="who" class="te3">
@@ -1279,9 +1235,19 @@ function delete3(){
 	</div>
 	
 	<div class="placeList" id="placeList" style="display: none;">
-		<div id="pla1"></div>
-		<div id="pla2"></div>
-		<div id="pla3"></div>
+	<!-- div와 img 태그를 미리 만들어놓음 -->
+		<div id="pla1">
+			<div id="placename1"></div>
+			<img src="${contextPath }/resources/delete.png" class="placedel" id="placedel2" onclick="delete1();"/>
+		</div>
+		<div id="pla2">
+			<div id="placename2"></div>
+			<img src="${contextPath }/resources/delete.png" class="placedel" id="placedel2" onclick="delete2();"/>
+		</div>
+		<div id="pla3">
+			<div id="placename3"></div>
+			<img src="${contextPath }/resources/delete.png" class="placedel" id="placedel3" onclick="delete3();"/>
+		</div>
 	</div>
 	
 		<table class="table"  >
