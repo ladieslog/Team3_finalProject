@@ -12,7 +12,7 @@
 	.img{height: 50px; width: 80px;}
 	.img2{right: 28px; height: 20px; width: 20px; position: relative; top: 6px}
 	.div{ text-align: center;}
-	.div2{ margin-right: 105px;}
+	.div2{ margin-right: -227px;}
 	.text{font-size: 15px; border-radius: 5px; border-color: white;}
 	.table{display: flex; justify-content: center; align-items: center; margin-top: 20px;}
 	.te1{ width:300px; border-radius: 5px; border-color: white;}
@@ -32,8 +32,8 @@
 	.btnwi{ background-color: #DEF4F9 ; color:black; border-radius: 5px; border-color: #DEF4F9; 
 			font-family: Georgia; font-size:18px;}
 	
-	.modal{   position: fixed;  top: 29%;  left: 37.28%; }
-	.placeList{ width: 158px;  background-color: white;  left: 37.3%;  border-radius: 5px;  position: absolute; }
+	.modal{   position: fixed;  top: 29%;  left: 45.6%; }
+	.placeList{ width: 158px;  background-color: white;  left: 45.6%;  border-radius: 5px;  position: absolute; }
 	.placeList>div{ display: flex; justify-content: space-between;  align-items: center; }
 	.placeList>div:nth-of-type(1){ border-bottom: 3px solid #DEF4F9; }
 	.placeList>div:nth-of-type(2){ border-bottom: 3px solid #DEF4F9; }
@@ -1274,6 +1274,7 @@ function delete3(){
 		<option value="4">연인</option>
 	</select>&nbsp;&nbsp;
 	<sapn class="b">Start Date</sapn> <input type="date" name="" class="te4">
+	&nbsp;&nbsp;
 	<sapn class="b">End Date</sapn> <input type="date" name="" class="te4">
 	</div>
 	
@@ -1283,7 +1284,7 @@ function delete3(){
 		<div id="pla3"></div>
 	</div>
 	
-		<table class="table" border="1px;" >
+		<table class="table"  >
 			<tr>
 				<th colspan="1" class="tdwr b">
 				<input type="button" value="Writing" onclick="content1()" class="btnwi" id="wbtn1">
