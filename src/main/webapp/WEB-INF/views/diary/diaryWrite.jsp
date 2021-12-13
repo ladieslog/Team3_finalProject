@@ -40,9 +40,9 @@
 		<option value="3">친구</option>
 		<option value="4">연인</option>
 	</select>&nbsp;&nbsp;
-	<sapn class="b">Start Date</sapn> <input type="date" name="indate" class="te4">
+	<sapn class="b">Start Date</sapn> <input type="date" name="indate" id="indate" class="te4">
 	&nbsp;&nbsp;
-	<sapn class="b">End Date</sapn> <input type="date" name="outdate" class="te4">
+	<sapn class="b">End Date</sapn> <input type="date" name="outdate" id="outdate" class="te4">
 	</div>
 	
 	<div class="placeList" id="placeList" style="display: none;">
