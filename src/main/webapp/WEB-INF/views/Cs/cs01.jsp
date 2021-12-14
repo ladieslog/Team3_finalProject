@@ -7,33 +7,25 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${contextPath}/resources/bootstrap.css">
+<link rel="stylesheet" href="${contextPath}/resources/CS/css/cs_css.css">
 <script src="${contextPath }/resources/jquery-3.6.0.min.js"></script>
 <script src="${contextPath }/resources/bootstrap.js"></script>
-<style type ="text/css">
-.in1{background-position: center center; height: 650px;  background-color: #DEF4F9;}
-.in2{ padding: 0 180px}
-
-.che{ 
-	background-color: white; width :1300px; height:250px; 
-}
 
 
-
-</style>
 </head>
 <body>
 <div>
 	<jsp:include page="../default/header.jsp"/>
-	<div class="in1">
-		<div class="in2">
+	
+	<div class="a1">
+		<div class="a2">
 		
 			<div>
 			<br>
 				<span><b style="font-size: 30px;">notice</b></span>
 				
 			</div>
-				<input type="text" name="" class="che">	
+				<input type="text" name="" class="ach">	
 			
 				
 			
@@ -42,7 +34,7 @@
 				<span><b style="font-size: 30px;">Q & N</b></span>
 				
 			</div>
-				<input type="text" name="" class="che">
+				<input type="text" name="" class="ach">
 			<div class="in3">
 				
 			</div>
