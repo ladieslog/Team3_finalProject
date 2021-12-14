@@ -10,7 +10,7 @@
 
 <script src="${contextPath }/resources/jquery-3.6.0.min.js"></script>
 <script src="${contextPath }/resources/bootstrap.js"></script>
-<link rel="stylesheet" href="<c:url value="/resources/CS/css/cs_css.css" />">
+<link rel="stylesheet" href="${contextPath }/resources/CS/css/cs_css.css">
 </head>
 <body>
 <div>

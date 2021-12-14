@@ -1,0 +1,69 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="contextPath" value="<%=request.getContextPath() %>"/>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script src="${contextPath }/resources/jquery-3.6.0.min.js"></script>
+<script src="${contextPath }/resources/bootstrap.js"></script>
+<link rel="stylesheet" href="${contextPath }/resources/CS/css/cs_css.css">
+</head>
+<body>
+<div>
+	<jsp:include page="../default/header.jsp"/>
+	<div class="b1">
+		<div class="b2">
+			<br>			
+				<br>
+			 
+				<table class="bn3">
+				<tr>
+					<td class="wb"colspan="2"> <b class="bh2">Q&A class &nbsp;</b> </td>
+					<td class="wb"colspan="1"> <input type="text" name="" class="ch2"></td>
+					<td class="ws"colspan="1"> </td>
+					<td class="wb"colspan="2"> <b class="bh2">&nbsp; writer &nbsp;</b></td>
+					<td class="wb"colspan="1"> <input type="text" name="" class="ch2"></td>
+				</tr>
+				<tr>
+					<td class="wb"colspan="2"> <b class="bh2">Q&A title &nbsp;</b>  </td>
+					<td class="wb"colspan="1"> <input type="text" name="" class="ch2"></td>
+					<td class="ws"colspan="1"> </td>
+					<td class="wb"colspan="2"><b class="bh2">&nbsp; write date &nbsp;</b> </td>
+					<td class="wb"colspan="1"> <input type="text" name="" class="ch2"></td>
+				</tr>
+				<tr class ="hb"></tr>
+			
+				<tr>
+					<td colspan="2"><b class="bh2">Q&A answer &nbsp;</b> </td>
+				</tr>
+				<tr> 
+					<td colspan="15">
+						<input type="text" name="" class="chb2">
+					</td>
+				</tr>
+				<tr>
+					<td></td> <td></td> <td></td> <td></td> <td></td>  
+					<td class="bn2"><input type="button" value="view list" class="bn4"></td>
+					<td class="bn2"><input type="submit" value="commit" class="bn4"></td>
+				</tr>
+					
+		</table>	
+		</div>
+
+	</div>
+	
+
+	<jsp:include page="../Cs/cs_back.jsp"/>
+	<jsp:include page="../default/footer.jsp"/>
+</div>
+	
+	
+	
+
+
+</body>
+</html>

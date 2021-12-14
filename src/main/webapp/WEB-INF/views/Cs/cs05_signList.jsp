@@ -42,7 +42,7 @@
 				</tr>
 				<tr>
 					<td></td> <td></td> <td></td> <td></td> <td></td> <td></td>
-					<td class="cn2"><input type="submit" value="commit" class="cn4"></td>
+					<td class="cn2"><input type="submit" value="anwser_list" class="cn4"></td>
 				</tr>
 					
 			</table>	
@@ -54,10 +54,6 @@
 	<jsp:include page="../Cs/cs_back.jsp"/>
 	<jsp:include page="../default/footer.jsp"/>
 </div>
-	
-	
-	
-
 
 </body>
 </html>

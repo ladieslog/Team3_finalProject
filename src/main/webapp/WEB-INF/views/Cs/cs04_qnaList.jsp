@@ -8,9 +8,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="${contextPath}/resources/bootstrap.css">
-<script src="${contextPath }/resources/jquery-3.6.0.min.js"></script>
-<script src="${contextPath }/resources/bootstrap.js"></script>
-<link rel="stylesheet" href="<c:url value="/resources/CS/css/cs_css.css" />">
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.min.js"></script>
+
+<script type="text/javascript" src="${contextPath }/resources/diaryScript"></script>
 </head>
 <body>
 <div>

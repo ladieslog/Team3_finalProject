@@ -1,5 +1,9 @@
 package com.care.dare.mybatis;
 
-public class DiaryMapper {
+import java.io.FileInputStream;
 
+import com.care.dare.diary.dto.DiaryDTO;
+
+public interface DiaryMapper {
+	public int writeSave(DiaryDTO dto);
 }

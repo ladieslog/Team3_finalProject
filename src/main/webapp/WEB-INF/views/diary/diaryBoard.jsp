@@ -17,20 +17,21 @@
 		padding: 0 80px;
 	}
 	.diary-box {
-		background-color: #B2CCFF;
+		background-color: white;
 		width: 300px;
 		height: 360px;
 		display: flex;
    		justify-content: center;
     	align-items: center;
     	margin: 0 50px;
+    	border-radius: 10px;
 	}
 	.flex-con-be {
 		display: flex;
 		justify-content: center;
 	}
 	.diary-box-img {
-		width: 200px;
+		width: 100px;
 	}
 	.mt-30 {
 		margin-top: 30px;
@@ -49,8 +50,8 @@
 	<div class="diary-wrap">
 		<div class="diary-container">
 			<div>
-				<span><b style="font-size: 18px;">닉네임</b></span>
-				<span><b style="font-size: 18px;">글 갯수</b></span>
+				<span><b style="font-size: 15px;">닉네임</b></span>
+				<span><b style="font-size: 15px; margin-left: 15px;">추억</b></span>
 			</div>
 			<div class="flex-con-be mt-30">
 				<div class="diary-box">
@@ -65,8 +66,10 @@
 				</div>
 				<div class="diary-box">
 					<div>
-						제목
-						<div style="width: 200px; height:200px; background-color: #FAED7D;"></div>
+						<div>제목</div>
+
+						<div style="width: 220px; height:256px; background-color: #FAED7D; margin:15px;"></div>
+
 						<div>
 							<span class="fl">몇월몇일</span>
 							<span class="fr">누구랑</span>

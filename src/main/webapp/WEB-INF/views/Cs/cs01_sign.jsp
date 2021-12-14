@@ -7,13 +7,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${contextPath}/resources/CS/css/cs_css.css">
-<script src="${contextPath }/resources/jquery-3.6.0.min.js"></script>
-<script src="${contextPath }/resources/bootstrap.js"></script>
-
+<link rel="stylesheet" href="${contextPath }/resources/CS/css/cs_css.css">
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.min.js"></script>
+<script type="text/javascript" src="${contextPath }/resources/diaryscript/diaryscript.js"></script>
 
 </head>
-<body>
+<body style="overflow-x: hidden">
 <div>
 	<jsp:include page="../default/header.jsp"/>
 	
@@ -25,16 +24,18 @@
 				<span><b style="font-size: 30px;">notice</b></span>
 				
 			</div>
+			<div id="id1">
 				<input type="text" name="" class="ach">	
-			
-				
-			
+			</div>		
 			<div>
 				<br>
 				<span><b style="font-size: 30px;">Q & N</b></span>
 				
 			</div>
+			<div id="id2">
 				<input type="text" name="" class="ach">
+			</div>
+				
 			<div class="in3">
 				
 			</div>
