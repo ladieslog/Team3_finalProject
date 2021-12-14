@@ -1,7 +1,10 @@
 package com.care.dare.diary.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -13,7 +16,17 @@ public class DiaryController {
 	@Autowired DiaryService ds;
 	
 	@RequestMapping("diaryBoard")
-	public String diaryBoard() {
+	public String diaryBoard(HttpServletRequest req, Model model) {
+		int pageSize = 10;
+		String currentPage = req.getParameter("currentPage");
+		if(req.getParameter("currentPage") == null) {
+			currentPage = "1";
+		}
+		int pageNum = Integer.parseInt(currentPage);
+		
+		int startRow = (pageNum - 1) * pageSize + 1;
+		int endRow = pageNum * pageSize;
+		
 		return "diary/diaryBoard";
 	}
 	

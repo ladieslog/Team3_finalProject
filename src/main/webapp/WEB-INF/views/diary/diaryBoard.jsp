@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:set var="contextPath" value="<%=request.getContextPath() %>"/>
 <!DOCTYPE html>
 <html>
@@ -44,9 +45,19 @@
 	}
 </style>
 </head>
+<c:set var="pageSize" value="10"/> <!-- 한 페이지에 출력할 게시글 수 -->
+<c:set var="currentPage" value="${requestScope.currentPage }"/>
+<c:if test="${currentPage eq null }">
+	<c:set var="currentPage" value="1"/>
+</c:if>
+<fmt:formatNumber var="pageNum" type="number" value="${currentPage }"/>
+<c:set var="startRow" value="${(pageNum - 1) * pageSize + 1 }"/>
+<c:set var="endRow" value="${pageNum *  pageSize}"/>
 <body style="overflow-x: hidden;">
 	<jsp:include page="../default/header.jsp"/>
-	
+	${currentPage } <br/>
+	${startRow }<br/>
+	${endRow }
 	<div class="diary-wrap">
 		<div class="diary-container">
 			<div>
