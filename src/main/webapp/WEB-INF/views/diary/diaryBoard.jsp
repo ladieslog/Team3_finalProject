@@ -56,12 +56,12 @@
 			<div class="flex-con-be mt-30">
 				<div class="diary-box">
 					<a href="#">
-						<img src="${contextPath }/resources/diary_plus.png" class="diary-box-img"/>
+						<img src="${contextPath }/resources/diaryimg/diary_plus.png" class="diary-box-img"/>
 					</a>
 				</div>
 				<div class="diary-box">
 					<a href="#">
-						<img src="${contextPath }/resources/diary_plus.png" class="diary-box-img"/>
+						<img src="${contextPath }/resources/diaryimg/diary_plus.png" class="diary-box-img"/>
 					</a>
 				</div>
 				<div class="diary-box">

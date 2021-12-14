@@ -13,6 +13,7 @@ import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -147,6 +148,10 @@ public class DiaryService {
 		fos.write(mfile.getBytes());
 		fos.close();
 		return file;
+	}
+	
+	public void memberInfo(Model model) {
+		model.addAttribute("diaryList", mapper.diaryList() );
 	}
 	
 	

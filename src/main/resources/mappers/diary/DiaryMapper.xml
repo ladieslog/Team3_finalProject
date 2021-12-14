@@ -16,5 +16,9 @@
 		#{coment1,jdbcType=VARCHAR},#{coment2,jdbcType=VARCHAR},#{coment3,jdbcType=VARCHAR},#{coment4,jdbcType=VARCHAR},#{coment5,jdbcType=VARCHAR},
 		#{location2,jdbcType=VARCHAR},#{location3,jdbcType=VARCHAR})
 	</insert>
+	
+	<select id="diaryList" resultMap="">
+		select * from diary_board
+	</select>
 
 </mapper>
