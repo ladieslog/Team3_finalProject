@@ -40,7 +40,6 @@ public class DiaryController {
 		}else {
 			pageSize = 4;
 		}
-		
 		int pageNum = Integer.parseInt(currentPage);
 		int startRow = 0;
 		int endRow = 0;
@@ -51,7 +50,6 @@ public class DiaryController {
 			startRow = (pageNum - 1) * pageSize;
 			endRow = pageNum * pageSize - 1;
 		}
-
 		ArrayList<DiaryDTO> arr = ds.diaryBoard(startRow, endRow);
 		SimpleDateFormat sim = new SimpleDateFormat("yyyy-MM-dd");
 		int count = 0;
@@ -76,15 +74,11 @@ public class DiaryController {
 			stream.close();
 			count++;	
 		}
-		
-		
 		model.addAttribute("diaryList", arr);
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("pageSize", pageSize);
 		return "diary/diaryBoard";
 	}
-	
-	
 	
 	@RequestMapping("diaryWrite")
 	public String diaryWrite() {
@@ -106,9 +100,5 @@ public class DiaryController {
 		ds.writeSave(mul);
 		return "redirect:diaryBoard";
 	}
-	
-	
-	
-	
 	
 }
