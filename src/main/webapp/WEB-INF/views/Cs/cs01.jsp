@@ -5,14 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-	.k1{ display:flex; justify-content: flex-end; margin-bottom: 50px;}
-</style>
 </head>
 <body>
-	
-	<h3 class="k1">
-		<a href="cs">돌아가기</a>
-	</h3>
+
 </body>
 </html>
