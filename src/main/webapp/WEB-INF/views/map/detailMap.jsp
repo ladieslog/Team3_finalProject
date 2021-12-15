@@ -24,13 +24,13 @@
 		<jsp:include page="../default/header.jsp" />
 		<div class="background">
 			<div class="frame">
-				<div id="map" style="width: 500px; height: 600px;"></div>
+				<div id="map" style="width: 1200px; height: 650px;"></div>
 			</div>
 		</div>
 		<jsp:include page="../default/footer.jsp" />
 	</div>
 </body>
-<script src="<c:url value="/resources/map/map2.js" />"></script>
+<script src="<c:url value="/resources/map/detailMap.js" />"></script>
 </html>
 
 

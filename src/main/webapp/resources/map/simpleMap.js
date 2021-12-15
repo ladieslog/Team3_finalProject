@@ -59,14 +59,13 @@ function startDataLayer() {
 	map.data.setStyle(function(feature) {
 		var styleOptions = {
 			fillColor: '#E4F7BA',
-			fillOpacity: 1,
+			fillOpacity: 0.4,
 			strokeColor: '#BCE55C',
 			strokeWeight: 2,
 			strokeOpacity: 0.6
 		};
 
 		if (feature.getProperty('focus')) {
-			
 			styleOptions.fillColor = '#FFC19E';
 			styleOptions.fillOpacity = 1;
 			styleOptions.strokeColor = '#F29661';
@@ -86,7 +85,9 @@ function startDataLayer() {
 
 		if (feature.getProperty('focus') !== true) {
 			feature.setProperty('focus', true);
-		} else {
+		} 
+		
+		else {
 			feature.setProperty('focus', false);
 		}
 	});
