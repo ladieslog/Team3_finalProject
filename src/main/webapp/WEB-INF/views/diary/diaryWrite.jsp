@@ -23,9 +23,9 @@
 		<input type="text" id="place" class="te2">
 		<input type="button" value="Save" onclick="save()" class="sub">
 		<input type="button" value="Cancle" onclick="cancle()" class="sub">
-		<input type="hidden" name="place1" id="place1" value="">
-		<input type="hidden" name="place2" id="place2" value="">
-		<input type="hidden" name="place3" id="place3" value="">
+		<input type="hidden" name="place1" id="place1">
+		<input type="hidden" name="place2" id="place2">
+		<input type="hidden" name="place3" id="place3">
 		</div>
 	</div>
 	<div class="div2">
@@ -33,7 +33,7 @@
 	<sapn class="b">Title</sapn> <input type="text" id="title" name="title" class="te1">&nbsp;&nbsp;
 	<sapn class="b">Place</sapn> <input type="text" onclick="placeList()" class="te2" autocomplete="off" id="placeinput">
 	<img class="img2" onclick="modal()" src="${contextPath }/resources/diaryimg/diary_plus.png">
-	<sapn class="b">Who</sapn> <!--<input type="text" name="" class="te3"> -->
+	<sapn class="b">Who</sapn>
 	<select name="who" id="who" class="te3">
 		<option value="1">혼자</option>
 		<option value="2">가족</option>

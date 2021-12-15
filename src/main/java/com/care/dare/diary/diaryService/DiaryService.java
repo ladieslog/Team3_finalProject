@@ -1,7 +1,9 @@
 package com.care.dare.diary.diaryService;
 
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -11,6 +13,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -53,9 +57,9 @@ public class DiaryService {
 			dto.setLocation2(mul.getParameter("place2"));
 		}
 		if(mul.getParameter("place3").equals("")) {
-			dto.setLocation2(null);
+			dto.setLocation3(null);
 		}else {
-			dto.setLocation2(mul.getParameter("place3"));
+			dto.setLocation3(mul.getParameter("place3"));
 		}
 		dto.setPerson(mul.getParameter("who"));
 		
@@ -158,7 +162,41 @@ public class DiaryService {
 	public int diaryCount() {
 		return mapper.diaryCount();
 	}
+
+	public void diaryView(Model model, int num, HttpServletRequest req) throws Exception {
+		DiaryDTO dto = mapper.diaryView(num);
+		SimpleDateFormat sim = new SimpleDateFormat("yyyy-MM-dd");
+		dto.setIndatestr(sim.format(dto.getIndate()));
+		dto.setOutdatestr(sim.format(dto.getOutdate()));
+		
+		if(dto.getImage1() != null) {
+			imgFile(dto.getImage1(),req,1);
+		}
+		if(dto.getImage2() != null) {
+			imgFile(dto.getImage2(),req,2);
+		}
+		if(dto.getImage3() != null) {
+			imgFile(dto.getImage3(),req,3);
+		}
+		if(dto.getImage4() != null) {
+			imgFile(dto.getImage4(),req,4);
+		}
+		if(dto.getImage5() != null) {
+			imgFile(dto.getImage5(),req,5);
+		}
+		
+		model.addAttribute("diary",dto);
+	}
 	
-	
+	public void imgFile(byte[] bt, HttpServletRequest req,int count) throws Exception {
+		File file = new File("C:/spring/diaryView/"+count+".png");
+		FileOutputStream fos = new FileOutputStream(file);
+		DataOutputStream stream = new DataOutputStream(fos);
+		stream.write(bt); 
+		stream.flush();
+		fos.getFD().sync();
+		stream.close();
+		count++;
+	}
 	
 }

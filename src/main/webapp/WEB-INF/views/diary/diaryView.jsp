@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="contextPath" value="<%=request.getContextPath() %>"/>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,9 +15,9 @@
 	.text{font-size: 15px; border-radius: 5px; border-color: white;}
 	.table{ margin-top: 60px;}
 	.te1{ width:200px; border-radius: 5px; border-color: white;}
-	.te2{ width:150px; border-radius: 5px; border-color: white;}
-	.te3{ width:150px; border-radius: 5px; border-color: white;}
-	.te4{ width:150px; border-radius: 5px; border-color: white;}
+	.te2{ width:200px; border-radius: 5px; border-color: white;}
+	.te3{ width:200px; border-radius: 5px; border-color: white;}
+	.te4{ width:200px; border-radius: 5px; border-color: white;}
 	
 	.td1{ width: 200px; background-color: #DEF4F9;}
 	.submit{ width:80px; height:20px; }
@@ -31,59 +32,169 @@
 	td{ height: 100px; }
 	.td{ width: 30px; height: 30px; }
 </style>
+<script src="${contextPath }/resources/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="${contextPath }/resources/diaryscript/diaryViewScript.js"></script>
+
 </head>
 <body style="overflow-x: hidden ">
+
 	<jsp:include page="../default/header.jsp"/>
-	
+<c:set var="dto" value="${diary}"></c:set>	
+<c:set var="count" value="1"/>
+
 	<div class="writewrap">
 	<div class="div">
 	<form action="">
 		<table class="table" >
 			<tr>
-				<td class="b">Title</td> <td><input type="text" name="" class="te1"></td>
+				<td class="b">Title</td> <td><input type="text" class="te1" value="${dto.title}" readonly></td>
 				<td class="td" rowspan="5"></td>
 				<td class="td" rowspan="5"></td>
 				<td rowspan="5" colspan="1">
-				<div class="divsize">
-				<div>
-				<div class="imgsize"><img class="siz" src="${contextPath }/resources/plus.png"></div>
-				<div class="textbox"><input type="text" name="" class="box"></div>
+				<input id="check" type="hidden" value="0">
+				<div class="divsize" id="imgtext" style="display:none;">
+				<div >
+				<div class="imgsize">
+				<img class="siz" id="view1" src="${contextPath }/resources/diaryimg/diary_plus.png">
+				</div>
+				<div class="textbox">
+				<input type="text" id="txtview1" class="box" >
 				</div>
 				</div>
+				</div>
+				
+				<div class="divsize" id="textarea" style="display: none;">
+				<div style="width: 550px; height: 460px;">
+				<div class="textbox" style="width: 550px; height: 460px;">
+				<textarea id="textView1"style="height: 431px; width: 519px; resize: none;"class="box" readonly></textarea>
+				</div>
+				</div>
+				</div>
+				
+				<c:choose>
+					<c:when test="${dto.image1!=null }">
+						<script type="text/javascript">
+							document.getElementById("imgtext").style.display="flex";
+							document.getElementById("check").value="2";		
+							$('#view1').attr('src', '<spring:url value='/img/${count}.png'/>' )
+							document.getElementById("txtview1").value="${dto.coment1}"
+						</script>					
+					</c:when>
+					<c:otherwise>
+						<script type="text/javascript">
+							document.getElementById("textarea").style.display="flex";
+							document.getElementById("check").value="1";
+							document.getElementById("textView1").value="${dto.coment1}"
+						</script>
+					</c:otherwise>
+				</c:choose>
+				
 				</td>
 				<td class="td"></td>
 				<td class="td"></td>
-				<td class="td1"><img class="img" src="${contextPath }/resources/ppp.png"></td>
+				<td class="td1">
+				<c:choose>
+					<c:when test="${dto.image1==null }">
+						<img class="img" id="preView1" onclick="imgView1()" src="${contextPath}/resources/diaryimg/diary_plus.png">
+					</c:when>
+					<c:otherwise>
+						<img class="img" id="preView1" onclick="imgView1()" src="<spring:url value='/img/${count}.png'/>">
+					</c:otherwise>
+				</c:choose>
+				</td>
 			</tr>
 				
 			<tr>
-				<td class="b">Place</td> <td><input type="text" name="" class="te2"></td>
+				<td class="b">Place</td> <td style="display: table-caption">
+				<input style="margin-top:15px;" type="text" value="${dto.location1}" class="te2" readonly>
+				<input style="margin-top:10px;" type="text" value="${dto.location2}" class="te2" readonly>
+				<input style="margin-top:10px;" type="text" value="${dto.location3}" class="te2" readonly>
+				</td>
 				<td class="td"></td>
 				<td class="td"></td>
-				<td class="td1"><img class="img" src="${contextPath }/resources/ppp.png"></td>
+				<td class="td1">
+				<c:choose>
+					<c:when test="${dto.image2!=null }">
+						<img class="img" id="preView2" onclick="imgView2()" src="<spring:url value='/img/${count+1}.png'/>">
+					</c:when>
+					<c:when test="${dto.coment2!=null }">
+						<img class="img" id="preView2" onclick="imgView2()" src="${contextPath }/resources/diaryimg/diary_plus.png">
+					</c:when>
+					<c:otherwise>
+						
+					</c:otherwise>
+				</c:choose>
+				</td>
 			</tr>
 				
 			<tr>
-				<td class="b">Who</td> <td><input type="text" name="" class="te3"></td>
+				<td class="b">Who</td> <td>
+				<c:if test="${dto.person == 1 }">
+					<input type="text" value="혼자" class="te3" readonly>
+				</c:if>
+				<c:if test="${dto.person == 2 }">
+					<input type="text" value="가족" class="te3" readonly>
+				</c:if>
+				<c:if test="${dto.person == 3 }">
+					<input type="text" value="친구" class="te3" readonly>
+				</c:if>
+				<c:if test="${dto.person == 4 }">
+					<input type="text" value="연인" class="te3" readonly>
+				</c:if>
+				</td>
 				<td class="td"></td>
 				<td class="td"></td>
-				<td class="td1"><img class="img" src="${contextPath }/resources/ppp.png"></td>
+				<td class="td1">
+				<c:choose>
+					<c:when test="${dto.image3!=null }">
+						<img class="img" id="preView3" onclick="imgView3()" src="<spring:url value='/img/${count+2}.png'/>">
+					</c:when>
+					<c:when test="${dto.coment3!=null }">
+						<img class="img" id="preView3" onclick="imgView3()" src="${contextPath }/resources/diaryimg/diary_plus.png">
+					</c:when>
+					<c:otherwise>
+						
+					</c:otherwise>
+				</c:choose>
+				</td>
 			</tr>
 			
 			<tr>
-				<td class="b">Date</td> <td><input type="text" name="" class="te4"></td>
+				<td class="b">Date</td> <td><input type="text" value="${dto.indatestr} ~ ${dto.outdatestr}" class="te4" readonly></td>
 				<td class="td"></td>
 				<td class="td"></td>
-				<td class="td1"><img class="img" src="${contextPath }/resources/ppp.png"></td>
+				<td class="td1">
+				<c:choose>
+					<c:when test="${dto.image4!=null }">
+						<img class="img" id="preView4" onclick="imgView4()" src="<spring:url value='/img/${count+3}.png'/>">
+					</c:when>
+					<c:when test="${dto.coment4!=null }">
+						<img class="img" id="preView4" onclick="imgView4()" src="${contextPath }/resources/diaryimg/diary_plus.png">
+					</c:when>
+					<c:otherwise>
+						
+					</c:otherwise>
+				</c:choose>
+				</td>
 			</tr>
 			
 			<tr>
-				<td class="b">Writing time</td> <td><input type="text" name="" class="te2"></td>
+				<td class="b">Writing time</td> <td><input type="text" value="${dto.time}" class="te2" readonly></td>
 				<td class="td"></td>
 				<td class="td"></td>
-				<td class="td1"><img class="img" src="${contextPath }/resources/ppp.png"></td>
-			
-				
+				<td class="td1">
+				<c:choose>
+					<c:when test="${dto.image5!=null }">
+						<img class="img" id="preView5" onclick="imgView5()" src="<spring:url value='/img/${count+4}.png'/>">
+					</c:when>
+					<c:when test="${dto.coment5!=null }">
+						<img class="img" id="preView5" onclick="imgView5()" src="${contextPath }/resources/diaryimg/diary_plus.png">
+					</c:when>
+					<c:otherwise>
+						
+					</c:otherwise>
+				</c:choose>
+				</td>
 			</tr>
 			
 			<tr>
@@ -108,5 +219,86 @@
 	</div>
 	
 	<jsp:include page="../default/footer.jsp"/>
+	<script type="text/javascript">
+	function imgView1(){
+		if($("#preView1").attr('src') == "${contextPath }/resources/diaryimg/diary_plus.png"){
+			document.getElementById("imgtext").style.display="none"
+			document.getElementById("textarea").style.display="flex"
+			document.getElementById("textView1").value="${dto.coment1}"
+		}else{
+			document.getElementById("imgtext").style.display="flex"
+			document.getElementById("textarea").style.display="none"
+				
+			$('#view1').attr('src', "<spring:url value='/img/1.png'/>")
+			document.getElementById("txtview1").value="${dto.coment1}"
+		}
+	}
+	
+	function imgView2(){
+		if($("#preView2").attr('src') == "${contextPath }/resources/diaryimg/diary_plus.png"){
+			document.getElementById("imgtext").style.display="none"
+			document.getElementById("textarea").style.display="flex"
+			document.getElementById("textView1").value="${dto.coment2}"
+			
+		}else{
+			document.getElementById("imgtext").style.display="flex"
+			document.getElementById("textarea").style.display="none"
+				
+			$('#view1').attr('src', "<spring:url value='/img/2.png'/>")
+			document.getElementById("txtview1").value="${dto.coment2}"
+
+		}
+	}
+	
+	function imgView3(){
+		if($("#preView3").attr('src') == "${contextPath }/resources/diaryimg/diary_plus.png"){
+			document.getElementById("imgtext").style.display="none"
+			document.getElementById("textarea").style.display="flex"
+			document.getElementById("textView1").value="${dto.coment3}"
+			
+		}else{
+			document.getElementById("imgtext").style.display="flex"
+			document.getElementById("textarea").style.display="none"
+				
+			$('#view1').attr('src', "<spring:url value='/img/3.png'/>")
+			document.getElementById("txtview1").value="${dto.coment3}"
+
+		}
+	}
+	
+	function imgView4(){
+		if($("#preView4").attr('src') == "${contextPath }/resources/diaryimg/diary_plus.png"){
+			document.getElementById("imgtext").style.display="none"
+			document.getElementById("textarea").style.display="flex"
+			document.getElementById("textView1").value="${dto.coment4}"
+			
+		}else{
+			document.getElementById("imgtext").style.display="flex"
+			document.getElementById("textarea").style.display="none"
+				
+			$('#view1').attr('src', "<spring:url value='/img/4.png'/>")
+			document.getElementById("txtview1").value="${dto.coment4}"
+
+		}
+	}
+	
+	function imgView5(){
+		if($("#preView5").attr('src') == "${contextPath }/resources/diaryimg/diary_plus.png"){
+			document.getElementById("imgtext").style.display="none"
+			document.getElementById("textarea").style.display="flex"
+			document.getElementById("textView1").value="${dto.coment5}"
+			
+		}else{
+			document.getElementById("imgtext").style.display="flex"
+			document.getElementById("textarea").style.display="none"
+				
+			$('#view1').attr('src', "<spring:url value='/img/5.png'/>")
+			document.getElementById("txtview1").value="${dto.coment5}"
+
+		}
+	}
+	
+</script>
 </body>
+
 </html>

@@ -10,11 +10,13 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.care.dare.diary.diaryService.DiaryService;
@@ -67,13 +69,11 @@ public class DiaryController {
 			}
 			File file = new File("C:/spring/diary/"+count+".png");
 			FileOutputStream fos = new FileOutputStream(file);
-			
 			DataOutputStream stream = new DataOutputStream(fos);
 			stream.write(dto.getImage1()); 
 			stream.flush();
 			fos.getFD().sync();
 			stream.close();
-			System.out.println(count);
 			count++;	
 		}
 		
@@ -84,20 +84,27 @@ public class DiaryController {
 		return "diary/diaryBoard";
 	}
 	
+	
+	
 	@RequestMapping("diaryWrite")
 	public String diaryWrite() {
 		return "diary/diaryWrite";
 	}
 	
 	@RequestMapping("diaryView")
-	public String diaryView() {
+	public String diaryView(Model model, @RequestParam("num")int num, HttpServletRequest req) {
+		try {
+			ds.diaryView(model, num, req);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "diary/diaryView";
 	}
 	
 	@PostMapping("writeSave")
 	public String writeSave(MultipartHttpServletRequest mul) throws Exception {
 		ds.writeSave(mul);
-		return "diary/diaryBoard";
+		return "redirect:diaryBoard";
 	}
 	
 	

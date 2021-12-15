@@ -47,6 +47,11 @@
 		select count(*) from diary_board
 	</select>
 	
+	<select id="diaryView" resultMap="diary">
+		select * from diary_board where num=#{num}
+	</select>
+	
+	
 	
 
 
