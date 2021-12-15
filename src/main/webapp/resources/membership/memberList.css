@@ -1,0 +1,58 @@
+@charset "EUC-KR";
+.listwrap {
+	display:flex;
+	justify-content: center;
+}
+table {
+	width: 1000px;
+	border-collapse: collapse
+}
+tr {
+	border-bottom: 1px solid #D5D5D5;
+	border-top: none;
+	height:35px;
+}
+td {
+	height: 35px;
+	padding: 0 40px;
+	
+}
+.tableHeader div{
+	margin-bottom : -10px !important;
+}
+td>div{
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	width: 100%;
+	
+}
+tr>td:nth-of-type(4)>.address {
+	width: 200px;
+}
+tr>td:nth-of-type(5)>.address {
+	width: 200px;
+}
+#addressInfo{
+	position: absolute;
+	margin-top: -10px;
+}
+body{
+	overflow-x: hidden;
+}
+.tableHeader{
+	border-bottom: 1px solid #000;
+}
+.trHover{
+	height:80px;
+}
+.trHover>div{
+	margin-bottom: 20px !important;
+	margin-top:-10px;
+}
+
+.center>div{
+	display:flex;
+	justify-content: center;
+    align-items: center;
+}

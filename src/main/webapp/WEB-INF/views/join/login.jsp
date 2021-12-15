@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,68 +41,12 @@
 	}
 */
 </script>
-<style type="text/css">
 
-.membership-form {
-	background-image:
-		url("<%=request.getContextPath()%>/resources/welcome.png");
-	background-repeat: no-repeat;
-	background-position: center center;
-	background-size: 820px;
-	height: 620px;
-	margin-top: 50px;
-	display:flex;
-	
-}
-.table{
-	text-align:
-	center;
-	display: flex;
-	justify-content: center;
-	margin-top:160px;
+<link href="<c:url value="/resources/membership/login.css" />"
+    rel="stylesheet">
 
-}
-td{
-	height:70px;
-	width:200px;
-}
-.membership-box {
-	display: flex;
-	height: 500px;
-    justify-content: center;
-    width: 100%;
-    padding-right: 110px;
-    padding-top: 40px;
-    background-color:black;
-}
 
-.membership-table {
-	position: relative;
-	left: 10px;
-	top: 80px;
-	width:400px;
-	height:150px;
-	
-	
-}
 
-input {
-	border-radius: 5px;
-	border: none;
-}
-
-.but {
-	border-color: #B0C6E7;
-	border-radius: 5px;
-	background-color: #B0C6E7;
-}
-#form{
-	display:flex;
-	justify-content:center;
-	align-items:center;
-	width:100%; 
-}
-</style>
 </head>
 <body onLoad="reFrm.id.focus()">
 	<div class="container membership-form">
