@@ -3,6 +3,26 @@
 	var check3 = 0;
 	var check4 = 0;
 	var check5 = 0;
+	if(document.getElementById("coment1").value == ""){
+		check1 = 1;
+		document.getElementById("imgChk1").value = '1'
+	}
+	if(document.getElementById("coment2").value == ""){
+		check2 = 1;
+		document.getElementById("imgChk2").value = '1'
+	}
+	if(document.getElementById("coment3").value == ""){
+		check3 = 1;
+		document.getElementById("imgChk3").value = '1'
+	}
+	if(document.getElementById("coment4").value == ""){
+		check4 = 1;
+		document.getElementById("imgChk4").value = '1'
+	}
+	if(document.getElementById("coment5").value == ""){
+		check5 = 1;
+		document.getElementById("imgChk5").value = '1'
+	}
 	var pageNum = 1;
 function readURL1(input) {	
 	var file = input.files[0] 

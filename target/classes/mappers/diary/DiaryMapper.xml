@@ -47,6 +47,23 @@
 		select count(*) from diary_board
 	</select>
 	
+	<select id="diaryView" resultMap="diary">
+		select * from diary_board where num=#{num}
+	</select>
+	
+	<delete id="diaryDelete">
+		delete from diary_board where num=#{num}
+	</delete>
+	
+	<update id="writeUpdate">
+		update diary_board set title=#{title},time=sysdate,person=#{person},indate=#{indate},outdate=#{outdate},location1=#{location1,jdbcType=VARCHAR},
+		image1=#{fis1, jdbcType=BLOB},image2=#{fis2, jdbcType=BLOB},image3=#{fis3, jdbcType=BLOB},image4=#{fis4, jdbcType=BLOB},image5=#{fis5, jdbcType=BLOB},
+		coment1=#{coment1,jdbcType=VARCHAR},coment2=#{coment2,jdbcType=VARCHAR},coment3=#{coment3,jdbcType=VARCHAR},
+		coment4=#{coment4,jdbcType=VARCHAR},coment5=#{coment5,jdbcType=VARCHAR},
+		location2=#{location2,jdbcType=VARCHAR},location3=#{location3,jdbcType=VARCHAR} where num=#{num}
+	</update>
+	
+	
 	
 
 

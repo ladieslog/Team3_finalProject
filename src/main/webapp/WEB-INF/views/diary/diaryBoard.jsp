@@ -4,6 +4,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <c:set var="contextPath" value="<%=request.getContextPath() %>"/>
 <!DOCTYPE html>
 <html>
@@ -14,7 +15,7 @@
 <style type="text/css">
 	.diary-wrap {
 		background-color: #DEF4F9;
-		padding: 98px 0 138px 0;
+		padding: 59px 0 70px 0;
 	}
 	.diary-container {
 		padding: 0 80px;
@@ -37,7 +38,7 @@
 		width: 100px;
 	}
 	.mt-30 {
-		margin-top: 30px;
+		margin-top: 60px;
 	}
 	.fl {
 		float: left;
@@ -45,6 +46,7 @@
 	.fr {
 		float: right;
 	}
+	.page{ text-decoration: none; text-align: center; color:black; }
 </style>
 </head>
 
@@ -63,18 +65,18 @@
 	<div class="diary-wrap">
 		<div class="diary-container">
 			<div>
-				<span><b style="font-size: 15px;">닉네임</b></span>
-				<span><b style="font-size: 15px; margin-left: 15px;">추억</b></span>
+				<span><b style="font-size: 15px;">닉네임님의 </b></span>
+				<span><b style="font-size: 15px; margin-left: 15px;">${diaryCount}가지 추억</b></span>
 			</div>
 			<div class="flex-con-be mt-30">
 			<c:if test="${currentPage == 1 }">
 			<div class="diary-box">
-					<a href="#">
+					<a href="diaryWrite">
 						<img src="${contextPath }/resources/diaryimg/diary_plus.png" class="diary-box-img"/>
 					</a>
 				</div>
 			</c:if>
-			<c:if test="${empty diaryList }">
+			<c:if test="${empty diaryList}">
 				<script type="text/javascript">
 					alert('해당페이지는 존재하지 않습니다')
 					location.href="diaryBoard"
@@ -83,15 +85,15 @@
 				<c:forEach var="dto" items="${diaryList}">
 				<div class="diary-box">
 					<div>
-						<a href="#" style="text-decoration: none; color:black;">
+						<a href="diaryView?num=${dto.num}" style="text-decoration: none; color:black;">
 						<div>${dto.title}</div>
-						<div style="width: 220px; height:256px; background-color: white; margin:10px;">
+						<div style="width: 220px; height:256px; background-color: white; margin:15px;">
 						<c:choose>
 							<c:when test="${dto.image1 == null}">
 								<img style="width: 220px; height:256px;" src="${contextPath }/resources/diaryimg/diary_plus.png" class="diary-box-img"/>
 							</c:when>
 							<c:otherwise>
-								<img style="width: 220px; height:256px;" src="/file/diary/${count}.png">
+								<img style="width: 220px; height:256px;" src="<spring:url value='/image/${count}.png'/>">
 							</c:otherwise>
 						</c:choose>	
 						<c:set var="count" value="${count+1}"/>
@@ -116,7 +118,7 @@
 				</div>
 					</c:forEach>	
 			</div>
-			<div>
+			<div style="text-align: center; margin-top: 59px;">
 			<c:set var="diaryCount" value="${diaryCount}"/>
 				<fmt:parseNumber var="pageCount" integerOnly="true" value="${diaryCount/4+1}"/>				
 				<c:set var="pageBlock" value="10"/>
@@ -132,10 +134,10 @@
 				<c:forEach var="i" begin="${startPage}" end="${endPage}">
 			<c:choose>
 				<c:when test="${i == currentPage }">
-					<a href="diaryBoard?currentPage=${i}">●</a>
+					<a class="page" href="diaryBoard?currentPage=${i}">●</a>
 				</c:when>
 				<c:otherwise>
-					<a href="diaryBoard?currentPage=${i}">○</a>				
+					<a class="page" href="diaryBoard?currentPage=${i}">○</a>				
 				</c:otherwise>
 			</c:choose>
 				</c:forEach>

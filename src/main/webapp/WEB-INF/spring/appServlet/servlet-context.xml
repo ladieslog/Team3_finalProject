@@ -28,5 +28,8 @@
         <beans:property name="maxUploadSize" value="52428800" />
         <beans:property name="defaultEncoding" value="utf-8" />
     </beans:bean>
+    
+    <resources mapping="/image/**" location="file:///C:/spring/diary/" />
+    <resources mapping="/img/**" location="file:///C:/spring/diaryView/" />
 	
 </beans:beans>

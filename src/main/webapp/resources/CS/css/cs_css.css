@@ -14,12 +14,14 @@
 	.bn4{background-color: #DEF4F9 ; font-size: 15px; color:black; border-radius: 5px; border-color: #DEF4F9; font-family: Georgia; margin-bottom:70px;}
 	
 	.ch2{background-color: white; width :250px; height:25px; border-radius: 5px; border-color: #DEF4F9;}
+	.cha3{background-color: white; width :1000px; height:30px; border-radius: 5px; border-color: #DEF4F9;}
 	.chb2{background-color: white; width :1000px; height:350px; border-radius: 5px; border-color: #DEF4F9;}
 	
 	.bh2{ font-family: Georgia; font-size:24px; }
 	.ws{width: 90px;}
 	.hb {height: 50px;}	
 	.eh1{float:right;}
+	.eh2{float: left;}
 	
 	
 	.c1{ margin:auto; height: 650px;  background-color: #DEF4F9;}

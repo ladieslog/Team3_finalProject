@@ -7,22 +7,28 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${contextPath}/resources/bootstrap.css">
 <script src="${contextPath }/resources/jquery-3.6.0.min.js"></script>
 <script src="${contextPath }/resources/bootstrap.js"></script>
-<link rel="stylesheet" href="<c:url value="/resources/CS/css/cs_css.css" />">
+<link rel="stylesheet" href="${contextPath }/resources/CS/css/cs_css.css">
 </head>
 <body>
 <div>
 	<jsp:include page="../default/header.jsp"/>
 	<div class="c1">
-		<div class="c2">
-			<br><br>
-				<b class="bh3">  write title &nbsp;</b>
-				<input type="text" name="" class="ch">
-			<table class="cn3">				
+		<div class="c2">			
+			<table class="cn3">	
+				<tr></tr>			
 				<tr> 
+					<td>
+						<b class="bh3">  write title &nbsp;</b>	
+					</td>
+					<td colspan="14">
+						<input type="text" name="" class="cha3">	
+					</td>
 					<!--<td  class="tb"> <b class="b">write date</b></td>  -->				
+				</tr>
+				<tr>
+					<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
 				</tr>
 				<tr class="rb"></tr>
 				<!--
@@ -41,13 +47,11 @@
 					</td>
 				</tr>
 				<tr>
-					<td></td> <td></td> <td></td> <td></td> <td></td> <td></td>
-					<td class="cn2"><input type="submit" value="commit" class="cn4"></td>
-				</tr>
-					
+					<td colspan="14"></td>
+					<td class="eh1"><input type="submit" value="commit" class="cn4"></td>
+				</tr>				
 			</table>	
 		</div>
-
 	</div>
 	
 

@@ -8,9 +8,6 @@
 <meta charset="UTF-8">
 <title>diaryWrite</title>
 <link rel="stylesheet" href="${contextPath }/resources/diarycss/DiaryStyleCss.css">
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.min.js"></script>
-
-<script type="text/javascript" src="${contextPath }/resources/diaryscript/diaryscript.js"></script>
 
 </head>
 <body style="overflow-x: hidden">
@@ -20,12 +17,13 @@
 	<form id="form" action="writeSave" method="post" enctype="multipart/form-data">
 	<div class="modal" id="modal" style="display:none;">
 		<div class="b">
-		<input type="text" id="place" class="te2">
+		<input type="text" id="place" class="te2" readonly>
+		<input type="button" value="Search" onclick="mailnum()" class="sub">
 		<input type="button" value="Save" onclick="save()" class="sub">
 		<input type="button" value="Cancle" onclick="cancle()" class="sub">
-		<input type="hidden" name="place1" id="place1" value="">
-		<input type="hidden" name="place2" id="place2" value="">
-		<input type="hidden" name="place3" id="place3" value="">
+		<input type="hidden" name="place1" id="place1">
+		<input type="hidden" name="place2" id="place2">
+		<input type="hidden" name="place3" id="place3">
 		</div>
 	</div>
 	<div class="div2">
@@ -33,7 +31,7 @@
 	<sapn class="b">Title</sapn> <input type="text" id="title" name="title" class="te1">&nbsp;&nbsp;
 	<sapn class="b">Place</sapn> <input type="text" onclick="placeList()" class="te2" autocomplete="off" id="placeinput">
 	<img class="img2" onclick="modal()" src="${contextPath }/resources/diaryimg/diary_plus.png">
-	<sapn class="b">Who</sapn> <!--<input type="text" name="" class="te3"> -->
+	<sapn class="b">Who</sapn>
 	<select name="who" id="who" class="te3">
 		<option value="1">혼자</option>
 		<option value="2">가족</option>
@@ -95,7 +93,7 @@
 						<img id="preview1" onclick="document.all.image_file_name1.click();"
 							style='height:360px; width:600px;' src='${contextPath }/resources/diaryimg/diary_plus.png'>
 							<input type="hidden" value="0" id="imgChk1">
-							<input type="hidden" id="fileChk1">
+							<input type="hidden" id="fileChk1" name="fileChk1">
 						<textarea id="comentimage1" style='width:900px; height: 50px;'class='text' name="comentimage1"></textarea>
 					</div>
 			</div>
@@ -110,7 +108,7 @@
 						<img id="preview2" onclick="document.all.image_file_name2.click();"
 							style='height:360px; width:600px;' src='${contextPath }/resources/diaryimg/diary_plus.png'>
 							<input type="hidden" value="0" id="imgChk2">
-							<input type="hidden" id="fileChk2">
+							<input type="hidden" id="fileChk2" name="fileChk2">
 						<textarea id="comentimage2" style='width:900px; height: 50px;'class='text' name="comentimage2"></textarea>
 					</div>
 				</div>
@@ -125,7 +123,7 @@
 						<img id="preview3" onclick="document.all.image_file_name3.click();"
 							style='height:360px; width:600px;' src='${contextPath }/resources/diaryimg/diary_plus.png'>
 							<input type="hidden" value="0" id="imgChk3">
-							<input type="hidden" id="fileChk3">
+							<input type="hidden" id="fileChk3" name="fileChk3">
 						<textarea id="comentimage3" style='width:900px; height: 50px;'class='text' name="comentimage3"></textarea>
 					</div>
 					</div>
@@ -140,7 +138,7 @@
 						<img id="preview4" onclick="document.all.image_file_name4.click();"
 							style='height:360px; width:600px;' src='${contextPath }/resources/diaryimg/diary_plus.png'>
 							<input type="hidden" value="0" id="imgChk4">
-							<input type="hidden" id="fileChk4">
+							<input type="hidden" id="fileChk4" name="fileChk4">
 						<textarea id="comentimage4" style='width:900px; height: 50px;'class='text' name="comentimage4"></textarea>
 					</div>
 					</div>
@@ -155,7 +153,7 @@
 						<img id="preview5" onclick="document.all.image_file_name5.click();"
 							style='height:360px; width:600px;' src='${contextPath }/resources/diaryimg/diary_plus.png'>
 							<input type="hidden" value="0" id="imgChk5">
-							<input type="hidden" id="fileChk5">
+							<input type="hidden" id="fileChk5" name="fileChk5">
 						<textarea id="comentimage5" style='width:900px; height: 50px;'class='text' name="comentimage5"></textarea>
 					</div>
 					</div>			
@@ -210,5 +208,8 @@
 	</div>
 	
 	<jsp:include page="../default/footer.jsp"/>
+<script src="<%=request.getContextPath()%>/resources/jquery-3.6.0.min.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript" src="${contextPath}/resources/diaryscript/diaryscript.js?ver=1"></script>
 </body>
 </html>
