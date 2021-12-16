@@ -4,10 +4,13 @@ import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -86,9 +89,9 @@ public class DiaryController {
 	}
 	
 	@RequestMapping("diaryView")
-	public String diaryView(Model model, @RequestParam("num")int num, HttpServletRequest req) {
+	public String diaryView(Model model, @RequestParam("num")int num) {
 		try {
-			ds.diaryView(model, num, req);
+			ds.diaryView(model, num);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -101,4 +104,36 @@ public class DiaryController {
 		return "redirect:diaryBoard";
 	}
 	
+	@PostMapping("diaryDelete")
+	public void diaryDelete(@RequestParam("deleteCheck")String deleteCheck, @RequestParam("deleteNum")int deleteNum,HttpServletResponse res) throws Exception{
+		res.setContentType("text/html; charset=utf-8");
+		PrintWriter out = res.getWriter();
+		if(deleteCheck.equals("1")) {
+			ds.diaryDelete(deleteNum);
+			out.print("<script> alert('게시글이 삭제되었습니다.');"
+					+"location.href='diaryBoard'; </script>");
+		}else {
+			out.print("<script> alert('잘못된 접근입니다');"
+					+"location.href='diaryBoard'; </script>");
+		}
+	}
+	
+	@RequestMapping("diaryModify")
+		public String diaryModify(@RequestParam("num")int num, Model model) throws Exception {
+			ds.diaryModify(num, model);
+			return "diary/diaryModify";
+		}
+	
+	@RequestMapping("writeUpdate")
+	public String writeUpdate(MultipartHttpServletRequest mul) throws Exception {
+		ds.writeUpdate(mul);
+		return "redirect:diaryBoard";
+		
+	}
+	
 }
+
+
+
+
+
