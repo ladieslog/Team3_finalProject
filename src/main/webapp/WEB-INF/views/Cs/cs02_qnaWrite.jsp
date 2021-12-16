@@ -45,13 +45,12 @@
 						<input type="text" name="" class="chb2">
 					</td>
 				</tr>
-				<tr>
-					<td></td> <td></td> <td></td> <td></td> <td></td>  
-					<td class="bn2"><input type="button" value="view list" class="bn4"></td>
-					<td class="bn2"><input type="submit" value="commit" class="bn4"></td>
-				</tr>
 					
 		</table>	
+			<div class="eh1">
+				<input type="button" value="view list" class="bn4">
+				<input type="submit" value="commit" class="bn4">
+			</div>
 		</div>
 
 	</div>

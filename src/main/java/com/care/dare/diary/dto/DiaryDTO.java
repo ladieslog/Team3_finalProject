@@ -29,6 +29,20 @@ public class DiaryDTO {
 	FileInputStream fis3;
 	FileInputStream fis4;
 	FileInputStream fis5;
+	private String indatestr;
+	private String outdatestr;
+	public String getIndatestr() {
+		return indatestr;
+	}
+	public void setIndatestr(String indatestr) {
+		this.indatestr = indatestr;
+	}
+	public String getOutdatestr() {
+		return outdatestr;
+	}
+	public void setOutdatestr(String outdatestr) {
+		this.outdatestr = outdatestr;
+	}
 	public FileInputStream getFis1() {
 		return fis1;
 	}

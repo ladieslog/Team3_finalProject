@@ -25,7 +25,7 @@
 				
 			</div>
 			<div id="id1">
-				<input type="text" name="" class="ach">	
+				<textarea rows="7" cols="70" name="comment" class="ach"></textarea>
 			</div>		
 			<div>
 				<br>
@@ -33,7 +33,8 @@
 				
 			</div>
 			<div id="id2">
-				<input type="text" name="" class="ach">
+				<textarea rows="7" cols="70" name="comment" class="ach" placeholder="글내용을 입력"></textarea>
+				<!-- <input type="text" name="" class="ach"> -->	
 			</div>
 				
 			<div class="in3">

@@ -9,10 +9,12 @@ import java.nio.file.Path;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -23,7 +25,7 @@ import com.care.dare.mybatis.DiaryMapper;
 @Service
 public class DiaryService {
 	@Autowired DiaryMapper mapper;
-	public void writeSave(MultipartHttpServletRequest mul) throws Exception {
+	public void writeSave(MultipartHttpServletRequest mul) throws Exception {	// 다이어리 작성 DB 저장
 		DiaryDTO dto = new DiaryDTO();
 		dto.setId("3333");	
 		System.out.println(mul.getParameter("indate"));
@@ -140,7 +142,7 @@ public class DiaryService {
 		mapper.writeSave(dto);
 	}
 
-	public File multitofile(MultipartFile mfile) throws Exception {
+	public File multitofile(MultipartFile mfile) throws Exception {		// 다이어리 작성 이미지 저장 변환
 		File file = new File(mfile.getOriginalFilename());
 		file.createNewFile();
 		FileOutputStream fos = new FileOutputStream(file);
@@ -148,6 +150,15 @@ public class DiaryService {
 		fos.close();
 		return file;
 	}
+	
+	public ArrayList<DiaryDTO> diaryBoard(int start, int end) {
+		return mapper.diaryBoard(start, end);
+	}
+	
+	public int diaryCount() {
+		return mapper.diaryCount();
+	}
+	
 	
 	
 }
