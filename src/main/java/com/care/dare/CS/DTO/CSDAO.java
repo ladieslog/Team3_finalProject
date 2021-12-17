@@ -20,15 +20,15 @@ public class CSDAO {
 		}
 	}
 	
-	public double register(int num1, String questTitle, byte[] questionContent,
+/*	public double register(int num1, String questTitle, byte[] questionContent,
 			String questionId, Timestamp questionTime, byte[] answerContent,
 			Timestamp answerTime, String status) {
 		Connection conn =null;
 		PreparedStatement pstmt =null;
-		String SQL = "INSERT INTO CUSTOMER_SERVICE SELECT 
+//		String SQL = "INSERT INTO CUSTOMER_SERVICE SELECT 
 		try {
 			conn =dataSource.getConnection();
-			pstmt =conn.prepareStatement(SQL);
+//			pstmt =conn.prepareStatement(SQL);
 			pstmt.setInt(1, num1);
 			pstmt.setString(2, questTitle);
 			pstmt.setBytes(3, questionContent);
@@ -53,7 +53,7 @@ public class CSDAO {
 	}
 		
 	public getCs(String  )
-	
+	*/
 	
 	
 	
