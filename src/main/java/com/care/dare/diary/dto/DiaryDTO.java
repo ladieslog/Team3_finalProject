@@ -19,60 +19,13 @@ public class DiaryDTO {
 	private String coment3;
 	private String coment4;
 	private String coment5;
-	private byte[] image1;
-	private byte[] image2;
-	private byte[] image3;
-	private byte[] image4;
-	private byte[] image5;
-	FileInputStream fis1;
-	FileInputStream fis2;
-	FileInputStream fis3;
-	FileInputStream fis4;
-	FileInputStream fis5;
+	private String image1;
+	private String image2;
+	private String image3;
+	private String image4;
+	private String image5;
 	private String indatestr;
 	private String outdatestr;
-	public String getIndatestr() {
-		return indatestr;
-	}
-	public void setIndatestr(String indatestr) {
-		this.indatestr = indatestr;
-	}
-	public String getOutdatestr() {
-		return outdatestr;
-	}
-	public void setOutdatestr(String outdatestr) {
-		this.outdatestr = outdatestr;
-	}
-	public FileInputStream getFis1() {
-		return fis1;
-	}
-	public void setFis1(FileInputStream fis1) {
-		this.fis1 = fis1;
-	}
-	public FileInputStream getFis2() {
-		return fis2;
-	}
-	public void setFis2(FileInputStream fis2) {
-		this.fis2 = fis2;
-	}
-	public FileInputStream getFis3() {
-		return fis3;
-	}
-	public void setFis3(FileInputStream fis3) {
-		this.fis3 = fis3;
-	}
-	public FileInputStream getFis4() {
-		return fis4;
-	}
-	public void setFis4(FileInputStream fis4) {
-		this.fis4 = fis4;
-	}
-	public FileInputStream getFis5() {
-		return fis5;
-	}
-	public void setFis5(FileInputStream fis5) {
-		this.fis5 = fis5;
-	}
 	public int getNum() {
 		return num;
 	}
@@ -163,35 +116,47 @@ public class DiaryDTO {
 	public void setComent5(String coment5) {
 		this.coment5 = coment5;
 	}
-	public byte[] getImage1() {
+	public String getImage1() {
 		return image1;
 	}
-	public void setImage1(byte[] image1) {
+	public void setImage1(String image1) {
 		this.image1 = image1;
 	}
-	public byte[] getImage2() {
+	public String getImage2() {
 		return image2;
 	}
-	public void setImage2(byte[] image2) {
+	public void setImage2(String image2) {
 		this.image2 = image2;
 	}
-	public byte[] getImage3() {
+	public String getImage3() {
 		return image3;
 	}
-	public void setImage3(byte[] image3) {
+	public void setImage3(String image3) {
 		this.image3 = image3;
 	}
-	public byte[] getImage4() {
+	public String getImage4() {
 		return image4;
 	}
-	public void setImage4(byte[] image4) {
+	public void setImage4(String image4) {
 		this.image4 = image4;
 	}
-	public byte[] getImage5() {
+	public String getImage5() {
 		return image5;
 	}
-	public void setImage5(byte[] image5) {
+	public void setImage5(String image5) {
 		this.image5 = image5;
+	}
+	public String getIndatestr() {
+		return indatestr;
+	}
+	public void setIndatestr(String indatestr) {
+		this.indatestr = indatestr;
+	}
+	public String getOutdatestr() {
+		return outdatestr;
+	}
+	public void setOutdatestr(String outdatestr) {
+		this.outdatestr = outdatestr;
 	}
 	
 }

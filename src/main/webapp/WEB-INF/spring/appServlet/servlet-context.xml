@@ -30,6 +30,6 @@
     </beans:bean>
     
     <resources mapping="/image/**" location="file:///C:/spring/diary/" />
-    <resources mapping="/img/**" location="file:///C:/spring/diaryView/" />
+ 
 	
 </beans:beans>

@@ -2,16 +2,20 @@ package com.care.dare.diary.controller;
 
 import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -20,10 +24,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.care.dare.diary.diaryService.DiaryService;
 import com.care.dare.diary.dto.DiaryDTO;
+import com.google.gson.JsonObject;
 
 @Controller
 public class DiaryController {
@@ -71,15 +78,19 @@ public class DiaryController {
 			File file = new File("C:/spring/diary/"+count+".png");
 			FileOutputStream fos = new FileOutputStream(file);
 			DataOutputStream stream = new DataOutputStream(fos);
-			stream.write(dto.getImage1()); 
+		//	stream.write(dto.getImage1()); 
 			stream.flush();
 			fos.getFD().sync();
 			stream.close();
 			count++;	
 		}
+		if(currentPage.equals("1")) {
+			model.addAttribute("pageChk",1);
+		}
 		model.addAttribute("diaryList", arr);
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("pageSize", pageSize);
+		
 		return "diary/diaryBoard";
 	}
 	
@@ -124,13 +135,36 @@ public class DiaryController {
 			return "diary/diaryModify";
 		}
 	
-	@RequestMapping("writeUpdate")
-	public String writeUpdate(MultipartHttpServletRequest mul) throws Exception {
-		ds.writeUpdate(mul);
+	@PostMapping("writeUpdate")
+	public String writeUpdate(HttpServletRequest req) throws Exception  {
+		ds.writeUpdate(req);
 		return "redirect:diaryBoard";
 		
 	}
-	
+
+	@RequestMapping(value="imgUp", produces="application/json; charset=utf-8")
+	@ResponseBody
+	public String imgUp(@RequestParam("file")MultipartFile file,HttpServletRequest req) {
+		System.out.println("aaa");
+		JsonObject json = new JsonObject();
+		String root = "C:/spring/diary/";
+		String originalname = file.getOriginalFilename();
+		String savename = UUID.randomUUID()+originalname;
+		File target = new File(root+savename);
+		InputStream is;
+		try {
+			is = file.getInputStream();
+			FileUtils.copyInputStreamToFile(is, target);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		json.addProperty("url", savename);
+		String result = json.toString();
+		System.out.println(savename);
+		return result;
+	}
 }
 
 

@@ -76,7 +76,8 @@
 					</a>
 				</div>
 			</c:if>
-			<c:if test="${empty diaryList}">
+			
+		 	<c:if test="${empty diaryList and pageChk == null}">
 				<script type="text/javascript">
 					alert('해당페이지는 존재하지 않습니다')
 					location.href="diaryBoard"
@@ -93,7 +94,7 @@
 								<img style="width: 220px; height:256px;" src="${contextPath }/resources/diaryimg/diary_plus.png" class="diary-box-img"/>
 							</c:when>
 							<c:otherwise>
-								<img style="width: 220px; height:256px;" src="<spring:url value='/image/${count}.png'/>">
+								<img style="width: 220px; height:256px;" src="<spring:url value='/image/${dto.image1}'/>">
 							</c:otherwise>
 						</c:choose>	
 						<c:set var="count" value="${count+1}"/>
@@ -129,7 +130,7 @@
 					<c:set var="endPage" value="${pageCount }"/>
 				</c:if>
 				<c:if test="${startPage> pageBlock }">
-					<a href="diaryBoard?currentPage=${startPage-10 }">이전</a>
+					<a style="font-size:18px; text-decoration: none; color:black" href="diaryBoard?currentPage=${startPage-10 }">←</a>
 				</c:if>
 				<c:forEach var="i" begin="${startPage}" end="${endPage}">
 			<c:choose>
@@ -142,7 +143,7 @@
 			</c:choose>
 				</c:forEach>
 				<c:if test="${endPage < pageCount }">
-					<a href="diaryBoard?currentPage=${startPage+10 }">다음</a>
+					<a style="font-size:18px; text-decoration: none; color:black" href="diaryBoard?currentPage=${startPage+10 }">→</a>
 				</c:if>
 			</div>
 
