@@ -1,5 +1,6 @@
+var seoul = new naver.maps.LatLng(37.56570923435898, 126.97715302005895);
 var mapOptions = {
-	center: new naver.maps.LatLng(37.56570923435898, 126.97715302005895), //지도의 초기 중심 좌표
+	center: seoul, //지도의 초기 중심 좌표
 	zoom: 11, //지도의 초기 줌 레벨
 	minZoom: 11, //지도의 최소 줌 레벨
 	maxZoom: 11, //지도의 최소 줌 레벨
@@ -21,29 +22,41 @@ var HOME_PATH = '../resources/map',
 	urlPrefix = HOME_PATH + '/detailRegionJson/detail',
 	urlSuffix = '.json',
 	regionGeoJson = [],
+	detailNum = 259,
+	startRegion = 83,
+	endRegion = 109,
+	regionCount = 26,
 	loadCount = 0;
 
-naver.maps.Event.once(map, 'init_stylemap', function() {
-	for (var i = 83; i < 109; i++) {
-		var keyword = i + '';
 
-		if (keyword.length === 2) {
+naver.maps.Event.once(map, 'init_stylemap', function() {
+	for (var i = startRegion; i < endRegion; i++) {
+
+		if (i === startRegion) {
+			keyword = mapNum;
+		}
+
+		else {
+			var keyword = i + '';
+		}
+
+		if (keyword.length === 1) {
+			keyword = '00' + keyword;
+		}
+
+		else if (keyword.length === 2) {
 			keyword = '0' + keyword;
 		}
-		
-		if (i === 83) {
-			keyword = '259'
-		}
+
+
 
 		$.ajax({
 			url: urlPrefix + keyword + urlSuffix,
 			success: function(idx) {
 				return function(geojson) {
-					console.log(geojson);
 					regionGeoJson[idx] = geojson;
 					loadCount++;
-
-					if (loadCount === 26) {
+					if (loadCount === regionNum) {
 						startDataLayer();
 					}
 				}
