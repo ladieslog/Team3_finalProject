@@ -88,24 +88,51 @@ public class CSController {
 	}
 	
 	@RequestMapping(value = "noticeDelete", method=RequestMethod.POST)
-	public String infoDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+	public void infoDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		resp.setContentType("text/html; charset=utf-8"); // 응답 설정 변경
+		PrintWriter out = resp.getWriter(); // 화면 출력용 객체
+		String numstr = req.getParameter("num");
+		if(numstr == null) {
+			out.print("<script> alert('잘못된 접근입니다.');location.href='csMain';</script>");
+		} else {
+			int num = Integer.parseInt(numstr);
+			int result = service.noticeDelete(num);
+			
+			if(result == 0) {
+				out.print("<script> alert('게시글 삭제에 실패했습니다.');location.href='csMain';</script>");
+			} else {
+				out.print("<script> alert('게시글이 삭제되었습니다.');location.href='csMain';</script>");
+				
+			}
+		}
+		
+	}
+	
+	@RequestMapping(value = "noticeModifyForm", method=RequestMethod.POST)
+	public String noticeModifyForm(HttpServletRequest req, HttpServletResponse resp, Model model) throws IOException {
 		resp.setContentType("text/html; charset=utf-8"); // 응답 설정 변경
 		PrintWriter out = resp.getWriter(); // 화면 출력용 객체
 		String numstr = req.getParameter("num");
 		if(numstr == null) {
 			out.print("<script> alert('잘못된 접근입니다.');</script>");
 			return "redirect:csMain";
-		}
-		int num = Integer.parseInt(numstr);
-		int result = service.noticeDelete(num);
-		
-		if(result == 0) {
-			out.print("<script> alert('게시글 삭제에 실패했습니다.');</script>");
 		} else {
-			out.print("<script> alert('게시글이 삭제되었습니다.'); </script>");
-			
+			int num = Integer.parseInt(numstr);
+			service.noticeInfo(model, num);
+			return "Cs/cs_noticeModify";
 		}
-		return "redirect:csMain";
+	}
+	
+	@RequestMapping(value="noticeModify", method=RequestMethod.POST)
+	public void noticeModify(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		resp.setContentType("text/html; charset=utf-8"); // 응답 설정 변경
+		PrintWriter out = resp.getWriter(); // 화면 출력용 객체
+		int result = service.noticeModify(req);
+		if(result == 0) {
+			out.print("<script> alert('공지 수정에 실패했습니다.');location.href='csMain';</script>");
+		} else {
+			out.print("<script> alert('공지 수정이 완료되었습니다.');location.href='csMain';</script>");
+		}
 	}
 	
 }

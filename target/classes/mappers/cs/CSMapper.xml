@@ -27,4 +27,7 @@
 	<delete id="noticeDelete">
 		delete from notice where num = #{num}
 	</delete>
+	<update id="noticeModify">
+		update notice set title = #{title}, content = #{content}, time = sysdate where num = #{num}
+	</update>
 </mapper>

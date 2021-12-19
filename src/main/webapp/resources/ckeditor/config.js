@@ -21,6 +21,5 @@ CKEDITOR.editorConfig = function( config ) {
 		{ name: 'others', groups: [ 'others' ] },
 		{ name: 'about', groups: [ 'about' ] }
 	];
-
-	config.removeButtons = 'About,Maximize,ShowBlocks';
+	config.removeButtons = 'Maximize,About,ShowBlocks';
 };

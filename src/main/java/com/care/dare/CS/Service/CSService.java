@@ -53,4 +53,12 @@ public class CSService {
 	public int noticeDelete(int num) {
 		return mapper.noticeDelete(num);
 	}
+	
+	public int noticeModify(HttpServletRequest req) {
+		NoticeDTO dto = new NoticeDTO();
+		dto.setNum(Integer.parseInt(req.getParameter("num")));
+		dto.setTitle(req.getParameter("title"));
+		dto.setContent(req.getParameter("content"));
+		return mapper.noticeModify(dto);
+	}
 }

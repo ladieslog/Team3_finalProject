@@ -78,7 +78,10 @@
 			</div>
 			<div class="notice-view-bottom" align="right">
 				<button type="button" class="wd-85" onclick="listPage();">목록으로</button>
-				<button type="button" class="wd-60" onclick="modifyPage();">수정</button>
+				<form action="noticeModifyForm" method="post" id="noticeModifyForm">
+					<button type="button" class="wd-60" onclick="modifyPage();">수정</button>
+					<input type="hidden" name="num" value="<%=dto.getNum() %>"/>
+				</form>
 				<form action="noticeDelete" method="post" id="noticeDelete">
 					<button type="button" class="wd-60" onclick="deletePage();">삭제</button>
 					<input type="hidden" name="num" value="<%=dto.getNum() %>"/>
@@ -95,7 +98,7 @@
 		location.href = "csMain";
 	}
 	function modifyPage() {
-		
+		document.getElementById("noticeModifyForm").submit();
 	}
 	function deletePage() {
 		if(confirm("정말 게시글을 삭제하시겠습니까?")) {

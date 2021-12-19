@@ -14,3 +14,7 @@ function writeCheck() {
 	}
 	document.getElementById("form").submit();
 }
+
+function hisback() {
+			history.back();
+}
