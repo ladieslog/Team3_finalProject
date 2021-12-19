@@ -1,14 +1,51 @@
 var mapOptions,
 	regionGeoJson = [];
 
+spinner();
 viewSelected(0);
 mapSetOptions();
-regionJsonLoopSelected(0);
+regionJsonLoop(0);
+
+function spinner() {
+	LoadingWithMask();
+	setTimeout("closeLoadingWithMask()", 2000);
+}
+
+function LoadingWithMask() {
+	//화면의 높이와 너비를 구합니다.
+	var maskHeight = $(document).height();
+	var maskWidth = window.document.body.clientWidth;
+
+	//화면에 출력할 마스크를 설정해줍니다.
+	var mask = "<div id='mask' style='position:absolute; z-index:5000; background-color:#000000; display:none;'></div>";
+	var loadingImg = '';
+
+	loadingImg += "<div id='loadingImg'>";
+	loadingImg += "<img src='/root/resources/map/img/Spinner.gif' style='position:absolute; left: 50%; top: 50%; transform:translate(-50%, -50%); display: block;'/>";
+	loadingImg += "</div>";
+
+	$('body').append(mask).append(loadingImg);
+	//화면에 레이어 추가
+
+	$('#mask').css({
+		'width': maskWidth,
+		'height': maskHeight,
+		'opacity': '0.3'
+	});
+
+	$('#mask').show();
+	$('#loadingImg').show();
+}
+
+function closeLoadingWithMask() {
+	$('#mask, #loadingImg').hide();
+	$('#mask, #loadingImg').empty();
+}
 
 function viewSelected(naverCode) {
 	var coordinate = [];
 	var zoomLevel = 11;
-	
+
 	if (naverCode === 0) {
 		coordinate = [35.797336021559566, 127.61588108068118];
 		zoomLevel = 7;
@@ -92,16 +129,16 @@ function viewSelected(naverCode) {
 	}
 
 	mapOptions = {
-		center: new naver.maps.LatLng(coordinate[0], coordinate[1]), 
+		center: new naver.maps.LatLng(coordinate[0], coordinate[1]),
 		mapTypes: new naver.maps.MapTypeRegistry({
 			'normal': naver.maps.NaverStyleMapTypeOption.getVectorMap()	// 레이어 없는 지도
 		}),
-		zoom: zoomLevel, 
-		minZoom: (zoomLevel-1), 
-		maxZoom: (zoomLevel+1), 
-		
-		zoomControlOptions: { 
-			zoomControl: true, 
+		zoom: zoomLevel,
+		minZoom: (zoomLevel - 1),
+		maxZoom: (zoomLevel + 1),
+
+		zoomControlOptions: {
+			zoomControl: true,
 			position: naver.maps.Position.TOP_RIGHT
 		}
 	};
@@ -121,30 +158,22 @@ function mapSetOptions() {
 	});
 }
 
-function regionJsonLoop(startRegion, endRegion, regionCount, naverCode) {
+function regionJsonLoop(selectedCity) {
 	var HOME_PATH = '../resources/map',
 		urlPrefix = HOME_PATH + '/detailRegionJson/detail',
 		urlSuffix = '.json',
-		loadCount = 0,
-		flag = 0;
+		loadCount = 0;
 
 	naver.maps.Event.once(map, 'init_stylemap', function() {
-		for (var i = startRegion; i < endRegion + 1; i++) {
-
-			if (naverCode !== 0) {	// 도, 광역시 지도 로드할 경우
-				if (i === startRegion && flag === 0) {	// 맨 처음에 경계 지도를 로드하기 위함
-					keyword = 250 + naverCode + '';	//251~267: 경계지도
-					flag = 1;
-					i--;
-				}
-
-				else {	// 나머지 시군구 지도 로드
-					var keyword = i + '';
-				}
+		var keyword;
+		spinner();
+		for (var i = 1; i < 268; i++) {
+			if (selectedCity === 0) {
+				keyword = i + '';
 			}
 
-			else {	// 전국 지도 로드할 경우
-				var keyword = i + '';
+			else {
+				keyword = (268 - i) + '';
 			}
 
 			if (keyword.length === 1) {
@@ -156,14 +185,15 @@ function regionJsonLoop(startRegion, endRegion, regionCount, naverCode) {
 			}
 
 			$.ajax({
+
 				url: urlPrefix + keyword + urlSuffix,
 				success: function(idx) {
 					return function(geojson) {
 						regionGeoJson[idx] = geojson;
 						loadCount++;
 
-						if (loadCount === regionCount + 1) {
-							startDataLayer(naverCode);
+						if (loadCount === 267) {
+							startDataLayer(selectedCity);
 						}
 					}
 				}(i - 1),
@@ -172,114 +202,23 @@ function regionJsonLoop(startRegion, endRegion, regionCount, naverCode) {
 				}
 			});
 		}
+
 	});
 }
 
-function regionJsonLoopSelected(navercode) {
-	if (navercode === 0) {	// 전국
-		regionJsonLoop(1, 267, 266, navercode);
-	}
+function startDataLayer(selectedCity) {
 
-	if (navercode === 1) {
-		// 강원: detail60.json~detail77.json, 총 18개, naverCode=01;
-		regionJsonLoop(60, 77, 18, navercode);
-	}
+	var tooltip = $('<div style="position:absolute;z-index:1000;padding:5px 10px;background-color:#fff;border:solid 2px #000;font-size:14px;pointer-events:none;display:none;"></div>');
+	tooltip.appendTo(map.getPanes().floatPane);
 
-	else if (navercode === 2) {
-		// 경기: detail209.json~detail250.json, 총 42개, naverCode=02;
-		regionJsonLoop(209, 250, 42, navercode);
-	}
-
-	else if (navercode === 3) {
-		// 경남: detail163.json~detail184.json, 총 22개, naverCode=03;
-		regionJsonLoop(163, 184, 22, navercode);
-	}
-
-	else if (navercode === 4) {
-		// 경북: detail185.json~detail208.json, 총 24개, naverCode=04;
-		regionJsonLoop(185, 208, 24, navercode);
-	}
-
-	else if (navercode === 5) {
-		// 광주: detail078.json~detail082.json, 총 5개, naverCode=05;
-		regionJsonLoop(78, 82, 5, navercode);
-	}
-
-	else if (navercode === 6) {
-		// 대구: detail047.json~detail054.json, 총 8개, naverCode=06;
-		regionJsonLoop(47, 54, 8, navercode);
-	}
-
-	else if (navercode === 7) {
-		// 대전: detail055.json~detail059.json, 총 5개, naverCode=07;
-		regionJsonLoop(55, 59, 5, navercode);
-	}
-
-	else if (navercode === 8) {
-		// 부산: detail001.json~detail016.json, 총 16개, naverCode=08;
-		regionJsonLoop(1, 16, 16, navercode);
-	}
-
-	else if (navercode === 9) {
-		// 서울: detail084.json~detail108.json, 총 25개, naverCode=09;
-		regionJsonLoop(84, 108, 25, navercode);
-	}
-
-	else if (navercode === 10) {
-		// 울산: detail111.json~detail115.json, 총 5개, naverCode=10;
-		regionJsonLoop(111, 115, 5, navercode);
-	}
-
-	else if (navercode === 11) {
-		// 인천: detail116.json~detail125.json, 총 10개, naverCode=11;
-		regionJsonLoop(116, 125, 10, navercode);
-	}
-
-	else if (navercode === 12) {
-		// 전남: detail141.json~detail162.json, 총 22개, naverCode=12;
-		regionJsonLoop(141, 162, 22, navercode);
-	}
-
-	else if (navercode === 13) {
-		// 전북: detail126.json~detail140.json, 총 15개, naverCode=13;
-		regionJsonLoop(126, 140, 15, navercode);
-	}
-
-	else if (navercode === 14) {
-		// 제주: detail109.json~detail110.json, 총 2개, naverCode=14;
-		regionJsonLoop(109, 110, 2, navercode);
-	}
-
-	else if (navercode === 15) {
-		// 충남: detail031.json~detail046.json, 총 16개, naverCode=15;
-		regionJsonLoop(31, 46, 16, navercode);
-	}
-
-	else if (navercode === 16) {
-		// 충남: detail017.json~detail030.json, 총 14개, naverCode=16;
-		regionJsonLoop(17, 30, 14, navercode);
-	}
-
-	else if (navercode === 17) {
-		// : detail083.json~detail083.json, 총 14개, naverCode=17;
-		regionJsonLoop(83, 83, 1, navercode);
-	}
-}
-
-
-var tooltip = $('<div style="position:absolute;z-index:1000;padding:5px 10px;background-color:#fff;border:solid 2px #000;font-size:14px;pointer-events:none;display:none;"></div>');
-
-tooltip.appendTo(map.getPanes().floatPane);
-
-function startDataLayer(naverCode) {
 	map.data.setStyle(function(feature) {
-		if (naverCode === 0) {
+		if (selectedCity === 0) {
 			if (feature.getProperty('area2') == '') {
 				var styleOptions = {
 					fillColor: '#FFD8D8',
 					fillOpacity: 0,
 					strokeColor: '#8C8C8C',
-					strokeWeight: 1,
+					strokeWeight: 2,
 					strokeOpacity: 1
 				};
 			}
@@ -294,7 +233,7 @@ function startDataLayer(naverCode) {
 				};
 			}
 			else {
-				var styleOptions = {
+				var styleOptions = {	// 여행간 지역 색칠
 					fillColor: '#FFC19E',
 					fillOpacity: 1,
 					strokeColor: '#8C8C8C',
@@ -304,13 +243,26 @@ function startDataLayer(naverCode) {
 			}
 		}
 		else {
-			var styleOptions = {
-				fillColor: '#F6F6F6',
-				fillOpacity: 0.1,
-				strokeColor: '#8C8C8C',
-				strokeWeight: 1,
-				strokeOpacity: 1
-			};
+			if (feature.getProperty('navercode') == selectedCity
+				&& feature.getProperty('area2') == '') { // 선택한 도시
+				var styleOptions = {
+					fillColor: '#FFD8D8',
+					fillOpacity: 0.3,
+					strokeColor: '#F15F5F',
+					strokeWeight: 2,
+					strokeOpacity: 1
+				};
+			}
+
+			else {
+				var styleOptions = {	// 나머지 도시
+					fillColor: '#FFC19E',
+					fillOpacity: 0,
+					strokeColor: '#8C8C8C',
+					strokeWeight: 1,
+					strokeOpacity: 0.5
+				};
+			}
 		}
 		return styleOptions;
 	});
@@ -319,6 +271,7 @@ function startDataLayer(naverCode) {
 		map.data.addGeoJson(geojson);
 	});
 
+
 	map.data.addListener('click', function(e) {
 		var feature = e.feature,
 			naverCodeInt = parseInt(feature.getProperty('navercode'));
@@ -326,35 +279,35 @@ function startDataLayer(naverCode) {
 		viewSelected(naverCodeInt);
 		mapSetOptions();
 		regionGeoJson = [];
-		regionJsonLoopSelected(naverCodeInt);
+		regionJsonLoop(naverCodeInt);
 
 	});
 
 	map.data.addListener('mouseover', function(e) { // 마우스 올린 상태
 		var feature = e.feature,
 			regionName;
-			
+
 		if (feature.getProperty('area3') == '') {
 			regionName = feature.getProperty('area1')
-					+ ' ' + feature.getProperty('area2');
+				+ ' ' + feature.getProperty('area2');
 		}
-		
+
 		else {
 			regionName = feature.getProperty('area1')
 				+ ' ' + feature.getProperty('area2')
 				+ ' ' + feature.getProperty('area3');
 		}
-		
+
 		tooltip.css({
 			display: '',
 			left: e.offset.x,
 			top: e.offset.y
 		}).text(regionName);
-		
+
 		map.data.overrideStyle(feature, {
-			fillOpacity: 0.3,
+			fillOpacity: 0.5,
 			strokeColor: '#F15F5F',
-			strokeWeight: 3,
+			strokeWeight: 2,
 			strokeOpacity: 1
 		});
 	});

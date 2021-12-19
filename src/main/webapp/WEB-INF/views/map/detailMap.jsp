@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="contextPath" value="<%=request.getContextPath() %>"/>
+<c:set var="contextPath" value="<%=request.getContextPath()%>" />
 
 <!DOCTYPE html>
 <html>
@@ -17,6 +17,7 @@
 <script type="text/javascript"
 	src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=hd20qegxv4"></script>
 <script src="${contextPath}/resources/jquery-3.6.0.min.js"></script>
+
 </head>
 
 <body>
@@ -24,7 +25,13 @@
 		<jsp:include page="../default/header.jsp" />
 		<div class="background">
 			<div class="frame">
-				<div id="map" style="width: 1200px; height: 650px;"></div>
+				<div id="map">
+					<div class="buttons">
+			            <input id="interaction" type="button" name="Coloring Map" value="Coloring Map" class="control-btn control-on">
+			            <input id="kinetic" type="button" name="Tripnote Map" value="Tripnote Map" class="control-btn">
+			        </div>
+					
+       			</div>
 			</div>
 		</div>
 		<jsp:include page="../default/footer.jsp" />
@@ -32,3 +39,5 @@
 </body>
 <script src="<c:url value="/resources/map/detailMap.js" />"></script>
 </html>
+
+

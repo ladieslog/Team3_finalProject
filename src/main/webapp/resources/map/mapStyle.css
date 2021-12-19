@@ -13,9 +13,9 @@ body {
 	align-items: center;
 }
 
-.map-wrap{
+.map-wrap {
 	text-align: center;
-	height: 100%; 
+	height: 100%;
 	width: 100%;
 }
 
@@ -25,15 +25,24 @@ body {
 	background-color: #D4F4FA;
 }
 
-.frame{
+.frame {
 	display: inline-block;
-	width: 800px;
-	height: 750px; 
+	margin-top: 50px;
+	width: 1200px;
+	height: 650px;
 }
 
-.title {
-	display: inline-block;
-	margin-top : 20px;
-	align-items: center;
-	width: 800px;
+#map {
+	width: 1200px;
+	height: 650px;
+}
+
+.buttons {
+    width: 200px;
+	height: 40px;
+    margin: 0;
+    color: #555;
+   
+    cursor: pointer;
+
 }
