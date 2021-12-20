@@ -1282,6 +1282,10 @@ function register(){
 		alert('여행 종료일이 현재 시간보다 빠를 수 없습니다.');
 		return;
 	}
+	if(date1 > date3) {
+		alert('여행 시작일이 여행 종료일보다 빠를 수 없습니다.');
+		return;
+	}
 	if(pageNum == 1){
 		if(check1 == 0){
 			if(document.getElementById("coment1").value == ""){
