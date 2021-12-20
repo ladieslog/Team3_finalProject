@@ -8,30 +8,9 @@
 <head>
 <meta charset="UTF-8">
 <title>diaryView</title>
-<style type="text/css">
-	.writewrap{ margin:auto; height: 650px;  background-color: #DEF4F9; color:black;}
-	.img{ height: 90px; width: 190px;}
-	.div{ text-align: center; display: flex; justify-content: center; align-items: center;}
-	.text{font-size: 15px; border-radius: 5px; border-color: white;}
-	.table{ margin-top: 60px;}
-	.te1{ width:200px; border-radius: 5px; border-color: white;}
-	.te2{ width:200px; border-radius: 5px; border-color: white;}
-	.te3{ width:200px; border-radius: 5px; border-color: white;}
-	.te4{ width:200px; border-radius: 5px; border-color: white;}
-	
-	.td1{ width: 200px; background-color: #DEF4F9;}
-	.submit{ width:80px; height:20px; }
-	.sub{ background-color: #DEF4F9 ; font-size: 15px; color:black; border-radius: 5px; border-color: #DEF4F9; font-family: Georgia; margin-bottom:70px; }
-	.b{ font-family: Georgia; font-size:20px;}
-	
-	.divsize{ width: 600px; height: 500px; background-color: white; display: flex; justify-content: center; align-items: center; border-radius: 10px;}
-	.imgsize{ width: 550px; height: 400px; margin:auto; background-color: #DEF4F9; display: flex; justify-content: center; align-items: center;}
-	.siz{ width:550px; height: 400px; }
-	.textbox{ width:550px; height: 60px; margin:auto; background-color:#DEF4F9; display: flex; justify-content: center; align-items: center;}
-	.box{ width: 520px; height:30px; border-radius: 5px; border-color: white; }
-	td{ height: 100px; }
-	.td{ width: 30px; height: 30px; }
-</style>
+
+<link rel="stylesheet" href="${contextPath }/resources/diarycss/diaryViewCss.css">
+
 <script src="${contextPath }/resources/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="${contextPath }/resources/diaryscript/diaryViewScript.js"></script>
 
@@ -55,7 +34,7 @@
 				<div class="divsize" id="imgtext" style="display:none;">
 				<div >
 				<div class="imgsize">
-				<img class="siz" id="view1" src="${contextPath }/resources/diaryimg/diary_plus.png">
+				<img class="siz" id="view1" src="${contextPath }/resources/diaryimg/note_View.png">
 				</div>
 				<div class="textbox">
 				<input type="text" id="txtview1" class="box" >
@@ -95,7 +74,7 @@
 				<td class="td1">
 				<c:choose>
 					<c:when test="${dto.image1==null }">
-						<img class="img" id="preView1" onclick="imgView1()" src="${contextPath}/resources/diaryimg/diary_plus.png">
+						<img class="img" id="preView1" onclick="imgView1()" src="${contextPath}/resources/diaryimg/note_View.png">
 					</c:when>
 					<c:otherwise>
 						<img class="img" id="preView1" onclick="imgView1()" src="<spring:url value='/image/${dto.image1}'/>">
@@ -118,7 +97,7 @@
 						<img class="img" id="preView2" onclick="imgView2()" src="<spring:url value='/image/${dto.image2}'/>">
 					</c:when>
 					<c:when test="${dto.coment2!=null }">
-						<img class="img" id="preView2" onclick="imgView2()" src="${contextPath }/resources/diaryimg/diary_plus.png">
+						<img class="img" id="preView2" onclick="imgView2()" src="${contextPath }/resources/diaryimg/note_View.png">
 					</c:when>
 					<c:otherwise>
 						
@@ -150,7 +129,7 @@
 						<img class="img" id="preView3" onclick="imgView3()" src="<spring:url value='/image/${dto.image3}'/>">
 					</c:when>
 					<c:when test="${dto.coment3!=null }">
-						<img class="img" id="preView3" onclick="imgView3()" src="${contextPath }/resources/diaryimg/diary_plus.png">
+						<img class="img" id="preView3" onclick="imgView3()" src="${contextPath }/resources/diaryimg/note_View.png">
 					</c:when>
 					<c:otherwise>
 						
@@ -169,7 +148,7 @@
 						<img class="img" id="preView4" onclick="imgView4()" src="<spring:url value='/image/${dto.image4}'/>">
 					</c:when>
 					<c:when test="${dto.coment4!=null }">
-						<img class="img" id="preView4" onclick="imgView4()" src="${contextPath }/resources/diaryimg/diary_plus.png">
+						<img class="img" id="preView4" onclick="imgView4()" src="${contextPath }/resources/diaryimg/note_View.png">
 					</c:when>
 					<c:otherwise>
 						
@@ -188,7 +167,7 @@
 						<img class="img" id="preView5" onclick="imgView5()" src="<spring:url value='/image/${dto.image5}'/>">
 					</c:when>
 					<c:when test="${dto.coment5!=null }">
-						<img class="img" id="preView5" onclick="imgView5()" src="${contextPath }/resources/diaryimg/diary_plus.png">
+						<img class="img" id="preView5" onclick="imgView5()" src="${contextPath }/resources/diaryimg/note_View.png">
 					</c:when>
 					<c:otherwise>
 						
@@ -221,9 +200,10 @@
 	</div>
 	
 	<jsp:include page="../default/footer.jsp"/>
+	
 	<script type="text/javascript">
 	function imgView1(){
-		if($("#preView1").attr('src') == "${contextPath }/resources/diaryimg/diary_plus.png"){
+		if($("#preView1").attr('src') == "${contextPath }/resources/diaryimg/note_View.png"){
 			document.getElementById("imgtext").style.display="none"
 			document.getElementById("textarea").style.display="flex"
 			document.getElementById("textView1").value="${dto.coment1}"
@@ -237,7 +217,7 @@
 	}
 	
 	function imgView2(){
-		if($("#preView2").attr('src') == "${contextPath }/resources/diaryimg/diary_plus.png"){
+		if($("#preView2").attr('src') == "${contextPath }/resources/diaryimg/note_View.png"){
 			document.getElementById("imgtext").style.display="none"
 			document.getElementById("textarea").style.display="flex"
 			document.getElementById("textView1").value="${dto.coment2}"
@@ -253,7 +233,7 @@
 	}
 	
 	function imgView3(){
-		if($("#preView3").attr('src') == "${contextPath }/resources/diaryimg/diary_plus.png"){
+		if($("#preView3").attr('src') == "${contextPath }/resources/diaryimg/note_View.png"){
 			document.getElementById("imgtext").style.display="none"
 			document.getElementById("textarea").style.display="flex"
 			document.getElementById("textView1").value="${dto.coment3}"
@@ -269,7 +249,7 @@
 	}
 	
 	function imgView4(){
-		if($("#preView4").attr('src') == "${contextPath }/resources/diaryimg/diary_plus.png"){
+		if($("#preView4").attr('src') == "${contextPath }/resources/diaryimg/note_View.png"){
 			document.getElementById("imgtext").style.display="none"
 			document.getElementById("textarea").style.display="flex"
 			document.getElementById("textView1").value="${dto.coment4}"
@@ -285,7 +265,7 @@
 	}
 	
 	function imgView5(){
-		if($("#preView5").attr('src') == "${contextPath }/resources/diaryimg/diary_plus.png"){
+		if($("#preView5").attr('src') == "${contextPath }/resources/diaryimg/note_View.png"){
 			document.getElementById("imgtext").style.display="none"
 			document.getElementById("textarea").style.display="flex"
 			document.getElementById("textView1").value="${dto.coment5}"
@@ -308,8 +288,7 @@
 		
 		
 	}
-	
-</script>
+	</script>
 </body>
 
 </html>

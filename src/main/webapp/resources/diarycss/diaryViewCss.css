@@ -1,0 +1,25 @@
+@charset "EUC-KR";
+	.writewrap{ margin:auto; height: 650px;  background-color: #DEF4F9; color:black;}
+	.img{ height: 90px; width: 190px;}
+	.div{ text-align: center; display: flex; justify-content: center; align-items: center;}
+	.text{font-size: 15px; border-radius: 5px; border-color: white;}
+	.table{ margin-top: 60px;}
+	.te1{ width:200px; border-radius: 5px; border-color: white;}
+	.te2{ width:200px; border-radius: 5px; border-color: white;}
+	.te3{ width:200px; border-radius: 5px; border-color: white;}
+	.te4{ width:200px; border-radius: 5px; border-color: white;}
+	
+	.td1{ width: 200px; background-color: #DEF4F9;}
+	.submit{ width:80px; height:20px; }
+	.sub{ background-color: #DEF4F9 ; font-size: 15px; color:black; border-radius: 5px; border-color: #DEF4F9; font-family: Georgia; margin-bottom:70px; }
+	.b{ font-family: Georgia; font-size:20px;}
+	
+	.divsize{ width: 600px; height: 500px; background-color: white; display: flex; justify-content: center; align-items: center; border-radius: 10px;}
+	.imgsize{ width: 550px; height: 400px; margin:auto; background-color: #DEF4F9; display: flex; justify-content: center; align-items: center;}
+	.siz{ width:550px; height: 400px; }
+	.textbox{ width:550px; height: 60px; margin:auto; background-color:#DEF4F9; display: flex; justify-content: center; align-items: center;}
+	.box{ width: 520px; height:30px; border-radius: 5px; border-color: white; }
+	td{ height: 100px; }
+	.td{ width: 30px; height: 30px; }
+	
+	.fontname{ font-family: HCR Batang; font-weight: bold;}
