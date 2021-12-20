@@ -871,6 +871,18 @@ function del1(){
 			return ;
 		}
 	}
+	if(pageNum == 2) {
+		page0();
+	}
+	if(pageNum == 3) {
+		page1();
+	}
+	if(pageNum == 4) {
+		page2();
+	}
+	if(pageNum == 5) {
+		page3();
+	}
 	if(check2 == 0){
 		document.getElementById("coment1").value = document.getElementById("coment2").value
 		
@@ -989,6 +1001,18 @@ function del1(){
 }
 //===================================================================== 지우기
 function del2(){
+	if(pageNum == 2) {
+		page0();
+	}
+	if(pageNum == 3) {
+		page1();
+	}
+	if(pageNum == 4) {
+		page2();
+	}
+	if(pageNum == 5) {
+		page3();
+	}
 	if(document.getElementById("coment3").value == ""){
 		if(document.getElementById("fileChk3").value == ""){
 			document.getElementById("pre1").style.display='none';
@@ -1085,6 +1109,15 @@ function del2(){
 }
 //===================================================================== 지우기
 function del3(){
+	if(pageNum == 3) {
+		page1();
+	}
+	if(pageNum == 4) {
+		page2();
+	}
+	if(pageNum == 5) {
+		page3();
+	}
 	if(document.getElementById("coment4").value == ""){
 		if(document.getElementById("fileChk4").value == ""){
 			document.getElementById("pre2").style.display='none';	
@@ -1154,6 +1187,12 @@ function del3(){
 }
 //===================================================================== 지우기
 function del4(){
+	if(pageNum == 4) {
+		page2();
+	}
+	if(pageNum == 5) {
+		page3();
+	}
 	if(document.getElementById("coment5").value == ""){
 		if(document.getElementById("fileChk5").value == ""){
 			document.getElementById("pre3").style.display='none';
@@ -1195,6 +1234,9 @@ function del4(){
 }
 //===================================================================== 지우기
 function del5(){
+	if(pageNum == 5) {
+		page3();
+	}
 	document.getElementById("pre3").style.display='block';
 	
 		document.getElementById("coment5").value = "";
