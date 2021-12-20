@@ -36,7 +36,7 @@ function content1(){
 	document.getElementById("image1").style.display='none';
 	
 	$('#preview1').attr('src', 'resources/diaryimg/diary_plus.png' )
-	$('#previewimage1').attr('src', 'resources/diaryimg/diary_plus.png' )
+	$('#previewimage1').attr('src', 'resources/diaryimg/trip.png' )
 	$('#imgChk1').val('0')
 	
 	document.getElementById("fileChk1").value="";
@@ -46,7 +46,7 @@ function image1(){
 	check1 = 1;
 	document.getElementById("content1").style.display='none';
 	document.getElementById("image1").style.display='block';
-	
+	$('#previewimage1').attr('src', 'resources/diaryimg/diary_plus.png' )
 	document.getElementById("coment1").value="";
 }
 function page0(){
@@ -148,6 +148,9 @@ function page0(){
 				return ;
 			}
 		}
+	}
+	if(check1 == 0){
+		$('#previewimage1').attr('src', 'resources/diaryimg/trip.png')
 	}
 	document.getElementById("view1").style.display='block';
 	document.getElementById("view2").style.display='none';
@@ -268,6 +271,12 @@ function page1(){
 			}
 		}
 	}
+	
+	if(check2 == 0){
+		$('#previewimage2').attr('src', 'resources/diaryimg/trip.png')
+	}
+		
+		
 	document.getElementById("pre1").style.display='revert';
 	
 	document.getElementById("view1").style.display='none';
@@ -323,7 +332,7 @@ function content2(){
 	document.getElementById("image2").style.display='none';
 	
 	$('#preview2').attr('src', 'resources/diaryimg/diary_plus.png' )
-	$('#previewimage2').attr('src', 'resources/diaryimg/diary_plus.png' )
+	$('#previewimage2').attr('src', 'resources/diaryimg/trip.png' )
 	$('#imgChk2').val('0')
 	
 	document.getElementById("fileChk2").value="";
@@ -333,7 +342,7 @@ function image2(){
 	check2 = 1;
 	document.getElementById("content2").style.display='none';
 	document.getElementById("image2").style.display='block';
-	
+	$('#previewimage2').attr('src', 'resources/diaryimg/diary_plus.png' )
 	document.getElementById("coment2").value="";
 }
 
@@ -437,6 +446,9 @@ function page2(){
 				return ;
 			}
 		}
+	}	
+	if(check3 == 0){
+		$('#previewimage3').attr('src', 'resources/diaryimg/trip.png')
 	}
 	document.getElementById("pre2").style.display='revert';
 	
@@ -492,7 +504,7 @@ function content3(){
 	document.getElementById("image3").style.display='none';
 	
 	$('#preview3').attr('src', 'resources/diaryimg/diary_plus.png' )
-	$('#previewimage3').attr('src', 'resources/diaryimg/diary_plus.png' )
+	$('#previewimage3').attr('src', 'resources/diaryimg/trip.png' )
 	$('#imgChk3').val('0')
 	
 	document.getElementById("fileChk3").value="";
@@ -502,7 +514,7 @@ function image3(){
 	check3 = 1;
 	document.getElementById("content3").style.display='none';
 	document.getElementById("image3").style.display='block';
-	
+	$('#previewimage3').attr('src', 'resources/diaryimg/diary_plus.png' )
 	document.getElementById("coment3").value="";
 }
 
@@ -607,6 +619,9 @@ function page3(){
 			}
 		}
 	}
+		if(check4 == 0){
+		$('#previewimage4').attr('src', 'resources/diaryimg/trip.png')
+	}
 	document.getElementById("pre3").style.display='revert';
 	
 	document.getElementById("view1").style.display='none';
@@ -661,7 +676,7 @@ function content4(){
 	document.getElementById("image4").style.display='none';
 	
 	$('#preview4').attr('src', 'resources/diaryimg/diary_plus.png' )
-	$('#previewimage4').attr('src', 'resources/diaryimg/diary_plus.png' )
+	$('#previewimage4').attr('src', 'resources/diaryimg/trip.png' )
 	$('#imgChk4').val('0')
 	
 	document.getElementById("fileChk4").value="";
@@ -671,7 +686,7 @@ function image4(){
 	check4 = 1;
 	document.getElementById("content4").style.display='none';
 	document.getElementById("image4").style.display='block';
-	
+	$('#previewimage4').attr('src', 'resources/diaryimg/diary_plus.png' )
 	document.getElementById("coment4").value="";
 }
 
@@ -776,6 +791,9 @@ function page4(){
 			}
 		}
 	}
+		if(check5 == 0){
+		$('#previewimage5').attr('src', 'resources/diaryimg/trip.png')
+	}
 	document.getElementById("view1").style.display='none';
 	document.getElementById("view2").style.display='none';
 	document.getElementById("view3").style.display='none';
@@ -828,7 +846,7 @@ function content5(){
 	document.getElementById("image5").style.display='none';
 	
 	$('#preview5').attr('src', 'resources/diaryimg/diary_plus.png' )
-	$('#previewimage5').attr('src', 'resources/diaryimg/diary_plus.png' )
+	$('#previewimage5').attr('src', 'resources/diaryimg/trip.png' )
 	$('#imgChk5').val('0')
 	
 	document.getElementById("fileChk5").value="";
@@ -838,7 +856,7 @@ function image5(){
 	check5 = 1;
 	document.getElementById("content5").style.display='none';
 	document.getElementById("image5").style.display='block';
-	
+	$('#previewimage5').attr('src', 'resources/diaryimg/diary_plus.png' )
 	document.getElementById("coment5").value="";
 }
 
@@ -863,16 +881,22 @@ function del1(){
 		page3();
 	}
 	if(check2 == 0){
+		if(document.getElementById("coment2").value == ""){
+			$('#previewimage1').attr('src', 'resources/diaryimg/diary_plus.png')
+		}else{
+			$('#previewimage1').attr('src', 'resources/diaryimg/trip.png')
+		}
 		document.getElementById("coment1").value = document.getElementById("coment2").value
 		
 		document.getElementById("comentimage1").value="";
 		document.getElementById("fileChk1").value="";
 		$('#preview1').attr('src', 'resources/diaryimg/diary_plus.png')
-		$('#previewimage1').attr('src', 'resources/diaryimg/diary_plus.png')
+
 		document.getElementById("content1").style.display='block';
 		document.getElementById("image1").style.display='none';
 		$('#imgChk1').val('0')
 		check1 = 0;
+		$('#previewimage2').attr('src', 'resources/diaryimg/diary_plus.png')
 	}else{
 		document.getElementById("comentimage1").value = document.getElementById("comentimage2").value
 		document.getElementById("fileChk1").value = document.getElementById("fileChk2").value
@@ -894,16 +918,22 @@ function del1(){
 	}
 	
 	if(check3 == 0){
+		if(document.getElementById("coment3").value == ""){
+			$('#previewimage2').attr('src', 'resources/diaryimg/diary_plus.png')
+		}else{
+			$('#previewimage2').attr('src', 'resources/diaryimg/trip.png')
+		}
 		document.getElementById("coment2").value = document.getElementById("coment3").value
 		
 		document.getElementById("comentimage2").value="";
 		document.getElementById("fileChk2").value="";
 		$('#preview2').attr('src', 'resources/diaryimg/diary_plus.png')
-		$('#previewimage2').attr('src', 'resources/diaryimg/diary_plus.png')
+
 		document.getElementById("content2").style.display='block';
 		document.getElementById("image2").style.display='none';
 		$('#imgChk2').val('0')
 		check2 = 0;
+		$('#previewimage3').attr('src', 'resources/diaryimg/diary_plus.png')
 	}else{
 		document.getElementById("comentimage2").value = document.getElementById("comentimage3").value
 		document.getElementById("fileChk2").value = document.getElementById("fileChk3").value
@@ -921,15 +951,21 @@ function del1(){
 		}
 	}
 	if(check4 == 0){
+		if(document.getElementById("coment4").value == ""){
+			$('#previewimage3').attr('src', 'resources/diaryimg/diary_plus.png')
+		}else{
+			$('#previewimage3').attr('src', 'resources/diaryimg/trip.png')
+		}
 		document.getElementById("coment3").value = document.getElementById("coment4").value	
 		document.getElementById("comentimage3").value="";
 		document.getElementById("fileChk3").value="";
 		$('#preview3').attr('src', 'resources/diaryimg/diary_plus.png')
-		$('#previewimage3').attr('src', 'resources/diaryimg/diary_plus.png')
+
 		document.getElementById("content3").style.display='block';
 		document.getElementById("image3").style.display='none';
 		$('#imgChk3').val('0')
 		check3 = 0;
+		$('#previewimage4').attr('src', 'resources/diaryimg/diary_plus.png')
 	}else{
 		document.getElementById("comentimage3").value = document.getElementById("comentimage4").value
 		document.getElementById("fileChk3").value = document.getElementById("fileChk4").value
@@ -947,16 +983,23 @@ function del1(){
 		}
 	}	
 	if(check5 == 0){
+		if(document.getElementById("coment5").value == ""){
+			$('#previewimage4').attr('src', 'resources/diaryimg/diary_plus.png')
+		}else{
+			$('#previewimage4').attr('src', 'resources/diaryimg/trip.png')
+		}
 		document.getElementById("coment4").value = document.getElementById("coment5").value
 		document.getElementById("comentimage4").value="";
 		document.getElementById("fileChk4").value="";
 		$('#preview4').attr('src', 'resources/diaryimg/diary_plus.png')
-		$('#previewimage4').attr('src', 'resources/diaryimg/diary_plus.png')
+	
 		document.getElementById("content4").style.display='block';
 		document.getElementById("image4").style.display='none';
 		$('#imgChk4').val('0')
 		document.getElementById("coment5").value="";
 		check4 = 0;
+		$('#previewimage5').attr('src', 'resources/diaryimg/diary_plus.png')
+		
 	}else{
 		document.getElementById("comentimage4").value = document.getElementById("comentimage5").value
 		document.getElementById("fileChk4").value = document.getElementById("fileChk5").value
@@ -1000,16 +1043,22 @@ function del2(){
 		}
 	}
 	if(check3 == 0){
+		if(document.getElementById("coment3").value == ""){
+			$('#previewimage2').attr('src', 'resources/diaryimg/diary_plus.png')
+		}else{
+			$('#previewimage2').attr('src', 'resources/diaryimg/trip.png')
+		}
 		document.getElementById("coment2").value = document.getElementById("coment3").value
 		
 		document.getElementById("comentimage2").value="";
 		document.getElementById("fileChk2").value="";
 		$('#preview2').attr('src', 'resources/diaryimg/diary_plus.png')
-		$('#previewimage2').attr('src', 'resources/diaryimg/diary_plus.png')
+
 		document.getElementById("content2").style.display='block';
 		document.getElementById("image2").style.display='none';
 		$('#imgChk2').val('0')
 		check2 = 0;
+		$('#previewimage3').attr('src', 'resources/diaryimg/diary_plus.png')
 	}else{
 		document.getElementById("comentimage2").value = document.getElementById("comentimage3").value
 		document.getElementById("fileChk2").value = document.getElementById("fileChk3").value
@@ -1028,16 +1077,22 @@ function del2(){
 		}
 	}
 	if(check4 == 0){
+		if(document.getElementById("coment4").value == ""){
+			$('#previewimage3').attr('src', 'resources/diaryimg/diary_plus.png')
+		}else{
+			$('#previewimage3').attr('src', 'resources/diaryimg/trip.png')
+		}
 		document.getElementById("coment3").value = document.getElementById("coment4").value
 		
 		document.getElementById("comentimage3").value="";
 		document.getElementById("fileChk3").value="";
 		$('#preview3').attr('src', 'resources/diaryimg/diary_plus.png')
-		$('#previewimage3').attr('src', 'resources/diaryimg/diary_plus.png')
+
 		document.getElementById("content3").style.display='block';
 		document.getElementById("image3").style.display='none';
 		$('#imgChk3').val('0')
 		check3 = 0;
+		$('#previewimage4').attr('src', 'resources/diaryimg/diary_plus.png')
 	}else{
 		document.getElementById("comentimage3").value = document.getElementById("comentimage4").value
 		document.getElementById("fileChk3").value = document.getElementById("fileChk4").value
@@ -1057,16 +1112,22 @@ function del2(){
 		}
 	}
 	if(check5 == 0){
+		if(document.getElementById("coment5").value == ""){
+			$('#previewimage4').attr('src', 'resources/diaryimg/diary_plus.png')
+		}else{
+			$('#previewimage4').attr('src', 'resources/diaryimg/trip.png')
+		}
 		document.getElementById("coment4").value = document.getElementById("coment5").value
 		document.getElementById("comentimage4").value="";
 		document.getElementById("fileChk4").value="";
 		$('#preview4').attr('src', 'resources/diaryimg/diary_plus.png')
-		$('#previewimage4').attr('src', 'resources/diaryimg/diary_plus.png')
+
 		document.getElementById("content4").style.display='block';
 		document.getElementById("image4").style.display='none';
 		$('#imgChk4').val('0')
 		document.getElementById("coment5").value="";
 		check4 = 0;
+		$('#previewimage5').attr('src', 'resources/diaryimg/diary_plus.png')
 	}else{
 		document.getElementById("comentimage4").value = document.getElementById("comentimage5").value
 		document.getElementById("fileChk4").value = document.getElementById("fileChk5").value
@@ -1105,16 +1166,22 @@ function del3(){
 		}
 	}
 	if(check4 == 0){
+		if(document.getElementById("coment4").value == ""){
+			$('#previewimage3').attr('src', 'resources/diaryimg/diary_plus.png')
+		}else{
+			$('#previewimage3').attr('src', 'resources/diaryimg/trip.png')
+		}
 		document.getElementById("coment3").value = document.getElementById("coment4").value
 		
 		document.getElementById("comentimage3").value="";
 		document.getElementById("fileChk3").value="";
 		$('#preview3').attr('src', 'resources/diaryimg/diary_plus.png')
-		$('#previewimage3').attr('src', 'resources/diaryimg/diary_plus.png')
+
 		document.getElementById("content3").style.display='block';
 		document.getElementById("image3").style.display='none';
 		$('#imgChk3').val('0')
 		check3 = 0;
+		$('#previewimage4').attr('src', 'resources/diaryimg/diary_plus.png')
 	}else{
 		document.getElementById("comentimage3").value = document.getElementById("comentimage4").value
 		document.getElementById("fileChk3").value = document.getElementById("fileChk4").value
@@ -1134,17 +1201,23 @@ function del3(){
 		}
 	}
 	if(check5 == 0){
+		if(document.getElementById("coment5").value == ""){
+			$('#previewimage4').attr('src', 'resources/diaryimg/diary_plus.png')
+		}else{
+			$('#previewimage4').attr('src', 'resources/diaryimg/trip.png')
+		}
 		document.getElementById("coment4").value = document.getElementById("coment5").value
 
 		document.getElementById("comentimage4").value="";
 		document.getElementById("fileChk4").value="";
 		$('#preview4').attr('src', 'resources/diaryimg/diary_plus.png')
-		$('#previewimage4').attr('src', 'resources/diaryimg/diary_plus.png')
+
 		document.getElementById("content4").style.display='block';
 		document.getElementById("image4").style.display='none';
 		$('#imgChk4').val('0')
 		document.getElementById("coment5").value="";
 		check4 = 0;
+		$('#previewimage5').attr('src', 'resources/diaryimg/diary_plus.png')
 	}else{
 		document.getElementById("comentimage4").value = document.getElementById("comentimage5").value
 		document.getElementById("fileChk4").value = document.getElementById("fileChk5").value
@@ -1181,17 +1254,23 @@ function del4(){
 		}
 	}
 	if(check5 == 0){
+		if(document.getElementById("coment5").value == ""){
+			$('#previewimage4').attr('src', 'resources/diaryimg/diary_plus.png')
+		}else{
+			$('#previewimage4').attr('src', 'resources/diaryimg/trip.png')
+		}
 		document.getElementById("coment4").value = document.getElementById("coment5").value
 
 		document.getElementById("comentimage4").value="";
 		document.getElementById("fileChk4").value="";
 		$('#preview4').attr('src', 'resources/diaryimg/diary_plus.png')
-		$('#previewimage4').attr('src', 'resources/diaryimg/diary_plus.png')
+
 		document.getElementById("content4").style.display='block';
 		document.getElementById("image4").style.display='none';
 		$('#imgChk4').val('0')
 		document.getElementById("coment5").value="";
 		check4 = 0;
+		$('#previewimage5').attr('src', 'resources/diaryimg/diary_plus.png')
 	}else{
 		document.getElementById("comentimage4").value = document.getElementById("comentimage5").value
 		document.getElementById("fileChk4").value = document.getElementById("fileChk5").value
