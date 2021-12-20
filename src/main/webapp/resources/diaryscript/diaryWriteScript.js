@@ -149,7 +149,7 @@ function page0(){
 			}
 		}
 	}
-		if(check1 == 0){
+	if(check1 == 0){
 		$('#previewimage1').attr('src', 'resources/diaryimg/trip.png')
 	}
 	document.getElementById("view1").style.display='block';
@@ -881,16 +881,22 @@ function del1(){
 		page3();
 	}
 	if(check2 == 0){
+		if(document.getElementById("coment2").value == ""){
+			$('#previewimage1').attr('src', 'resources/diaryimg/diary_plus.png')
+		}else{
+			$('#previewimage1').attr('src', 'resources/diaryimg/trip.png')
+		}
 		document.getElementById("coment1").value = document.getElementById("coment2").value
 		
 		document.getElementById("comentimage1").value="";
 		document.getElementById("fileChk1").value="";
 		$('#preview1').attr('src', 'resources/diaryimg/diary_plus.png')
-		$('#previewimage1').attr('src', 'resources/diaryimg/diary_plus.png')
+
 		document.getElementById("content1").style.display='block';
 		document.getElementById("image1").style.display='none';
 		$('#imgChk1').val('0')
 		check1 = 0;
+		$('#previewimage2').attr('src', 'resources/diaryimg/diary_plus.png')
 	}else{
 		document.getElementById("comentimage1").value = document.getElementById("comentimage2").value
 		document.getElementById("fileChk1").value = document.getElementById("fileChk2").value
@@ -912,16 +918,22 @@ function del1(){
 	}
 	
 	if(check3 == 0){
+		if(document.getElementById("coment3").value == ""){
+			$('#previewimage2').attr('src', 'resources/diaryimg/diary_plus.png')
+		}else{
+			$('#previewimage2').attr('src', 'resources/diaryimg/trip.png')
+		}
 		document.getElementById("coment2").value = document.getElementById("coment3").value
 		
 		document.getElementById("comentimage2").value="";
 		document.getElementById("fileChk2").value="";
 		$('#preview2').attr('src', 'resources/diaryimg/diary_plus.png')
-		$('#previewimage2').attr('src', 'resources/diaryimg/diary_plus.png')
+
 		document.getElementById("content2").style.display='block';
 		document.getElementById("image2").style.display='none';
 		$('#imgChk2').val('0')
 		check2 = 0;
+		$('#previewimage3').attr('src', 'resources/diaryimg/diary_plus.png')
 	}else{
 		document.getElementById("comentimage2").value = document.getElementById("comentimage3").value
 		document.getElementById("fileChk2").value = document.getElementById("fileChk3").value
@@ -939,15 +951,21 @@ function del1(){
 		}
 	}
 	if(check4 == 0){
+		if(document.getElementById("coment4").value == ""){
+			$('#previewimage3').attr('src', 'resources/diaryimg/diary_plus.png')
+		}else{
+			$('#previewimage3').attr('src', 'resources/diaryimg/trip.png')
+		}
 		document.getElementById("coment3").value = document.getElementById("coment4").value	
 		document.getElementById("comentimage3").value="";
 		document.getElementById("fileChk3").value="";
 		$('#preview3').attr('src', 'resources/diaryimg/diary_plus.png')
-		$('#previewimage3').attr('src', 'resources/diaryimg/diary_plus.png')
+
 		document.getElementById("content3").style.display='block';
 		document.getElementById("image3").style.display='none';
 		$('#imgChk3').val('0')
 		check3 = 0;
+		$('#previewimage4').attr('src', 'resources/diaryimg/diary_plus.png')
 	}else{
 		document.getElementById("comentimage3").value = document.getElementById("comentimage4").value
 		document.getElementById("fileChk3").value = document.getElementById("fileChk4").value
@@ -965,16 +983,23 @@ function del1(){
 		}
 	}	
 	if(check5 == 0){
+		if(document.getElementById("coment5").value == ""){
+			$('#previewimage4').attr('src', 'resources/diaryimg/diary_plus.png')
+		}else{
+			$('#previewimage4').attr('src', 'resources/diaryimg/trip.png')
+		}
 		document.getElementById("coment4").value = document.getElementById("coment5").value
 		document.getElementById("comentimage4").value="";
 		document.getElementById("fileChk4").value="";
 		$('#preview4').attr('src', 'resources/diaryimg/diary_plus.png')
-		$('#previewimage4').attr('src', 'resources/diaryimg/diary_plus.png')
+	
 		document.getElementById("content4").style.display='block';
 		document.getElementById("image4").style.display='none';
 		$('#imgChk4').val('0')
 		document.getElementById("coment5").value="";
 		check4 = 0;
+		$('#previewimage5').attr('src', 'resources/diaryimg/diary_plus.png')
+		
 	}else{
 		document.getElementById("comentimage4").value = document.getElementById("comentimage5").value
 		document.getElementById("fileChk4").value = document.getElementById("fileChk5").value
@@ -1018,16 +1043,22 @@ function del2(){
 		}
 	}
 	if(check3 == 0){
+		if(document.getElementById("coment3").value == ""){
+			$('#previewimage2').attr('src', 'resources/diaryimg/diary_plus.png')
+		}else{
+			$('#previewimage2').attr('src', 'resources/diaryimg/trip.png')
+		}
 		document.getElementById("coment2").value = document.getElementById("coment3").value
 		
 		document.getElementById("comentimage2").value="";
 		document.getElementById("fileChk2").value="";
 		$('#preview2').attr('src', 'resources/diaryimg/diary_plus.png')
-		$('#previewimage2').attr('src', 'resources/diaryimg/diary_plus.png')
+
 		document.getElementById("content2").style.display='block';
 		document.getElementById("image2").style.display='none';
 		$('#imgChk2').val('0')
 		check2 = 0;
+		$('#previewimage3').attr('src', 'resources/diaryimg/diary_plus.png')
 	}else{
 		document.getElementById("comentimage2").value = document.getElementById("comentimage3").value
 		document.getElementById("fileChk2").value = document.getElementById("fileChk3").value
@@ -1046,16 +1077,22 @@ function del2(){
 		}
 	}
 	if(check4 == 0){
+		if(document.getElementById("coment4").value == ""){
+			$('#previewimage3').attr('src', 'resources/diaryimg/diary_plus.png')
+		}else{
+			$('#previewimage3').attr('src', 'resources/diaryimg/trip.png')
+		}
 		document.getElementById("coment3").value = document.getElementById("coment4").value
 		
 		document.getElementById("comentimage3").value="";
 		document.getElementById("fileChk3").value="";
 		$('#preview3').attr('src', 'resources/diaryimg/diary_plus.png')
-		$('#previewimage3').attr('src', 'resources/diaryimg/diary_plus.png')
+
 		document.getElementById("content3").style.display='block';
 		document.getElementById("image3").style.display='none';
 		$('#imgChk3').val('0')
 		check3 = 0;
+		$('#previewimage4').attr('src', 'resources/diaryimg/diary_plus.png')
 	}else{
 		document.getElementById("comentimage3").value = document.getElementById("comentimage4").value
 		document.getElementById("fileChk3").value = document.getElementById("fileChk4").value
@@ -1075,16 +1112,22 @@ function del2(){
 		}
 	}
 	if(check5 == 0){
+		if(document.getElementById("coment5").value == ""){
+			$('#previewimage4').attr('src', 'resources/diaryimg/diary_plus.png')
+		}else{
+			$('#previewimage4').attr('src', 'resources/diaryimg/trip.png')
+		}
 		document.getElementById("coment4").value = document.getElementById("coment5").value
 		document.getElementById("comentimage4").value="";
 		document.getElementById("fileChk4").value="";
 		$('#preview4').attr('src', 'resources/diaryimg/diary_plus.png')
-		$('#previewimage4').attr('src', 'resources/diaryimg/diary_plus.png')
+
 		document.getElementById("content4").style.display='block';
 		document.getElementById("image4").style.display='none';
 		$('#imgChk4').val('0')
 		document.getElementById("coment5").value="";
 		check4 = 0;
+		$('#previewimage5').attr('src', 'resources/diaryimg/diary_plus.png')
 	}else{
 		document.getElementById("comentimage4").value = document.getElementById("comentimage5").value
 		document.getElementById("fileChk4").value = document.getElementById("fileChk5").value
@@ -1123,16 +1166,22 @@ function del3(){
 		}
 	}
 	if(check4 == 0){
+		if(document.getElementById("coment4").value == ""){
+			$('#previewimage3').attr('src', 'resources/diaryimg/diary_plus.png')
+		}else{
+			$('#previewimage3').attr('src', 'resources/diaryimg/trip.png')
+		}
 		document.getElementById("coment3").value = document.getElementById("coment4").value
 		
 		document.getElementById("comentimage3").value="";
 		document.getElementById("fileChk3").value="";
 		$('#preview3').attr('src', 'resources/diaryimg/diary_plus.png')
-		$('#previewimage3').attr('src', 'resources/diaryimg/diary_plus.png')
+
 		document.getElementById("content3").style.display='block';
 		document.getElementById("image3").style.display='none';
 		$('#imgChk3').val('0')
 		check3 = 0;
+		$('#previewimage4').attr('src', 'resources/diaryimg/diary_plus.png')
 	}else{
 		document.getElementById("comentimage3").value = document.getElementById("comentimage4").value
 		document.getElementById("fileChk3").value = document.getElementById("fileChk4").value
@@ -1152,17 +1201,23 @@ function del3(){
 		}
 	}
 	if(check5 == 0){
+		if(document.getElementById("coment5").value == ""){
+			$('#previewimage4').attr('src', 'resources/diaryimg/diary_plus.png')
+		}else{
+			$('#previewimage4').attr('src', 'resources/diaryimg/trip.png')
+		}
 		document.getElementById("coment4").value = document.getElementById("coment5").value
 
 		document.getElementById("comentimage4").value="";
 		document.getElementById("fileChk4").value="";
 		$('#preview4').attr('src', 'resources/diaryimg/diary_plus.png')
-		$('#previewimage4').attr('src', 'resources/diaryimg/diary_plus.png')
+
 		document.getElementById("content4").style.display='block';
 		document.getElementById("image4").style.display='none';
 		$('#imgChk4').val('0')
 		document.getElementById("coment5").value="";
 		check4 = 0;
+		$('#previewimage5').attr('src', 'resources/diaryimg/diary_plus.png')
 	}else{
 		document.getElementById("comentimage4").value = document.getElementById("comentimage5").value
 		document.getElementById("fileChk4").value = document.getElementById("fileChk5").value
@@ -1199,17 +1254,23 @@ function del4(){
 		}
 	}
 	if(check5 == 0){
+		if(document.getElementById("coment5").value == ""){
+			$('#previewimage4').attr('src', 'resources/diaryimg/diary_plus.png')
+		}else{
+			$('#previewimage4').attr('src', 'resources/diaryimg/trip.png')
+		}
 		document.getElementById("coment4").value = document.getElementById("coment5").value
 
 		document.getElementById("comentimage4").value="";
 		document.getElementById("fileChk4").value="";
 		$('#preview4').attr('src', 'resources/diaryimg/diary_plus.png')
-		$('#previewimage4').attr('src', 'resources/diaryimg/diary_plus.png')
+
 		document.getElementById("content4").style.display='block';
 		document.getElementById("image4").style.display='none';
 		$('#imgChk4').val('0')
 		document.getElementById("coment5").value="";
 		check4 = 0;
+		$('#previewimage5').attr('src', 'resources/diaryimg/diary_plus.png')
 	}else{
 		document.getElementById("comentimage4").value = document.getElementById("comentimage5").value
 		document.getElementById("fileChk4").value = document.getElementById("fileChk5").value
