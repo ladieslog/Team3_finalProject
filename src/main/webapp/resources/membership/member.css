@@ -3,15 +3,8 @@ td {
 	height: 50px;
 }
 
-.membership-form {
-	background-image:
-		url("../membership.png");
-	background-repeat: no-repeat;
-	background-position: center center;
-	background-size: 820px;
-	height: 620px;
-	display: flex;
-}
+
+
 .membership-box {
 	display: flex;
     justify-content: center;

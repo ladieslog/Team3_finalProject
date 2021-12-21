@@ -19,7 +19,7 @@
 <script type="text/javascript" src="script.js"></script>
 <script type="text/javascript">
 
-//모든 공백 체크 정규식 
+/*모든 공백 체크 정규식 
 var empJ = /\s/g; 
 //아이디 정규식 
 var idJ = /^[a-z0-9][a-z0-9_\-]{4,19}$/; 
@@ -34,9 +34,12 @@ var birthJ = false;
 var address = $('#mem_detailaddress'); 
 $(document).ready(function() { 
 	var address = $('#mem_detailaddress'); 
-	
+*/	
+
+
+
 	//아이디 중복확인 	
-	$("#mem_id").blur(function() { 
+/*	$("#mem_id").blur(function() { 
 		if($('#mem_id').val()==''){ 
 			$('#id_check').text('아이디를 입력하세요.'); 
 			$('#id_check').css('color', 'red'); 
@@ -82,7 +85,41 @@ $(document).ready(function() {
 			}//else if 
 			
 	});//blur 
-	$('form').on('submit',function(){ 
+	*/
+	
+	function idsearch(){
+		if (document.getElementById("id").value==""){
+			alert("ID를 입력해주세요.")
+			return 
+		}
+		var id= document.getElementById("id").value
+		var form={id:id}
+		$.ajax({
+			url: "idcheck", type: "post", data: JSON.stringify(form), dataType: "json", contentType : "application/json; charset=utf-8",
+			success: function(map){
+				if (map.idcheck!= null){
+					alert("중복된 ID입니다.")
+				}else{
+					alert("사용 가능한 ID입니다.")
+					document.getElementById("idcheck").value=document.getElementById("idcheck").value
+				}
+			}, error: function(){
+				alert("error")
+			}
+			
+		})
+		
+		
+	}
+	function resister(){
+		document.getElementById("form").submit()
+		
+	}
+	
+	
+	
+	
+/*	$('form').on('submit',function(){ 
 		var inval_Arr = new Array(8).fill(false); 
 		if (idJ.test($('#mem_id').val())) { 
 				inval_Arr[0] = true; 
@@ -168,18 +205,22 @@ $(document).ready(function() {
 		
 	}
 }
-
-
-
-
-
-
-
+*/
 </script>
 
 <link href="<c:url value="/resources/membership/member.css" />"
     rel="stylesheet">
-
+<style> 
+	.membership-form {
+	background-image:
+		url("<%=request.getContextPath()%>/resources/membership2.png");
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: 820px;
+	height: 620px;
+	display: flex;
+	}
+</style>
 
 </head>
 <body onLoad="reFrm.id.focus()">
@@ -190,7 +231,7 @@ $(document).ready(function() {
 		<br />
 		<br />
 		<div class="membership-box">
-			<form name="reFrm" method="post" action="memberProc.jsp" id="form">
+			<form name="reFrm" method="post" action="memberProc" id="form">
 				<table align="center" border="0" cellspacing="0" cellpadding="5"
 					class="membership-table">
 					<tr>
@@ -199,14 +240,14 @@ $(document).ready(function() {
 
 								<tr>
 									<td width="20%">ID</td>
-									<td width="50%"><input name="id" size="20">
-										<button type="button" onClick="idCheck(this.form.id.value)"
+									<td width="50%"><input name="id" size="20" id="id">
+										<button type="button" onClick="idsearch()"
 											class="but">ID 중복확인</button></td>
-
+											<input type="hidden" id="idcheck" value=""/>
 								</tr>
 								<tr>
 									<td>Password</td>
-									<td><input type="password" name="repwd" size="20"></td>
+									<td><input type="password" name="pwd" size="20"></td>
 								</tr>
 								<tr>
 									<td>Password 확인</td>
@@ -215,7 +256,7 @@ $(document).ready(function() {
 								</tr>
 								<tr>
 									<td>Nickname</td>
-									<td><input name="name" size="15"></td>
+									<td><input name="nickname" size="15"></td>
 
 								</tr>
 								<tr>
@@ -231,8 +272,8 @@ $(document).ready(function() {
 								</tr>
 								
 								<tr>
-									<td>Detailed Address</td>
-									<td><input name="address" size="20" id="detail address"></td>	
+									<td>Detail Address</td>
+									<td><input name="detailaddress" size="20" id="detail address"></td>	
 								</tr>
 								<tr>
 									<td>Email</td>
@@ -241,7 +282,7 @@ $(document).ready(function() {
 								</tr>
 								<tr>
 									<td colspan="3" align="center"><button type="button"
-											onclick="idCheck()"
+											onclick="resister()"
 											style="margin-right: 185px; width: 100px; height: 30px;"
 											class="but">회원가입</button></td>
 								</tr>

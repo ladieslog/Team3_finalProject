@@ -12,47 +12,36 @@ public class MemberDTO {
    private String nickname;
    private String email;
    private String addr;
-
-   public String getaddr() {
-      return addr;
-   }
-
-   public void setaddr(String addr) {
-      this.addr = addr;
-   }
-
-   public String getid() {
-      return id;
-   }
-
-   public void setid(String id) {
-      this.id = id;
-   }
-
-   public String getpwd() {
-      return pwd;
-   }
-
-   public void setpwd(String pwd) {
-      this.pwd = pwd;
-   }
-
-   public String getnickname() {
-      return nickname;
-   }
-
-   public void setnickname(String nickname) {
-      this.nickname = nickname;
-   }
-
-   public String getemail() {
-      return email;
-   }
-
-   public void setemail(String email) {
-      this.email = email;
-   }
-
+public String getId() {
+	return id;
 }
-
-
+public void setId(String id) {
+	this.id = id;
+}
+public String getPwd() {
+	return pwd;
+}
+public void setPwd(String pwd) {
+	this.pwd = pwd;
+}
+public String getNickname() {
+	return nickname;
+}
+public void setNickname(String nickname) {
+	this.nickname = nickname;
+}
+public String getEmail() {
+	return email;
+}
+public void setEmail(String email) {
+	this.email = email;
+}
+public String getAddr() {
+	return addr;
+}
+public void setAddr(String addr) {
+	this.addr = addr;
+}
+   
+   
+}
