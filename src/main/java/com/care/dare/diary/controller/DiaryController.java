@@ -2,23 +2,35 @@ package com.care.dare.diary.controller;
 
 import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.care.dare.diary.diaryService.DiaryService;
 import com.care.dare.diary.dto.DiaryDTO;
+import com.google.gson.JsonObject;
 
 @Controller
 public class DiaryController {
@@ -38,7 +50,6 @@ public class DiaryController {
 		}else {
 			pageSize = 4;
 		}
-		
 		int pageNum = Integer.parseInt(currentPage);
 		int startRow = 0;
 		int endRow = 0;
@@ -49,7 +60,6 @@ public class DiaryController {
 			startRow = (pageNum - 1) * pageSize;
 			endRow = pageNum * pageSize - 1;
 		}
-
 		ArrayList<DiaryDTO> arr = ds.diaryBoard(startRow, endRow);
 		SimpleDateFormat sim = new SimpleDateFormat("yyyy-MM-dd");
 		int count = 0;
@@ -67,20 +77,20 @@ public class DiaryController {
 			}
 			File file = new File("C:/spring/diary/"+count+".png");
 			FileOutputStream fos = new FileOutputStream(file);
-			
 			DataOutputStream stream = new DataOutputStream(fos);
-			stream.write(dto.getImage1()); 
+		//	stream.write(dto.getImage1()); 
 			stream.flush();
 			fos.getFD().sync();
 			stream.close();
-			System.out.println(count);
 			count++;	
 		}
-		
-		
+		if(currentPage.equals("1")) {
+			model.addAttribute("pageChk",1);
+		}
 		model.addAttribute("diaryList", arr);
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("pageSize", pageSize);
+		
 		return "diary/diaryBoard";
 	}
 	
@@ -90,18 +100,70 @@ public class DiaryController {
 	}
 	
 	@RequestMapping("diaryView")
-	public String diaryView() {
+	public String diaryView(Model model, @RequestParam("num")int num) {
+		try {
+			ds.diaryView(model, num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "diary/diaryView";
 	}
 	
 	@PostMapping("writeSave")
 	public String writeSave(MultipartHttpServletRequest mul) throws Exception {
 		ds.writeSave(mul);
-		return "diary/diaryBoard";
+		return "redirect:diaryBoard";
 	}
 	
+	@PostMapping("diaryDelete")
+	public void diaryDelete(@RequestParam("deleteCheck")String deleteCheck, @RequestParam("deleteNum")int deleteNum,HttpServletResponse res) throws Exception{
+		res.setContentType("text/html; charset=utf-8");
+		PrintWriter out = res.getWriter();
+		if(deleteCheck.equals("1")) {
+			ds.diaryDelete(deleteNum);
+			out.print("<script> alert('게시글이 삭제되었습니다.');"
+					+"location.href='diaryBoard'; </script>");
+		}else {
+			out.print("<script> alert('잘못된 접근입니다');"
+					+"location.href='diaryBoard'; </script>");
+		}
+	}
 	
+	@RequestMapping("diaryModify")
+		public String diaryModify(@RequestParam("num")int num, Model model) throws Exception {
+			ds.diaryModify(num, model);
+			return "diary/diaryModify";
+		}
 	
-	
-	
+	@PostMapping("writeUpdate")
+	public String writeUpdate(HttpServletRequest req) throws Exception  {
+		ds.writeUpdate(req);
+		return "redirect:diaryBoard";
+		
+	}
+
+	@RequestMapping(value="imgUp", produces="application/json; charset=utf-8")
+	@ResponseBody
+	public String imgUp(@RequestParam("file")MultipartFile file,HttpServletRequest req) {
+		System.out.println("aaa");
+		JsonObject json = new JsonObject();
+		String root = "C:/spring/diary/";
+		String originalname = file.getOriginalFilename();
+		String savename = UUID.randomUUID()+originalname;
+		File target = new File(root+savename);
+		InputStream is;
+		try {
+			is = file.getInputStream();
+			FileUtils.copyInputStreamToFile(is, target);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		json.addProperty("url", savename);
+		String result = json.toString();
+		System.out.println(savename);
+		return result;
+	}
 }
+

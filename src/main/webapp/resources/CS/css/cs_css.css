@@ -1,0 +1,124 @@
+@charset "EUC-KR";
+
+	.a1{background-position: center center; height: 650px;  background-color: #DEF4F9;}
+	.a2{ padding: 0 180px}
+	.ach{ background-color: white; width :1300px; height:250px;}
+		
+		
+	.b1{ height: 650px;  background-color: #DEF4F9;}
+	.b2{ padding: 0 450px;  }
+	
+	.bn1{font-size: 15px; border-radius: 5px; border-color: white;}
+	.bn2{ width:90px; height:30px; }
+	.bn3{display: flex; justify-content: center; align-items: center; margin-top: 20px;}
+	.bn4{background-color: #DEF4F9 ; font-size: 15px; color:black; border-radius: 5px; border-color: #DEF4F9; font-family: Georgia; margin-bottom:70px;}
+	
+	.ch2{background-color: white; width :250px; height:25px; border-radius: 5px; border-color: #DEF4F9;}
+	.cha3{background-color: white; width :1000px; height:30px; border-radius: 5px; border-color: #DEF4F9;}
+	.chb2{background-color: white; width :1000px; height:350px; border-radius: 5px; border-color: #DEF4F9;}
+	
+	.bh2{ font-family: Georgia; font-size:24px; }
+	.ws{width: 90px;}
+	.hb {height: 50px;}	
+	.eh1{float:right;}
+	.eh2{float: left;}
+	
+	
+	.c1{ margin:auto; height: 650px;  background-color: #DEF4F9;}
+	.c2{ padding: 0 450px;}
+	.c3{ margin-right: 150px;}
+	
+	.cn1{font-size: 20px; border-radius: 5px; border-color:white; background-color: black;}
+	.cn2{ width:120px; height:30px; }
+	.cn3{display: flex; justify-content: center;}
+	.cn4{background-color: #DEF4F9 ; font-size: 15px; color:black; border-radius: 5px; border-color: #DEF4F9; font-family: Georgia; margin-bottom:70px;}
+	
+	
+	.chb3{background-color: white; width :1200px; height:450px; border-radius: 5px; border-color: #DEF4F9;}
+	
+	.bh3{ font-family: Georgia; font-size:24px; text-align: center;}
+	.rb{height: 30px;}
+	
+
+	.in1{ margin:auto; height: 850px;  background-color: #DEF4F9;}
+	.in2{ display: flex; justify-content: center;  }
+	.in3{justify-content: center;}
+	.in4{text-align: center; }
+	
+	
+	.n1{font-size: 15px; border-radius: 5px; border-color: white;}
+	.n2{ width:80px; height:20px; }
+	.n3{display: flex; justify-content: center; align-items: center; margin-top: 20px;}
+	
+	
+	.dch{background-color: white; width :1000px; height:70px; }
+	.dchl{background-color: white;  width :1000px; height:100px; }
+	.dche{background-color: white;  width :1000px; height:50px; }
+	
+	.dchg{background-color: white; width :800px; height:400px; text-align: center;}
+	.dcha{background-color: white; width :800px; height:50px; text-align: right; }
+	.dchn{background-color: white; width :800px; height:50px; text-align: center; }
+	
+	.bh4{ font-family: Georgia; font-size:24px;}
+	.lb{ font-size: 40px; }
+	.nal{ margin-top: 80px;  width :1200px; height: 700px; background-color: #FFFF99;}
+	.bl{ width: 220px;}
+	
+	/* ----------------------------------------- kjh 클래스 추가 ------------------------------*/
+	.fs-20 {
+		font-size: 20px !important;
+	}
+	.title-input {
+		height: 25px !important;
+		width: 60%;
+	}
+	.write-title {
+		width: 15%;
+	}
+	.mr-auto {
+		margin: 0 auto;
+	}
+	.pd-none {
+	padding: 0 0;
+	}
+	.notice-wrap {
+		height:auto;
+		padding: 18px 0;
+	}
+	.mb-none {
+		margin-bottom: 0;
+	}
+	.mt-15 {
+		margin-top: 15px;
+	}
+	.notice-btn {
+		font-size: 17px !important;
+		font-weight: bolder;
+		height: 35px;
+		width: 100px;
+	}
+	.notice-box {
+		width: 1300px;
+		height: 255px;
+		background-color: white;
+		border: 1px solid black;
+		overflow: auto;
+	}
+	.notice-table {
+		width: 100%;
+		border-collapse: collapse;
+	}
+	.notice-table tr {
+		border-bottom: 1px solid black;
+		height: 35px;
+	}
+	.page-block {
+		cursor: pointer;
+		margin: 0;
+	}
+	a {
+		text-decoration: none;
+		color: black;
+	}
+	
+	

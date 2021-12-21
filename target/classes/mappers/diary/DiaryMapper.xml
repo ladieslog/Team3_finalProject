@@ -14,11 +14,6 @@
 		<result property="outdate" column="outdate"/>
 		<result property="id" column="id"/>
 		<result property="location1" column="location1"/>
-		<result property="image1" column="image1"/>
-		<result property="image2" column="image2"/>
-		<result property="image3" column="image3"/>
-		<result property="image4" column="image4"/>
-		<result property="image5" column="image5"/>
 		<result property="coment1" column="coment1"/>
 		<result property="coment2" column="coment2"/>
 		<result property="coment3" column="coment3"/>
@@ -26,16 +21,21 @@
 		<result property="coment5" column="coment5"/>
 		<result property="location2" column="location2"/>
 		<result property="location3" column="location3"/>
+		<result property="image1" column="image1"/>
+		<result property="image2" column="image2"/>
+		<result property="image3" column="image3"/>
+		<result property="image4" column="image4"/>
+		<result property="image5" column="image5"/>
 	</resultMap>
 
 <insert id="writeSave">
 		insert into diary_board(
-		num,title,time,person,indate,outdate,id,location1,image1,image2,image3,image4,image5,coment1,coment2,coment3,coment4,coment5,location2,location3)
+		num,title,time,person,indate,outdate,id,location1,coment1,coment2,coment3,coment4,coment5,location2,location3,image1,image2,image3,image4,image5)
 		values(
 		diary_board_seq.nextval,#{title},sysdate,#{person},#{indate},#{outdate},#{id},#{location1,jdbcType=VARCHAR},
-		#{fis1, jdbcType=BLOB},#{fis2, jdbcType=BLOB},#{fis3, jdbcType=BLOB},#{fis4, jdbcType=BLOB},#{fis5, jdbcType=BLOB},
 		#{coment1,jdbcType=VARCHAR},#{coment2,jdbcType=VARCHAR},#{coment3,jdbcType=VARCHAR},#{coment4,jdbcType=VARCHAR},#{coment5,jdbcType=VARCHAR},
-		#{location2,jdbcType=VARCHAR},#{location3,jdbcType=VARCHAR})
+		#{location2,jdbcType=VARCHAR},#{location3,jdbcType=VARCHAR},
+		#{image1, jdbcType=VARCHAR},#{image2, jdbcType=VARCHAR},#{image3, jdbcType=VARCHAR},#{image4, jdbcType=VARCHAR},#{image5, jdbcType=VARCHAR})
 	</insert>
 	
 	<select id="diaryBoard" resultMap="diary">
@@ -46,6 +46,24 @@
 	<select id="diaryCount" resultType="Integer">
 		select count(*) from diary_board
 	</select>
+	
+	<select id="diaryView" resultMap="diary">
+		select * from diary_board where num=#{num}
+	</select>
+	
+	<delete id="diaryDelete">
+		delete from diary_board where num=#{num}
+	</delete>
+	
+	<update id="writeUpdate">
+		update diary_board set title=#{title}, time=sysdate, person=#{person}, indate=#{indate}, outdate=#{outdate}, location1=#{location1,jdbcType=VARCHAR}
+		,coment1=#{coment1,jdbcType=VARCHAR}, coment2=#{coment2,jdbcType=VARCHAR}, coment3=#{coment3,jdbcType=VARCHAR}
+		,coment4=#{coment4,jdbcType=VARCHAR}, coment5=#{coment5,jdbcType=VARCHAR}
+		,location2=#{location2,jdbcType=VARCHAR}, location3=#{location3,jdbcType=VARCHAR}
+		,image1=#{image1, jdbcType=VARCHAR}, image2=#{image2, jdbcType=VARCHAR}
+		,image3=#{image3, jdbcType=VARCHAR}, image4=#{image4, jdbcType=VARCHAR}, image5=#{image5, jdbcType=VARCHAR} where num=#{num}
+	</update>
+	
 	
 	
 

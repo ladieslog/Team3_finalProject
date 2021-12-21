@@ -6,13 +6,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-	.b1{ display:flex; justify-content: flex-end; margin-bottom: 50px;}
+	.k1{ display:flex; justify-content: flex-end; margin-bottom: 50px;}
 </style>
 </head>
 <body>
 	
-	<h3 class="b1">
-		<a href="http://localhost:8081/root/cs">돌아가기</a>
+	<h3 class="k1">
+		<a href="cs">돌아가기</a>
 	</h3>
 </body>
 </html>
