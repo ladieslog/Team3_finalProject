@@ -14,17 +14,7 @@ public class MapController {
 	@Autowired
 	MapService map;
 	
-	@GetMapping("/seoul")
-	public String Seoul() {
-		return "map/seoul";
-	}
-	
-	@GetMapping("/gyeongbuk")
-	public String Gyeongbuk() {
-		return "map/gyeongbuk";
-	}
-	
-	@GetMapping("/detailmap")
+	@GetMapping("/map")
 	public String Detail() {
 		return "map/detailMap";
 	}

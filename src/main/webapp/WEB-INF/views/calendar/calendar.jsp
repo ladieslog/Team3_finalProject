@@ -17,17 +17,17 @@
 		<div class="background">
 			<div class="frame">
 				<div class="title">
-					<table style="width: 800px">
+					<table class = "table">
 						<tr>
 							<th align="left" width="30%"><div class="year"></div></th>
 							<th align="center" width="40%"><div class="month"></div></th>
 							<th align="right" width="30%">
 								<div class="nav">
 									<button class="nav-btn go-prevYear" onclick="prevYear()">&lt;&lt;</button>
-									<button class="nav-btn go-prevMonth" onclick="prevMonth()">&lt;</button>
+									<button class="nav-btn go-prevMonth" onclick="prevMonth()">&nbsp;&lt;</button>
 									<button class="nav-btn go-today" onclick="goToday()">Today</button>
 									<button class="nav-btn go-nextMonth" onclick="nextMonth()">&gt;</button>
-									<button class="nav-btn go-nextYear" onclick="nextYear()">&gt;&gt;</button>
+									<button class="nav-btn go-nextYear" onclick="nextYear()">&nbsp;&gt;&gt;</button>
 								</div>
 							</th>
 						</tr>
@@ -49,7 +49,6 @@
 			<jsp:include page="../default/footer.jsp" />
 		</div>
 	</div>
-	<script src="<c:url value="/resources/calendar/calendar.js" />"></script>
-
 </body>
+<script src="<c:url value="/resources/calendar/calendar.js" />"></script>
 </html>

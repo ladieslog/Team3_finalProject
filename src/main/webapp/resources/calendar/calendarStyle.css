@@ -3,7 +3,7 @@
 * {
 	margin: 0;
 	padding: 0;
-	font-family: MoeumT R;
+	font-family: HCR Batang; 
 	box-sizing: border-box;
 }
 
@@ -23,56 +23,66 @@ body {
 	margin-top : -50px;
 	display: inline-block;
 	width: 100%;
-	background-color: #D4F4FA;
+	font-weight:bold;
+	background-color: #FAF4C0;
 }
 
-.frame{height: 750px; 
+.frame{
+	height: 750px; 
 	display: inline-block;
 	width: 800px;
 }
 
 .title {
 	display: inline-block;
-	margin-top : 20px;
+	vertical-align: middle;
+	margin-top : 10px;
 	align-items: center;
-	width: 800px;
+	width: 700px;
+}
+
+.table{
+	width: 700px;
 }
 
 .year {
-	font-size: 40px;
+	font-size: 35px;
 }
 
 .month {
-	font-size: 45px;
+	font-size: 40px;
 }
 
 .nav {
+	margin-top : 10px;
 	display: flex;
 	justify-content: flex-end;
 }
 
 .nav-btn {
-	width: 30px;
+	width: 24px;
 	height: 30px;
 	border: none;
-	font-size: 20px;
+	font-size: 18px;
 	background-color: transparent;
 	cursor: pointer;
+	font-weight:bold;
 }
 
 .go-today {
 	width: 80px;
+	font-size: 20px;
 }
 
 .main{
 	display: inline-block;
-	width: 750px;
+	width: 700px;
 }
 
 .days {
 	display: flex;
 	margin: 25px 0 10px;
-	font-size: 20px;
+	font-size: 16px;
 }
 
 .day {
@@ -83,33 +93,33 @@ body {
 .dates {
 	display: flex;
 	flex-flow: row wrap;
-	border-top: 1px solid #333333;
-	border-right: 1px solid #333333;
-	background-color: #ffffff
+	border-top: 1px solid #8C8C8C;
+	border-right: 1px solid #8C8C8C;
+	background-color: #FFFFFF;
 }
 
 .date {
 	width: calc(100%/ 7);
-	height: 95px;
-	padding: 15px;
-	text-align: left;
-	border-bottom: 1px solid #333333;
-	border-left: 1px solid #333333;
+	height: 100px;
+	padding: 6px;
+	text-align: right;
+	border-bottom: 1px solid #8C8C8C;
+	border-left: 1px solid #8C8C8C;
 	position: relative;
 	z-index: 0;
-	background-color: #ffffff
+	background-color: #FFFFFF;
 }
 
 .day:nth-child(7n+1), .date:nth-child(7n+1) {
-	color: #D13E3E;
+	color: #F15F5F;
 }
 
 .day:nth-child(7n), .date:nth-child(7n) {
-	color: #396EE2;
+	color: #4374D9;
 }
 
 .otherMonth {
-	opacity: .3;
+	opacity: 0.3;
 }
 
 .today {
@@ -118,6 +128,7 @@ body {
 }
 
 .today::before {
+
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -127,9 +138,9 @@ body {
 	height: 25px;
 	border-radius: 50%;
 	border-style: solid;
-	border-width: 4px;
+	border-width: 3px;
 	border-color: #FF0000;
-	background-color: #ffffff;
+	background-color: #FFFFFF;
 	transform: translate(-50%, -50%);
 	content: '';
 }

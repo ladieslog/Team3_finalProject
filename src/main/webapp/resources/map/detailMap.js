@@ -1,14 +1,14 @@
 var mapOptions,
 	regionGeoJson = [];
 
-spinner();
+spinner(2000);
 viewSelected(0);
 mapSetOptions();
-regionJsonLoop(0);
+regionJsonLoop(1);
 
-function spinner() {
+function spinner(time) {
 	LoadingWithMask();
-	setTimeout("closeLoadingWithMask()", 2000);
+	setTimeout("closeLoadingWithMask()", time);
 }
 
 function LoadingWithMask() {
@@ -30,7 +30,7 @@ function LoadingWithMask() {
 	$('#mask').css({
 		'width': maskWidth,
 		'height': maskHeight,
-		'opacity': '0.3'
+		'opacity': '0'
 	});
 
 	$('#mask').show();
@@ -42,9 +42,40 @@ function closeLoadingWithMask() {
 	$('#mask, #loadingImg').empty();
 }
 
+var coloringMap = '<button class="mapButton1">Coloring Map</button>';
+var tripNoteMap = '<button class="mapButton2">TripNote Map</button>';
+
+naver.maps.Event.once(map, 'init_stylemap', function() {
+	//customControl 객체 이용하기
+	var coloringMapControl = new naver.maps.CustomControl(coloringMap, {
+		position: naver.maps.Position.TOP_LEFT
+	});
+
+	var tripNoteMapControl = new naver.maps.CustomControl(tripNoteMap, {
+		position: naver.maps.Position.TOP_LEFT
+	});
+
+	coloringMapControl.setMap(map);
+	tripNoteMapControl.setMap(map);
+
+	naver.maps.Event.addDOMListener(coloringMapControl.getElement(), 'click', function() {
+		spinner(2000);
+		viewSelected(0);
+		mapSetOptions();
+		regionJsonLoop(1);
+	});
+
+	naver.maps.Event.addDOMListener(tripNoteMapControl.getElement(), 'click', function() {
+		spinner(2000);
+		viewSelected(0);
+		mapSetOptions();
+		regionJsonLoop(3);
+	});
+});
+
 function viewSelected(naverCode) {
-	var coordinate = [];
-	var zoomLevel = 11;
+	var centerCoord,
+		zoomLevel;
 
 	if (naverCode === 0) {
 		coordinate = [35.797336021559566, 127.61588108068118];
@@ -73,26 +104,32 @@ function viewSelected(naverCode) {
 
 	else if (naverCode === 5) {
 		coordinate = [35.161845215083254, 126.85388112266982];
+		zoomLevel = 11;
 	}
 
 	else if (naverCode === 6) {
 		coordinate = [35.8383974839094, 128.5668823913586];
+		zoomLevel = 11;
 	}
 
 	else if (naverCode === 7) {
 		coordinate = [36.34661102368089, 127.40585548936683];
+		zoomLevel = 11;
 	}
 
 	else if (naverCode === 8) {
 		coordinate = [35.173219844383105, 129.04001281778324];
+		zoomLevel = 11;
 	}
 
 	else if (naverCode === 9) {
 		coordinate = [37.558033800475805, 127.00829015424965];
+		zoomLevel = 11;
 	}
 
 	else if (naverCode === 10) {
 		coordinate = [35.55768272122909, 129.25686823889524];
+		zoomLevel = 11;
 	}
 
 	else if (naverCode === 11) {
@@ -112,6 +149,7 @@ function viewSelected(naverCode) {
 
 	else if (naverCode === 14) {
 		coordinate = [33.376879301851545, 126.57380581097621];
+		zoomLevel = 11;
 	}
 
 	else if (naverCode === 15) {
@@ -126,21 +164,23 @@ function viewSelected(naverCode) {
 
 	else if (naverCode === 17) {
 		coordinate = [36.569344588666596, 127.24219219853576];
+		zoomLevel = 11;
 	}
+
 
 	mapOptions = {
 		center: new naver.maps.LatLng(coordinate[0], coordinate[1]),
 		mapTypes: new naver.maps.MapTypeRegistry({
 			'normal': naver.maps.NaverStyleMapTypeOption.getVectorMap()	// 레이어 없는 지도
 		}),
-		zoom: zoomLevel,
-		minZoom: (zoomLevel - 1),
-		maxZoom: (zoomLevel + 1),
 
+		zoom: zoomLevel,
+		maxZoom: 11,
+		minZoom: 7,
 		zoomControlOptions: {
 			zoomControl: true,
 			position: naver.maps.Position.TOP_RIGHT
-		}
+		},
 	};
 
 	map = new naver.maps.Map('map', mapOptions);
@@ -158,7 +198,7 @@ function mapSetOptions() {
 	});
 }
 
-function regionJsonLoop(selectedCity) {
+function regionJsonLoop(mapType) {
 	var HOME_PATH = '../resources/map',
 		urlPrefix = HOME_PATH + '/detailRegionJson/detail',
 		urlSuffix = '.json',
@@ -166,9 +206,10 @@ function regionJsonLoop(selectedCity) {
 
 	naver.maps.Event.once(map, 'init_stylemap', function() {
 		var keyword;
-		spinner();
+		spinner(2000);
+
 		for (var i = 1; i < 268; i++) {
-			if (selectedCity === 0) {
+			if (mapType === 1 || mapType === 3) {
 				keyword = i + '';
 			}
 
@@ -185,7 +226,6 @@ function regionJsonLoop(selectedCity) {
 			}
 
 			$.ajax({
-
 				url: urlPrefix + keyword + urlSuffix,
 				success: function(idx) {
 					return function(geojson) {
@@ -193,7 +233,7 @@ function regionJsonLoop(selectedCity) {
 						loadCount++;
 
 						if (loadCount === 267) {
-							startDataLayer(selectedCity);
+							startDataLayer(mapType);
 						}
 					}
 				}(i - 1),
@@ -206,81 +246,92 @@ function regionJsonLoop(selectedCity) {
 	});
 }
 
-function startDataLayer(selectedCity) {
+function startDataLayer(mapType) {
 
-	var tooltip = $('<div style="position:absolute;z-index:1000;padding:5px 10px;background-color:#fff;border:solid 2px #000;font-size:14px;pointer-events:none;display:none;"></div>');
+	var tooltip = $('<div style="position:absolute;z-index:1000;padding:5px 10px;background-color:#fff;border:solid 2px #000; font-family: HCR Batang; font-weight:bold; font-size:14px;pointer-events:none;display:none;"></div>');
 	tooltip.appendTo(map.getPanes().floatPane);
 
 	map.data.setStyle(function(feature) {
-		if (selectedCity === 0) {
-			if (feature.getProperty('area2') == '') {
-				var styleOptions = {
-					fillColor: '#FFD8D8',
-					fillOpacity: 0,
-					strokeColor: '#8C8C8C',
-					strokeWeight: 2,
-					strokeOpacity: 1
-				};
-			}
 
-			else if (feature.getProperty('area3') == '') {
+		if (mapType === 1 || mapType === 2) {	// 컬러링지도
+			if (feature.getProperty('area2') == '') {	// 도, 광역시
 				var styleOptions = {
 					fillColor: '#F6F6F6',
-					fillOpacity: 1,
-					strokeColor: '#8C8C8C',
-					strokeWeight: 1,
-					strokeOpacity: 1
-				};
-			}
-			else {
-				var styleOptions = {	// 여행간 지역 색칠
-					fillColor: '#FFC19E',
-					fillOpacity: 1,
-					strokeColor: '#8C8C8C',
-					strokeWeight: 1,
-					strokeOpacity: 1
-				};
-			}
-		}
-		else {
-			if (feature.getProperty('navercode') == selectedCity
-				&& feature.getProperty('area2') == '') { // 선택한 도시
-				var styleOptions = {
-					fillColor: '#FFD8D8',
-					fillOpacity: 0.3,
-					strokeColor: '#F15F5F',
+					fillOpacity: 0,
+					strokeColor: '#FFFFFF',
 					strokeWeight: 2,
 					strokeOpacity: 1
 				};
 			}
 
-			else {
-				var styleOptions = {	// 나머지 도시
-					fillColor: '#FFC19E',
+			else if (feature.getProperty('area3') == '') {	// 시군구
+				var styleOptions = {
+					fillColor: '#F6F6F6',
 					fillOpacity: 0,
-					strokeColor: '#8C8C8C',
+					strokeColor: '#FFFFFF',
+					strokeWeight: 1,
+					strokeOpacity: 0.5
+				};
+			}
+
+			else {
+				var styleOptions = {	// 여행간 지역 색칠
+					fillColor: '#FF9090',
+					fillOpacity: 1,
+					strokeColor: '#FFFFFF',
 					strokeWeight: 1,
 					strokeOpacity: 0.5
 				};
 			}
 		}
+
+		else if (mapType === 3 ||mapType === 4) {	// 트립노트지도
+			if (feature.getProperty('area2') == '') {	// 도, 광역시
+				var styleOptions = {
+					fillColor: '#F6F6F6',
+					fillOpacity: 0,
+					strokeColor: '#FFFFFF',
+					strokeWeight: 2,
+					strokeOpacity: 1
+				};
+			}
+
+			else {
+				var styleOptions = {	// 시군구
+					fillColor: '#F6F6F6',
+					fillOpacity: 0,
+					strokeColor: '#FFFFFF',
+					strokeWeight: 1,
+					strokeOpacity: 0.5
+				};
+			}
+		}
+		
 		return styleOptions;
 	});
+
 
 	regionGeoJson.forEach(function(geojson) {
 		map.data.addGeoJson(geojson);
 	});
 
 
-	map.data.addListener('click', function(e) {
+	map.data.addListener('click', function(e) { 
 		var feature = e.feature,
 			naverCodeInt = parseInt(feature.getProperty('navercode'));
 
 		viewSelected(naverCodeInt);
 		mapSetOptions();
 		regionGeoJson = [];
-		regionJsonLoop(naverCodeInt);
 
+		//1:컬러링 도,광역시 / 2:컬러링 시군구 / 3: 트립노트 도,광역시/ 4: 트립노트 시군구
+		if (mapType === 1 || mapType ===2) {
+			regionJsonLoop(2);
+		}
+
+		else {
+			regionJsonLoop(4);
+		}
 	});
 
 	map.data.addListener('mouseover', function(e) { // 마우스 올린 상태
@@ -305,9 +356,10 @@ function startDataLayer(selectedCity) {
 		}).text(regionName);
 
 		map.data.overrideStyle(feature, {
-			fillOpacity: 0.5,
-			strokeColor: '#F15F5F',
-			strokeWeight: 2,
+			fillColor: '#F15F5F',
+			fillOpacity: 0.3,
+			strokeColor: '#FFFFFF',
+			strokeWeight: 1,
 			strokeOpacity: 1
 		});
 	});
