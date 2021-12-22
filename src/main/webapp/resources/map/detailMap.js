@@ -1,10 +1,14 @@
 var mapOptions,
 	regionGeoJson = [];
 
-spinner(2000);
-viewSelected(0);
-mapSetOptions();
-regionJsonLoop(1);
+initMap();
+
+function initMap(){
+	spinner(2000);
+	viewSelected(0);
+	mapSetOptions();
+	regionJsonLoop(1);
+}
 
 function spinner(time) {
 	LoadingWithMask();
@@ -74,7 +78,7 @@ naver.maps.Event.once(map, 'init_stylemap', function() {
 });
 
 function viewSelected(naverCode) {
-	var centerCoord,
+	var coordinate,
 		zoomLevel;
 
 	if (naverCode === 0) {
@@ -285,7 +289,7 @@ function startDataLayer(mapType) {
 			}
 		}
 
-		else if (mapType === 3 ||mapType === 4) {	// 트립노트지도
+		else if (mapType === 3 || mapType === 4) {	// 트립노트지도
 			if (feature.getProperty('area2') == '') {	// 도, 광역시
 				var styleOptions = {
 					fillColor: '#F6F6F6',
@@ -306,17 +310,15 @@ function startDataLayer(mapType) {
 				};
 			}
 		}
-		
+
 		return styleOptions;
 	});
-
 
 	regionGeoJson.forEach(function(geojson) {
 		map.data.addGeoJson(geojson);
 	});
 
-
-	map.data.addListener('click', function(e) { 
+	map.data.addListener('click', function(e) {
 		var feature = e.feature,
 			naverCodeInt = parseInt(feature.getProperty('navercode'));
 
@@ -325,7 +327,7 @@ function startDataLayer(mapType) {
 		regionGeoJson = [];
 
 		//1:컬러링 도,광역시 / 2:컬러링 시군구 / 3: 트립노트 도,광역시/ 4: 트립노트 시군구
-		if (mapType === 1 || mapType ===2) {
+		if (mapType === 1 || mapType === 2) {
 			regionJsonLoop(2);
 		}
 
