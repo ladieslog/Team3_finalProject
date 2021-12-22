@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>마이페이지</title>
 <link rel="stylesheet" href="${contextPath }/resources/MyPageCss/MyPageCss.css">
 <script src="${contextPath }/resources/jquery-3.6.0.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -79,7 +79,7 @@
 					</div>
 				</div>
 			<hr class="hr">
-				<div align="center" style="margin-top: 32px; margin-left: 633px;" class="btn-div">
+				<div align="center" style="margin-top: 32px; margin-left: 542px;" class="btn-div">
 					<button type="button">수정 완료</button>
 					<button type="button">회원 탈퇴</button>
 				</div>

@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>diaryView</title>
+<title>다이어리 상세페이지</title>
 
 <link rel="stylesheet" href="${contextPath }/resources/diarycss/diaryViewCss.css">
 

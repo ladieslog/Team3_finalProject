@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>diaryWrite</title>
+<title>다이어리 작성페이지</title>
 <link rel="stylesheet" href="${contextPath }/resources/diarycss/diaryWriteCss.css">
 
 </head>

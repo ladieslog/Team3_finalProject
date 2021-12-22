@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>diaryWrite</title>
+<title>다이어리 수정페이지</title>
 <link rel="stylesheet" href="${contextPath }/resources/diarycss/diaryWriteCss.css">
 
 </head>

@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
+<style type="text/css">w
 	*{margin: 0; margin: auto;background-color: white;}
 	.wrap{width: 1920px;  height: 0px;}
 	.ta{ margin-top: 150px;  }
@@ -18,7 +18,7 @@
 </head>
 <body>
 	<div class="wrap">
-		<table  class="ta" >
+		<table  class="ta">
 			<tr>
 				<td rowspan="3"><img src="${contextPath }/resources/tripMain/tripmain.png" class="img1"> </td>	<td></td>
 			</tr>

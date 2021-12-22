@@ -1,7 +1,7 @@
 @charset "EUC-KR";
 
-	.a1{background-position: center center; height: 650px;  background-color: #DEF4F9;}
-	.a2{ padding: 0 180px}
+	.a1{background-position: center center; height: 650px;  background-color: #F6F6F6; display: flex;}
+	.a2{ margin: auto; text-align:center; }
 	.ach{ background-color: white; width :1300px; height:250px;}
 		
 		
@@ -99,9 +99,9 @@
 	}
 	.notice-box {
 		width: 1300px;
-		height: 255px;
-		background-color: white;
-		border: 1px solid black;
+		height: 245px;
+		background-color: #FFFFF9;
+		border-radius: 5px;
 		overflow: auto;
 	}
 	.notice-table {
@@ -109,12 +109,13 @@
 		border-collapse: collapse;
 	}
 	.notice-table tr {
-		border-bottom: 1px solid black;
+		border-bottom: 1px solid #FFA7A7;
 		height: 35px;
 	}
 	.page-block {
 		cursor: pointer;
 		margin: 0;
+		font-weight: bold;
 	}
 	a {
 		text-decoration: none;
