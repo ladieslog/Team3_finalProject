@@ -76,7 +76,7 @@
 						<script type="text/javascript">
 							document.getElementById("imgtext").style.display="flex";
 							document.getElementById("check").value="2";		
-							$('#view1').attr('src', '<spring:url value='/img/${count}.png'/>' )
+							$('#view1').attr('src', '<spring:url value='/image/${dto.image1}'/>' )
 							document.getElementById("txtview1").value="${dto.coment1}"
 						</script>					
 					</c:when>
@@ -98,7 +98,7 @@
 						<img class="img" id="preView1" onclick="imgView1()" src="${contextPath}/resources/diaryimg/diary_plus.png">
 					</c:when>
 					<c:otherwise>
-						<img class="img" id="preView1" onclick="imgView1()" src="<spring:url value='/img/${count}.png'/>">
+						<img class="img" id="preView1" onclick="imgView1()" src="<spring:url value='/image/${dto.image1}'/>">
 					</c:otherwise>
 				</c:choose>
 				</td>
@@ -115,7 +115,7 @@
 				<td class="td1">
 				<c:choose>
 					<c:when test="${dto.image2!=null }">
-						<img class="img" id="preView2" onclick="imgView2()" src="<spring:url value='/img/${count+1}.png'/>">
+						<img class="img" id="preView2" onclick="imgView2()" src="<spring:url value='/image/${dto.image2}'/>">
 					</c:when>
 					<c:when test="${dto.coment2!=null }">
 						<img class="img" id="preView2" onclick="imgView2()" src="${contextPath }/resources/diaryimg/diary_plus.png">
@@ -147,7 +147,7 @@
 				<td class="td1">
 				<c:choose>
 					<c:when test="${dto.image3!=null }">
-						<img class="img" id="preView3" onclick="imgView3()" src="<spring:url value='/img/${count+2}.png'/>">
+						<img class="img" id="preView3" onclick="imgView3()" src="<spring:url value='/image/${dto.image3}'/>">
 					</c:when>
 					<c:when test="${dto.coment3!=null }">
 						<img class="img" id="preView3" onclick="imgView3()" src="${contextPath }/resources/diaryimg/diary_plus.png">
@@ -166,7 +166,7 @@
 				<td class="td1">
 				<c:choose>
 					<c:when test="${dto.image4!=null }">
-						<img class="img" id="preView4" onclick="imgView4()" src="<spring:url value='/img/${count+3}.png'/>">
+						<img class="img" id="preView4" onclick="imgView4()" src="<spring:url value='/image/${dto.image4}'/>">
 					</c:when>
 					<c:when test="${dto.coment4!=null }">
 						<img class="img" id="preView4" onclick="imgView4()" src="${contextPath }/resources/diaryimg/diary_plus.png">
@@ -185,7 +185,7 @@
 				<td class="td1">
 				<c:choose>
 					<c:when test="${dto.image5!=null }">
-						<img class="img" id="preView5" onclick="imgView5()" src="<spring:url value='/img/${count+4}.png'/>">
+						<img class="img" id="preView5" onclick="imgView5()" src="<spring:url value='/image/${dto.image5}'/>">
 					</c:when>
 					<c:when test="${dto.coment5!=null }">
 						<img class="img" id="preView5" onclick="imgView5()" src="${contextPath }/resources/diaryimg/diary_plus.png">
@@ -231,7 +231,7 @@
 			document.getElementById("imgtext").style.display="flex"
 			document.getElementById("textarea").style.display="none"
 				
-			$('#view1').attr('src', "<spring:url value='/img/1.png'/>")
+			$('#view1').attr('src', "<spring:url value='/image/${dto.image1}'/>")
 			document.getElementById("txtview1").value="${dto.coment1}"
 		}
 	}
@@ -246,7 +246,7 @@
 			document.getElementById("imgtext").style.display="flex"
 			document.getElementById("textarea").style.display="none"
 				
-			$('#view1').attr('src', "<spring:url value='/img/2.png'/>")
+			$('#view1').attr('src', "<spring:url value='/image/${dto.image2}'/>")
 			document.getElementById("txtview1").value="${dto.coment2}"
 
 		}
@@ -262,7 +262,7 @@
 			document.getElementById("imgtext").style.display="flex"
 			document.getElementById("textarea").style.display="none"
 				
-			$('#view1').attr('src', "<spring:url value='/img/3.png'/>")
+			$('#view1').attr('src', "<spring:url value='/image/${dto.image3}'/>")
 			document.getElementById("txtview1").value="${dto.coment3}"
 
 		}
@@ -278,7 +278,7 @@
 			document.getElementById("imgtext").style.display="flex"
 			document.getElementById("textarea").style.display="none"
 				
-			$('#view1').attr('src', "<spring:url value='/img/4.png'/>")
+			$('#view1').attr('src', "<spring:url value='/image/${dto.image4}'/>")
 			document.getElementById("txtview1").value="${dto.coment4}"
 
 		}
@@ -294,7 +294,7 @@
 			document.getElementById("imgtext").style.display="flex"
 			document.getElementById("textarea").style.display="none"
 				
-			$('#view1').attr('src', "<spring:url value='/img/5.png'/>")
+			$('#view1').attr('src', "<spring:url value='/image/${dto.image5}'/>")
 			document.getElementById("txtview1").value="${dto.coment5}"
 
 		}

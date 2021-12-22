@@ -88,12 +88,13 @@
 							<textarea id="coment1" class='text' style='height:430px; width:1050px;' name="coment1"></textarea>
 					</div>
 					
+					
 					<div id="image1" style="display:none;">
 						<input type="file" id="file1" name="image_file_name1" onchange="readURL1(this);" style="display:none;"/>
 						<img id="preview1" onclick="document.all.image_file_name1.click();"
 							style='height:360px; width:600px;' src='${contextPath }/resources/diaryimg/diary_plus.png'>
 							<input type="hidden" value="0" id="imgChk1">
-							<input type="hidden" id="fileChk1" name="fileChk1">
+							<input type="hidden" id="fileChk1" name="fileChk1" value="">
 						<textarea id="comentimage1" style='width:900px; height: 50px;'class='text' name="comentimage1"></textarea>
 					</div>
 			</div>
@@ -108,7 +109,7 @@
 						<img id="preview2" onclick="document.all.image_file_name2.click();"
 							style='height:360px; width:600px;' src='${contextPath }/resources/diaryimg/diary_plus.png'>
 							<input type="hidden" value="0" id="imgChk2">
-							<input type="hidden" id="fileChk2" name="fileChk2">
+							<input type="hidden" id="fileChk2" name="fileChk2" value="">
 						<textarea id="comentimage2" style='width:900px; height: 50px;'class='text' name="comentimage2"></textarea>
 					</div>
 				</div>
@@ -123,7 +124,7 @@
 						<img id="preview3" onclick="document.all.image_file_name3.click();"
 							style='height:360px; width:600px;' src='${contextPath }/resources/diaryimg/diary_plus.png'>
 							<input type="hidden" value="0" id="imgChk3">
-							<input type="hidden" id="fileChk3" name="fileChk3">
+							<input type="hidden" id="fileChk3" name="fileChk3" value="">
 						<textarea id="comentimage3" style='width:900px; height: 50px;'class='text' name="comentimage3"></textarea>
 					</div>
 					</div>
@@ -138,7 +139,7 @@
 						<img id="preview4" onclick="document.all.image_file_name4.click();"
 							style='height:360px; width:600px;' src='${contextPath }/resources/diaryimg/diary_plus.png'>
 							<input type="hidden" value="0" id="imgChk4">
-							<input type="hidden" id="fileChk4" name="fileChk4">
+							<input type="hidden" id="fileChk4" name="fileChk4" value="">
 						<textarea id="comentimage4" style='width:900px; height: 50px;'class='text' name="comentimage4"></textarea>
 					</div>
 					</div>
@@ -153,7 +154,7 @@
 						<img id="preview5" onclick="document.all.image_file_name5.click();"
 							style='height:360px; width:600px;' src='${contextPath }/resources/diaryimg/diary_plus.png'>
 							<input type="hidden" value="0" id="imgChk5">
-							<input type="hidden" id="fileChk5" name="fileChk5">
+							<input type="hidden" id="fileChk5" name="fileChk5" value="">
 						<textarea id="comentimage5" style='width:900px; height: 50px;'class='text' name="comentimage5"></textarea>
 					</div>
 					</div>			
@@ -210,6 +211,6 @@
 	<jsp:include page="../default/footer.jsp"/>
 <script src="<%=request.getContextPath()%>/resources/jquery-3.6.0.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script type="text/javascript" src="${contextPath}/resources/diaryscript/diaryscript.js?ver=1"></script>
+<script type="text/javascript" src="${contextPath}/resources/diaryscript/diaryscript.js"></script>
 </body>
 </html>
