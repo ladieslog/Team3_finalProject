@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="${contextPath }/resources/diarycss/diaryViewCss.css">
 
 <script src="${contextPath }/resources/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="${contextPath }/resources/diaryscript/diaryViewScript.js"></script>
+
 
 </head>
 <body style="overflow-x: hidden ">
@@ -26,7 +26,7 @@
 	
 		<table class="table" >
 			<tr>
-				<td class="b">Title</td> <td><input type="text" class="te1" value="${dto.title}" readonly></td>
+				<td class="b">Title</td> <td><input type="text" class="te1 fontname" value="${dto.title}" readonly></td>
 				<td class="td" rowspan="5"></td>
 				<td class="td" rowspan="5"></td>
 				<td rowspan="5" colspan="1">
@@ -37,7 +37,7 @@
 				<img class="siz" id="view1" src="${contextPath }/resources/diaryimg/note_View.png">
 				</div>
 				<div class="textbox">
-				<input type="text" id="txtview1" class="box" >
+				<input type="text" id="txtview1" class="box fontname" readonly>
 				</div>
 				</div>
 				</div>
@@ -45,7 +45,7 @@
 				<div class="divsize" id="textarea" style="display: none;">
 				<div style="width: 550px; height: 460px;">
 				<div class="textbox" style="width: 550px; height: 460px;">
-				<textarea id="textView1"style="height: 431px; width: 519px; resize: none;"class="box" readonly></textarea>
+				<textarea id="textView1"style="height: 431px; width: 519px; resize: none;"class="box fontname" readonly></textarea>
 				</div>
 				</div>
 				</div>
@@ -85,9 +85,9 @@
 				
 			<tr>
 				<td class="b">Place</td> <td style="display: table-caption">
-				<input style="margin-top:15px;" type="text" value="${dto.location1}" class="te2" readonly>
-				<input style="margin-top:10px;" type="text" value="${dto.location2}" class="te2" readonly>
-				<input style="margin-top:10px;" type="text" value="${dto.location3}" class="te2" readonly>
+				<input style="margin-top:15px;" type="text" value="${dto.location1}" class="te2 fontname" readonly>
+				<input style="margin-top:10px;" type="text" value="${dto.location2}" class="te2 fontname" readonly>
+				<input style="margin-top:10px;" type="text" value="${dto.location3}" class="te2 fontname" readonly>
 				</td>
 				<td class="td"></td>
 				<td class="td"></td>
@@ -109,16 +109,16 @@
 			<tr>
 				<td class="b">Who</td> <td>
 				<c:if test="${dto.person == 1 }">
-					<input type="text" value="혼자" class="te3" readonly>
+					<input type="text" value="혼자" class="te3 fontname" readonly>
 				</c:if>
 				<c:if test="${dto.person == 2 }">
-					<input type="text" value="가족" class="te3" readonly>
+					<input type="text" value="가족" class="te3 fontname" readonly>
 				</c:if>
 				<c:if test="${dto.person == 3 }">
-					<input type="text" value="친구" class="te3" readonly>
+					<input type="text" value="친구" class="te3 fontname" readonly>
 				</c:if>
 				<c:if test="${dto.person == 4 }">
-					<input type="text" value="연인" class="te3" readonly>
+					<input type="text" value="연인" class="te3 fontname" readonly>
 				</c:if>
 				</td>
 				<td class="td"></td>
@@ -139,7 +139,7 @@
 			</tr>
 			
 			<tr>
-				<td class="b">Date</td> <td><input type="text" value="${dto.indatestr} ~ ${dto.outdatestr}" class="te4" readonly></td>
+				<td class="b">Date</td> <td><input type="text" value="${dto.indatestr} ~ ${dto.outdatestr}" class="te4 fontname" readonly></td>
 				<td class="td"></td>
 				<td class="td"></td>
 				<td class="td1">
@@ -158,7 +158,7 @@
 			</tr>
 			
 			<tr>
-				<td class="b">Writing time</td> <td><input type="text" value="${dto.time}" class="te2" readonly></td>
+				<td class="b">Writing time</td> <td><input type="text" value="${dto.time}" class="te2 fontname" readonly></td>
 				<td class="td"></td>
 				<td class="td"></td>
 				<td class="td1">
@@ -196,7 +196,7 @@
 	
 	</div>
 	
-	<!-- 상호 : (주)에이네시아 본사주소 : 전라북도 전주혁신도시 덕진구 중동로 104-10 5층 501호,502호 서울사무소 주소 : 서울특별시 종로구 사직로8길 24 경희궁의아침 2단지 1121호 TEL : 063-212-9076(대표번호) 063-212-9077(고객센터) 사업자 등록번호 : 528-88-01145 -->
+
 	</div>
 	
 	<jsp:include page="../default/footer.jsp"/>
