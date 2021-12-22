@@ -42,12 +42,12 @@
 			<table align="center" border="0" bordercolor="white" 
 					class="memberList-table">
 				<tr class= "tableHeader">
-					<td><div>회원ID</div></td> <td><div>회원비번</div></td> <td><div>회원닉네임</div></td> <td><div>회원주소</div></td> <td ><div>회원이메일</div></td> <td><div>게시글수</div></td>				
+					<td><div>회원 아이디</div></td> <td><div>회원비번</div></td> <td><div>회원닉네임</div></td> <td><div>회원주소</div></td> <td ><div>회원이메일</div></td> <td><div>게시글수</div></td>				
 				</tr>
 				<%if(list.isEmpty()){
 					%>
 					<tr>
-					<td colspan="6">등록된 회원 ID가 없습니다.</td>
+					<td colspan="6">등록된 회원아이디가 없습니다.</td>
 					 
 					</tr>
 					<%} else{

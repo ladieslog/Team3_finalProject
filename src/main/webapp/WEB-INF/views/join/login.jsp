@@ -69,14 +69,14 @@ function logincheck(){
 							<table cellspacing="0"  cellpadding="2" align="center" class="membership-table">
 
 								<tr>
-									<td >ID</td>
+									<td >아이디</td>
 									<td><input name="id" id="id" size="15">
 										</td>
 									<td rowspan ="2" ><button type="button" onClick="logincheck()"
 											class="but">로그인</button></td>
 								</tr>
 								<tr>
-									<td>Password</td>
+									<td>비밀번호</td>
 									<td><input type="password" id="pwd" name="pwd" size="20"></td>
 								</tr>
 								<tr>
