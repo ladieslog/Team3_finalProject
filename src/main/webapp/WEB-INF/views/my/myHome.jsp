@@ -6,50 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<style>
-	.input-box {
-		width: 1000px;
-		display: flex;
-		justify-content: space-between;
-		margin: 70px 0;
-	}
-	.my-wrap {
-		background-color: #D5D5D5;
-		display: flex;
-		justify-content: center;
-		height: 650px;
-    	align-items: center;
-	}
-	.input-box>div {
-		display: flex;
-		font-size: 20px;
-	}
-	.input-box>div:last-child {
-		width: 465px;
-	}
-	.left-text {
-		width: 150px;
-	}
-	.right-text {
-		width: 100px;
-	}
-	.btn-box {
-		padding-left: 10px;
-	}
-	input, button {
-		border-radius: 5px;
-		border-color: #D5D5D5;
-		font-size: 20px;
-	}
-	button {
-		background-color: #D5D5D5;
-	}
-	.btn-div>button {
-		margin: 0 30px;
-    	width: 130px;
-	}
-</style>
+<title>마이페이지</title>
+<link rel="stylesheet" href="${contextPath }/resources/MyPageCss/MyPageCss.css">
 <script src="${contextPath }/resources/jquery-3.6.0.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -73,52 +31,59 @@
 <body style="overflow-x: hidden;">
 	<jsp:include page="../default/header.jsp"/>
 		<div class="my-wrap">
-			<form style="padding-bottom: 50px;">
+			<form action="">
+			<div class="st">회원정보</div>
+		<hr class="hr" style="margin-top: 37px;">
 				<div class="input-box">
 					<div>
 						<div class="left-text">아이디</div>
-						<div><input type="text" name="id" readonly/></div>
+						<div><input type="text" name="id" class="fontname" readonly/></div>
 					</div>
 					<div>
 						<div class="right-text">우편번호</div>
-						<div><input type="text" id="mailNum" name="mailNum" readonly/></div>
+						<div><input type="text" id="mailNum" name="mailNum" readonly style="width: 140px;"/></div>
 						<div class="btn-box"><button type="button" onclick="addrSearch();">주소찾기</button></div>
 					</div>
 				</div>
+			<hr class="hr">
 				<div class="input-box">
 					<div>
 						<div class="left-text">비밀번호</div>
-						<div><input type="password" name="pwd"/></div>
+						<div><input type="password" name="pwd" class="fontname"/></div>
 					</div>
 					<div>
 						<div class="right-text">주소</div>
-						<div><input type="text" id="addr" name="addr" readonly/></div>
+						<div><input type="text" id="addr" name="addr" readonly class="fontname"/></div>
 					</div>
 				</div>
+			<hr class="hr">
 				<div class="input-box">
 					<div>
 						<div class="left-text">비밀번호 확인</div>
-						<div><input type="password" name="pwdCk"/></div>
+						<div><input type="password" name="pwdCk" class="fontname"/></div>
 					</div>
 					<div>
 						<div class="right-text">상세주소</div>
-						<div><input type="text" name="infoAddr" readonly/></div>
+						<div><input type="text" name="infoAddr" class="fontname"/></div>
 					</div>
 				</div>
-				<div class="input-box" style="margin-bottom: 100px;">
+			<hr class="hr">
+				<div class="input-box">
 					<div>
 						<div class="left-text">닉네임</div>
-						<div><input type="text" name="nickname"/></div>
+						<div><input type="text" name="nickname" class="fontname"/></div>
 					</div>
 					<div>
 						<div class="right-text">이메일</div>
-						<div><input type="email" name="email"/></div>
+						<div><input type="email" name="email" class="fontname"/></div>
 					</div>
 				</div>
-				<div align="center" style="margin-top: 50px;" class="btn-div">
+			<hr class="hr">
+				<div align="center" style="margin-top: 32px; margin-left: 542px;" class="btn-div">
 					<button type="button">수정 완료</button>
 					<button type="button">회원 탈퇴</button>
 				</div>
+				
 			</form>
 		</div>
 	<jsp:include page="../default/footer.jsp"/>

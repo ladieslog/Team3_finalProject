@@ -21,5 +21,6 @@ CKEDITOR.editorConfig = function( config ) {
 		{ name: 'others', groups: [ 'others' ] },
 		{ name: 'about', groups: [ 'about' ] }
 	];
+	config.extraPlugins = 'youtube';
 	config.removeButtons = 'Maximize,About,ShowBlocks';
 };

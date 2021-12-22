@@ -30,7 +30,7 @@ public class DiaryService {
 	public void writeSave(HttpServletRequest req) throws Exception {	// 다이어리 작성 DB 저장
 		DiaryDTO dto = new DiaryDTO();
 		dto.setId("3333");	
-		System.out.println(req.getParameter("indate"));
+
 		SimpleDateFormat sm = new SimpleDateFormat("yyyy-MM-dd");
 		Date date1 = null;
 		Date date2 = null;		
@@ -140,10 +140,10 @@ public class DiaryService {
 	public ArrayList<DiaryDTO> diaryBoard(int start, int end) {
 		return mapper.diaryBoard(start, end);
 	}
-	
+	/*
 	public int diaryCount() {
 		return mapper.diaryCount();
-	}
+	}*/
 
 	public void diaryView(Model model, int num) throws Exception {
 		DiaryDTO dto = mapper.diaryView(num);
@@ -195,7 +195,6 @@ public class DiaryService {
 		DiaryDTO dto = new DiaryDTO();
 		dto.setId("3333");	
 		dto.setNum(Integer.parseInt(req.getParameter("num")));
-		System.out.println(req.getParameter("indate"));
 		SimpleDateFormat sm = new SimpleDateFormat("yyyy-MM-dd");
 		Date date1 = null;
 		Date date2 = null;		
@@ -226,13 +225,6 @@ public class DiaryService {
 		}
 		dto.setPerson(req.getParameter("who"));
 	
-		System.out.println("fileChk1 : "+req.getParameter("fileChk1"));
-		System.out.println("fileChk2 : "+req.getParameter("fileChk2"));
-		System.out.println("fileChk3 : "+req.getParameter("fileChk3"));
-		System.out.println("fileChk4 : "+req.getParameter("fileChk4"));
-		System.out.println("fileChk5 : "+req.getParameter("fileChk5"));
-		System.out.println("coment4 : "+req.getParameter("coment4"));
-		System.out.println("coment5 : "+req.getParameter("coment5"));
 		if(req.getParameter("coment1").equals("")) {
 			if(!(req.getParameter("fileChk1").equals("") || req.getParameter("fileChk1") == null)) {
 				dto.setImage1(req.getParameter("fileChk1"));

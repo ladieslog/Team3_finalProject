@@ -135,4 +135,14 @@ public class CSController {
 		}
 	}
 	
+	@RequestMapping(value="test")
+	public String test() {
+		return "test/Test";
+	}
+	
+	@RequestMapping(value="test2")
+	public String test2() {
+		return "test/Test2";
+	}
+	
 }

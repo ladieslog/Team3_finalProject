@@ -10,44 +10,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>다이어리 미리보기</title>
 <script src="${contextPath }/resources/jquery-3.6.0.min.js"></script>
-<style type="text/css">
-	.diary-wrap {
-		background-color: #DEF4F9;
-		padding: 59px 0 70px 0;
-	}
-	.diary-container {
-		padding: 0 80px;
-	}
-	.diary-box {
-		background-color: white;
-		width: 300px;
-		height: 360px;
-		display: flex;
-   		justify-content: center;
-    	align-items: center;
-    	margin: 0 50px;
-    	border-radius: 10px;
-	}
-	.flex-con-be {
-		display: flex;
-		justify-content: center;
-	}
-	.diary-box-img {
-		width: 100px;
-	}
-	.mt-30 {
-		margin-top: 60px;
-	}
-	.fl {
-		float: left;
-	}
-	.fr {
-		float: right;
-	}
-	.page{ text-decoration: none; text-align: center; color:black; }
-</style>
+
+<link rel="stylesheet" href="${contextPath }/resources/diarycss/diaryBoardCss.css">
 </head>
 
 <c:set var="diaryList" value="${diaryList}" />
@@ -65,8 +31,8 @@
 	<div class="diary-wrap">
 		<div class="diary-container">
 			<div>
-				<span><b style="font-size: 15px;">닉네임님의 </b></span>
-				<span><b style="font-size: 15px; margin-left: 15px;">${diaryCount}가지 추억</b></span>
+				<span><b style="font-size: 15px; font-family: HCR Batang; font-weight: bold;">닉네임님의 </b></span>
+				<span><b style="font-size: 15px; margin-left: 15px; font-family: HCR Batang; font-weight: bold;">${diaryCount}가지 추억</b></span>
 			</div>
 			<div class="flex-con-be mt-30">
 			<c:if test="${currentPage == 1 }">
@@ -87,11 +53,11 @@
 				<div class="diary-box">
 					<div>
 						<a href="diaryView?num=${dto.num}" style="text-decoration: none; color:black;">
-						<div>${dto.title}</div>
+						<div style="font-family: HCR Batang; font-weight: bold;">${dto.title}</div>
 						<div style="width: 220px; height:256px; background-color: white; margin:15px;">
 						<c:choose>
 							<c:when test="${dto.image1 == null}">
-								<img style="width: 220px; height:256px;" src="${contextPath }/resources/diaryimg/diary_plus.png" class="diary-box-img"/>
+								<img style="width: 220px; height:256px;" src="${contextPath }/resources/diaryimg/note.png" class="diary-box-img"/>
 							</c:when>
 							<c:otherwise>
 								<img style="width: 220px; height:256px;" src="<spring:url value='/image/${dto.image1}'/>">

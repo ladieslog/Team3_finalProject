@@ -70,5 +70,6 @@
 	</script>
 	<script
 		src="<%=request.getContextPath()%>/resources/CS/script/notice_js.js"></script>
+	
 </body>
 </html>

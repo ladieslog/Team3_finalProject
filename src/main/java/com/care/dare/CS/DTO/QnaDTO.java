@@ -5,10 +5,10 @@ import java.sql.Timestamp;
 public class QnaDTO {
 	int num;
 	String questionTitle;
-	byte[] questionContent;
+	String questionContent;
 	String questionId;
 	Timestamp questionTime;
-	byte[] AnswerContent;
+	String AnswerContent;
 	Timestamp answerTime;
 	String status;
 	
@@ -25,12 +25,7 @@ public class QnaDTO {
 	public void setQuestionTitle(String questionTitle) {
 		this.questionTitle = questionTitle;
 	}
-	public byte[] getQuestionContent() {
-		return questionContent;
-	}
-	public void setQuestionContent(byte[] questionContent) {
-		this.questionContent = questionContent;
-	}
+
 	public String getQuestionId() {
 		return questionId;
 	}
@@ -43,10 +38,17 @@ public class QnaDTO {
 	public void setQuestionTime(Timestamp questionTime) {
 		this.questionTime = questionTime;
 	}
-	public byte[] getAnswerContent() {
+
+	public String getQuestionContent() {
+		return questionContent;
+	}
+	public void setQuestionContent(String questionContent) {
+		this.questionContent = questionContent;
+	}
+	public String getAnswerContent() {
 		return AnswerContent;
 	}
-	public void setAnswerContent(byte[] answerContent) {
+	public void setAnswerContent(String answerContent) {
 		AnswerContent = answerContent;
 	}
 	public Timestamp getAnswerTime() {

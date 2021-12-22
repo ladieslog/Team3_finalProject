@@ -1,6 +1,6 @@
 package com.care.dare.diary.controller;
 
-import java.io.DataOutputStream;
+/*import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -145,7 +145,7 @@ public class DiaryController {
 	@RequestMapping(value="imgUp", produces="application/json; charset=utf-8")
 	@ResponseBody
 	public String imgUp(@RequestParam("file")MultipartFile file,HttpServletRequest req) {
-		System.out.println("aaa");
+
 		JsonObject json = new JsonObject();
 		String root = "C:/spring/diary/";
 		String originalname = file.getOriginalFilename();
@@ -162,8 +162,7 @@ public class DiaryController {
 		
 		json.addProperty("url", savename);
 		String result = json.toString();
-		System.out.println(savename);
 		return result;
 	}
-}
+}*/
 

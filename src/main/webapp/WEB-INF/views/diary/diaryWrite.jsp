@@ -6,8 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>diaryWrite</title>
-<link rel="stylesheet" href="${contextPath }/resources/diarycss/DiaryStyleCss.css">
+<title>다이어리 작성페이지</title>
+<link rel="stylesheet" href="${contextPath }/resources/diarycss/diaryWriteCss.css">
 
 </head>
 <body style="overflow-x: hidden">
@@ -28,19 +28,23 @@
 	</div>
 	<div class="div2">
 	<br><br>
-	<sapn class="b">Title</sapn> <input type="text" id="title" name="title" class="te1">&nbsp;&nbsp;
-	<sapn class="b">Place</sapn> <input type="text" onclick="placeList()" class="te2" autocomplete="off" id="placeinput">
+	<sapn class="b">Title</sapn> 
+	<input type="text" id="title" name="title" class="te1" style="font-family: HCR Batang; font-weight: bold; height: 15px;">&nbsp;&nbsp;
+	<sapn class="b">Place</sapn> 
+	<input type="text" onclick="placeList()" class="te2" autocomplete="off" id="placeinput" style="font-family: HCR Batang; font-weight: bold; height: 15px;">
 	<img class="img2" onclick="modal()" src="${contextPath }/resources/diaryimg/diary_plus.png">
 	<sapn class="b">Who</sapn>
-	<select name="who" id="who" class="te3">
+	<select name="who" id="who" class="te3" style="font-family: HCR Batang; font-weight: bold; height: 25px;">
 		<option value="1">혼자</option>
 		<option value="2">가족</option>
 		<option value="3">친구</option>
 		<option value="4">연인</option>
 	</select>&nbsp;&nbsp;
-	<sapn class="b">Start Date</sapn> <input type="date" name="indate" id="indate" class="te4">
+	<sapn class="b">Start Date</sapn> 
+	<input type="date" name="indate" id="indate" class="te4" style="font-family: HCR Batang; font-weight: bold; height: 20px;">
 	&nbsp;&nbsp;
-	<sapn class="b">End Date</sapn> <input type="date" name="outdate" id="outdate" class="te4">
+	<sapn class="b">End Date</sapn> 
+	<input type="date" name="outdate" id="outdate" class="te4" style="font-family: HCR Batang; font-weight: bold; height: 20px;">
 	</div>
 	
 	<div class="placeList" id="placeList" style="display: none;">
@@ -84,8 +88,8 @@
 				
 				<div id="" style="width:1063px; height:435px; ">
 			<div id="view1">
-					<div id="content1" style="" >
-							<textarea id="coment1" class='text' style='height:430px; width:1050px;' name="coment1"></textarea>
+					<div id="content1">
+							<textarea id="coment1" class='text' style='height:430px; width:1050px; font-family: HCR Batang; font-weight: bold;' name="coment1"></textarea>
 					</div>
 					
 					
@@ -95,13 +99,13 @@
 							style='height:360px; width:600px;' src='${contextPath }/resources/diaryimg/diary_plus.png'>
 							<input type="hidden" value="0" id="imgChk1">
 							<input type="hidden" id="fileChk1" name="fileChk1" value="">
-						<textarea id="comentimage1" style='width:900px; height: 50px;'class='text' name="comentimage1"></textarea>
+						<textarea id="comentimage1" style='width:900px; height: 50px; font-family: HCR Batang; font-weight: bold;'class='text' name="comentimage1"></textarea>
 					</div>
 			</div>
 		<!-- ---------------------------------------------------------------------------------------------------------------- -->			
 				<div id="view2" style="display:none;">
 						<div id="content2"  >
-							<textarea id="coment2" class='text' style='height:430px; width:1050px;' name="coment2"></textarea>
+							<textarea id="coment2" class='text' style='height:430px; width:1050px;  font-family: HCR Batang; font-weight: bold;' name="coment2"></textarea>
 					</div>
 					
 					<div id="image2" style="display:none;">
@@ -110,13 +114,13 @@
 							style='height:360px; width:600px;' src='${contextPath }/resources/diaryimg/diary_plus.png'>
 							<input type="hidden" value="0" id="imgChk2">
 							<input type="hidden" id="fileChk2" name="fileChk2" value="">
-						<textarea id="comentimage2" style='width:900px; height: 50px;'class='text' name="comentimage2"></textarea>
+						<textarea id="comentimage2" style='width:900px; height: 50px;  font-family: HCR Batang; font-weight: bold;'class='text' name="comentimage2"></textarea>
 					</div>
 				</div>
 		<!-- ---------------------------------------------------------------------------------------------------------------- -->			
 				<div id="view3" style="display:none;">		
-						<div id="content3"  >
-							<textarea id="coment3" class='text' style='height:430px; width:1050px;' name="coment3"></textarea>
+						<div id="content3">
+							<textarea id="coment3" class='text' style='height:430px; width:1050px;  font-family: HCR Batang; font-weight: bold;' name="coment3"></textarea>
 					</div>
 					
 					<div id="image3" style="display:none;">
@@ -125,13 +129,13 @@
 							style='height:360px; width:600px;' src='${contextPath }/resources/diaryimg/diary_plus.png'>
 							<input type="hidden" value="0" id="imgChk3">
 							<input type="hidden" id="fileChk3" name="fileChk3" value="">
-						<textarea id="comentimage3" style='width:900px; height: 50px;'class='text' name="comentimage3"></textarea>
+						<textarea id="comentimage3" style='width:900px; height: 50px;  font-family: HCR Batang; font-weight: bold;' class='text' name="comentimage3"></textarea>
 					</div>
 					</div>
 		<!-- ---------------------------------------------------------------------------------------------------------------- -->			
 				<div id="view4" style="display:none;">		
-						<div id="content4"  >
-							<textarea id="coment4" class='text' style='height:430px; width:1050px;' name="coment4"></textarea>
+						<div id="content4">
+							<textarea id="coment4" class='text' style='height:430px; width:1050px;  font-family: HCR Batang; font-weight: bold;' name="coment4"></textarea>
 					</div>
 					
 					<div id="image4" style="display:none;">
@@ -140,13 +144,13 @@
 							style='height:360px; width:600px;' src='${contextPath }/resources/diaryimg/diary_plus.png'>
 							<input type="hidden" value="0" id="imgChk4">
 							<input type="hidden" id="fileChk4" name="fileChk4" value="">
-						<textarea id="comentimage4" style='width:900px; height: 50px;'class='text' name="comentimage4"></textarea>
+						<textarea id="comentimage4" style='width:900px; height: 50px;  font-family: HCR Batang; font-weight: bold;'class='text' name="comentimage4"></textarea>
 					</div>
 					</div>
 		<!-- ---------------------------------------------------------------------------------------------------------------- -->			
 				<div id="view5" style="display:none;">		
-						<div id="content5"  >
-							<textarea id="coment5" class='text' style='height:430px; width:1050px;' name="coment5"></textarea>
+						<div id="content5">
+							<textarea id="coment5" class='text' style='height:430px; width:1050px;  font-family: HCR Batang; font-weight: bold;' name="coment5"></textarea>
 					</div>
 					
 					<div id="image5" style="display:none;">
@@ -155,7 +159,7 @@
 							style='height:360px; width:600px;' src='${contextPath }/resources/diaryimg/diary_plus.png'>
 							<input type="hidden" value="0" id="imgChk5">
 							<input type="hidden" id="fileChk5" name="fileChk5" value="">
-						<textarea id="comentimage5" style='width:900px; height: 50px;'class='text' name="comentimage5"></textarea>
+						<textarea id="comentimage5" style='width:900px; height: 50px;  font-family: HCR Batang; font-weight: bold;'class='text' name="comentimage5"></textarea>
 					</div>
 					</div>			
 					
@@ -165,12 +169,12 @@
 			</tr>
 
 			<tr>
-				<td class="td1" style="">
-				<img class="td2" onclick="del1()" src="${contextPath }/resources/diaryimg/delete.png" style=""> 
-			 	<img id="previewimage1" style="align-items: center;"onclick="page0()"class="img" src="${contextPath }/resources/diaryimg/diary_plus.png" >
+				<td class="td1">
+				<img class="td2" onclick="del1()" src="${contextPath }/resources/diaryimg/delete.png"> 
+			 	<img id="previewimage1" style="align-items: center;"onclick="page0()"class="img" src="${contextPath }/resources/diaryimg/trip.png" >
 				</td> 
 						
-				<td class="td1" style="">
+				<td class="td1">
 				<img class="td2" id="de2" style="display:none;" onclick="del2()" src="${contextPath }/resources/diaryimg/delete.png">
 				<img id="previewimage2" style=""onclick="page1()" class="img" src="${contextPath }/resources/diaryimg/diary_plus.png">
 				</td> 
@@ -211,6 +215,6 @@
 	<jsp:include page="../default/footer.jsp"/>
 <script src="<%=request.getContextPath()%>/resources/jquery-3.6.0.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script type="text/javascript" src="${contextPath}/resources/diaryscript/diaryscript.js"></script>
+<script type="text/javascript" src="${contextPath}/resources/diaryscript/diaryWriteScript.js?ver=1"></script>
 </body>
 </html>
