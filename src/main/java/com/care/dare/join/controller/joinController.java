@@ -46,8 +46,7 @@ public class joinController {
         }
 	}
 	@GetMapping("membership")
-	public String membership()
-	{
+	public String membership() {
 		return "join/member";
 	}
 	@GetMapping("login")
@@ -70,7 +69,61 @@ public class joinController {
         	HttpSession session= req.getSession();
         	session.setAttribute("loginUser",DTO);
         	out.print("<script> alert('로그인 되었습니다.');location.href='diaryBoard';</script>"); 
-        	
         }
 	}
+	
+	@GetMapping("logout")
+	public void logout(HttpServletResponse resp, HttpServletRequest req) throws IOException {
+		resp.setContentType("text/html; charset=utf-8"); // 응답 설정 변경
+        PrintWriter out = resp.getWriter(); // 화면 출력용 객체
+        HttpSession se = req.getSession();
+        MemberDTO dto2 = (MemberDTO)se.getAttribute("loginUser");
+        if(dto2==null) {
+        	out.print("<script>;location.href='error';</script>");  
+        }else {
+        	se.invalidate();
+        	out.print("<script> alert('로그아웃 되었습니다.');location.href='first';</script>"); 
+        }
+	}
+	
+	@GetMapping("MyHome")
+	public String MyHome(Model model, HttpServletRequest req) {
+		HttpSession ses = req.getSession();
+		
+		if(ses.getAttribute("loginUser")==null) {
+			return "redirect:error";
+		}else {
+			MemberDTO dto5 = (MemberDTO)ses.getAttribute("loginUser");
+			service.myHome(model, dto5.getId());
+		}
+		return "my/myHome";
+	}
+	
+	@PostMapping("myUpdate")
+	public void myUpdate(HttpServletRequest req,HttpServletResponse resp) throws IOException {
+		HttpSession sess = req.getSession();
+		resp.setContentType("text/html; charset=utf-8"); // 응답 설정 변경
+        PrintWriter out = resp.getWriter(); // 화면 출력용 객체
+        MemberDTO dto4 = (MemberDTO)sess.getAttribute("loginUser");
+		if(dto4==null) {
+			out.print("<script> location.href='error';</script>");  
+		}else {
+			int result = service.myUpdate(req,dto4.getId());
+			if(result == 0) {
+				out.print("<script> alert('회원정보 수정을 실패했습니다');location.href='MyHome';</script>");
+			}else {
+				out.print("<script> alert('회원정보 수정이 완료되었습니다');location.href='MyHome';</script>");
+			}
+		}
+		
+	}
+	
 }
+
+
+
+
+
+
+
+

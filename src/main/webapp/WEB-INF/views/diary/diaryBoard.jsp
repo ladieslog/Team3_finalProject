@@ -31,7 +31,7 @@
 	<div class="diary-wrap">
 		<div class="diary-container">
 			<div>
-				<span><b style="font-size: 15px; font-family: HCR Batang; font-weight: bold;">닉네임님의 </b></span>
+				<span><b style="font-size: 15px; font-family: HCR Batang; font-weight: bold;">${loginUser.nickname}님의 </b></span>
 				<span><b style="font-size: 15px; margin-left: 15px; font-family: HCR Batang; font-weight: bold;">${diaryCount}가지 추억</b></span>
 			</div>
 			<div class="flex-con-be mt-30">

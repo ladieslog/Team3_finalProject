@@ -273,7 +273,7 @@ $(document).ready(function() {
 								
 								<tr>
 									<td>Detail Address</td>
-									<td><input name="detailaddress" size="20" id="detail address"></td>	
+									<td><input name="detailaddress" size="20" id="detailaddress"></td>	
 								</tr>
 								<tr>
 									<td>Email</td>

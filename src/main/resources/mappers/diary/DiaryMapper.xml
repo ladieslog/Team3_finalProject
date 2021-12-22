@@ -40,7 +40,7 @@
 	
 	<select id="diaryBoard" resultMap="diary">
 		select B.* from(select rownum rn, A.* from
-        (select * from diary_board order by num desc)A)B where rn between #{s} and #{e}
+        (select * from diary_board where id=#{id} order by num desc)A)B where rn between #{s} and #{e}
 	</select>
 	
 	<select id="diaryCount" resultType="Integer">
