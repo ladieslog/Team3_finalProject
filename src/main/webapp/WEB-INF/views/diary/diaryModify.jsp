@@ -17,6 +17,13 @@
 <body style="overflow-x: hidden">
 	<jsp:include page="../default/header.jsp"/>
 	<c:set var="dto" value="${diary}"></c:set>
+
+	<% HttpSession session1 = request.getSession();
+		if(session1.getAttribute("loginUser") == null){
+			response.sendRedirect("error");
+		}
+	%>
+
 	<% SimpleDateFormat sim = new SimpleDateFormat("yyyy-MM-dd");
 		 DiaryDTO dto = (DiaryDTO)request.getAttribute("diary");
 		 Timestamp ti = dto.getIndate();

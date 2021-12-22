@@ -11,6 +11,11 @@
 
 </head>
 <body style="overflow-x: hidden">
+	<% HttpSession session1 = request.getSession();
+		if(session1.getAttribute("loginUser") == null){
+			response.sendRedirect("error");
+		}
+	%>
 	<jsp:include page="../default/header.jsp"/>
 	<div class="writewrap">
 	<div class="div">

@@ -14,6 +14,7 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.care.dare.diary.diaryService.DiaryService;
 import com.care.dare.diary.dto.DiaryDTO;
+import com.care.dare.join.controller.MemberDTO;
 import com.google.gson.JsonObject;
 
 @Controller
@@ -37,9 +39,17 @@ public class DiaryController {
 	@Autowired DiaryService ds;
 	
 	@RequestMapping("diaryBoard")
-	public String diaryBoard(HttpServletRequest req, Model model) throws Exception {
+	public String diaryBoard(HttpServletRequest req, Model model, HttpServletResponse resp) throws Exception {
+		resp.setContentType("text/html; charset=utf-8"); // 응답 설정 변경
+        PrintWriter out = resp.getWriter(); // 화면 출력용 객체
+		HttpSession session = req.getSession();
+		System.out.println(session.getAttribute("loginUser"));
+		if(session.getAttribute("loginUser")==null) {
+			return "redirect:error";
+		}else {
+			MemberDTO dto1 = (MemberDTO)session.getAttribute("loginUser");
 		int pageSize = 0;
-		int diaryCount = ds.diaryCount();
+		int diaryCount = ds.diaryCount(dto1.getId());
 		model.addAttribute("diaryCount", diaryCount);
 		String currentPage = req.getParameter("currentPage");
 		if(req.getParameter("currentPage") == null) {
@@ -60,7 +70,7 @@ public class DiaryController {
 			startRow = (pageNum - 1) * pageSize;
 			endRow = pageNum * pageSize - 1;
 		}
-		ArrayList<DiaryDTO> arr = ds.diaryBoard(startRow, endRow);
+		ArrayList<DiaryDTO> arr = ds.diaryBoard(startRow, endRow, dto1.getId());
 		SimpleDateFormat sim = new SimpleDateFormat("yyyy-MM-dd");
 		int count = 0;
 		if(pageNum == 1) {
@@ -90,13 +100,17 @@ public class DiaryController {
 		model.addAttribute("diaryList", arr);
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("pageSize", pageSize);
-		
+		}
 		return "diary/diaryBoard";
 	}
 	
 	@RequestMapping("diaryWrite")
 	public String diaryWrite() {
 		return "diary/diaryWrite";
+	}
+	@RequestMapping("error")
+	public String Notsession() {
+		return "diary/Notsession";
 	}
 	
 	@RequestMapping("diaryView")

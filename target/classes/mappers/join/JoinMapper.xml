@@ -10,13 +10,14 @@
 		<result property="nickname" column="nickname"></result>
 		<result property="addr" column="addr"></result>
 		<result property="email" column="email"></result>
-		
+		<result property="mailnumber" column="mailnumber"></result>
+		<result property="detailaddr" column="detailaddr"></result>
 	</resultMap>
 	<select id="idcheck" resultMap ="join"> 
 		select* from MEMBER_USER where id=#{id}
 	</select>
 	<insert id= "resister">
-		insert into MEMBER_USER values(#{id}, #{pwd}, #{nickname}, #{addr}, #{email})
+		insert into MEMBER_USER values(#{id}, #{pwd}, #{nickname}, #{addr}, #{email}, #{mailnumber}, #{detailaddr})
 	</insert>
 	<select id="loginproc" resultMap="join">
 	select* from MEMBER_USER where id=#{id} and pwd=#{pwd}
@@ -24,4 +25,13 @@
 	<select id="memberList" resultMap="join">
 	select* from MEMBER_USER 
 	</select>
+
+	<select id="myHome" resultMap="join">
+	select * from MEMBER_USER where id=#{id} 
+	</select>
+	
+	<update id="myUpdate">
+		update MEMBER_USER set pwd=#{pwd}, nickname=#{nickname}, addr=#{addr}, email=#{email}, mailnumber=#{mailnumber}, detailaddr=#{detailaddr} where id=#{id}
+	</update>
+	
 </mapper>

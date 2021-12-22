@@ -21,27 +21,32 @@
 	          	console.log("data.zonecode : " + data.zonecode);
 	          	var addr = data.roadAddress;
 	          	
-	          	$("#mailNum").val(data.zonecode);
-	          	$("#addr").val(addr);
+	          	$("#zipcode").val(data.zonecode);
+	          	$("#address").val(addr);
 	        }
 	    }).open();
+	}
+	
+	function modify(){
+		document.getElementById("mod").submit()
 	}
 </script>
 </head>
 <body style="overflow-x: hidden;">
+
 	<jsp:include page="../default/header.jsp"/>
 		<div class="my-wrap">
-			<form action="">
+			<form id="mod" action="myUpdate" method="post">
 			<div class="st">회원정보</div>
 		<hr class="hr" style="margin-top: 37px;">
 				<div class="input-box">
 					<div>
 						<div class="left-text">아이디</div>
-						<div><input type="text" name="id" class="fontname" readonly/></div>
+						<div><input type="text" id="id" name="id" class="fontname" value="${myHome.id}" readonly/></div>
 					</div>
 					<div>
 						<div class="right-text">우편번호</div>
-						<div><input type="text" id="mailNum" name="mailNum" readonly style="width: 140px;"/></div>
+						<div><input type="text" id="zipcode" name="zipcode" value="${myHome.mailnumber}" readonly style="width: 140px;"/></div>
 						<div class="btn-box"><button type="button" onclick="addrSearch();">주소찾기</button></div>
 					</div>
 				</div>
@@ -49,38 +54,38 @@
 				<div class="input-box">
 					<div>
 						<div class="left-text">비밀번호</div>
-						<div><input type="password" name="pwd" class="fontname"/></div>
+						<div><input type="password" id="pwd" name="pwd" value="${myHome.pwd}" class="fontname"/></div>
 					</div>
 					<div>
 						<div class="right-text">주소</div>
-						<div><input type="text" id="addr" name="addr" readonly class="fontname"/></div>
+						<div><input type="text" id="address" name="address" value="${myHome.addr}" readonly class="fontname"/></div>
 					</div>
 				</div>
 			<hr class="hr">
 				<div class="input-box">
 					<div>
 						<div class="left-text">비밀번호 확인</div>
-						<div><input type="password" name="pwdCk" class="fontname"/></div>
+						<div><input type="password" id="pwdCk" name="pwdCk"  class="fontname"/></div>
 					</div>
 					<div>
 						<div class="right-text">상세주소</div>
-						<div><input type="text" name="infoAddr" class="fontname"/></div>
+						<div><input type="text" id="detailaddress" name="detailaddress" value="${myHome.detailaddr}" class="fontname"/></div>
 					</div>
 				</div>
 			<hr class="hr">
 				<div class="input-box">
 					<div>
 						<div class="left-text">닉네임</div>
-						<div><input type="text" name="nickname" class="fontname"/></div>
+						<div><input type="text" id="nickname" name="nickname" value="${myHome.nickname}" class="fontname"/></div>
 					</div>
 					<div>
 						<div class="right-text">이메일</div>
-						<div><input type="email" name="email" class="fontname"/></div>
+						<div><input type="email" id="email" name="email" value="${myHome.email}" class="fontname"/></div>
 					</div>
 				</div>
 			<hr class="hr">
 				<div align="center" style="margin-top: 32px; margin-left: 542px;" class="btn-div">
-					<button type="button">수정 완료</button>
+					<button type="button" onclick="modify()">수정 완료</button>
 					<button type="button">회원 탈퇴</button>
 				</div>
 				
