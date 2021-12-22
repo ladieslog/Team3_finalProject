@@ -27,6 +27,7 @@
 		overflow: auto;*/
 		min-height: 450px;
 		background: #EFFBFB;
+		overflow-x: auto;
 	}
 	.notice-view-bottom {
 		border-top: 1px solid black;
