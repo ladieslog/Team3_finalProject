@@ -5,7 +5,10 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession; 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.ui.Model;
+
 import com.care.dare.join.controller.*; 
 
 public interface MemberService { 
@@ -13,6 +16,9 @@ public interface MemberService {
 	public void memberJoinProcess(MemberDTO dto); 
 public MemberDTO idcheck(String id);
 public int resister(HttpServletRequest req);
+public MemberDTO loginproc(HttpServletRequest req);
+public void memberList(Model model);
+
 	}
 
 

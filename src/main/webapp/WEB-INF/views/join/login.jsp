@@ -16,10 +16,8 @@
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
-<script type="text/javascript" src="script.js"></script>
 <script type="text/javascript">
-	funtion idCheck(id) {
-		
+
 		/*
 		frm= document.regFrm;
 		if (id=""){
@@ -31,7 +29,7 @@
 		window
 			.open(url, "IDCheck", "width=300, height=150");
 	*/
-	}
+	
 /*
 	function zipCheck(){
 		url = "zipSearch.jsp?check=n";
@@ -40,6 +38,15 @@
 					"width=500, height=300, scrollbars=yes");
 	}
 */
+
+
+function join(){
+	location.href="membership"
+}
+function logincheck(){
+	document.getElementById("form").submit()
+}
+
 </script>
 
 <link href="<c:url value="/resources/membership/login.css" />"
@@ -56,25 +63,25 @@
 		<br />
 		<br />
 
-			<form name="reFrm" method="post" action="memberProc.jsp" id="form">			
+			<form name="reFrm" method="post" action="loginproc" id="form">			
 					
 					
 							<table cellspacing="0"  cellpadding="2" align="center" class="membership-table">
 
 								<tr>
 									<td >ID</td>
-									<td><input name="id" size="15">
+									<td><input name="id" id="id" size="15">
 										</td>
-									<td rowspan ="2" ><button type="button" onClick="idCheck(this.form.id.value)"
+									<td rowspan ="2" ><button type="button" onClick="logincheck()"
 											class="but">로그인</button></td>
 								</tr>
 								<tr>
 									<td>Password</td>
-									<td><input type="password" name="repwd" size="20"></td>
+									<td><input type="password" id="pwd" name="pwd" size="20"></td>
 								</tr>
 								<tr>
 									<td colspan="3" align="center"><button type="button"
-											onclick="idCheck()"
+											onclick="join()"
 											style="margin-right: 80px; width: 100px; height: 30px;"
 											class="but">회원가입</button></td>
 								</tr>
