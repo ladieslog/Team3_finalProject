@@ -44,7 +44,7 @@
 	</select>
 	
 	<select id="diaryCount" resultType="Integer">
-		select count(*) from diary_board
+		select count(*) from diary_board where id=#{id}
 	</select>
 	
 	<select id="diaryView" resultMap="diary">

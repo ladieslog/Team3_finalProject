@@ -18,4 +18,10 @@
 	<insert id= "resister">
 		insert into MEMBER_USER values(#{id}, #{pwd}, #{nickname}, #{addr}, #{email})
 	</insert>
+	<select id="loginproc" resultMap="join">
+	select* from MEMBER_USER where id=#{id} and pwd=#{pwd}
+	</select>
+	<select id="memberList" resultMap="join">
+	select* from MEMBER_USER 
+	</select>
 </mapper>

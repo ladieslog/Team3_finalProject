@@ -12,6 +12,15 @@ public class MemberDTO {
    private String nickname;
    private String email;
    private String addr;
+   private int diaryCount;
+   
+   
+public int getDiaryCount() {
+	return diaryCount;
+}
+public void setDiaryCount(int diaryCount) {
+	this.diaryCount = diaryCount;
+}
 public String getId() {
 	return id;
 }
