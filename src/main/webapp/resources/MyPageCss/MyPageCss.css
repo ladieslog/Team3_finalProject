@@ -1,0 +1,46 @@
+@charset "EUC-KR";
+	.input-box {
+		width: 1000px;
+		display: flex;
+		justify-content: space-between;
+		margin: 40px 0;
+	}
+	.my-wrap {
+		background-color: #D9E5FF;
+		display: flex;
+		justify-content: center;
+		height: 650px;
+    	align-items: center;
+	}
+	.input-box>div {
+		display: flex;
+		font-size: 20px;
+	}
+	.input-box>div:last-child {
+		width: 465px;
+	}
+	.left-text {
+		width: 150px; font-weight: bold; font-size: 17px; margin-left: 70px; color: #5D5D5D; margin-top: 4px;
+	}
+	.right-text {
+		width: 100px;  font-weight: bold; font-size: 17px; color: #5D5D5D; margin-top: 4px;
+	}
+	.btn-box {
+		padding-left: 10px;
+	}
+	input, button {
+		border-radius: 5px;
+		border-color: #FFFFF4;
+		font-size: 15px;
+	}
+	button {
+		background-color: #D9E5FF; font-weight: bold; color: #353535;
+	}
+	.btn-div>button {
+		margin: 0 5px;
+    	width: 90px; font-weight: bold; font-size: 15px;
+	}
+	.fontname{ font-family: HCR Batang; font-weight: bold;}
+	
+	.hr{ border: 1px solid #FFFFF4; }
+	.st{ text-align: center; font-size: 30px;  font-weight: bold; color: #5D5D5D; }

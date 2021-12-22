@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>다이어리 미리보기</title>
 <script src="${contextPath }/resources/jquery-3.6.0.min.js"></script>
 
 <link rel="stylesheet" href="${contextPath }/resources/diarycss/diaryBoardCss.css">

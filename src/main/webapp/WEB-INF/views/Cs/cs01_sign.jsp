@@ -9,9 +9,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>고객센터</title>
 <link rel="stylesheet"
-	href="${contextPath }/resources/CS/css/cs_css.css">
+	href="${contextPath }/resources/CS/css/cs_css.css?ver=1">
 </head>
 <%
 List<NoticeDTO> list = (List<NoticeDTO>) request.getAttribute("list"); // notice 리스트
@@ -36,19 +36,19 @@ if(endPage > pageCount) {
 
 		<div class="a1">
 			<div class="a2">
-
-				<div>
-					<br> <span><b style="font-size: 30px;">notice</b></span>
+	<div>
+				<div style="align-items: center; display: flex; justify-content: center; height: 60px;">
+					<br> <span><b style="font-size: 30px; ">Notice</b></span>
 
 				</div>
 				<div id="id1">
 					<div class="notice-box">
-						<table border="1" bordercolor="white" class="notice-table" id="notice-table">
+						<table  bordercolor="white" class="notice-table" id="notice-table">
 							<tr>
-								<td style="width: 8%;">글번호</td>
-								<td style="width: 62%;">제목</td>
-								<td style="width: 22%;">작성시간</td>
-								<td style="width: 8%;">조회수</td>
+								<th style="width: 8%;">글번호</th>
+								<th style="width: 62%;">제목</th>
+								<th style="width: 22%;">작성시간</th>
+								<th style="width: 8%;">조회수</th>
 							</tr>
 							<%
 							if (list == null) { // 리스트가 없다면 게시글이 0개임
@@ -82,7 +82,8 @@ if(endPage > pageCount) {
 								
 								for(int i=startPage; i <= endPage; i++) {
 								%>
-								<span class="page-block" id="<%=i %>" onclick="pageSet(this);">[<%=i %>]</span> <!-- 현 페이지 묶음의 시작번호부터 끝번호 까지 출력 -->
+								<span class="page-block" id="<%=i %>" onclick="pageSet(this);">[<%=i %>]</span>
+								 <!-- 현 페이지 묶음의 시작번호부터 끝번호 까지 출력 -->
 								<%
 								}
 								
@@ -97,9 +98,11 @@ if(endPage > pageCount) {
 						</table>
 					</div>
 				</div>
-				<div>
-					<br> <span><b style="font-size: 30px;">Q & N</b></span>
-
+	</div>
+	<div style="margin-bottom:10px;">
+				<div style="align-items: center; display: flex; justify-content: center; height: 60px;">
+					<br> <span>
+					<b style="font-size: 30px;">Q & A</b></span>
 				</div>
 				<div id="id2">
 					<textarea rows="7" cols="70" name="comment" class="ach"
@@ -109,7 +112,7 @@ if(endPage > pageCount) {
 
 				<div class="in3"></div>
 			</div>
-
+</div>
 		</div>
 
 

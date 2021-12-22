@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,10 +16,8 @@
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
-<script type="text/javascript" src="script.js"></script>
 <script type="text/javascript">
-	funtion idCheck(id) {
-		
+
 		/*
 		frm= document.regFrm;
 		if (id=""){
@@ -30,7 +29,7 @@
 		window
 			.open(url, "IDCheck", "width=300, height=150");
 	*/
-	}
+	
 /*
 	function zipCheck(){
 		url = "zipSearch.jsp?check=n";
@@ -39,69 +38,22 @@
 					"width=500, height=300, scrollbars=yes");
 	}
 */
+
+
+function join(){
+	location.href="membership"
+}
+function logincheck(){
+	document.getElementById("form").submit()
+}
+
 </script>
-<style type="text/css">
 
-.membership-form {
-	background-image:
-		url("<%=request.getContextPath()%>/resources/welcome.png");
-	background-repeat: no-repeat;
-	background-position: center center;
-	background-size: 820px;
-	height: 620px;
-	margin-top: 50px;
-	display:flex;
-	
-}
-.table{
-	text-align:
-	center;
-	display: flex;
-	justify-content: center;
-	margin-top:160px;
+<link href="<c:url value="/resources/membership/login.css" />"
+    rel="stylesheet">
 
-}
-td{
-	height:70px;
-	width:200px;
-}
-.membership-box {
-	display: flex;
-	height: 500px;
-    justify-content: center;
-    width: 100%;
-    padding-right: 110px;
-    padding-top: 40px;
-    background-color:black;
-}
 
-.membership-table {
-	position: relative;
-	left: 10px;
-	top: 80px;
-	width:400px;
-	height:150px;
-	
-	
-}
 
-input {
-	border-radius: 5px;
-	border: none;
-}
-
-.but {
-	border-color: #B0C6E7;
-	border-radius: 5px;
-	background-color: #B0C6E7;
-}
-#form{
-	display:flex;
-	justify-content:center;
-	align-items:center;
-	width:100%; 
-}
-</style>
 </head>
 <body onLoad="reFrm.id.focus()">
 	<div class="container membership-form">
@@ -111,25 +63,25 @@ input {
 		<br />
 		<br />
 
-			<form name="reFrm" method="post" action="memberProc.jsp" id="form">			
+			<form name="reFrm" method="post" action="loginproc" id="form">			
 					
 					
 							<table cellspacing="0"  cellpadding="2" align="center" class="membership-table">
 
 								<tr>
 									<td >ID</td>
-									<td><input name="id" size="15">
+									<td><input name="id" id="id" size="15">
 										</td>
-									<td rowspan ="2" ><button type="button" onClick="idCheck(this.form.id.value)"
+									<td rowspan ="2" ><button type="button" onClick="logincheck()"
 											class="but">로그인</button></td>
 								</tr>
 								<tr>
 									<td>Password</td>
-									<td><input type="password" name="repwd" size="20"></td>
+									<td><input type="password" id="pwd" name="pwd" size="20"></td>
 								</tr>
 								<tr>
 									<td colspan="3" align="center"><button type="button"
-											onclick="idCheck()"
+											onclick="join()"
 											style="margin-right: 80px; width: 100px; height: 30px;"
 											class="but">회원가입</button></td>
 								</tr>
