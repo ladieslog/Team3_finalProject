@@ -10,13 +10,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>diaryWrite</title>
-<link rel="stylesheet" href="${contextPath }/resources/diarycss/DiaryStyleCss.css">
+<title>다이어리 수정페이지</title>
+<link rel="stylesheet" href="${contextPath }/resources/diarycss/diaryWriteCss.css">
 
 </head>
 <body style="overflow-x: hidden">
 	<jsp:include page="../default/header.jsp"/>
 	<c:set var="dto" value="${diary}"></c:set>
+
+	<% HttpSession session1 = request.getSession();
+		if(session1.getAttribute("loginUser") == null){
+			response.sendRedirect("error");
+		}
+	%>
+
 	<% SimpleDateFormat sim = new SimpleDateFormat("yyyy-MM-dd");
 		 DiaryDTO dto = (DiaryDTO)request.getAttribute("diary");
 		 Timestamp ti = dto.getIndate();
@@ -26,11 +33,11 @@
 	%>
 	<div class="writewrap">
 	<div class="div">
-	<form id="form" action="writeUpdate" method="post" enctype="multipart/form-data">
+	<form id="form" action="writeUpdate" method="post">
 	<input type="hidden" name="num" value="${dto.num }">
 	<div class="modal" id="modal" style="display:none;">
 		<div class="b">
-		<input type="text" id="place" class="te2" readonly>
+		<input type="text" id="place" class="te2 fontname" readonly>
 		<input type="button" value="Search" onclick="mailnum()" class="sub">
 		<input type="button" value="Save" onclick="save()" class="sub">
 		<input type="button" value="Cancle" onclick="cancle()" class="sub">
@@ -41,14 +48,16 @@
 	</div>
 	<div class="div2">
 	<br><br>
-	<sapn class="b">Title</sapn> <input type="text" id="title" name="title" value="${dto.title }" class="te1">&nbsp;&nbsp;
-	<sapn class="b">Place</sapn> <input type="text" onclick="placeList()" class="te2" autocomplete="off" id="placeinput">
+	<sapn class="b">Title</sapn> 
+	<input type="text" id="title" name="title" value="${dto.title }" class="te1 fontname" style="height:15px;">&nbsp;&nbsp;
+	<sapn class="b">Place</sapn> 
+	<input type="text" onclick="placeList()" class="te2 fontname" style="height:15px;" autocomplete="off" id="placeinput">
 	<img class="img2" onclick="modal()" src="${contextPath }/resources/diaryimg/diary_plus.png">
 	<sapn class="b">Who</sapn>
-	<select name="who" id="who" class="te3">
+	<select name="who" id="who" class="te3 fontname" style="height:25px;">
 	<c:choose>
 		<c:when test="${dto.person == 1 }">
-			<option value="1" selected>혼자</option>
+			<option value="1" selected >혼자</option>
 			<option value="2">가족</option>
 			<option value="3">친구</option>
 			<option value="4">연인</option>
@@ -68,32 +77,29 @@
 		<c:otherwise>
 			<option value="1">혼자</option>
 			<option value="2">가족</option>
-			<option value="3" >친구</option>
+			<option value="3">친구</option>
 			<option value="4" selected>연인</option>
 		</c:otherwise>
 	</c:choose>
-		<option value="1">혼자</option>
-		<option value="2">가족</option>
-		<option value="3">친구</option>
-		<option value="4">연인</option>
+
 	</select>&nbsp;&nbsp;
-	<sapn class="b">Start Date</sapn> <input type="date" name="indate" id="indate" value="<%=indatestr1 %>" class="te4">
+	<sapn class="b">Start Date</sapn> <input type="date" name="indate" id="indate" value="<%=indatestr1 %>" class="te4 fontname">
 	&nbsp;&nbsp;
-	<sapn class="b">End Date</sapn> <input type="date" name="outdate" id="outdate" value="<%=outdatestr1 %>" class="te4">
+	<sapn class="b">End Date</sapn> <input type="date" name="outdate" id="outdate" value="<%=outdatestr1 %>" class="te4 fontname">
 	</div>
 	
 	<div class="placeList" id="placeList" style="display: none;">
 	<!-- div와 img 태그를 미리 만들어놓음 -->
 		<div id="pla1">
-			<div id="placename1">${dto.location1 }</div>
+			<div id="placename1" class="fontname">${dto.location1 }</div>
 			<img src="${contextPath }/resources/diaryimg/delete.png" class="placedel" id="placedel2" onclick="delete1();"/>
 		</div>
 		<div id="pla2">
-			<div id="placename2">${dto.location2 }</div>
+			<div id="placename2" class="fontname">${dto.location2 }</div>
 			<img src="${contextPath }/resources/diaryimg/delete.png" class="placedel" id="placedel2" onclick="delete2();"/>
 		</div>
 		<div id="pla3">
-			<div id="placename3">${dto.location3 }</div>
+			<div id="placename3" class="fontname">${dto.location3 }</div>
 			<img src="${contextPath }/resources/diaryimg/delete.png" class="placedel" id="placedel3" onclick="delete3();"/>
 		</div>
 	</div>
@@ -127,30 +133,30 @@
 			<c:choose>
 				<c:when test="${dto.image1 != null }">
 					<div id="content1" style="display: none;" >
-							<textarea id="coment1" class='text' style='height:430px; width:1050px;' name="coment1"></textarea>
+							<textarea id="coment1" class='text fontname' style='height:430px; width:1050px;' name="coment1"></textarea>
 					</div>
 					
 					<div id="image1" style="">
 						<input type="file" id="file1" name="image_file_name1" onchange="readURL1(this);" style="display:none;"/>
 						<img id="preview1"   onclick="document.all.image_file_name1.click();"
-							style='height:360px; width:600px;' src='<spring:url value='/img/1.png'/>'>
+							style='height:360px; width:600px;' src='<spring:url value='/image/${dto.image1 }'/>'>
 							<input type="hidden" value="0" id="imgChk1">
-							<input type="hidden" id="fileChk1">
-						<textarea id="comentimage1"style='width:900px; height: 50px;'class='text' name="comentimage1">${dto.coment1}</textarea>
+							<input type="hidden" id="fileChk1" name="fileChk1" value="${dto.image1 }">
+						<textarea id="comentimage1"style='width:900px; height: 50px;'class='text fontname' name="comentimage1">${dto.coment1}</textarea>
 					</div>
 				</c:when>
 				<c:otherwise>
 				<div id="content1" style="" >
-							<textarea id="coment1" class='text' style='height:430px; width:1050px;' name="coment1">${dto.coment1}</textarea>
+							<textarea id="coment1" class='text fontname' style='height:430px; width:1050px;' name="coment1">${dto.coment1}</textarea>
 					</div>
 					
 					<div id="image1" style="display: none;">
 						<input type="file" id="file1" name="image_file_name1" onchange="readURL1(this);" style="display:none;"/>
 						<img id="preview1"   onclick="document.all.image_file_name1.click();"
-							style='height:360px; width:600px;' src='<spring:url value='${contextPath }/resources/diaryimg/diary_plus.png'/>'>
+							style='height:360px; width:600px;' src='${contextPath }/resources/diaryimg/diary_plus.png'>
 							<input type="hidden" value="0" id="imgChk1">
-							<input type="hidden" id="fileChk1">
-						<textarea id="comentimage1" style='width:900px; height: 50px;'class='text' name="comentimage1"></textarea>
+							<input type="hidden" id="fileChk1" name="fileChk1" value="">
+						<textarea id="comentimage1" style='width:900px; height: 50px;'class='text fontname' name="comentimage1"></textarea>
 					</div>
 				</c:otherwise>
 			</c:choose>
@@ -161,23 +167,23 @@
 			<c:when test="${dto.image2 != null }">
 			<div id="view2" style="display:none;">
 						<div id="content2" style="display: none;" >
-							<textarea id="coment2" class='text' style='height:430px; width:1050px;' name="coment2"></textarea>
+							<textarea id="coment2" class='text fontname' style='height:430px; width:1050px;' name="coment2"></textarea>
 					</div>
 					
 					<div id="image2" style="">
 						<input type="file" id="file2" name="image_file_name2" onchange="readURL2(this);" style="display:none;"/>
 						<img id="preview2" onclick="document.all.image_file_name2.click();"
-							style='height:360px; width:600px;' src='<spring:url value='/img/2.png'/>'>
+							style='height:360px; width:600px;' src='<spring:url value='/image/${dto.image2 }'/>'>
 							<input type="hidden" value="0" id="imgChk2">
-							<input type="hidden" id="fileChk2">
-						<textarea id="comentimage2" style='width:900px; height: 50px;'class='text' name="comentimage2">${dto.coment2}</textarea>
+							<input type="hidden" id="fileChk2" name="fileChk2" value="${dto.image2 }">
+						<textarea id="comentimage2" style='width:900px; height: 50px;'class='text fontname' name="comentimage2">${dto.coment2}</textarea>
 					</div>
 				</div>
 			</c:when>
 			<c:when test="${dto.coment2 != null }">
 			<div id="view2" style="display:none;">
 						<div id="content2"  >
-							<textarea id="coment2" class='text' style='height:430px; width:1050px;' name="coment2">${dto.coment2}</textarea>
+							<textarea id="coment2" class='text fontname' style='height:430px; width:1050px;' name="coment2">${dto.coment2}</textarea>
 					</div>
 					
 					<div id="image2" style="display:none;">
@@ -185,15 +191,15 @@
 						<img id="preview2" onclick="document.all.image_file_name2.click();"
 							style='height:360px; width:600px;' src='${contextPath }/resources/diaryimg/diary_plus.png'>
 							<input type="hidden" value="0" id="imgChk2">
-							<input type="hidden" id="fileChk2">
-						<textarea id="comentimage2" style='width:900px; height: 50px;'class='text' name="comentimage2"></textarea>
+							<input type="hidden" id="fileChk2" name="fileChk2" value="">
+						<textarea id="comentimage2" style='width:900px; height: 50px;'class='text fontname' name="comentimage2"></textarea>
 					</div>
 				</div>
 			</c:when>
 			<c:otherwise>
 			<div id="view2" style="display:none;">
 						<div id="content2"  >
-							<textarea id="coment2" class='text' style='height:430px; width:1050px;' name="coment2"></textarea>
+							<textarea id="coment2" class='text fontname' style='height:430px; width:1050px;' name="coment2"></textarea>
 					</div>
 					
 					<div id="image2" style="display:none;">
@@ -201,8 +207,8 @@
 						<img id="preview2" onclick="document.all.image_file_name2.click();"
 							style='height:360px; width:600px;' src='${contextPath }/resources/diaryimg/diary_plus.png'>
 							<input type="hidden" value="0" id="imgChk2">
-							<input type="hidden" id="fileChk2">
-						<textarea id="comentimage2" style='width:900px; height: 50px;'class='text' name="comentimage2"></textarea>
+							<input type="hidden" id="fileChk2" name="fileChk2" value="">
+						<textarea id="comentimage2" style='width:900px; height: 50px;'class='text fontname' name="comentimage2"></textarea>
 					</div>
 				</div>
 			</c:otherwise>
@@ -213,23 +219,23 @@
 			<c:when test="${dto.image3 != null }">
 			<div id="view3" style="display:none;">		
 						<div id="content3" style="display: none;" >
-							<textarea id="coment3" class='text' style='height:430px; width:1050px;' name="coment3"></textarea>
+							<textarea id="coment3" class='text fontname' style='height:430px; width:1050px;' name="coment3"></textarea>
 					</div>
 					
 					<div id="image3" style="">
 						<input type="file" id="file3" name="image_file_name3" onchange="readURL3(this);" style="display:none;"/>
 						<img id="preview3" onclick="document.all.image_file_name3.click();"
-							style='height:360px; width:600px;' src='<spring:url value='/img/3.png'/>'>
+							style='height:360px; width:600px;' src='<spring:url value='/image/${dto.image3 }'/>'>
 							<input type="hidden" value="0" id="imgChk3">
-							<input type="hidden" id="fileChk3">
-						<textarea id="comentimage3" style='width:900px; height: 50px;'class='text' name="comentimage3">${dto.coment3}</textarea>
+							<input type="hidden" id="fileChk3" name="fileChk3" value="${dto.image3 }">
+						<textarea id="comentimage3" style='width:900px; height: 50px;'class='text fontname' name="comentimage3">${dto.coment3}</textarea>
 					</div>
 					</div>
 			</c:when>
 			<c:when test="${dto.coment3 != null }">
 			<div id="view3" style="display:none;">		
 						<div id="content3" style="" >
-							<textarea id="coment3" class='text' style='height:430px; width:1050px;' name="coment3">${dto.coment3}</textarea>
+							<textarea id="coment3" class='text fontname' style='height:430px; width:1050px;' name="coment3">${dto.coment3}</textarea>
 					</div>
 					
 					<div id="image3" style="display:none;">
@@ -237,15 +243,15 @@
 						<img id="preview3" onclick="document.all.image_file_name3.click();"
 							style='height:360px; width:600px;' src='${contextPath }/resources/diaryimg/diary_plus.png'>
 							<input type="hidden" value="0" id="imgChk3">
-							<input type="hidden" id="fileChk3">
-						<textarea id="comentimage3" style='width:900px; height: 50px;'class='text' name="comentimage3"></textarea>
+							<input type="hidden" id="fileChk3" name="fileChk3" value="">
+						<textarea id="comentimage3" style='width:900px; height: 50px;'class='text fontname' name="comentimage3"></textarea>
 					</div>
 					</div>
 			</c:when>
 			<c:otherwise>
 			<div id="view3" style="display:none;">		
 						<div id="content3"  >
-							<textarea id="coment3" class='text' style='height:430px; width:1050px;' name="coment3"></textarea>
+							<textarea id="coment3" class='text fontname' style='height:430px; width:1050px;' name="coment3"></textarea>
 					</div>
 					
 					<div id="image3" style="display:none;">
@@ -253,8 +259,8 @@
 						<img id="preview3" onclick="document.all.image_file_name3.click();"
 							style='height:360px; width:600px;' src='${contextPath }/resources/diaryimg/diary_plus.png'>
 							<input type="hidden" value="0" id="imgChk3">
-							<input type="hidden" id="fileChk3">
-						<textarea id="comentimage3" style='width:900px; height: 50px;'class='text' name="comentimage3"></textarea>
+							<input type="hidden" id="fileChk3" name="fileChk3" value="">
+						<textarea id="comentimage3" style='width:900px; height: 50px;'class='text fontname' name="comentimage3"></textarea>
 					</div>
 					</div>
 			</c:otherwise>
@@ -264,23 +270,23 @@
 		<c:when test="${dto.image4 != null }">
 			<div id="view4" style="display:none;">		
 						<div id="content4" style="display:none;" >
-							<textarea id="coment4" class='text' style='height:430px; width:1050px;' name="coment4"></textarea>
+							<textarea id="coment4" class='text fontname' style='height:430px; width:1050px;' name="coment4"></textarea>
 					</div>
 					
 					<div id="image4" style="">
 						<input type="file" id="file4" name="image_file_name4" onchange="readURL4(this);" style="display:none;"/>
 						<img id="preview4" onclick="document.all.image_file_name4.click();"
-							style='height:360px; width:600px;' src='<spring:url value='/img/4.png'/>'>
+							style='height:360px; width:600px;' src='<spring:url value='/image/${dto.image4 }'/>'>
 							<input type="hidden" value="0" id="imgChk4">
-							<input type="hidden" id="fileChk4">
-						<textarea id="comentimage4" style='width:900px; height: 50px;'class='text' name="comentimage4">${dto.coment4}</textarea>
+							<input type="hidden" id="fileChk4" name="fileChk4" value="${dto.image4 }">
+						<textarea id="comentimage4" style='width:900px; height: 50px;'class='text fontname' name="comentimage4">${dto.coment4}</textarea>
 					</div>
 					</div>
 			</c:when>
 			<c:when test="${dto.coment4 != null }">
 			<div id="view4" style="display:none;">		
 						<div id="content4" style="" >
-							<textarea id="coment4" class='text' style='height:430px; width:1050px;' name="coment4">${dto.coment4}</textarea>
+							<textarea id="coment4" class='text fontname' style='height:430px; width:1050px;' name="coment4">${dto.coment4}</textarea>
 					</div>
 					
 					<div id="image4" style="display:none;">
@@ -288,15 +294,15 @@
 						<img id="preview4" onclick="document.all.image_file_name4.click();"
 							style='height:360px; width:600px;' src='${contextPath }/resources/diaryimg/diary_plus.png'>
 							<input type="hidden" value="0" id="imgChk4">
-							<input type="hidden" id="fileChk4">
-						<textarea id="comentimage4" style='width:900px; height: 50px;'class='text' name="comentimage4"></textarea>
+							<input type="hidden" id="fileChk4" name="fileChk4" value="">
+						<textarea id="comentimage4" style='width:900px; height: 50px;'class='text fontname' name="comentimage4"></textarea>
 					</div>
 					</div>
 			</c:when>
 			<c:otherwise>
 			<div id="view4" style="display:none;">		
 						<div id="content4"  >
-							<textarea id="coment4" class='text' style='height:430px; width:1050px;' name="coment4"></textarea>
+							<textarea id="coment4" class='text fontname' style='height:430px; width:1050px;' name="coment4"></textarea>
 					</div>
 					
 					<div id="image4" style="display:none;">
@@ -304,8 +310,8 @@
 						<img id="preview4" onclick="document.all.image_file_name4.click();"
 							style='height:360px; width:600px;' src='${contextPath }/resources/diaryimg/diary_plus.png'>
 							<input type="hidden" value="0" id="imgChk4">
-							<input type="hidden" id="fileChk4">
-						<textarea id="comentimage4" style='width:900px; height: 50px;'class='text' name="comentimage4"></textarea>
+							<input type="hidden" id="fileChk4" name="fileChk4" value="">
+						<textarea id="comentimage4" style='width:900px; height: 50px;'class='text fontname' name="comentimage4"></textarea>
 					</div>
 					</div>
 			</c:otherwise>
@@ -315,23 +321,23 @@
 		<c:when test="${dto.image5 != null }">
 			<div id="view5" style="display:none;">		
 						<div id="content5" style="display:none;" >
-							<textarea id="coment5" class='text' style='height:430px; width:1050px;' name="coment5"></textarea>
+							<textarea id="coment5" class='text fontname' style='height:430px; width:1050px;' name="coment5"></textarea>
 					</div>
 					
 					<div id="image5" style="">
 						<input type="file" id="file5" name="image_file_name5" onchange="readURL5(this);" style="display:none;"/>
 						<img id="preview5" onclick="document.all.image_file_name5.click();"
-							style='height:360px; width:600px;' src='<spring:url value='/img/5.png'/>'>
+							style='height:360px; width:600px;' src='<spring:url value='/image/${dto.image5 }'/>'>
 							<input type="hidden" value="0" id="imgChk5">
-							<input type="hidden" id="fileChk5">
-						<textarea id="comentimage5" style='width:900px; height: 50px;'class='text' name="comentimage5">${dto.coment5 }</textarea>
+							<input type="hidden" id="fileChk5" name="fileChk5" value="${dto.image5 }">
+						<textarea id="comentimage5" style='width:900px; height: 50px;'class='text fontname' name="comentimage5">${dto.coment5 }</textarea>
 					</div>
 					</div>		
 			</c:when>
 			<c:when test="${dto.coment5 != null }">
 			<div id="view5" style="display:none;">		
 						<div id="content5" style="" >
-							<textarea id="coment5" class='text' style='height:430px; width:1050px;' name="coment5">${dto.coment5 }</textarea>
+							<textarea id="coment5" class='text fontname' style='height:430px; width:1050px;' name="coment5">${dto.coment5 }</textarea>
 					</div>
 					
 					<div id="image5" style="display:none;">
@@ -339,15 +345,15 @@
 						<img id="preview5" onclick="document.all.image_file_name5.click();"
 							style='height:360px; width:600px;' src='${contextPath }/resources/diaryimg/diary_plus.png'>
 							<input type="hidden" value="0" id="imgChk5">
-							<input type="hidden" id="fileChk5">
-						<textarea id="comentimage5" style='width:900px; height: 50px;'class='text' name="comentimage5"></textarea>
+							<input type="hidden" id="fileChk5" name="fileChk5" value="">
+						<textarea id="comentimage5" style='width:900px; height: 50px;'class='text fontname' name="comentimage5"></textarea>
 					</div>
 					</div>	
 			</c:when>
 			<c:otherwise>
 			<div id="view5" style="display:none;">		
 						<div id="content5"  >
-							<textarea id="coment5" class='text' style='height:430px; width:1050px;' name="coment5"></textarea>
+							<textarea id="coment5" class='text fontname' style='height:430px; width:1050px;' name="coment5"></textarea>
 					</div>
 					
 					<div id="image5" style="display:none;">
@@ -355,8 +361,8 @@
 						<img id="preview5" onclick="document.all.image_file_name5.click();"
 							style='height:360px; width:600px;' src='${contextPath }/resources/diaryimg/diary_plus.png'>
 							<input type="hidden" value="0" id="imgChk5">
-							<input type="hidden" id="fileChk5">
-						<textarea id="comentimage5" style='width:900px; height: 50px;'class='text' name="comentimage5"></textarea>
+							<input type="hidden" id="fileChk5" name="fileChk5" value="">
+						<textarea id="comentimage5" style='width:900px; height: 50px;'class='text fontname' name="comentimage5"></textarea>
 					</div>
 					</div>		
 			</c:otherwise>
@@ -370,34 +376,34 @@
 			<tr>
 			<c:choose>
 				<c:when test="${dto.image1 == null }">
-				<td class="td1" style="">
+				<td class="td1">
 				<img class="td2" onclick="del1()" src="${contextPath }/resources/diaryimg/delete.png" style=""> 
-			 	<img id="previewimage1"  style="align-items: center;"onclick="page0()"class="img" src="${contextPath }/resources/diaryimg/diary_plus.png" >
+			 	<img id="previewimage1"  style="align-items: center;"onclick="page0()"class="img" src="${contextPath }/resources/diaryimg/trip.png" >
 				</td> 
 				</c:when>
 				<c:otherwise>
-				<td class="td1" style="">
+				<td class="td1">
 				<img class="td2" onclick="del1()" src="${contextPath }/resources/diaryimg/delete.png" style=""> 
-			 	<img id="previewimage1"  style="align-items: center;"onclick="page0()"class="img" src="<spring:url value='/img/1.png'/>" >
+			 	<img id="previewimage1"  style="align-items: center;"onclick="page0()"class="img" src="<spring:url value='/image/${dto.image1 }'/>" >
 				</td>
 				</c:otherwise>
 			</c:choose>
 			
 			<c:choose>
 				<c:when test="${dto.image2 != null }">
-				<td class="td1" style="">
-				<img class="td2" onclick="del2()" src="${contextPath }/resources/diaryimg/delete.png" style=""> 
-			 	<img id="previewimage2"  style="align-items: center;"onclick="page1()"class="img" src="<spring:url value='/img/2.png'/>" >
+				<td class="td1">
+				<img class="td2" id="de2" onclick="del2()" src="${contextPath }/resources/diaryimg/delete.png" style=""> 
+			 	<img id="previewimage2"  style="align-items: center;"onclick="page1()"class="img" src="<spring:url value='/image/${dto.image2 }'/>" >
 				</td> 
 				</c:when>
 				<c:when test="${dto.coment2 != null }">
-				<td class="td1" style="">
+				<td class="td1">
 				<img class="td2" id="de2" style="display:none;" onclick="del2()" src="${contextPath }/resources/diaryimg/delete.png">
-				<img id="previewimage2" style=""onclick="page1()" class="img" src="${contextPath }/resources/diaryimg/diary_plus.png">
+				<img id="previewimage2" style=""onclick="page1()" class="img" src="${contextPath }/resources/diaryimg/trip.png">
 				</td> 
 				</c:when>
 				<c:otherwise>
-				<td class="td1" style="">
+				<td class="td1">
 				<img class="td2" id="de2" style="display:none;" onclick="del2()" src="${contextPath }/resources/diaryimg/delete.png">
 				<img id="previewimage2" style=""onclick="page1()" class="img" src="${contextPath }/resources/diaryimg/diary_plus.png">
 				</td> 
@@ -406,15 +412,15 @@
 			
 			<c:choose>
 				<c:when test="${dto.image3 != null }">
-				<td class="td1" id="pre1"  style=";">
+				<td class="td1" id="pre1">
 				<img class="td2" id="de3" style="display:none;" onclick="del3()"  src="${contextPath }/resources/diaryimg/delete.png">
-				<img id="previewimage3" style=""onclick="page2()" class="img" src="<spring:url value='/img/3.png'/>">
+				<img id="previewimage3" style=""onclick="page2()" class="img" src="<spring:url value='/image/${dto.image3 }'/>">
 				</td> 
 				</c:when>
 				<c:when test="${dto.coment3 != null }">
-				<td class="td1" id="pre1"  style=";">
+				<td class="td1" id="pre1">
 				<img class="td2" id="de3" style="display:none;" onclick="del3()"  src="${contextPath }/resources/diaryimg/delete.png">
-				<img id="previewimage3" style=""onclick="page2()" class="img" src="${contextPath }/resources/diaryimg/diary_plus.png">
+				<img id="previewimage3" style=""onclick="page2()" class="img" src="${contextPath }/resources/diaryimg/trip.png">
 				</td> 
 				</c:when>
 				<c:otherwise>
@@ -427,15 +433,15 @@
 			
 			<c:choose>
 				<c:when test="${dto.image4 != null }">
-				<td class="td1" id="pre2"  style=";">
+				<td class="td1" id="pre2">
 				<img class="td2" id="de4" style="display:none;" onclick="del4()"  src="${contextPath }/resources/diaryimg/delete.png">
-				<img id="previewimage4" style=" "onclick="page3()" class="img" src="<spring:url value='/img/4.png'/>">
+				<img id="previewimage4" style=" "onclick="page3()" class="img" src="<spring:url value='/image/${dto.image4 }'/>">
 				</td> 
 				</c:when>
 				<c:when test="${dto.coment4 != null }">
-				<td class="td1" id="pre2"  style=";">
+				<td class="td1" id="pre2">
 				<img class="td2" id="de4" style="display:none;" onclick="del4()"  src="${contextPath }/resources/diaryimg/delete.png">
-				<img id="previewimage4" style=" "onclick="page3()" class="img" src="${contextPath }/resources/diaryimg/diary_plus.png">
+				<img id="previewimage4" style=" "onclick="page3()" class="img" src="${contextPath }/resources/diaryimg/trip.png">
 				</td> 
 				</c:when>
 				<c:otherwise>
@@ -448,15 +454,15 @@
 						
 			<c:choose>
 				<c:when test="${dto.image5 != null }">
-				<td class="td1" id="pre3"  style=";">
+				<td class="td1" id="pre3">
 				<img class="td2" id="de5" style="display:none;" onclick="del5()"  src="${contextPath }/resources/diaryimg/delete.png">
-				<img id="previewimage5" style=""onclick="page4()" class="img" src="<spring:url value='/img/5.png'/>">
+				<img id="previewimage5" style=""onclick="page4()" class="img" src="<spring:url value='/image/${dto.image5 }'/>">
 				</td> 
 				</c:when>
 				<c:when test="${dto.coment5 != null }">
-				<td class="td1" id="pre3"  style=";">
+				<td class="td1" id="pre3">
 				<img class="td2" id="de5" style="display:none;" onclick="del5()"  src="${contextPath }/resources/diaryimg/delete.png">
-				<img id="previewimage5" style=""onclick="page4()" class="img" src="${contextPath }/resources/diaryimg/diary_plus.png">
+				<img id="previewimage5" style=""onclick="page4()" class="img" src="${contextPath }/resources/diaryimg/trip.png">
 				</td> 
 				</c:when>
 				<c:otherwise>
@@ -470,7 +476,7 @@
 				<td></td> <td></td> <td></td> <td></td> <td></td>  
 				
 				<td class="submit">
-				<input type="button" value="Cancel" class="sub" onClick="location.href='diaryBoard'">
+				<input type="button" value="Cancel" class="sub" onclick="history.back()"">
 				</td>
 				<td class="submit"><input type="button" onclick="register()" value="Complete" class="sub"></td>
 			</tr>

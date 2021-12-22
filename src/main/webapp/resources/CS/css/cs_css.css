@@ -1,7 +1,7 @@
 @charset "EUC-KR";
 
-	.a1{background-position: center center; height: 650px;  background-color: #DEF4F9;}
-	.a2{ padding: 0 180px}
+	.a1{background-position: center center; height: 650px;  background-color: #F6F6F6; display: flex;}
+	.a2{ margin: auto; text-align:center; }
 	.ach{ background-color: white; width :1300px; height:250px;}
 		
 		
@@ -63,6 +63,63 @@
 	.lb{ font-size: 40px; }
 	.nal{ margin-top: 80px;  width :1200px; height: 700px; background-color: #FFFF99;}
 	.bl{ width: 220px;}
-		
+	
+	/* ----------------------------------------- kjh 클래스 추가 ------------------------------*/
+	.fs-20 {
+		font-size: 20px !important;
+	}
+	.title-input {
+		height: 25px !important;
+		width: 60%;
+	}
+	.write-title {
+		width: 15%;
+	}
+	.mr-auto {
+		margin: 0 auto;
+	}
+	.pd-none {
+	padding: 0 0;
+	}
+	.notice-wrap {
+		height:auto;
+		padding: 18px 0;
+	}
+	.mb-none {
+		margin-bottom: 0;
+	}
+	.mt-15 {
+		margin-top: 15px;
+	}
+	.notice-btn {
+		font-size: 17px !important;
+		font-weight: bolder;
+		height: 35px;
+		width: 100px;
+	}
+	.notice-box {
+		width: 1300px;
+		height: 245px;
+		background-color: #FFFFF9;
+		border-radius: 5px;
+		overflow: auto;
+	}
+	.notice-table {
+		width: 100%;
+		border-collapse: collapse;
+	}
+	.notice-table tr {
+		border-bottom: 1px solid #FFA7A7;
+		height: 35px;
+	}
+	.page-block {
+		cursor: pointer;
+		margin: 0;
+		font-weight: bold;
+	}
+	a {
+		text-decoration: none;
+		color: black;
+	}
 	
 	

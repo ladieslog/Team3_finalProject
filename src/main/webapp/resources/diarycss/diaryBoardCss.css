@@ -1,0 +1,37 @@
+@charset "EUC-KR";
+	.diary-wrap {
+		background-color: #DEF4F9;
+		padding: 59px 0 70px 0;
+	}
+	.diary-container {
+		padding: 0 80px;
+	}
+	.diary-box {
+		background-color: white;
+		width: 300px;
+		height: 360px;
+		display: flex;
+   		justify-content: center;
+    	align-items: center;
+    	margin: 0 50px;
+    	border-radius: 10px;
+	}
+	.flex-con-be {
+		display: flex;
+		justify-content: center;
+	}
+	.diary-box-img {
+		width: 100px;
+	}
+	.mt-30 {
+		margin-top: 60px;
+	}
+	.fl {
+		float: left; font-family: HCR Batang; font-weight: bold;
+	}
+	.fr {
+		float: right; font-family: HCR Batang; font-weight: bold;
+	}
+	.page{ text-decoration: none; text-align: center; color:black; }
+	
+	.fontname{ font-family: HCR Batang; font-weight: bold;}

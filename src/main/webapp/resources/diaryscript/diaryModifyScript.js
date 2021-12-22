@@ -4,24 +4,44 @@
 	var check4 = 0;
 	var check5 = 0;
 	if(document.getElementById("coment1").value == ""){
-		check1 = 1;
-		document.getElementById("imgChk1").value = '1'
+		if(document.getElementById("comentimage1").value == ""){
+			check1 = 0;
+		}else{
+			check1 = 1;
+			document.getElementById("imgChk1").value = '1'
+		}
 	}
 	if(document.getElementById("coment2").value == ""){
-		check2 = 1;
-		document.getElementById("imgChk2").value = '1'
+		if(document.getElementById("comentimage2").value == ""){
+			check2 = 0;
+		}else{
+			check2 = 1;
+			document.getElementById("imgChk2").value = '1'
+		}
 	}
 	if(document.getElementById("coment3").value == ""){
-		check3 = 1;
+		if(document.getElementById("comentimage3").value == ""){
+			check3 = 0;
+		}else{
+			check3 = 1;
 		document.getElementById("imgChk3").value = '1'
+		}
 	}
 	if(document.getElementById("coment4").value == ""){
-		check4 = 1;
+		if(document.getElementById("comentimage4").value == ""){
+			check4 = 0;
+		}else{
+			check4 = 1;
 		document.getElementById("imgChk4").value = '1'
+		}
 	}
 	if(document.getElementById("coment5").value == ""){
-		check5 = 1;
+		if(document.getElementById("comentimage5").value == ""){
+			check5 = 0;
+		}else{
+			check5 = 1;
 		document.getElementById("imgChk5").value = '1'
+		}
 	}
 	var pageNum = 1;
 function readURL1(input) {	
@@ -36,7 +56,18 @@ function readURL1(input) {
 			$('#imgChk1').val('1')
 			$('#fileChk1').val(e.target.result);
 		}
+		imgdata1(file)
 	}
+}
+function imgdata1(file){
+		data = new FormData()
+		data.append("file", file)
+		$.ajax({
+			url : "imgUp", type : "post", data : data, contentType : false, enctype : 'multipart/form-data', processData : false,
+			success : function(a){
+				$('#fileChk1').val(a.url)
+			}
+		})
 }
 
 function content1(){
@@ -45,19 +76,22 @@ function content1(){
 	document.getElementById("image1").style.display='none';
 	
 	$('#preview1').attr('src', 'resources/diaryimg/diary_plus.png' )
-	$('#previewimage1').attr('src', 'resources/diaryimg/diary_plus.png' )
+	$('#previewimage1').attr('src', 'resources/diaryimg/trip.png' )
 	$('#imgChk1').val('0')
 	
-	document.getElementById("coment1").value="";
+	document.getElementById("fileChk1").value="";
+	document.getElementById("comentimage1").value="";
 }
 function image1(){
 	check1 = 1;
 	document.getElementById("content1").style.display='none';
 	document.getElementById("image1").style.display='block';
-	
-	document.getElementById("comentimage1").value="";
+	$('#previewimage1').attr('src', 'resources/diaryimg/diary_plus.png' )
+	document.getElementById("coment1").value="";
 }
 function page0(){
+	console.log(pageNum)
+	console.log(check2)
 	if(pageNum == 1){
 		return;
 	}
@@ -157,6 +191,9 @@ function page0(){
 			}
 		}
 	}
+	if(check1 == 0){
+		$('#previewimage1').attr('src', 'resources/diaryimg/trip.png')
+	}
 	document.getElementById("view1").style.display='block';
 	document.getElementById("view2").style.display='none';
 	document.getElementById("view3").style.display='none';
@@ -176,6 +213,7 @@ function page0(){
 }
 
 function page1(){
+	console.log(pageNum)
 	if(pageNum == 2){
 		return;
 	}
@@ -276,6 +314,9 @@ function page1(){
 			}
 		}
 	}
+		if(check2 == 0){
+		$('#previewimage2').attr('src', 'resources/diaryimg/trip.png')
+	}
 	document.getElementById("pre1").style.display='revert';
 	
 	document.getElementById("view1").style.display='none';
@@ -310,7 +351,19 @@ function readURL2(input) {
 			$('#imgChk2').val('1')
 			$('#fileChk2').val(e.target.result);
 		}
+		imgdata2(file)
 	}
+}
+
+function imgdata2(file){
+		data = new FormData()
+		data.append("file", file)
+		$.ajax({
+			url : "imgUp", type : "post", data : data, contentType : false, enctype : 'multipart/form-data', processData : false,
+			success : function(a){
+				$('#fileChk2').val(a.url)
+			}
+		})
 }
 
 function content2(){
@@ -319,17 +372,18 @@ function content2(){
 	document.getElementById("image2").style.display='none';
 	
 	$('#preview2').attr('src', 'resources/diaryimg/diary_plus.png' )
-	$('#previewimage2').attr('src', 'resources/diaryimg/diary_plus.png' )
+	$('#previewimage2').attr('src', 'resources/diaryimg/trip.png' )
 	$('#imgChk2').val('0')
 	
-	document.getElementById("coment2").value="";
+	document.getElementById("fileChk2").value="";
+	document.getElementById("comentimage2").value="";
 }
 function image2(){
 	check2 = 1;
 	document.getElementById("content2").style.display='none';
 	document.getElementById("image2").style.display='block';
-	
-	document.getElementById("comentimage2").value="";
+	$('#previewimage2').attr('src', 'resources/diaryimg/diary_plus.png' )
+	document.getElementById("coment2").value="";
 }
 
 function page2(){
@@ -433,6 +487,9 @@ function page2(){
 			}
 		}
 	}
+		if(check3 == 0){
+		$('#previewimage3').attr('src', 'resources/diaryimg/trip.png')
+	}
 	document.getElementById("pre2").style.display='revert';
 	
 	document.getElementById("view1").style.display='none';
@@ -467,7 +524,18 @@ function readURL3(input) {
 			$('#imgChk3').val('1')
 			$('#fileChk3').val(e.target.result);
 		}
+		imgdata3(file)
 	}
+}
+function imgdata3(file){
+		data = new FormData()
+		data.append("file", file)
+		$.ajax({
+			url : "imgUp", type : "post", data : data, contentType : false, enctype : 'multipart/form-data', processData : false,
+			success : function(a){
+				$('#fileChk3').val(a.url)
+			}
+		})
 }
 
 function content3(){
@@ -476,17 +544,18 @@ function content3(){
 	document.getElementById("image3").style.display='none';
 	
 	$('#preview3').attr('src', 'resources/diaryimg/diary_plus.png' )
-	$('#previewimage3').attr('src', 'resources/diaryimg/diary_plus.png' )
+	$('#previewimage3').attr('src', 'resources/diaryimg/trip.png' )
 	$('#imgChk3').val('0')
 	
-	document.getElementById("coment3").value="";
+	document.getElementById("fileChk3").value="";
+	document.getElementById("comentimage3").value="";
 }
 function image3(){
 	check3 = 1;
 	document.getElementById("content3").style.display='none';
 	document.getElementById("image3").style.display='block';
-	
-	document.getElementById("comentimage3").value="";
+	$('#previewimage3').attr('src', 'resources/diaryimg/diary_plus.png' )
+	document.getElementById("coment3").value="";
 }
 
 function page3(){
@@ -590,6 +659,9 @@ function page3(){
 			}
 		}
 	}
+		if(check4 == 0){
+		$('#previewimage4').attr('src', 'resources/diaryimg/trip.png')
+	}
 	document.getElementById("pre3").style.display='revert';
 	
 	document.getElementById("view1").style.display='none';
@@ -624,7 +696,18 @@ function readURL4(input) {
 			$('#imgChk4').val('1')
 			$('#fileChk4').val(e.target.result);
 		}
+		imgdata4(file)
 	}
+}
+function imgdata4(file){
+		data = new FormData()
+		data.append("file", file)
+		$.ajax({
+			url : "imgUp", type : "post", data : data, contentType : false, enctype : 'multipart/form-data', processData : false,
+			success : function(a){
+				$('#fileChk4').val(a.url)
+			}
+		})
 }
 
 function content4(){
@@ -633,17 +716,18 @@ function content4(){
 	document.getElementById("image4").style.display='none';
 	
 	$('#preview4').attr('src', 'resources/diaryimg/diary_plus.png' )
-	$('#previewimage4').attr('src', 'resources/diaryimg/diary_plus.png' )
+	$('#previewimage4').attr('src', 'resources/diaryimg/trip.png' )
 	$('#imgChk4').val('0')
 	
-	document.getElementById("coment4").value="";
+	document.getElementById("fileChk4").value="";
+	document.getElementById("comentimage4").value="";
 }
 function image4(){
 	check4 = 1;
 	document.getElementById("content4").style.display='none';
 	document.getElementById("image4").style.display='block';
-	
-	document.getElementById("comentimage4").value="";
+	$('#previewimage4').attr('src', 'resources/diaryimg/diary_plus.png' )
+	document.getElementById("coment4").value="";
 }
 
 function page4(){
@@ -747,6 +831,9 @@ function page4(){
 			}
 		}
 	}
+		if(check5 == 0){
+		$('#previewimage5').attr('src', 'resources/diaryimg/trip.png')
+	}
 	document.getElementById("view1").style.display='none';
 	document.getElementById("view2").style.display='none';
 	document.getElementById("view3").style.display='none';
@@ -779,7 +866,18 @@ function readURL5(input) {
 			$('#imgChk5').val('1')
 			$('#fileChk5').val(e.target.result);
 		}
+		imgdata5(file)
 	}
+}
+function imgdata5(file){
+		data = new FormData()
+		data.append("file", file)
+		$.ajax({
+			url : "imgUp", type : "post", data : data, contentType : false, enctype : 'multipart/form-data', processData : false,
+			success : function(a){
+				$('#fileChk5').val(a.url)
+			}
+		})
 }
 
 function content5(){
@@ -788,17 +886,18 @@ function content5(){
 	document.getElementById("image5").style.display='none';
 	
 	$('#preview5').attr('src', 'resources/diaryimg/diary_plus.png' )
-	$('#previewimage5').attr('src', 'resources/diaryimg/diary_plus.png' )
+	$('#previewimage5').attr('src', 'resources/diaryimg/trip.png' )
 	$('#imgChk5').val('0')
 	
-	document.getElementById("coment5").value="";
+	document.getElementById("fileChk5").value="";
+	document.getElementById("comentimage5").value="";
 }
 function image5(){
 	check5 = 1;
 	document.getElementById("content5").style.display='none';
 	document.getElementById("image5").style.display='block';
-	
-	document.getElementById("comentimage5").value="";
+	$('#previewimage5').attr('src', 'resources/diaryimg/diary_plus.png' )
+	document.getElementById("coment5").value="";
 }
 
 // ===================================================================== 지우기
@@ -809,17 +908,35 @@ function del1(){
 			return ;
 		}
 	}
+	if(pageNum == 2) {
+		page0();
+	}
+	if(pageNum == 3) {
+		page1();
+	}
+	if(pageNum == 4) {
+		page2();
+	}
+	if(pageNum == 5) {
+		page3();
+	}
 	if(check2 == 0){
+		if(document.getElementById("coment2").value == ""){
+			$('#previewimage1').attr('src', 'resources/diaryimg/diary_plus.png')
+		}else{
+			$('#previewimage1').attr('src', 'resources/diaryimg/trip.png')
+		}
 		document.getElementById("coment1").value = document.getElementById("coment2").value
 		
 		document.getElementById("comentimage1").value="";
 		document.getElementById("fileChk1").value="";
 		$('#preview1').attr('src', 'resources/diaryimg/diary_plus.png')
-		$('#previewimage1').attr('src', 'resources/diaryimg/diary_plus.png')
+
 		document.getElementById("content1").style.display='block';
 		document.getElementById("image1").style.display='none';
 		$('#imgChk1').val('0')
 		check1 = 0;
+		$('#previewimage2').attr('src', 'resources/diaryimg/diary_plus.png')
 	}else{
 		document.getElementById("comentimage1").value = document.getElementById("comentimage2").value
 		document.getElementById("fileChk1").value = document.getElementById("fileChk2").value
@@ -841,16 +958,22 @@ function del1(){
 	}
 	
 	if(check3 == 0){
+		if(document.getElementById("coment3").value == ""){
+			$('#previewimage2').attr('src', 'resources/diaryimg/diary_plus.png')
+		}else{
+			$('#previewimage2').attr('src', 'resources/diaryimg/trip.png')
+		}
 		document.getElementById("coment2").value = document.getElementById("coment3").value
 		
 		document.getElementById("comentimage2").value="";
 		document.getElementById("fileChk2").value="";
 		$('#preview2').attr('src', 'resources/diaryimg/diary_plus.png')
-		$('#previewimage2').attr('src', 'resources/diaryimg/diary_plus.png')
+
 		document.getElementById("content2").style.display='block';
 		document.getElementById("image2").style.display='none';
 		$('#imgChk2').val('0')
 		check2 = 0;
+		$('#previewimage3').attr('src', 'resources/diaryimg/diary_plus.png')
 	}else{
 		document.getElementById("comentimage2").value = document.getElementById("comentimage3").value
 		document.getElementById("fileChk2").value = document.getElementById("fileChk3").value
@@ -868,15 +991,21 @@ function del1(){
 		}
 	}
 	if(check4 == 0){
+		if(document.getElementById("coment4").value == ""){
+			$('#previewimage3').attr('src', 'resources/diaryimg/diary_plus.png')
+		}else{
+			$('#previewimage3').attr('src', 'resources/diaryimg/trip.png')
+		}
 		document.getElementById("coment3").value = document.getElementById("coment4").value	
 		document.getElementById("comentimage3").value="";
 		document.getElementById("fileChk3").value="";
 		$('#preview3').attr('src', 'resources/diaryimg/diary_plus.png')
-		$('#previewimage3').attr('src', 'resources/diaryimg/diary_plus.png')
+
 		document.getElementById("content3").style.display='block';
 		document.getElementById("image3").style.display='none';
 		$('#imgChk3').val('0')
 		check3 = 0;
+		$('#previewimage4').attr('src', 'resources/diaryimg/diary_plus.png')
 	}else{
 		document.getElementById("comentimage3").value = document.getElementById("comentimage4").value
 		document.getElementById("fileChk3").value = document.getElementById("fileChk4").value
@@ -894,16 +1023,23 @@ function del1(){
 		}
 	}	
 	if(check5 == 0){
+		if(document.getElementById("coment5").value == ""){
+			$('#previewimage4').attr('src', 'resources/diaryimg/diary_plus.png')
+		}else{
+			$('#previewimage4').attr('src', 'resources/diaryimg/trip.png')
+		}
 		document.getElementById("coment4").value = document.getElementById("coment5").value
 		document.getElementById("comentimage4").value="";
 		document.getElementById("fileChk4").value="";
 		$('#preview4').attr('src', 'resources/diaryimg/diary_plus.png')
-		$('#previewimage4').attr('src', 'resources/diaryimg/diary_plus.png')
+	
 		document.getElementById("content4").style.display='block';
 		document.getElementById("image4").style.display='none';
 		$('#imgChk4').val('0')
 		document.getElementById("coment5").value="";
 		check4 = 0;
+		$('#previewimage5').attr('src', 'resources/diaryimg/diary_plus.png')
+		
 	}else{
 		document.getElementById("comentimage4").value = document.getElementById("comentimage5").value
 		document.getElementById("fileChk4").value = document.getElementById("fileChk5").value
@@ -924,25 +1060,45 @@ function del1(){
 	document.getElementById("content5").style.display='block';
 	document.getElementById("image5").style.display='none';
 	check5 = 0;
+	
+	
 }
 //===================================================================== 지우기
 function del2(){
+	if(pageNum == 2) {
+		page0();
+	}
+	if(pageNum == 3) {
+		page1();
+	}
+	if(pageNum == 4) {
+		page2();
+	}
+	if(pageNum == 5) {
+		page3();
+	}
 	if(document.getElementById("coment3").value == ""){
 		if(document.getElementById("fileChk3").value == ""){
 			document.getElementById("pre1").style.display='none';
 		}
 	}
 	if(check3 == 0){
+		if(document.getElementById("coment3").value == ""){
+			$('#previewimage2').attr('src', 'resources/diaryimg/diary_plus.png')
+		}else{
+			$('#previewimage2').attr('src', 'resources/diaryimg/trip.png')
+		}
 		document.getElementById("coment2").value = document.getElementById("coment3").value
 		
 		document.getElementById("comentimage2").value="";
 		document.getElementById("fileChk2").value="";
 		$('#preview2').attr('src', 'resources/diaryimg/diary_plus.png')
-		$('#previewimage2').attr('src', 'resources/diaryimg/diary_plus.png')
+
 		document.getElementById("content2").style.display='block';
 		document.getElementById("image2").style.display='none';
 		$('#imgChk2').val('0')
 		check2 = 0;
+		$('#previewimage3').attr('src', 'resources/diaryimg/diary_plus.png')
 	}else{
 		document.getElementById("comentimage2").value = document.getElementById("comentimage3").value
 		document.getElementById("fileChk2").value = document.getElementById("fileChk3").value
@@ -961,16 +1117,22 @@ function del2(){
 		}
 	}
 	if(check4 == 0){
+		if(document.getElementById("coment4").value == ""){
+			$('#previewimage3').attr('src', 'resources/diaryimg/diary_plus.png')
+		}else{
+			$('#previewimage3').attr('src', 'resources/diaryimg/trip.png')
+		}
 		document.getElementById("coment3").value = document.getElementById("coment4").value
 		
 		document.getElementById("comentimage3").value="";
 		document.getElementById("fileChk3").value="";
 		$('#preview3').attr('src', 'resources/diaryimg/diary_plus.png')
-		$('#previewimage3').attr('src', 'resources/diaryimg/diary_plus.png')
+
 		document.getElementById("content3").style.display='block';
 		document.getElementById("image3").style.display='none';
 		$('#imgChk3').val('0')
 		check3 = 0;
+		$('#previewimage4').attr('src', 'resources/diaryimg/diary_plus.png')
 	}else{
 		document.getElementById("comentimage3").value = document.getElementById("comentimage4").value
 		document.getElementById("fileChk3").value = document.getElementById("fileChk4").value
@@ -990,16 +1152,22 @@ function del2(){
 		}
 	}
 	if(check5 == 0){
+		if(document.getElementById("coment5").value == ""){
+			$('#previewimage4').attr('src', 'resources/diaryimg/diary_plus.png')
+		}else{
+			$('#previewimage4').attr('src', 'resources/diaryimg/trip.png')
+		}
 		document.getElementById("coment4").value = document.getElementById("coment5").value
 		document.getElementById("comentimage4").value="";
 		document.getElementById("fileChk4").value="";
 		$('#preview4').attr('src', 'resources/diaryimg/diary_plus.png')
-		$('#previewimage4').attr('src', 'resources/diaryimg/diary_plus.png')
+
 		document.getElementById("content4").style.display='block';
 		document.getElementById("image4").style.display='none';
 		$('#imgChk4').val('0')
 		document.getElementById("coment5").value="";
 		check4 = 0;
+		$('#previewimage5').attr('src', 'resources/diaryimg/diary_plus.png')
 	}else{
 		document.getElementById("comentimage4").value = document.getElementById("comentimage5").value
 		document.getElementById("fileChk4").value = document.getElementById("fileChk5").value
@@ -1023,22 +1191,37 @@ function del2(){
 }
 //===================================================================== 지우기
 function del3(){
+	if(pageNum == 3) {
+		page1();
+	}
+	if(pageNum == 4) {
+		page2();
+	}
+	if(pageNum == 5) {
+		page3();
+	}
 	if(document.getElementById("coment4").value == ""){
 		if(document.getElementById("fileChk4").value == ""){
 			document.getElementById("pre2").style.display='none';	
 		}
 	}
 	if(check4 == 0){
+		if(document.getElementById("coment4").value == ""){
+			$('#previewimage3').attr('src', 'resources/diaryimg/diary_plus.png')
+		}else{
+			$('#previewimage3').attr('src', 'resources/diaryimg/trip.png')
+		}
 		document.getElementById("coment3").value = document.getElementById("coment4").value
 		
 		document.getElementById("comentimage3").value="";
 		document.getElementById("fileChk3").value="";
 		$('#preview3').attr('src', 'resources/diaryimg/diary_plus.png')
-		$('#previewimage3').attr('src', 'resources/diaryimg/diary_plus.png')
+
 		document.getElementById("content3").style.display='block';
 		document.getElementById("image3").style.display='none';
 		$('#imgChk3').val('0')
 		check3 = 0;
+		$('#previewimage4').attr('src', 'resources/diaryimg/diary_plus.png')
 	}else{
 		document.getElementById("comentimage3").value = document.getElementById("comentimage4").value
 		document.getElementById("fileChk3").value = document.getElementById("fileChk4").value
@@ -1058,17 +1241,23 @@ function del3(){
 		}
 	}
 	if(check5 == 0){
+		if(document.getElementById("coment5").value == ""){
+			$('#previewimage4').attr('src', 'resources/diaryimg/diary_plus.png')
+		}else{
+			$('#previewimage4').attr('src', 'resources/diaryimg/trip.png')
+		}
 		document.getElementById("coment4").value = document.getElementById("coment5").value
 
 		document.getElementById("comentimage4").value="";
 		document.getElementById("fileChk4").value="";
 		$('#preview4').attr('src', 'resources/diaryimg/diary_plus.png')
-		$('#previewimage4').attr('src', 'resources/diaryimg/diary_plus.png')
+
 		document.getElementById("content4").style.display='block';
 		document.getElementById("image4").style.display='none';
 		$('#imgChk4').val('0')
 		document.getElementById("coment5").value="";
 		check4 = 0;
+		$('#previewimage5').attr('src', 'resources/diaryimg/diary_plus.png')
 	}else{
 		document.getElementById("comentimage4").value = document.getElementById("comentimage5").value
 		document.getElementById("fileChk4").value = document.getElementById("fileChk5").value
@@ -1092,6 +1281,12 @@ function del3(){
 }
 //===================================================================== 지우기
 function del4(){
+	if(pageNum == 4) {
+		page2();
+	}
+	if(pageNum == 5) {
+		page3();
+	}
 	if(document.getElementById("coment5").value == ""){
 		if(document.getElementById("fileChk5").value == ""){
 			document.getElementById("pre3").style.display='none';
@@ -1099,17 +1294,23 @@ function del4(){
 		}
 	}
 	if(check5 == 0){
+		if(document.getElementById("coment5").value == ""){
+			$('#previewimage4').attr('src', 'resources/diaryimg/diary_plus.png')
+		}else{
+			$('#previewimage4').attr('src', 'resources/diaryimg/trip.png')
+		}
 		document.getElementById("coment4").value = document.getElementById("coment5").value
 
 		document.getElementById("comentimage4").value="";
 		document.getElementById("fileChk4").value="";
 		$('#preview4').attr('src', 'resources/diaryimg/diary_plus.png')
-		$('#previewimage4').attr('src', 'resources/diaryimg/diary_plus.png')
+
 		document.getElementById("content4").style.display='block';
 		document.getElementById("image4").style.display='none';
 		$('#imgChk4').val('0')
 		document.getElementById("coment5").value="";
 		check4 = 0;
+		$('#previewimage5').attr('src', 'resources/diaryimg/diary_plus.png')
 	}else{
 		document.getElementById("comentimage4").value = document.getElementById("comentimage5").value
 		document.getElementById("fileChk4").value = document.getElementById("fileChk5").value
@@ -1133,6 +1334,9 @@ function del4(){
 }
 //===================================================================== 지우기
 function del5(){
+	if(pageNum == 5) {
+		page3();
+	}
 	document.getElementById("pre3").style.display='block';
 	
 		document.getElementById("coment5").value = "";
@@ -1156,7 +1360,7 @@ function register(){
 	if(document.getElementById("title").value.length >= 20){
 		alert('제목을 20자 이내로 작성해주세요'); return;
 	}
-	if(document.getElementById("place").value == ""){
+	if(document.getElementById("place1").value == ""){
 		alert('지역을 입력해주세요'); return;
 	}
 	if(document.getElementById("indate").value == "") {
@@ -1176,6 +1380,10 @@ function register(){
 	}
 	if(date3 > date2) {
 		alert('여행 종료일이 현재 시간보다 빠를 수 없습니다.');
+		return;
+	}
+	if(date1 > date3) {
+		alert('여행 시작일이 여행 종료일보다 빠를 수 없습니다.');
 		return;
 	}
 	if(pageNum == 1){

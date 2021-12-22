@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <c:set var="contextPath" value="<%=request.getContextPath() %>"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,10 +35,10 @@
 			</ul>
 		</nav>
 		<div class="menu">
-			<nav>
+			<nav style="margin-top:7px;">
 				<ul>
-					<li><a href="#my" class="ab">My</a></li>
-					<li><a href="#diary" class="ab">Diary</a></li>
+					<li><a href="MyHome" class="ab">My</a></li>
+					<li><a href="diaryBoard" class="ab">Diary</a></li>
 					<li><a href="#calendar" class="ab">Calendar</a></li>
 					<li><a href="#CS" class="ab">Cs</a></
 				</ul>
@@ -45,7 +46,7 @@
 		</div>
 	</div>
 		<div class="logout log">
-			<a href="#logout" class="a">logout</a>
+			<a href="logout" class="a">logout</a>
 		</div>
 
 
