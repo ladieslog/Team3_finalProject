@@ -13,8 +13,21 @@ public class MemberDTO {
    private String email;
    private String addr;
    private int diaryCount;
+   private int mailnumber;
+   private String detailaddr;
    
-   
+public int getMailnumber() {
+	return mailnumber;
+}
+public void setMailnumber(int mailnumber) {
+	this.mailnumber = mailnumber;
+}
+public String getDetailaddr() {
+	return detailaddr;
+}
+public void setDetailaddr(String detailaddr) {
+	this.detailaddr = detailaddr;
+}
 public int getDiaryCount() {
 	return diaryCount;
 }

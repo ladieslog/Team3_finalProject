@@ -239,44 +239,49 @@ $(document).ready(function() {
 							<table cellspacing="0" cellpadding="2" align="center" width="600">
 
 								<tr>
-									<td width="20%">ID</td>
+									<td width="20%">아이디</td>
 									<td width="50%"><input name="id" size="20" id="id">
 										<button type="button" onClick="idsearch()"
-											class="but">ID 중복확인</button></td>
+											class="but">아이디 중복확인</button></td>
 											<input type="hidden" id="idcheck" value=""/>
 								</tr>
 								<tr>
-									<td>Password</td>
+									<td>비밀번호</td>
 									<td><input type="password" name="pwd" size="20"></td>
 								</tr>
 								<tr>
-									<td>Password 확인</td>
+									<td>비밀번호 확인</td>
 									<td><input type="password" name="repwd" size="20"></td>
 
 								</tr>
 								<tr>
-									<td>Nickname</td>
+									<td>닉네임</td>
 									<td><input name="nickname" size="15"></td>
 
 								</tr>
 								<tr>
-									<td>Mail number</td>
+									<td>우편번호</td>
 									<td><input name="zipcode" id="zipcode" size="5" readonly>
 										<button type="button" onClick="mailnum()" class="but">우편번호
 											찾기</button></td>
 
 								</tr>
 								<tr>
-									<td>Address</td>
+									<td>주소</td>
 									<td><input name="address" size="30" id="address"></td>									
 								</tr>
 								
 								<tr>
-									<td>Detail Address</td>
+<<<<<<< HEAD
+									<td>상세주소</td>
 									<td><input name="detailaddress" size="20" id="detail address"></td>	
+=======
+									<td>Detail Address</td>
+									<td><input name="detailaddress" size="20" id="detailaddress"></td>	
+>>>>>>> abb20ba496bf4b412516fef234159b10f31d133f
 								</tr>
 								<tr>
-									<td>Email</td>
+									<td>이메일</td>
 									<td><input name="email" size="30"></td>
 
 								</tr>

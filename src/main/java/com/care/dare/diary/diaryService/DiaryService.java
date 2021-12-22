@@ -137,12 +137,12 @@ public class DiaryService {
 		return file;
 	}*/
 	
-	public ArrayList<DiaryDTO> diaryBoard(int start, int end) {
-		return mapper.diaryBoard(start, end);
+	public ArrayList<DiaryDTO> diaryBoard(int start, int end, String id) {
+		return mapper.diaryBoard(start, end, id);
 	}
 	
-	public int diaryCount() {
-		return mapper.diaryCount();
+	public int diaryCount(String id) {
+		return mapper.diaryCount(id);
 	}
 
 	public void diaryView(Model model, int num) throws Exception {
