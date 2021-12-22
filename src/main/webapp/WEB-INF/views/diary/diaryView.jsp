@@ -7,16 +7,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>diaryView</title>
+<title>다이어리 상세페이지</title>
 
 <link rel="stylesheet" href="${contextPath }/resources/diarycss/diaryViewCss.css">
 
 <script src="${contextPath }/resources/jquery-3.6.0.min.js"></script>
 
-
 </head>
 <body style="overflow-x: hidden ">
-
+	<% HttpSession session1 = request.getSession();
+		if(session1.getAttribute("loginUser") == null){
+			response.sendRedirect("error");
+		}
+	%>
 	<jsp:include page="../default/header.jsp"/>
 <c:set var="dto" value="${diary}"></c:set>	
 <c:set var="count" value="1"/>

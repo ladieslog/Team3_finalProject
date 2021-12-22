@@ -272,8 +272,13 @@ $(document).ready(function() {
 								</tr>
 								
 								<tr>
+<<<<<<< HEAD
 									<td>상세주소</td>
 									<td><input name="detailaddress" size="20" id="detail address"></td>	
+=======
+									<td>Detail Address</td>
+									<td><input name="detailaddress" size="20" id="detailaddress"></td>	
+>>>>>>> abb20ba496bf4b412516fef234159b10f31d133f
 								</tr>
 								<tr>
 									<td>이메일</td>
