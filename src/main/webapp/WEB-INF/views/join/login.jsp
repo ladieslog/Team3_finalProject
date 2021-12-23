@@ -44,6 +44,7 @@ function join(){
 	location.href="membership"
 }
 function logincheck(){
+	
 	document.getElementById("form").submit()
 }
 

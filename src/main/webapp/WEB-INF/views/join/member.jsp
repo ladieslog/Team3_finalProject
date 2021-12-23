@@ -86,6 +86,9 @@ $(document).ready(function() {
 			
 	});//blur 
 	*/
+	var blank_pattern1 = /^\s+|\s+$/g; // 공백만 있을 경우
+	var blank_pattern2 = /[\s]/g; // 공백이 포함되어 있을 경우
+	var regType1 = /^[A-Za-z0-9+]*$/;
 	
 	function idsearch(){
 		if (document.getElementById("id").value==""){
@@ -101,7 +104,7 @@ $(document).ready(function() {
 					alert("중복된 ID입니다.")
 				}else{
 					alert("사용 가능한 ID입니다.")
-					document.getElementById("idcheck").value=document.getElementById("idcheck").value
+					document.getElementById("idcheck").value = document.getElementById("id").value
 				}
 			}, error: function(){
 				alert("error")
@@ -112,6 +115,50 @@ $(document).ready(function() {
 		
 	}
 	function resister(){
+		
+		
+		if(document.getElementById("id").value.length > 12 || 4 > document.getElementById("id").value.length) {
+			alert("아이디는 4~12자 사이로 입력해 주세요.");
+			document.getElementById("id").focus();
+			return;
+		} 
+		if(!(regType1.test(document.getElementById("id").value))) {
+			alert("아이디에 한글, 특수문자는 입력하실 수 없습니다.");
+			document.getElementById("id").focus();
+			return;
+		}
+		if(document.getElementById("id").value != document.getElementById("idcheck").value) {
+			alert("아이디 중복 확인을 해주세요.");
+			return;
+		}
+		
+		if(document.getElementById("pwd").value == "" || document.getElementById("pwd").value.replace(blank_pattern1, '') == "") {
+			alert("패스워드를 입력해 주세요.");
+			document.getElementById("pwd").focus();
+			return;
+		}
+		if(blank_pattern2.test(document.getElementById("pwd").value) == true) {
+			document.getElementById("pwd").focus();
+			alert("패스워드에 공백은 입력하실 수 없습니다.");
+			return;
+		}
+		if(document.getElementById("pwd").value != document.getElementById("repwd").value) {
+			document.getElementById("repwd").focus();
+			alert("패스워드가 일치하지 않습니다.");
+			return;
+		}
+		
+		if(document.getElementById("nickname").value == "" || document.getElementById("nickname").value.replace(blank_pattern1, '') == "") {
+			alert("닉네임을 입력해 주세요.");
+			document.getElementById("nickname").focus();
+			return;
+		}
+		if(document.getElementById("nickname").value.length > 12 || 2 > document.getElementById("nickname").value.length) {
+			alert("닉네임은 2~12자 사이로 입력해 주세요.");
+			document.getElementById("nickname").focus();
+			return;
+		}
+		
 		document.getElementById("form").submit()
 		
 	}
@@ -247,16 +294,16 @@ $(document).ready(function() {
 								</tr>
 								<tr>
 									<td>비밀번호</td>
-									<td><input type="password" name="pwd" size="20"></td>
+									<td><input type="password" id="pwd" name="pwd" size="20"></td>
 								</tr>
 								<tr>
 									<td>비밀번호 확인</td>
-									<td><input type="password" name="repwd" size="20"></td>
+									<td><input type="password" id="repwd" name="repwd" size="20"></td>
 
 								</tr>
 								<tr>
 									<td>닉네임</td>
-									<td><input name="nickname" size="15"></td>
+									<td><input name="nickname" id="nickname" size="15"></td>
 
 								</tr>
 								<tr>
@@ -272,13 +319,9 @@ $(document).ready(function() {
 								</tr>
 								
 								<tr>
-<<<<<<< HEAD
-									<td>상세주소</td>
-									<td><input name="detailaddress" size="20" id="detail address"></td>	
-=======
+
 									<td>Detail Address</td>
 									<td><input name="detailaddress" size="20" id="detailaddress"></td>	
->>>>>>> abb20ba496bf4b412516fef234159b10f31d133f
 								</tr>
 								<tr>
 									<td>이메일</td>
