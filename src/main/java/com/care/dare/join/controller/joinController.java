@@ -21,11 +21,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-<<<<<<< HEAD
-@Controller
-public class joinController {
-	
-=======
 @Controller 
 
 public class joinController { 
@@ -50,7 +45,7 @@ public class joinController {
         	out.print("<script> alert('회원가입에 성공하였습니다.');location.href='login';</script>");
         }
 	}
->>>>>>> 186135c478759434e560d640655a6eb14e937274
+
 	@GetMapping("membership")
 	public String membership() {
 		return "join/member";
