@@ -27,13 +27,9 @@
 		/*height: 450px; 
 		overflow: auto;*/
 		min-height: 450px;
-<<<<<<< HEAD
 		background: #FFFFF9;font-weight: bold;
-    font-family: HCR Batang;
-=======
-		background: #EFFBFB;
+    	font-family: HCR Batang;
 		overflow-x: auto;
->>>>>>> a1b05fc9d6b66c4294647d14c0be8d3fbc7e83d8
 	}
 	.notice-view-bottom {
 		border-top: 1px solid #FFA7A7;
