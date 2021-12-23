@@ -16,7 +16,6 @@
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
-<script type="text/javascript" src="script.js"></script>
 <script type="text/javascript">
 
 /*모든 공백 체크 정규식 
@@ -255,7 +254,7 @@ $(document).ready(function() {
 */
 </script>
 
-<link href="<c:url value="/resources/membership/member.css" />"
+<link href="<c:url value="/resources/membership/member.css?ver=1"/>"
     rel="stylesheet">
 <style> 
 	.membership-form {
@@ -263,9 +262,10 @@ $(document).ready(function() {
 		url("<%=request.getContextPath()%>/resources/membership2.png");
 	background-repeat: no-repeat;
 	background-position: center center;
-	background-size: 820px;
+	background-size: 740px;
 	height: 620px;
 	display: flex;
+	margin-top: 140px;
 	}
 </style>
 
@@ -273,7 +273,9 @@ $(document).ready(function() {
 <body onLoad="reFrm.id.focus()">
 	<div class="container membership-form">
 		<div>
-			<img src="<%=request.getContextPath()%>/resources/화살표.png" style="width: 60px; margin-top: 295px;">
+		<a href="login">
+			<img src="<%=request.getContextPath()%>/resources/화살표.png" style="width: 60px; margin-top: 324px; margin-left: 120px;">
+		</a>	
 		</div>
 		<br />
 		<br />
@@ -286,13 +288,14 @@ $(document).ready(function() {
 							<table cellspacing="0" cellpadding="2" align="center" width="600">
 
 								<tr>
-									<td width="20%">아이디</td>
-									<td width="50%"><input name="id" size="20" id="id">
+									<th width="20%">아이디</th>
+									<td width="50%"><input name="id" size="10" id="id">
 										<button type="button" onClick="idsearch()"
-											class="but">아이디 중복확인</button></td>
+											class="but" style="margin-left: 5px;">중복확인</button></td>
 											<input type="hidden" id="idcheck" value=""/>
 								</tr>
 								<tr>
+<<<<<<< HEAD
 									<td>비밀번호</td>
 									<td><input type="password" id="pwd" name="pwd" size="20"></td>
 								</tr>
@@ -304,28 +307,45 @@ $(document).ready(function() {
 								<tr>
 									<td>닉네임</td>
 									<td><input name="nickname" id="nickname" size="15"></td>
+=======
+									<th>비밀번호</th>
+									<td><input type="password" name="pwd" id="pwd" size="10"></td>
+								</tr>
+								<tr>
+									<th>비밀번호 확인</th>
+									<td><input type="password" name="repwd" id="repwd" size="10"></td>
 
 								</tr>
 								<tr>
-									<td>우편번호</td>
+									<th>닉네임</th>
+									<td><input name="nickname" id="nickname" size="10"></td>
+>>>>>>> 43067af77ac3f4ebec3f6fc8965782049c84a036
+
+								</tr>
+								<tr>
+									<th>우편번호</th>
 									<td><input name="zipcode" id="zipcode" size="5" readonly>
-										<button type="button" onClick="mailnum()" class="but">우편번호
+										<button type="button" onClick="mailnum()" class="but" style="margin-left: 12px;">우편번호
 											찾기</button></td>
 
 								</tr>
 								<tr>
-									<td>주소</td>
-									<td><input name="address" size="30" id="address"></td>									
+									<th>주소</th>
+									<td><input name="address" size="20" id="address"></td>									
 								</tr>
 								
 								<tr>
+<<<<<<< HEAD
 
 									<td>Detail Address</td>
+=======
+									<th>상세주소</th>
+>>>>>>> 43067af77ac3f4ebec3f6fc8965782049c84a036
 									<td><input name="detailaddress" size="20" id="detailaddress"></td>	
 								</tr>
 								<tr>
-									<td>이메일</td>
-									<td><input name="email" size="30"></td>
+									<th>이메일</th>
+									<td><input name="email" size="20"></td>
 
 								</tr>
 								<tr>

@@ -141,10 +141,6 @@ public class DiaryService {
 		return mapper.diaryBoard(start, end, id);
 	}
 	
-	public int diaryCount(String id) {
-		return mapper.diaryCount(id);
-	}
-
 	public void diaryView(Model model, int num) throws Exception {
 		DiaryDTO dto = mapper.diaryView(num);
 		SimpleDateFormat sim = new SimpleDateFormat("yyyy-MM-dd");
@@ -291,6 +287,10 @@ public class DiaryService {
 		}
 
 		mapper.writeUpdate(dto);
+	}
+
+	public int diaryCount(String id) {
+		return mapper.diaryCount(id);
 	}
 	
 }
