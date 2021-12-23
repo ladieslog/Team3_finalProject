@@ -11,7 +11,7 @@
 <script src="${contextPath }/resources/jquery-3.6.0.min.js"></script> <!-- 제이 쿼리 -->
 <script src="${contextPath }/resources/bootstrap.js"></script> <!-- 부트스트랩 (미사용) -->
 <link rel="stylesheet"
-	href="${contextPath }/resources/CS/css/cs_css.css">
+	href="${contextPath }/resources/CS/css/cs_css.css?ver=1">
 </head>
 <%
 	NoticeDTO dto = (NoticeDTO) request.getAttribute("noticeInfo");
@@ -46,9 +46,9 @@
 				<form action="noticeModify" method="post" id="form">
 				<input type="hidden" name="num" value="<%=dto.getNum() %>"/>
 					<table class="cn3">
+					<div style="height: 37px;">
 						<tr>
-							<td class="write-title"><b class="bh3 fs-20"> notice
-									title &nbsp;</b></td>
+							<td class="write-title"><b class="bh3 fs-20">Notice title</b></td>
 							<td colspan="14"><input type="text" name="title"
 								class="cha3 title-input" id="title" value="<%=dto.getTitle()%>"></td>
 							<!--<td  class="tb"> <b class="b">write date</b></td>  -->
@@ -62,9 +62,10 @@
 					<td><input type="text" name="" class="ch"></td> 
 				</tr>-->
 						<tr>
-							<td colspan="15">
-								<!-- <input type="text" name="" class="chb3"> --> <textarea
-									name="content" class="chb3" id="editor"><%=dto.getContent() %></textarea>
+							<td colspan="15" >
+								<!-- <input type="text" name="" class="chb3"> --> 
+								<textarea name="content" class="chb3" id="editor">
+								<%=dto.getContent() %></textarea>
 							</td>
 						</tr>
 						<tr>
@@ -74,6 +75,7 @@
 								<button type="button" class="cn4 mb-none notice-btn" onclick="hisback();">돌아가기</button>
 							</td>
 						</tr>
+						</div>
 					</table>
 				</form>
 			</div>
