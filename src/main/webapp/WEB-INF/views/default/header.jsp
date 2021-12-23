@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <c:set var="contextPath" value="<%=request.getContextPath() %>"/>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,10 +40,14 @@
 					<li><a href="MyHome" class="ab">My</a></li>
 					<li><a href="diaryBoard" class="ab">Diary</a></li>
 					<li><a href="#calendar" class="ab">Calendar</a></li>
-					<li><a href="#CS" class="ab">Cs</a></
+					<li><a href="#CS" class="ab">Cs</a></li>
+					<c:if test="${sessionScope.loginUser.id eq '3333'}">
+						<li><a href="memberList" class="ab">MemberList</a></li>
+					</c:if>
 				</ul>
 			</nav>
 		</div>
+		
 	</div>
 		<div class="logout log">
 			<a href="logout" class="a">logout</a>

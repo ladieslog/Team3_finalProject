@@ -249,16 +249,16 @@ $(document).ready(function() {
 								</tr>
 								<tr>
 									<th>비밀번호</th>
-									<td><input type="password" name="pwd" id="pwd" size="10"></td>
+									<td><input type="password" name="pwd" id="pwd" size="20"></td>
 								</tr>
 								<tr>
 									<th>비밀번호 확인</th>
-									<td><input type="password" name="repwd" id="repwd" size="10"></td>
+									<td><input type="password" name="repwd" id="repwd" size="20"></td>
 
 								</tr>
 								<tr>
 									<th>닉네임</th>
-									<td><input name="nickname" id="nickname" size="10"></td>
+									<td><input name="nickname" id="nickname" size="20"></td>
 
 								</tr>
 								<tr>
