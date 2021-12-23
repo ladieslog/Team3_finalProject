@@ -11,12 +11,13 @@
 <title>Insert title here</title>
 <style type="text/css">
 	.notice-view-wrap {
-		background-color: #DEF4F9;
+		background-color: #F6F6F6;
 		/* height: 650px; */
-		padding: 28px 600px 28px 299px;
+		padding: 28px 391px 28px 423px;
+		
 	}
 	.notice-view-title {
-		border-bottom: 1px solid black;
+		border-bottom: 1px solid #FFA7A7;
 	}
 	.notice-view-title>div {
 		margin: 10px 0;
@@ -26,19 +27,24 @@
 		/*height: 450px; 
 		overflow: auto;*/
 		min-height: 450px;
+<<<<<<< HEAD
+		background: #FFFFF9;font-weight: bold;
+    font-family: HCR Batang;
+=======
 		background: #EFFBFB;
 		overflow-x: auto;
+>>>>>>> a1b05fc9d6b66c4294647d14c0be8d3fbc7e83d8
 	}
 	.notice-view-bottom {
-		border-top: 1px solid black;
+		border-top: 1px solid #FFA7A7;
  		padding-top: 10px;
- 		padding-right: 15px;
 	}
 	.notice-view-bottom button {
-		background-color: #DEF4F9;
-    	border-color: #DEF4F9;
+		background-color: #F6F6F6;
+    	border-color: #F6F6F6;
     	border-radius: 6px;
-    	height: 30px;
+    	height: 30px; font-weight: bold;
+    font-family: HCR Batang;
 	}
 	.wd-85 {
 		width: 85px;
@@ -69,8 +75,8 @@
 	<div class="notice-view-wrap">
 		<div>
 			<div class="notice-view-title">
-				<div style="margin-top: 0;"><%=dto.getNum() %> | <%=dto.getTitle() %></div>
-				<div>
+				<div style="margin-left: 14px; font-weight: bold; font-family: HCR Batang;"><%=dto.getNum() %> | <%=dto.getTitle() %></div>
+				<div style="font-weight: bold; font-family: HCR Batang; margin-left: 14px;">
 					관리자 | <%=sdf.format(dto.getTime()) %> | <%=dto.getHit() %>
 				</div>
 			</div>

@@ -15,12 +15,14 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.care.dare.diary.dto.DiaryDTO;
+import com.care.dare.join.controller.MemberDTO;
 import com.care.dare.mybatis.DiaryMapper;
 
 
@@ -29,7 +31,10 @@ public class DiaryService {
 	@Autowired DiaryMapper mapper;
 	public void writeSave(HttpServletRequest req) throws Exception {	// 다이어리 작성 DB 저장
 		DiaryDTO dto = new DiaryDTO();
-		dto.setId("3333");	
+		HttpSession sessi = req.getSession();
+		MemberDTO dt = (MemberDTO)sessi.getAttribute("loginUser");
+		
+		dto.setId(dt.getId());
 
 		SimpleDateFormat sm = new SimpleDateFormat("yyyy-MM-dd");
 		Date date1 = null;

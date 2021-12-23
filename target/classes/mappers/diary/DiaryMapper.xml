@@ -64,8 +64,4 @@
 		,image3=#{image3, jdbcType=VARCHAR}, image4=#{image4, jdbcType=VARCHAR}, image5=#{image5, jdbcType=VARCHAR} where num=#{num}
 	</update>
 	
-	
-	
-
-
 </mapper>
