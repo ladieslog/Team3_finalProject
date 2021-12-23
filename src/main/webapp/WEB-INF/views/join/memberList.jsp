@@ -35,7 +35,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<% 
+HttpSession session1 = request.getSession();
+MemberDTO dto = (MemberDTO)session1.getAttribute("loginUser");
+		if(!(dto.getId().equals("3333"))){
+			response.sendRedirect("error");
+		}
+	%>
 <%ArrayList<MemberDTO> list=(ArrayList<MemberDTO>)request.getAttribute("list"); %>
 	<jsp:include page="/WEB-INF/views/default/header.jsp"/>
 		<div class="listwrap">
