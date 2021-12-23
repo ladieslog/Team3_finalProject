@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>마이페이지</title>
-<link rel="stylesheet" href="${contextPath }/resources/MyPageCss/MyPageCss.css">
+<link rel="stylesheet" href="${contextPath }/resources/MyPageCss/MyPageCss.css?ver=1">
 <script src="${contextPath }/resources/jquery-3.6.0.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -27,7 +27,73 @@
 	    }).open();
 	}
 	
+	var blank_pattern1 = /^\s+|\s+$/g; // 공백만 있을 경우
+	var regType1 = /^[A-Za-z0-9+]*$/;
+	var reg_email = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/; // 이메일 체크
+
+	
 	function modify(){
+		if(document.getElementById("pwd").value == "" || document.getElementById("pwd").value.replace(blank_pattern1, '') == "") {
+			alert("패스워드를 입력해 주세요.");
+			document.getElementById("pwd").focus();
+			return;
+		}
+		if(document.getElementById("pwd").value.length > 16 || 8 > document.getElementById("pwd").value.length) {
+			alert("패스워드는 8~16자 사이로 입력해 주세요.");
+			document.getElementById("pwd").focus();
+			return;
+		}
+		if(document.getElementById("pwd").value != document.getElementById("repwd").value) {
+			document.getElementById("repwd").focus();
+			alert("패스워드가 일치하지 않습니다.");
+			return;
+		}
+		
+		if(document.getElementById("nickname").value == "" || document.getElementById("nickname").value.replace(blank_pattern1, '') == "") {
+			alert("닉네임을 입력해 주세요.");
+			document.getElementById("nickname").focus();
+			return;
+		}
+		if(document.getElementById("nickname").value.length > 12 || 2 > document.getElementById("nickname").value.length) {
+			alert("닉네임은 2~12자 사이로 입력해 주세요.");
+			document.getElementById("nickname").focus();
+			return;
+		}
+		if(document.getElementById("zipcode").value == "" || document.getElementById("zipcode").value.replace(blank_pattern1, '') == "") {
+			alert("주소를 입력해 주세요.");
+			return;
+		}
+		
+		if(document.getElementById("detailaddress").value == "" || document.getElementById("detailaddress").value.replace(blank_pattern1, '') == "") {
+			alert("상세주소를 입력해 주세요.");
+			document.getElementById("detailaddress").focus();
+			return;
+		}
+		if(document.getElementById("detailaddress").value.length > 30) {
+			alert("상세주소는 30자 이내로 입력해 주세요.");
+			document.getElementById("detailaddress").focus();
+			return;
+		}
+		
+		if(document.getElementById("email").value == "" || document.getElementById("email").value.replace(blank_pattern1, '') == "") {
+			alert("이메일을 입력해 주세요.");
+			document.getElementById("email").focus();
+			return;
+		}
+		
+		if(!(reg_email.test(document.getElementById("email").value))) {
+			alert("이메일 형식에 맞게 입력해 주세요.");
+			document.getElementById("email").focus();
+			return;
+		}
+		
+		
+		if(document.getElementById("email").value.length > 30 || 10 > document.getElementById("email").value.length) {
+			alert("이메일은 10~30자 사이로 입력해 주세요.");
+			document.getElementById("email").focus();
+			return;
+		}
+		
 		document.getElementById("mod").submit()
 	}
 </script>
@@ -65,7 +131,7 @@
 				<div class="input-box">
 					<div>
 						<div class="left-text">비밀번호 확인</div>
-						<div><input type="password" id="pwdCk" name="pwdCk"  class="fontname"/></div>
+						<div><input type="password" id="repwd" name="pwdCk"  class="fontname"/></div>
 					</div>
 					<div>
 						<div class="right-text">상세주소</div>
