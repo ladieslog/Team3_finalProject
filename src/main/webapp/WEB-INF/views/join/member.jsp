@@ -88,33 +88,15 @@ $(document).ready(function() {
 	var blank_pattern1 = /^\s+|\s+$/g; // 공백만 있을 경우
 	var blank_pattern2 = /[\s]/g; // 공백이 포함되어 있을 경우
 	var regType1 = /^[A-Za-z0-9+]*$/;
+	var reg_email = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/; // 이메일 체크
+
 	
 	function idsearch(){
-		if (document.getElementById("id").value==""){
-			alert("ID를 입력해주세요.")
-			return 
+		if(document.getElementById("id").value == "" || document.getElementById("id").value.replace(blank_pattern1, '') == "") {
+			alert("아이디를 입력해 주세요.");
+			document.getElementById("id").focus();
+			return;
 		}
-		var id= document.getElementById("id").value
-		var form={id:id}
-		$.ajax({
-			url: "idcheck", type: "post", data: JSON.stringify(form), dataType: "json", contentType : "application/json; charset=utf-8",
-			success: function(map){
-				if (map.idcheck!= null){
-					alert("중복된 ID입니다.")
-				}else{
-					alert("사용 가능한 ID입니다.")
-					document.getElementById("idcheck").value = document.getElementById("id").value
-				}
-			}, error: function(){
-				alert("error")
-			}
-			
-		})
-		
-		
-	}
-	function resister(){
-		
 		
 		if(document.getElementById("id").value.length > 12 || 4 > document.getElementById("id").value.length) {
 			alert("아이디는 4~12자 사이로 입력해 주세요.");
@@ -126,7 +108,29 @@ $(document).ready(function() {
 			document.getElementById("id").focus();
 			return;
 		}
-		if(document.getElementById("id").value != document.getElementById("idcheck").value) {
+		
+		var id= document.getElementById("id").value
+		var form={id:id}
+		$.ajax({
+			url: "idcheck", type: "post", data: JSON.stringify(form), dataType: "json", contentType : "application/json; charset=utf-8",
+			success: function(map){
+				if (map.idcheck!= null){
+					alert("중복된 ID입니다.")
+				}else{
+					alert("사용 가능한 ID입니다.")
+					document.getElementById("idcheck").value = document.getElementById("id").value
+					document.getElementById("idCk").value = "1";
+				}
+			}, error: function(){
+				alert("error")
+			}
+			
+		})
+		
+		
+	}
+	function resister(){
+		if(document.getElementById("idCk").value == "0" || document.getElementById("id").value != document.getElementById("idcheck").value) {
 			alert("아이디 중복 확인을 해주세요.");
 			return;
 		}
@@ -136,11 +140,18 @@ $(document).ready(function() {
 			document.getElementById("pwd").focus();
 			return;
 		}
+		if(document.getElementById("pwd").value.length > 16 || 8 > document.getElementById("pwd").value.length) {
+			alert("패스워드는 8~16자 사이로 입력해 주세요.");
+			document.getElementById("id").focus();
+			return;
+		}
+		/*
 		if(blank_pattern2.test(document.getElementById("pwd").value) == true) {
 			document.getElementById("pwd").focus();
 			alert("패스워드에 공백은 입력하실 수 없습니다.");
 			return;
 		}
+		*/
 		if(document.getElementById("pwd").value != document.getElementById("repwd").value) {
 			document.getElementById("repwd").focus();
 			alert("패스워드가 일치하지 않습니다.");
@@ -157,6 +168,42 @@ $(document).ready(function() {
 			document.getElementById("nickname").focus();
 			return;
 		}
+		if(document.getElementById("zipcode").value == "" || document.getElementById("zipcode").value.replace(blank_pattern1, '') == "") {
+			alert("주소를 입력해 주세요.");
+			return;
+		}
+		
+		if(document.getElementById("detailaddress").value == "" || document.getElementById("detailaddress").value.replace(blank_pattern1, '') == "") {
+			alert("상세주소를 입력해 주세요.");
+			document.getElementById("detailaddress").focus();
+			return;
+		}
+		if(document.getElementById("detailaddress").value.length > 30) {
+			alert("상세주소는 30자 이내로 입력해 주세요.");
+			document.getElementById("detailaddress").focus();
+			return;
+		}
+		
+		if(document.getElementById("email").value == "" || document.getElementById("email").value.replace(blank_pattern1, '') == "") {
+			alert("이메일을 입력해 주세요.");
+			document.getElementById("email").focus();
+			return;
+		}
+		
+		if(!(reg_email.test(document.getElementById("email").value))) {
+			alert("이메일 형식에 맞게 입력해 주세요.");
+			document.getElementById("email").focus();
+			return;
+		}
+		
+		
+		if(document.getElementById("email").value.length > 30 || 10 > document.getElementById("nickname").value.length) {
+			alert("이메일은 10~30자 사이로 입력해 주세요.");
+			document.getElementById("email").focus();
+			return;
+		}
+		
+		
 		
 		document.getElementById("form").submit()
 		
@@ -293,9 +340,9 @@ $(document).ready(function() {
 										<button type="button" onClick="idsearch()"
 											class="but" style="margin-left: 5px;">중복확인</button></td>
 											<input type="hidden" id="idcheck" value=""/>
+											<input type="hidden" id="idCk" value="0"/>
 								</tr>
 								<tr>
-<<<<<<< HEAD
 									<td>비밀번호</td>
 									<td><input type="password" id="pwd" name="pwd" size="20"></td>
 								</tr>
@@ -306,20 +353,8 @@ $(document).ready(function() {
 								</tr>
 								<tr>
 									<td>닉네임</td>
-									<td><input name="nickname" id="nickname" size="15"></td>
-=======
-									<th>비밀번호</th>
-									<td><input type="password" name="pwd" id="pwd" size="10"></td>
-								</tr>
-								<tr>
-									<th>비밀번호 확인</th>
-									<td><input type="password" name="repwd" id="repwd" size="10"></td>
+									<td><input name="nickname" id="nickname" size="20"></td>
 
-								</tr>
-								<tr>
-									<th>닉네임</th>
-									<td><input name="nickname" id="nickname" size="10"></td>
->>>>>>> 43067af77ac3f4ebec3f6fc8965782049c84a036
 
 								</tr>
 								<tr>
@@ -331,21 +366,17 @@ $(document).ready(function() {
 								</tr>
 								<tr>
 									<th>주소</th>
-									<td><input name="address" size="20" id="address"></td>									
+									<td><input name="address" size="20" id="address" readonly></td>									
 								</tr>
 								
 								<tr>
-<<<<<<< HEAD
 
-									<td>Detail Address</td>
-=======
 									<th>상세주소</th>
->>>>>>> 43067af77ac3f4ebec3f6fc8965782049c84a036
 									<td><input name="detailaddress" size="20" id="detailaddress"></td>	
 								</tr>
 								<tr>
 									<th>이메일</th>
-									<td><input name="email" size="20"></td>
+									<td><input type="email" id="email" name="email" size="20"></td>
 
 								</tr>
 								<tr>
