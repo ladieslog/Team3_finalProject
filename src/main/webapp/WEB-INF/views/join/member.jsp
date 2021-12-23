@@ -86,7 +86,6 @@ $(document).ready(function() {
 	});//blur 
 	*/
 	var blank_pattern1 = /^\s+|\s+$/g; // 공백만 있을 경우
-	var blank_pattern2 = /[\s]/g; // 공백이 포함되어 있을 경우
 	var regType1 = /^[A-Za-z0-9+]*$/;
 	var reg_email = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/; // 이메일 체크
 
@@ -142,7 +141,7 @@ $(document).ready(function() {
 		}
 		if(document.getElementById("pwd").value.length > 16 || 8 > document.getElementById("pwd").value.length) {
 			alert("패스워드는 8~16자 사이로 입력해 주세요.");
-			document.getElementById("id").focus();
+			document.getElementById("pwd").focus();
 			return;
 		}
 		/*
@@ -197,7 +196,7 @@ $(document).ready(function() {
 		}
 		
 		
-		if(document.getElementById("email").value.length > 30 || 10 > document.getElementById("nickname").value.length) {
+		if(document.getElementById("email").value.length > 30 || 10 > document.getElementById("email").value.length) {
 			alert("이메일은 10~30자 사이로 입력해 주세요.");
 			document.getElementById("email").focus();
 			return;
