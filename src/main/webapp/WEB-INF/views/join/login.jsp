@@ -18,6 +18,8 @@
 
 <script type="text/javascript">
 
+var blank_pattern1 = /^\s+|\s+$/g; // 공백만 있을 경우
+var regType1 = /^[A-Za-z0-9+]*$/;
 		/*
 		frm= document.regFrm;
 		if (id=""){
@@ -44,6 +46,33 @@ function join(){
 	location.href="membership"
 }
 function logincheck(){
+	if(document.getElementById("id").value == "" || document.getElementById("id").value.replace(blank_pattern1, '') == "") {
+		alert("아이디를 입력해 주세요.");
+		document.getElementById("id").focus();
+		return;
+	}
+	
+	if(document.getElementById("id").value.length > 12 || 4 > document.getElementById("id").value.length) {
+		alert("아이디는 4~12자 사이로 입력해 주세요.");
+		document.getElementById("id").focus();
+		return;
+	} 
+	if(!(regType1.test(document.getElementById("id").value))) {
+		alert("아이디에 한글, 특수문자는 입력하실 수 없습니다.");
+		document.getElementById("id").focus();
+		return;
+	}
+	if(document.getElementById("pwd").value == "" || document.getElementById("pwd").value.replace(blank_pattern1, '') == "") {
+		alert("패스워드를 입력해 주세요.");
+		document.getElementById("pwd").focus();
+		return;
+	}
+	if(document.getElementById("pwd").value.length > 16 || 8 > document.getElementById("pwd").value.length) {
+		alert("패스워드는 8~16자 사이로 입력해 주세요.");
+		document.getElementById("pwd").focus();
+		return;
+	}
+	
 	document.getElementById("form").submit()
 }
 
