@@ -8,9 +8,9 @@ td {
 .membership-box {
 	display: flex;
     justify-content: center;
-    width: 100%;
     padding-right: 10px;
     padding-top: 20px;
+    margin-left: 122px;
 }
 
 .membership-table {
@@ -22,10 +22,12 @@ td {
 input {
 	border-radius: 5px;
 	border: none;
+	font-family: HCR Batang; font-weight: bold;
 }
 
 .but {
 	border-color: #B0C6E7;
 	border-radius: 5px;
 	background-color: #B0C6E7;
+	font-weight: bold;
 }

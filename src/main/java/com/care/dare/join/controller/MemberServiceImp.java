@@ -12,28 +12,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
-import dao.MemberDao;
 import com.care.dare.join.controller.*;
 import com.care.dare.mybatis.DiaryMapper;
-import com.care.dare.mybatis.JoinMapper; 
+import com.care.dare.mybatis.JoinMapper;
+
 
 @Service
 public class MemberServiceImp 
 implements MemberService { 
-	private MemberDao dao;
+	//private MemberDao dao;
 	@Autowired JoinMapper mapper;
 	@Autowired DiaryMapper dm;
 	public MemberDTO idcheck(String id) {
 		MemberDTO dto= mapper.idcheck(id);
 		return dto;
 	}
+	/*
 	public void setDao(MemberDao dao) { 
 		this.dao = dao; 
 		} 
+	*/
 	// 회원가입 
 	@Override 
 	public void memberJoinProcess(MemberDTO dto) {
-		dao.memberJoinMethod(dto);
+		//dao.memberJoinMethod(dto);
 		} 
 	public int resister(HttpServletRequest req) {
 		MemberDTO dto=new MemberDTO();
