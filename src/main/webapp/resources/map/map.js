@@ -1,5 +1,6 @@
 var mapOptions,
 	regionGeoJson = [];
+	
 
 initMap();
 
@@ -203,7 +204,7 @@ function mapSetOptions() {
 }
 
 function regionJsonLoop(mapType) {
-	var HOME_PATH = '../resources/map',
+	var HOME_PATH = '/root/resources/map',
 		urlPrefix = HOME_PATH + '/detailRegionJson/detail',
 		urlSuffix = '.json',
 		loadCount = 0;

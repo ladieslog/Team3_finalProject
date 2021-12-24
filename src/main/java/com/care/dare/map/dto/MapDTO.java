@@ -5,19 +5,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class MapDTO {
 
-	private String id;
 	private String title;
 	private String person;
+	private String id;
 	private String location1;
 	private String location2;
 	private String location3;
+	private String image1;
 	
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
 	public String getTitle() {
 		return title;
 	}
@@ -29,6 +24,12 @@ public class MapDTO {
 	}
 	public void setPerson(String person) {
 		this.person = person;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 	public String getLocation1() {
 		return location1;
@@ -54,6 +55,4 @@ public class MapDTO {
 	public void setImage1(String image1) {
 		this.image1 = image1;
 	}
-	private String image1;
-	
 }

@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.care.dare.mybatis.CalendarMapper">
-	<resultMap id="calendar" type="com.care.dare.calendar.controller.CalendarDTO">
-		<id property="id" column="id" />
-		<result property="id" column="id"/>
+	<resultMap id="calendar" type="com.care.dare.calendar.dto.CalendarDTO">
 		<result property="title" column="title"/>
 		<result property="indate" column="indate"/>
 		<result property="outdate" column="outdate"/>
+		<result property="id" column="id"/>
 	</resultMap>
 
-	<select id="readForCalendar" resultMap="diary">
-  		select id, title, indate, outdate from diary_board where id=#{id}
+	<select id="readForCalendar" resultMap="calendar">
+  		select  title,  indate, outdate, id from diary_board where id=#{id}
   	</select>
 </mapper>

@@ -1,7 +1,9 @@
 package com.care.dare.mybatis;
 
+import java.util.ArrayList;
+
 import com.care.dare.calendar.dto.CalendarDTO;
 
 public interface CalendarMapper {
-	public CalendarDTO readForCalendar(String id);
+	public ArrayList<CalendarDTO> readForCalendar(String id);
 }

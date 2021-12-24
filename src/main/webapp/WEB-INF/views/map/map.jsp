@@ -30,7 +30,7 @@
 		<jsp:include page="../default/footer.jsp" />
 	</div>
 </body>
-<script src="<c:url value="/resources/map/detailMap.js" />"></script>
+<script src="<c:url value="/resources/map/map.js" />"></script>
 </html>
 
 

@@ -1,7 +1,7 @@
 package com.care.dare.calendar.service;
 
-import com.care.dare.calendar.dto.CalendarDTO;
+import org.springframework.ui.Model;
 
 public interface CalendarServiceImpl {
-	public CalendarDTO readForCalendar(String id);
+	public void readForCalendar(Model model, String id);
 }

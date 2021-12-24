@@ -7,17 +7,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class CalendarDTO {
 
-	private String id;
 	private String title;
 	private Timestamp indate;
 	private Timestamp outdate;
+	private String id;
 	
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
 	public String getTitle() {
 		return title;
 	}
@@ -35,6 +29,12 @@ public class CalendarDTO {
 	}
 	public void setOutdate(Timestamp outdate) {
 		this.outdate = outdate;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 }
 
