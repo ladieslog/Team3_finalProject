@@ -44,11 +44,11 @@ MemberDTO dto = (MemberDTO)session1.getAttribute("loginUser");
 	%>
 <%ArrayList<MemberDTO> list=(ArrayList<MemberDTO>)request.getAttribute("list"); %>
 	<jsp:include page="/WEB-INF/views/default/header.jsp"/>
-		<div class="listwrap">
+		<div class="listwrap" style="margin-top: 20px;">
 			<table align="center" border="0" bordercolor="white" 
 					class="memberList-table">
 				<tr class= "tableHeader">
-					<td><div>회원 아이디</div></td> <td><div>회원비번</div></td> <td><div>회원닉네임</div></td> <td><div>회원주소</div></td> <td ><div>회원이메일</div></td> <td><div>게시글수</div></td>				
+					<th><div>회원 아이디</div></th> <th><div>회원비번</div></th> <th><div>회원닉네임</div></th> <th><div>회원주소</div></th> <th><div>회원이메일</div></th> <th><div>게시글수</div></th>				
 				</tr>
 				<%if(list.isEmpty()){
 					%>

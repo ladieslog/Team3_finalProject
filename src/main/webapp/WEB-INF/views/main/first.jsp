@@ -16,7 +16,7 @@
 </style>
 
 </head>
-<body>
+<body style="overflow-x: hidden">
 	<div class="wrap">
 		<table  class="ta">
 			<tr>

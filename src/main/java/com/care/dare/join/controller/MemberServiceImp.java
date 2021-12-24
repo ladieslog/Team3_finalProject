@@ -56,9 +56,10 @@ implements MemberService {
 		return loginDTO;
 	}
 	public void memberList(Model model) {
+		String a = "";
 		ArrayList<MemberDTO>list=mapper.memberList();
 		for(MemberDTO DTO: list) {
-			DTO.setDiaryCount(dm.diaryCount(DTO.getId()));
+			DTO.setDiaryCount(dm.diaryCount(DTO.getId(), a));
 		}
 		model.addAttribute("list", list);
 		

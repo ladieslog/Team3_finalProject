@@ -142,8 +142,8 @@ public class DiaryService {
 		return file;
 	}*/
 	
-	public ArrayList<DiaryDTO> diaryBoard(int start, int end, String id) {
-		return mapper.diaryBoard(start, end, id);
+	public ArrayList<DiaryDTO> diaryBoard(int start, int end, String id, String search) {
+		return mapper.diaryBoard(start, end, id, search);
 	}
 	
 	public void diaryView(Model model, int num) throws Exception {
@@ -294,8 +294,8 @@ public class DiaryService {
 		mapper.writeUpdate(dto);
 	}
 
-	public int diaryCount(String id) {
-		return mapper.diaryCount(id);
+	public int diaryCount(String id,String search) {
+		return mapper.diaryCount(id,search);
 	}
 	
 }
