@@ -1360,7 +1360,6 @@ function del5(){
 
 	
 
-
 function register(){
 	if(document.getElementById("title").value == "" || document.getElementById("title").value.replace(blank_pattern1, '') == "") {
 		alert("제목을 입력해 주세요.");
