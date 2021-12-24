@@ -27,7 +27,6 @@
 		min-height: 450px;
 		background: #FFFFF9; font-weight: bold;
   	    font-family: HCR Batang; overflow-x: auto;
-
 	}
 	.notice-view-bottom {
 		border-top: 1px solid #FFA7A7;
