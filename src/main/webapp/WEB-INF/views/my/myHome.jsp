@@ -31,7 +31,6 @@
 	var regType1 = /^[A-Za-z0-9+]*$/;
 	var reg_email = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/; // 이메일 체크
 
-	
 	function modify(){
 		if(document.getElementById("pwd").value == "" || document.getElementById("pwd").value.replace(blank_pattern1, '') == "") {
 			alert("패스워드를 입력해 주세요.");
@@ -96,6 +95,12 @@
 		
 		document.getElementById("mod").submit()
 	}
+	
+	function accountDelete() {
+		if(confirm("정말로 탈퇴하시겠습니까?")) {
+			location.href = "accountDelete";
+		}
+	}
 </script>
 </head>
 <body style="overflow-x: hidden;">
@@ -152,7 +157,7 @@
 			<hr class="hr">
 				<div align="center" style="margin-top: 32px; margin-left: 542px;" class="btn-div">
 					<button type="button" onclick="modify()">수정 완료</button>
-					<button type="button">회원 탈퇴</button>
+					<button type="button" onclick="accountDelete();">회원 탈퇴</button>
 				</div>
 				
 			</form>

@@ -19,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller 
@@ -115,6 +116,18 @@ public class joinController {
 				out.print("<script> alert('회원정보 수정이 완료되었습니다');location.href='MyHome';</script>");
 			}
 		}
+		
+	}
+	
+	@RequestMapping("accountDelete")
+	public String accountDelete(HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		MemberDTO ssDto = (MemberDTO) session.getAttribute("loginUser");
+		if(ssDto == null) {
+			return "redirect:error";
+		}
+		service.accountDelete(ssDto);
+		return "redirect:diaryBoard";
 		
 	}
 	
