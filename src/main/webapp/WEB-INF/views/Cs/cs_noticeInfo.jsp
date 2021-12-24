@@ -25,15 +25,8 @@
 	.notice-view-content {
 		padding: 20px 15px;
 		min-height: 450px;
-<<<<<<< HEAD
-		background: #FFFFF9;font-weight: bold;
-    	font-family: HCR Batang;
-		overflow-x: auto;
-=======
 		background: #FFFFF9; font-weight: bold;
   	    font-family: HCR Batang; overflow-x: auto;
-
->>>>>>> ee099a99a48f86e71f4eed10cc240bb8e3323dd3
 	}
 	.notice-view-bottom {
 		border-top: 1px solid #FFA7A7;
