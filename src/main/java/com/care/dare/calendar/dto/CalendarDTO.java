@@ -11,6 +11,7 @@ public class CalendarDTO {
 	private Timestamp indate;
 	private Timestamp outdate;
 	private String id;
+	private String location1;
 	
 	public String getTitle() {
 		return title;
@@ -35,6 +36,12 @@ public class CalendarDTO {
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+	public String getLocation1() {
+		return location1;
+	}
+	public void setLocation1(String location1) {
+		this.location1 = location1;
 	}
 }
 

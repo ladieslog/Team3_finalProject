@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="contextPath" value="<%=request.getContextPath()%>" />
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +12,7 @@
 <title>calendar</title>
 <link href="<c:url value="/resources/calendar/calendarStyle.css" />"
 	rel="stylesheet">
+<script src="${contextPath}/resources/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 	<div class="calendar-wrap">
@@ -17,7 +20,7 @@
 		<div class="background">
 			<div class="frame">
 				<div class="title">
-					<table class = "table">
+					<table class="table">
 						<tr>
 							<th align="left" width="30%"><div class="year"></div></th>
 							<th align="center" width="40%"><div class="month"></div></th>

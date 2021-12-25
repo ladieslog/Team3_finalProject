@@ -1,10 +1,35 @@
 var mapOptions,
-	regionGeoJson = [];
-	
+	regionGeoJson = [],
+	checkList = [],
+	checkListLength = 0;;
 
+readDB();
 initMap();
 
-function initMap(){
+
+function readDB() {
+	$.ajax({
+		url: "/root/ajaxMap.do",
+		Type: "POST",
+		data: checkList,
+		dataType: "json",
+		success: function(data) {
+			if (data.length == 0)
+				alert("결과가 없습니다");
+			else {
+				checkList = data;
+				checkListLength = data.length;
+				console.log(checkList);
+				console.log(checkListLength);
+			}
+		},
+		error: function() {
+			//alert("에러");
+		}
+	});
+}
+
+function initMap() {
 	spinner(2000);
 	viewSelected(0);
 	mapSetOptions();
@@ -17,11 +42,9 @@ function spinner(time) {
 }
 
 function LoadingWithMask() {
-	//화면의 높이와 너비를 구합니다.
 	var maskHeight = $(document).height();
 	var maskWidth = window.document.body.clientWidth;
 
-	//화면에 출력할 마스크를 설정해줍니다.
 	var mask = "<div id='mask' style='position:absolute; z-index:5000; background-color:#000000; display:none;'></div>";
 	var loadingImg = '';
 
@@ -30,7 +53,6 @@ function LoadingWithMask() {
 	loadingImg += "</div>";
 
 	$('body').append(mask).append(loadingImg);
-	//화면에 레이어 추가
 
 	$('#mask').css({
 		'width': maskWidth,

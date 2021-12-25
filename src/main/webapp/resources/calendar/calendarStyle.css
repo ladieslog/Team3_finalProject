@@ -144,3 +144,15 @@ body {
 	transform: translate(-50%, -50%);
 	content: '';
 }
+
+.indate{
+	background-color: #FF0000;
+}
+
+.between{
+	background-color: #FF0000;
+}
+
+.outdate{
+	background-color: #FF0000;
+}
