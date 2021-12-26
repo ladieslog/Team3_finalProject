@@ -1,12 +1,18 @@
 var checkList = [],
-	checkListLength = 0;
+	checkListLength = 0,
+	indate = [],
+	outdate = [],
+	person = [],
+	title = [],
+	location1 = [],
+	listDate = [];
 
 let date = new Date();
 
-readDB();
+
 renderCalendar();
 
-function readDB() {
+function readDB(month) {
 	$.ajax({
 		url: "/root/ajaxCal.do",
 		Type: "POST",
@@ -14,11 +20,11 @@ function readDB() {
 		dataType: "json",
 		success: function(data) {
 			if (data.length == 0)
-				alert("결과가 없습니다");
+				alert("데이터가 없습니다");
 			else {
 				checkList = data;
 				checkListLength = data.length;
-				console.log(checkListLength);
+				//checkThePast(month);
 			}
 		},
 		error: function() {
@@ -26,15 +32,40 @@ function readDB() {
 		}
 	});
 }
-
-
-function viewTripDate() {
-
-
+/*
+function checkThePast(month) {
+	console.log("month : " + month);
+	for (let i = 0; i < checkList.length; i++) {
+		getDateRange(month, checkList[i].indate, checkList[i].outdate, listDate);
+	}
+	console.log(listDate);
 }
 
+function getDateRange(month, startDate, endDate, listDate) {
+	var dateMove = new Date(startDate);
+	var strDate = startDate;
+	console.log(startDate.substr(5, 2))
+
+	if (startDate.substr(5, 2) === String(month + 1)) {
+
+		if (startDate == endDate) {
+			var strDate = dateMove.toISOString().slice(0, 10);
+			listDate.push(strDate);
+		}
+
+		else {
+			while (strDate < endDate) {
+				var strDate = dateMove.toISOString().slice(0, 10);
+				listDate.push(strDate);
+				dateMove.setDate(dateMove.getDate() + 1);
+			}
+		}
+	}
+	return listDate;
+}*/
+
 function renderCalendar() {
-	
+
 	var monthNames = ["January", "February", "March", "April", "May", "June",
 		"July", "August", "September", "October", "November", "December"];
 
@@ -89,14 +120,12 @@ function renderCalendar() {
 			}
 		}
 	}
-	console.log(date.getFullYear());
-	console.log(date.getMonth());
+	
 };
 
 function prevMonth() {
 	date.setDate(1);
 	date.setMonth(date.getMonth() - 1);
-	console.log(date.getMonth());
 	renderCalendar();
 };
 
@@ -108,7 +137,6 @@ function prevYear() {
 function nextMonth() {
 	date.setDate(1);
 	date.setMonth(date.getMonth() + 1);
-	console.log(date.getMonth());
 	renderCalendar();
 };
 

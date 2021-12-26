@@ -27,10 +27,10 @@
 							<th align="right" width="30%">
 								<div class="nav">
 									<button class="nav-btn go-prevYear" onclick="prevYear()">&lt;&lt;</button>
-									<button class="nav-btn go-prevMonth" onclick="prevMonth()">&nbsp;&lt;</button>
+									<button class="nav-btn go-prevMonth" onclick="prevMonth()">&nbsp;&nbsp;&lt;</button>
 									<button class="nav-btn go-today" onclick="goToday()">Today</button>
 									<button class="nav-btn go-nextMonth" onclick="nextMonth()">&gt;</button>
-									<button class="nav-btn go-nextYear" onclick="nextYear()">&nbsp;&gt;&gt;</button>
+									<button class="nav-btn go-nextYear" onclick="nextYear()">&nbsp;&nbsp;&gt;&gt;</button>
 								</div>
 							</th>
 						</tr>
