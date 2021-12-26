@@ -20,7 +20,8 @@ public interface MemberService {
 	public void memberList(Model model);
 	public void myHome(Model model,String id);
 	public int myUpdate(HttpServletRequest req,String id);
-	public void accountDelete(MemberDTO dto);
+	public void accountDelete(MemberDTO dto, HttpServletResponse resp, Model model);
+	public int emailCertified(String id);
 }
 
 

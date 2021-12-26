@@ -7,6 +7,7 @@ import java.util.List;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse; 
 import javax.servlet.http.HttpSession;
@@ -86,7 +87,7 @@ public class MemberServiceImp implements MemberService {
 		return mapper.myUpdate(dto);
 	}
 	
-	public void accountDelete(MemberDTO dto) {
+	public void accountDelete(MemberDTO dto, HttpServletResponse resp, Model model) {
 		String Certified = "";
 		for(int i=1; i<=6; i++) {
 			int num = (int)(Math.random()*9)+1;
@@ -104,10 +105,20 @@ public class MemberServiceImp implements MemberService {
 			sb.append(Certified);
 			helper.setText(sb.toString(), true);
 			mailSender.send(message);
+			/*
+			Cookie cookie = new Cookie("emailCertified", Certified);
+			cookie.setComment("트립노트 탈퇴 이메일 인증");
+			cookie.setMaxAge(60*3);
+			resp.addCookie(cookie);
+			*/
+			model.addAttribute("certified", Certified);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	public int emailCertified(String id) {
+		return mapper.accountDelete(id);
 	}
 }
 
