@@ -5,7 +5,9 @@
 
 <mapper namespace="com.care.dare.mybatis.CalendarMapper">
 	<resultMap id="calendar" type="com.care.dare.calendar.dto.CalendarDTO">
+		<result property="num" column="num"/>
 		<result property="title" column="title"/>
+		<result property="person" column="person"/>
 		<result property="indate" column="indate"/>
 		<result property="outdate" column="outdate"/>
 		<result property="id" column="id"/>
@@ -13,6 +15,6 @@
 	</resultMap>
 
 	<select id="readForCalendar" resultMap="calendar">
-  		select  title, indate, outdate, id, location1 from diary_board where id=#{id}
+  		select  num, title, person, indate, outdate, id, location1 from diary_board where id=#{id}
   	</select>
 </mapper>

@@ -7,17 +7,31 @@ import org.springframework.stereotype.Component;
 @Component
 public class CalendarDTO {
 
+	private int num;
 	private String title;
+	private String person;
 	private Timestamp indate;
 	private Timestamp outdate;
 	private String id;
 	private String location1;
 	
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
+	}
 	public String getTitle() {
 		return title;
 	}
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	public String getPerson() {
+		return person;
+	}
+	public void setPerson(String person) {
+		this.person = person;
 	}
 	public Timestamp getIndate() {
 		return indate;

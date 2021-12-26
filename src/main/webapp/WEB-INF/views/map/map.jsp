@@ -16,7 +16,9 @@
 	rel="stylesheet">
 <script type="text/javascript"
 	src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=hd20qegxv4"></script>
-<script src="${contextPath}/resources/jquery-3.6.0.min.js"></script>
+<!-- jquery CDN -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 
 <body>

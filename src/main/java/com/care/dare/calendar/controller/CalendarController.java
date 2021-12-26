@@ -2,6 +2,7 @@ package com.care.dare.calendar.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -26,9 +27,9 @@ public class CalendarController {
 
 	@RequestMapping("/calendar")
 	public String viewCalendar() {
-		return"calendar/calendar";
+		return "calendar/calendar";
 	}
-	
+
 	@GetMapping(value = "/ajaxCal.do")
 	@ResponseBody
 	public JSONArray readDB(HttpServletRequest req, Model model) throws Exception {
@@ -36,6 +37,7 @@ public class CalendarController {
 	
 		MemberDTO dto = (MemberDTO) session.getAttribute("loginUser");
 		service.readForCalendar(model, dto.getId());
+		
 		
 		@SuppressWarnings("unchecked")
 		ArrayList<CalendarDTO> dataList = (ArrayList<CalendarDTO>) model.getAttribute("calendarData");
@@ -45,15 +47,35 @@ public class CalendarController {
 		for(CalendarDTO data : dataList) {
 			
 			JSONObject jsonObj = new JSONObject();
+			
+			jsonObj.put("num", data.getNum());
+			
 			jsonObj.put("title", data.getTitle());
+			
 			String indateStr = simpleDate.format( data.getIndate() );
-			jsonObj.put("indate", indateStr);
-			String outdateStr = simpleDate.format( data.getOutdate() );
-			jsonObj.put("outdate", outdateStr);
-			jsonObj.put("location1",data.getLocation1());
+			jsonObj.put("start", indateStr);
+			
+			String outdateStr = null;
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(data.getOutdate());
+			cal.add(Calendar.DATE, 1);
+			outdateStr = simpleDate.format(cal.getTime());
+			jsonObj.put("end", outdateStr);
+			
+			jsonObj.put("location",data.getLocation1());
+			
+			if(Integer.parseInt(data.getPerson()) == 1) {
+				jsonObj.put("color", "#F15F5F");
+			}
+			else if(Integer.parseInt(data.getPerson()) == 2) {
+				jsonObj.put("color", "#BCE55C");
+			}
+			else {
+				jsonObj.put("color", "#6B66FF");
+			}
+			
 			jArray.add(jsonObj);
 		}
-		
 		return jArray;
 	}
 }

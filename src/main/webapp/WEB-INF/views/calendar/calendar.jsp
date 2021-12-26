@@ -4,54 +4,28 @@
 <c:set var="contextPath" value="<%=request.getContextPath()%>" />
 
 <!DOCTYPE html>
-<html>
+<html lang='en'>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset='utf-8' />
 
-<title>calendar</title>
+<title>캘린더</title>
+
 <link href="<c:url value="/resources/calendar/calendarStyle.css" />"
 	rel="stylesheet">
-<script src="${contextPath}/resources/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="${contextPath}/resources/calendar/getEvent.js"></script>
 </head>
 <body>
 	<div class="calendar-wrap">
 		<jsp:include page="../default/header.jsp" />
 		<div class="background">
 			<div class="frame">
-				<div class="title">
-					<table class="table">
-						<tr>
-							<th align="left" width="30%"><div class="year"></div></th>
-							<th align="center" width="40%"><div class="month"></div></th>
-							<th align="right" width="30%">
-								<div class="nav">
-									<button class="nav-btn go-prevYear" onclick="prevYear()">&lt;&lt;</button>
-									<button class="nav-btn go-prevMonth" onclick="prevMonth()">&nbsp;&nbsp;&lt;</button>
-									<button class="nav-btn go-today" onclick="goToday()">Today</button>
-									<button class="nav-btn go-nextMonth" onclick="nextMonth()">&gt;</button>
-									<button class="nav-btn go-nextYear" onclick="nextYear()">&nbsp;&nbsp;&gt;&gt;</button>
-								</div>
-							</th>
-						</tr>
-					</table>
-				</div>
-				<div class="main">
-					<div class="days">
-						<div class="day">SUN</div>
-						<div class="day">MON</div>
-						<div class="day">TUE</div>
-						<div class="day">WED</div>
-						<div class="day">THU</div>
-						<div class="day">FRI</div>
-						<div class="day">SAT</div>
-					</div>
-					<div class="dates"></div>
-				</div>
+				<div id='calendar'></div>
 			</div>
-			<jsp:include page="../default/footer.jsp" />
 		</div>
+		<jsp:include page="../default/footer.jsp" />
 	</div>
 </body>
-<script src="<c:url value="/resources/calendar/calendar.js" />"></script>
+<script src="${contextPath}/resources/calendar/fullCalendar.js"></script>
 </html>
