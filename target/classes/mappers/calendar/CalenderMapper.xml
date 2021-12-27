@@ -15,6 +15,6 @@
 	</resultMap>
 
 	<select id="readForCalendar" resultMap="calendar">
-  		select  num, title, person, indate, outdate, id, location1 from diary_board where id=#{id}
+  		select num, title, person, indate, outdate, id, location1 from diary_board where id=#{id}
   	</select>
 </mapper>

@@ -12,12 +12,13 @@
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
 
 <title>지도</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link href="<c:url value="/resources/map/mapStyle.css" />"
 	rel="stylesheet">
 <script type="text/javascript"
 	src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=hd20qegxv4"></script>
-<!-- jquery CDN -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript"
+	src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=hd20qegxv4&submodules=geocoder"></script>
 
 </head>
 

@@ -1,11 +1,11 @@
 var mapOptions,
 	regionGeoJson = [],
 	checkList = [],
-	checkListLength = 0;;
+	checkListLength = 0,
+	arrayLoaction = [];
 
 readDB();
 initMap();
-
 
 function readDB() {
 	$.ajax({
@@ -19,8 +19,6 @@ function readDB() {
 			else {
 				checkList = data;
 				checkListLength = data.length;
-				console.log(checkList);
-				console.log(checkListLength);
 			}
 		},
 		error: function() {
@@ -28,6 +26,57 @@ function readDB() {
 		}
 	});
 }
+//===============================================================
+
+function makeArrayLocation() {
+	console.log(checkList);
+	let j = 0;
+	for (let i = 0; i < checkListLength; i++) {
+		(checkList[i].location1 == null) ?
+			(arrayLoaction[j++] = 'no Location!!') : (arrayLoaction[j++] = checkList[i].location1);
+
+		(checkList[i].location2 == null) ?
+			(arrayLoaction[j++] = 'no Location!!') : (arrayLoaction[j++] = checkList[i].location2);
+
+		(checkList[i].location3 == null) ?
+			(arrayLoaction[j++] = 'no Location!!') : (arrayLoaction[j++] = checkList[i].location3);
+	}
+
+	console.log('arrayList : ' + arrayLoaction);
+}
+
+function makeMarker() {
+	for (let i = 0; i < arrayLoaction.length; i++) {
+		geocode(arrayLoaction[i]);
+	}
+}
+
+function geocode(address) {
+	if (address != 'no Location!!') {
+		naver.maps.Service.geocode({
+			address: address
+		}, function(status, response) {
+			if (status !== naver.maps.Service.Status.OK) {
+				return alert('Something wrong!');
+			}
+
+			var result = response.result, // 검색 결과의 컨테이너
+				items = result.items; // 검색 결과의 배열
+			console.log(items);
+			console.log(items[0].point);
+			// do Something
+
+			var marker = new naver.maps.Marker({
+				position: new naver.maps.LatLng(items[0].point),
+				map: map
+			});
+		});
+	}
+}
+
+
+//===============================================================
+
 
 function initMap() {
 	spinner(2000);
@@ -73,7 +122,6 @@ var coloringMap = '<button class="mapButton1">Coloring Map</button>';
 var tripNoteMap = '<button class="mapButton2">TripNote Map</button>';
 
 naver.maps.Event.once(map, 'init_stylemap', function() {
-	//customControl 객체 이용하기
 	var coloringMapControl = new naver.maps.CustomControl(coloringMap, {
 		position: naver.maps.Position.TOP_LEFT
 	});
@@ -277,10 +325,11 @@ function startDataLayer(mapType) {
 
 	var tooltip = $('<div style="position:absolute;z-index:1000;padding:5px 10px;background-color:#fff;border:solid 2px #000; font-family: HCR Batang; font-weight:bold; font-size:14px;pointer-events:none;display:none;"></div>');
 	tooltip.appendTo(map.getPanes().floatPane);
-
+	makeArrayLocation();
 	map.data.setStyle(function(feature) {
 
-		if (mapType === 1 || mapType === 2) {	// 컬러링지도
+		if (mapType === 1 || mapType === 2) {
+
 			if (feature.getProperty('area2') == '') {	// 도, 광역시
 				var styleOptions = {
 					fillColor: '#F6F6F6',
@@ -291,7 +340,7 @@ function startDataLayer(mapType) {
 				};
 			}
 
-			else if (feature.getProperty('area3') == '') {	// 시군구
+			else {	// 시군구
 				var styleOptions = {
 					fillColor: '#F6F6F6',
 					fillOpacity: 0,
@@ -301,14 +350,30 @@ function startDataLayer(mapType) {
 				};
 			}
 
-			else {
-				var styleOptions = {	// 여행간 지역 색칠
-					fillColor: '#FF9090',
-					fillOpacity: 1,
-					strokeColor: '#FFFFFF',
-					strokeWeight: 1,
-					strokeOpacity: 0.5
-				};
+			for (let i = 0; i < arrayLoaction.length; i++) { // 여행기록이 있는 지역 색칠
+				if (feature.getProperty('area3') != '') {
+					if (arrayLoaction[i].indexOf(feature.getProperty('area3')) != -1) {
+						var styleOptions = {
+							fillColor: '#FF9090',
+							fillOpacity: 1,
+							strokeColor: '#FFFFFF',
+							strokeWeight: 1,
+							strokeOpacity: 0.5
+						};
+					}
+				}
+
+				else if (feature.getProperty('area2') != '') {
+					if (arrayLoaction[i].indexOf(feature.getProperty('area2')) != -1) {
+						var styleOptions = {
+							fillColor: '#FF9090',
+							fillOpacity: 1,
+							strokeColor: '#FFFFFF',
+							strokeWeight: 1,
+							strokeOpacity: 0.5
+						};
+					}
+				}
 			}
 		}
 
@@ -322,7 +387,6 @@ function startDataLayer(mapType) {
 					strokeOpacity: 1
 				};
 			}
-
 			else {
 				var styleOptions = {	// 시군구
 					fillColor: '#F6F6F6',
@@ -340,6 +404,15 @@ function startDataLayer(mapType) {
 	regionGeoJson.forEach(function(geojson) {
 		map.data.addGeoJson(geojson);
 	});
+
+	//===============================================================
+
+	if (mapType === 3 || mapType === 4) {
+		makeMarker();
+	}
+
+	//===============================================================
+
 
 	map.data.addListener('click', function(e) {
 		var feature = e.feature,

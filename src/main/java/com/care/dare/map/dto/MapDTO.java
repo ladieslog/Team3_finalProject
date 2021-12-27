@@ -1,18 +1,29 @@
 package com.care.dare.map.dto;
 
+import java.sql.Timestamp;
+
 import org.springframework.stereotype.Component;
 
 @Component
 public class MapDTO {
 
+	private int num;
 	private String title;
 	private String person;
+	private Timestamp indate;
+	private Timestamp outdate;
 	private String id;
 	private String location1;
 	private String location2;
 	private String location3;
 	private String image1;
 	
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
+	}
 	public String getTitle() {
 		return title;
 	}
@@ -24,6 +35,18 @@ public class MapDTO {
 	}
 	public void setPerson(String person) {
 		this.person = person;
+	}
+	public Timestamp getIndate() {
+		return indate;
+	}
+	public void setIndate(Timestamp indate) {
+		this.indate = indate;
+	}
+	public Timestamp getOutdate() {
+		return outdate;
+	}
+	public void setOutdate(Timestamp outdate) {
+		this.outdate = outdate;
 	}
 	public String getId() {
 		return id;

@@ -33,16 +33,14 @@ public class CalendarController {
 	@GetMapping(value = "/ajaxCal.do")
 	@ResponseBody
 	public JSONArray readDB(HttpServletRequest req, Model model) throws Exception {
+		
 		HttpSession session = req.getSession();
-	
 		MemberDTO dto = (MemberDTO) session.getAttribute("loginUser");
 		service.readForCalendar(model, dto.getId());
 		
-		
-		@SuppressWarnings("unchecked")
 		ArrayList<CalendarDTO> dataList = (ArrayList<CalendarDTO>) model.getAttribute("calendarData");
-		JSONArray jArray = new JSONArray();
 		SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
+		JSONArray jArray = new JSONArray();
 		
 		for(CalendarDTO data : dataList) {
 			
@@ -76,6 +74,7 @@ public class CalendarController {
 			
 			jArray.add(jsonObj);
 		}
+		
 		return jArray;
 	}
 }
