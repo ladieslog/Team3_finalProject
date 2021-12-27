@@ -80,18 +80,27 @@
 		</div>
 		
 		<div class="email-model" id="email-model">
-			<div>
+			<div style="padding: 20px;">
 				<form action="emailCertified" method="post" id="model-form">
 					<div class="email-model-delete-box">
+						<span style="font-size: 27pt; font-family: Georgia; color: #6E94CC;">Tripnote</span>
 						<img src="${contextPath }/resources/diaryimg/delete.png" class="cursor" id="email-model-delete" onclick="modelExit();"/>
 					</div>
-					<div>
-						등록된 회원 이메일로 인증번호를 보냈습니다. 이메일을 확신하신 후 인증번호를 입력하시고 탈퇴 버튼을 누르면 탈퇴가 완료됩니다.<br/>
-						인증 번호 : <input type="text" name="certified" id="certified"/> 남은 시간 : <span id="time">3 : 0</span>
+					<div style="margin-top: 15px; font-weight: bold;">
+						등록된 회원 이메일로 인증번호를 보냈습니다.<br> 
+						인증번호를 입력하시고 탈퇴 버튼을 누르면 탈퇴가 완료됩니다.<br> 
 					</div>
-					<div>
-						<button type="button" onclick="emailCertified();">탈퇴하기</button>
+					<div style="display: flex; justify-content: center; align-items: center; margin-top: 5px; font-weight: bold;">
+					인증 번호 : <input style="width: 101px; margin-left: 15px; border: 1px solid black;" type="text" name="certified" id="certified"/>
 					</div>
+					<div style="display: flex; justify-content: center; align-items: center; margin-top: 5px; font-weight: bold;">
+						남은 시간 : &nbsp;<span id="time">3 : 0</span>
+						<button style="margin-left: 15px; background-color: white; border: 1px solid black;" type="button" onclick="emailCertified();">탈퇴하기</button>
+					</div>
+					<div style="font-size: 10pt; margin-top: 10px;">
+					<span style="color: gray;">*인증번호를 받지 못했다면 이메일주소를 확인하세요</span></div>
+					<div style="font-size: 10pt;">
+					<span style="color: gray;">*또는 관리자에게 <a href="" style="color: gray;">문의</a> 바랍니다.</span></div>
 				</form>
 			</div>
 		</div>
