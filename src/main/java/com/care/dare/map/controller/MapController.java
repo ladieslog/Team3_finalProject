@@ -2,6 +2,7 @@ package com.care.dare.map.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Stack;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -26,49 +27,83 @@ public class MapController {
 
 	@RequestMapping("/map")
 	public String viewMap() {
-		return"map/map";
+		return "map/map";
 	}
 
 	@GetMapping(value = "/ajaxMap.do")
 	@ResponseBody
 	public JSONArray readDB(HttpServletRequest req, Model model) throws Exception {
 		HttpSession session = req.getSession();
-		
+
 		MemberDTO dto = (MemberDTO) session.getAttribute("loginUser");
 		service.readForMap(model, dto.getId());
-		
+
 		@SuppressWarnings("unchecked")
 		ArrayList<MapDTO> dataList = (ArrayList<MapDTO>) model.getAttribute("mapData");
 		SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
 		JSONArray jArray = new JSONArray();
-		
-		
-		for(MapDTO data : dataList) {
-			
+
+		String[] beforeWordsList = { "강원", "경기", "경남", "경북", "광주시", "광주", "대구", "대전", "부산", "서울", "울산", "인천", "전남",
+				"전북", "제주", "충남", "충북", "세종", "세종시" };
+
+		String[] AfterWordsList = { "강원도", "경기도", "경상남도", "경상북도", "광주시", "광주광역시", "대구광역시", "대전광역시", "부산광역시", "서울특별시",
+				"울산광역시", "인천광역시", "전라남도", "전라북도", "제주특별자치도", "충청남도", "충청북도", "세종특별자치시", "세종특별자치시" };
+
+		for (MapDTO data : dataList) {
+			boolean completeFlag1 = true, completeFlag2 = true, completeFlag3 = true;
+
+			for (int i = 0; i < beforeWordsList.length; i++) {
+				if (data.getLocation1().indexOf(beforeWordsList[i]) != -1 && completeFlag1) {
+
+					if (data.getLocation1().indexOf(AfterWordsList[i]) == -1) {
+						String replace1 = data.getLocation1().replace(beforeWordsList[i], AfterWordsList[i]);
+						data.setLocation1(replace1);
+
+					}
+					completeFlag1 = false;
+				}
+
+				if (data.getLocation2().indexOf(beforeWordsList[i]) != -1 && completeFlag2) {
+
+					if (data.getLocation2().indexOf(AfterWordsList[i]) == -1) {
+						String replace2 = data.getLocation2().replace(beforeWordsList[i], AfterWordsList[i]);
+						data.setLocation2(replace2);
+					}
+					completeFlag2 = false;
+				}
+
+				if (data.getLocation3().indexOf(beforeWordsList[i]) != -1 && completeFlag3) {
+
+					if (data.getLocation3().indexOf(AfterWordsList[i]) == -1) {
+						String replace3 = data.getLocation3().replace(beforeWordsList[i], AfterWordsList[i]);
+						data.setLocation3(replace3);
+					}
+					completeFlag3 = false;
+				}
+			}
+
 			JSONObject jsonObj = new JSONObject();
-			
+
 			jsonObj.put("num", data.getNum());
-			
 			jsonObj.put("title", data.getTitle());
-			
 			jsonObj.put("person", data.getPerson());
-			
-			String indateStr = simpleDate.format( data.getIndate() );
+
+			String indateStr = simpleDate.format(data.getIndate());
 			jsonObj.put("start", indateStr);
-			String outdateStr = simpleDate.format( data.getOutdate() );
+			String outdateStr = simpleDate.format(data.getOutdate());
 			jsonObj.put("end", outdateStr);
-			
+
 			jsonObj.put("id", data.getId());
-			
-			jsonObj.put("location1",data.getLocation1());
-			jsonObj.put("location2",data.getLocation2());
-			jsonObj.put("location3",data.getLocation3());
-			
-			jsonObj.put("image",data.getImage1());
-			
+
+			jsonObj.put("location1", data.getLocation1());
+			jsonObj.put("location2", data.getLocation2());
+			jsonObj.put("location3", data.getLocation3());
+
+			jsonObj.put("image", data.getImage1());
+
 			jArray.add(jsonObj);
 		}
-		
+
 		return jArray;
 	}
 }

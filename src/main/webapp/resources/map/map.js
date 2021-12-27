@@ -4,6 +4,7 @@ var mapOptions,
 	checkListLength = 0,
 	arrayLoaction = [];
 
+
 readDB();
 initMap();
 
@@ -29,7 +30,6 @@ function readDB() {
 //===============================================================
 
 function makeArrayLocation() {
-	console.log(checkList);
 	let j = 0;
 	for (let i = 0; i < checkListLength; i++) {
 		(checkList[i].location1 == null) ?
@@ -41,38 +41,69 @@ function makeArrayLocation() {
 		(checkList[i].location3 == null) ?
 			(arrayLoaction[j++] = 'no Location!!') : (arrayLoaction[j++] = checkList[i].location3);
 	}
-
-	console.log('arrayList : ' + arrayLoaction);
 }
+
+var markerArray = [],
+	polyLineArray = [];
 
 function makeMarker() {
 	for (let i = 0; i < arrayLoaction.length; i++) {
-		geocode(arrayLoaction[i]);
+
+		if (arrayLoaction[i] != 'no Location!!') {
+			naver.maps.Service.geocode({
+				address: arrayLoaction[i]
+			},
+
+				function(status, response) {
+					if (status !== naver.maps.Service.Status.OK) {
+						return alert('Something wrong!');
+					}
+
+					else {
+						var result = response.result, // 검색 결과의 컨테이너
+							items = result.items; // 검색 결과의 배열
+
+						var marker = new naver.maps.Marker({
+							position: new naver.maps.LatLng(items[0].point),
+							map: map
+						});
+						markerArray.push(items[0].point);
+					}
+				});
+		}
 	}
-}
+	
 
-function geocode(address) {
-	if (address != 'no Location!!') {
-		naver.maps.Service.geocode({
-			address: address
-		}, function(status, response) {
-			if (status !== naver.maps.Service.Status.OK) {
-				return alert('Something wrong!');
-			}
-
-			var result = response.result, // 검색 결과의 컨테이너
-				items = result.items; // 검색 결과의 배열
-			console.log(items);
-			console.log(items[0].point);
-			// do Something
-
-			var marker = new naver.maps.Marker({
-				position: new naver.maps.LatLng(items[0].point),
-				map: map
-			});
+	for (let j = 0; j < (markerArray.length) / 3; j++) {
+		for (let k = 0; k < 3; k++) {
+			polyLineArray.push(markerArray[j]);
+		}
+		
+		console.log(polyLineArray[0].y);
+		console.log(polyLineArray[0].x);
+		console.log(polyLineArray[1].y);
+		console.log(polyLineArray[1].x);
+		console.log(polyLineArray[2].y);
+		console.log(polyLineArray[2].x);
+		
+		var polyline = new naver.maps.Polyline({
+			map: map,
+			path: [
+				new naver.maps.LatLng(polyLineArray[0].y), (polyLineArray[0].x),
+				new naver.maps.LatLng(polyLineArray[1].y), (polyLineArray[1].x),
+				new naver.maps.LatLng(polyLineArray[2].y), (polyLineArray[2].x)
+			],
+			strokeColor: '#5347AA',
+			strokeWeight: 2,
 		});
 	}
 }
+
+
+/*console.log(cnt);
+if (cnt == 1) { var polyline1 = new naver.maps.Polyline({ map: map, path: polylineList, strokeColor: '#5347AA', strokeWeight: 2, }); }
+else if (cnt == 2) { var polyline2 = new naver.maps.Polyline({ map: map, path: polylineList, strokeColor: '#5347AA', strokeWeight: 2, }); }
+else { var polyline3 = new naver.maps.Polyline({ map: map, path: polylineList, strokeColor: '#5347AA', strokeWeight: 2, }); }*/
 
 
 //===============================================================
@@ -351,8 +382,13 @@ function startDataLayer(mapType) {
 			}
 
 			for (let i = 0; i < arrayLoaction.length; i++) { // 여행기록이 있는 지역 색칠
+
 				if (feature.getProperty('area3') != '') {
-					if (arrayLoaction[i].indexOf(feature.getProperty('area3')) != -1) {
+					if (arrayLoaction[i].indexOf(feature.getProperty('area3')) != -1
+						&& arrayLoaction[i].indexOf(feature.getProperty('area2')) != -1) {
+
+						console.log(arrayLoaction[i]);
+						console.log(feature.getProperty('area3'));
 						var styleOptions = {
 							fillColor: '#FF9090',
 							fillOpacity: 1,
@@ -364,7 +400,9 @@ function startDataLayer(mapType) {
 				}
 
 				else if (feature.getProperty('area2') != '') {
-					if (arrayLoaction[i].indexOf(feature.getProperty('area2')) != -1) {
+					if (arrayLoaction[i].indexOf(feature.getProperty('area2')) != -1
+						&& arrayLoaction[i].indexOf(feature.getProperty('area1')) != -1) {
+
 						var styleOptions = {
 							fillColor: '#FF9090',
 							fillOpacity: 1,
@@ -409,6 +447,7 @@ function startDataLayer(mapType) {
 
 	if (mapType === 3 || mapType === 4) {
 		makeMarker();
+		//drawPolyline();
 	}
 
 	//===============================================================
