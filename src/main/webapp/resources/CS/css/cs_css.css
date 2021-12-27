@@ -14,7 +14,7 @@
 	.bn4{background-color: #DEF4F9 ; font-size: 15px; color:black; border-radius: 5px; border-color: #DEF4F9; font-family: Georgia; margin-bottom:70px;}
 	
 	.ch2{background-color: white; width :250px; height:25px; border-radius: 5px; border-color: #DEF4F9;}
-	.cha3{background-color: white; width :1000px; height:30px; border-radius: 5px; border-color: #DEF4F9;}
+	.cha3{background-color: white; width :1000px; height:30px; border-radius: 5px; border-color: #F6F6F6;font-family: HCR Batang; font-weight: bold;}
 	.chb2{background-color: white; width :1000px; height:350px; border-radius: 5px; border-color: #DEF4F9;}
 	
 	.bh2{ font-family: Georgia; font-size:24px; }
@@ -25,20 +25,20 @@
 	.eh3{margin-right: 100px;}
 	
 	
-	.c1{ margin:auto; height: 650px;  background-color: #DEF4F9;}
+	.c1{  background-color: #F6F6F6;}
 	.c2{ padding: 0 450px;}
 	.c3{ margin-right: 150px;}
 	
 	.cn1{font-size: 20px; border-radius: 5px; border-color:white; background-color: black;}
 	.cn2{ width:120px; height:30px; }
 	.cn3{display: flex; justify-content: center;}
-	.cn4{background-color: #DEF4F9 ; font-size: 15px; color:black; border-radius: 5px; border-color: #DEF4F9; font-family: Georgia; margin-bottom:70px;}
+	.cn4{background-color: #F6F6F6 ; font-weight:bold; font-size: 15px; border-radius: 5px; border-color: #F6F6F6; font-family: HCR Batang; margin-bottom:70px;}
 	
 	
 	.chb3{background-color: white; width :1200px; height:450px; border-radius: 5px; border-color: #DEF4F9;}
 	
 	.bh3{ font-family: Georgia; font-size:24px; text-align: center;}
-	.rb{height: 30px;}
+	.rb{height: 15px;}
 	
 
 	.in1{ margin:auto; height: 850px;  background-color: #DEF4F9;}
@@ -71,8 +71,8 @@
 		font-size: 20px !important;
 	}
 	.title-input {
-		height: 25px !important;
-		width: 60%;
+		height: 20px !important;
+		width: 50%;
 	}
 	.write-title {
 		width: 15%;
@@ -84,8 +84,8 @@
 	padding: 0 0;
 	}
 	.notice-wrap {
-		height:auto;
-		padding: 18px 0;
+		height:650px;
+		
 	}
 	.mb-none {
 		margin-bottom: 0;
@@ -94,9 +94,7 @@
 		margin-top: 15px;
 	}
 	.notice-btn {
-		font-size: 17px !important;
-		font-weight: bolder;
-		height: 35px;
+
 		width: 100px;
 	}
 	.notice-box {

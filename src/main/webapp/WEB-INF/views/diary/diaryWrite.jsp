@@ -26,9 +26,9 @@
 		<input type="button" value="Search" onclick="mailnum()" class="sub">
 		<input type="button" value="Save" onclick="save()" class="sub">
 		<input type="button" value="Cancle" onclick="cancle()" class="sub">
-		<input type="hidden" name="place1" id="place1">
-		<input type="hidden" name="place2" id="place2">
-		<input type="hidden" name="place3" id="place3">
+		<input type="hidden" name="place1" id="place1" value="">
+		<input type="hidden" name="place2" id="place2" value="">
+		<input type="hidden" name="place3" id="place3" value="">
 		</div>
 	</div>
 	<div class="div2">

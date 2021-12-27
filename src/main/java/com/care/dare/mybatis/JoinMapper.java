@@ -11,5 +11,5 @@ public interface JoinMapper {
 	public ArrayList<MemberDTO>memberList();
 	public MemberDTO myHome(String id);
 	public int myUpdate(MemberDTO dto);
-	
+	public int accountDelete(String id);
 }

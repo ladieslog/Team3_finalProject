@@ -44,12 +44,16 @@ public class DiaryController {
         PrintWriter out = resp.getWriter(); // 화면 출력용 객체
 		HttpSession session = req.getSession();
 		System.out.println(session.getAttribute("loginUser"));
+		String search = req.getParameter("search");
+		if(search == null) {
+			search = "";
+		}
 		if(session.getAttribute("loginUser")==null) {
 			return "redirect:error";
 		}else {
 			MemberDTO dto1 = (MemberDTO)session.getAttribute("loginUser");
 		int pageSize = 0;
-		int diaryCount = ds.diaryCount(dto1.getId());
+		int diaryCount = ds.diaryCount(dto1.getId(),search);
 		model.addAttribute("diaryCount", diaryCount);
 		String currentPage = req.getParameter("currentPage");
 		if(req.getParameter("currentPage") == null) {
@@ -70,7 +74,9 @@ public class DiaryController {
 			startRow = (pageNum - 1) * pageSize;
 			endRow = pageNum * pageSize - 1;
 		}
-		ArrayList<DiaryDTO> arr = ds.diaryBoard(startRow, endRow, dto1.getId());
+		
+		System.out.println(search);;
+		ArrayList<DiaryDTO> arr = ds.diaryBoard(startRow, endRow, dto1.getId(),search);
 		SimpleDateFormat sim = new SimpleDateFormat("yyyy-MM-dd");
 		int count = 0;
 		if(pageNum == 1) {
@@ -100,6 +106,7 @@ public class DiaryController {
 		model.addAttribute("diaryList", arr);
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("pageSize", pageSize);
+		model.addAttribute("search", search);
 		}
 		return "diary/diaryBoard";
 	}

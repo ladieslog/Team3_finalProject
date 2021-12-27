@@ -63,7 +63,7 @@
 		}
 	</script>
 	<script
-		src="<%=request.getContextPath()%>/resources/CS/script/notice_js.js"></script>
+		src="<%=request.getContextPath()%>/resources/CS/script/notice_js.js?ver=3"></script>
 	
 </body>
 </html>
