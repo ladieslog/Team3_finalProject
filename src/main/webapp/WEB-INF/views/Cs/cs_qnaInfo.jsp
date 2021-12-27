@@ -52,17 +52,9 @@
 </style>
 </head>
 <%
-	QnaDTO dto = (QnaDTO) request.getAttribute("qnaInfo"); // 해당 게시글 데이터
+	QnaDTO dto = (QnaDTO) request.getAttribute("qna"); // 해당 게시글 데이터
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm"); // 시간 형식 포맷
-	if(dto == null) {
-	%>
-	<script>
-		alert("잘못된 접근입니다.");
-		location.href = "csMain";
-	</script>
-	<%
-	} else{
-	%>
+%>
 <body style="overflow-x: hidden;">
 	<jsp:include page="../default/header.jsp"/>
 	
@@ -71,7 +63,18 @@
 			<div class="notice-view-title">
 				<div style="margin-top: 0;"><%=dto.getNum() %> | <%=dto.getQuestionTitle() %></div>
 				<div>
-					관리자 | <%=sdf.format(dto.getQuestionTime()) %> | <%=dto.getQuestionId() %>
+					관리자 | <%=sdf.format(dto.getQuestionTime()) %> | 
+					<%
+						if(dto.getStatus().equals("0")) {
+					%>
+					답변 대기
+					<%
+						} else {
+					%>
+					답변 완료
+					<%
+						}
+					%>
 				</div>
 			</div>
 			<div class="notice-view-content">
@@ -79,11 +82,11 @@
 			</div>
 			<div class="notice-view-bottom" align="right">
 				<button type="button" class="wd-85" onclick="listPage();">목록으로</button>
-				<form action="noticeModifyForm" method="post" id="noticeModifyForm">
+				<form action="qnaModifyForm" method="post" id="qnaModifyForm">
 					<button type="button" class="wd-60" onclick="modifyPage();">수정</button>
 					<input type="hidden" name="num" value="<%=dto.getNum() %>"/>
 				</form>
-				<form action="noticeDelete" method="post" id="noticeDelete">
+				<form action="qnaDelete" method="post" id="qnaDelete">
 					<button type="button" class="wd-60" onclick="deletePage();">삭제</button>
 					<input type="hidden" name="num" value="<%=dto.getNum() %>"/>
 				</form>
@@ -109,8 +112,5 @@
 </script>
 </body>
 	
-	<%
-	}
-%>
 
 </html>

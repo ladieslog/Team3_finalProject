@@ -11,8 +11,21 @@ public class QnaDTO {
 	String answerContent;
 	Timestamp answerTime;
 	String status;
+	String questionTimeStr;
+	String answerTimeStr;
 	
-	
+	public String getQuestionTimeStr() {
+		return questionTimeStr;
+	}
+	public void setQuestionTimeStr(String questionTimeStr) {
+		this.questionTimeStr = questionTimeStr;
+	}
+	public String getAnswerTimeStr() {
+		return answerTimeStr;
+	}
+	public void setAnswerTimeStr(String answerTimeStr) {
+		this.answerTimeStr = answerTimeStr;
+	}
 	public int getNum() {
 		return num;
 	}

@@ -1,3 +1,4 @@
+<%@page import="com.care.dare.join.controller.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -14,6 +15,10 @@
 </head>
 <body>
 <div>
+<%
+	MemberDTO dto = (MemberDTO) session.getAttribute("loginUser");
+
+%>
 	<jsp:include page="../default/header.jsp"/>
 	<div class="b1">
 		<div class="b2">
@@ -22,18 +27,11 @@
 				 <form action="qnaWrite" method="post" id="form">
 				<table class="bn3">
 				<tr>
-					<td class="wb"colspan="2"> <b class="bh2">Q&A class &nbsp;</b> </td>
-					<td class="wb"colspan="1"> <input type="text" id="cla" class="ch2"></td>
-					<td class="ws"colspan="1"> </td>
-					<td class="wb"colspan="2"> <b class="bh2">&nbsp; writer &nbsp;</b></td>
-					<td class="wb"colspan="1"> <input type="text" id="writer" name="writer" class="ch2"></td>
-				</tr>
-				<tr>
-					<td class="wb"colspan="2"> <b class="bh2">Q&A title &nbsp;</b>  </td>
+					<td class="wb"colspan="2"> <b class="bh2">Q&A title &nbsp;</b></td>
 					<td class="wb"colspan="1"> <input type="text" id="title" name="title" class="ch2"></td>
 					<td class="ws"colspan="1"> </td>
-					<td class="wb"colspan="2">	</td>
-					<td class="wb"colspan="1"> </td>
+					<td class="wb"colspan="2"> <b class="bh2">&nbsp; writer &nbsp;</b></td>
+					<td class="wb"colspan="1"> <input type="text" id="writer" name="writer" class="ch2" value="<%=dto.getId()%>" readonly></td>
 				</tr>
 			
 				<tr>

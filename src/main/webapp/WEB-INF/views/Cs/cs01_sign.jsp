@@ -14,11 +14,11 @@
 <meta charset="UTF-8">
 <title>고객센터</title>
 <link rel="stylesheet"
-	href="${contextPath }/resources/CS/css/cs_css.css?ver=1">
+	href="${contextPath }/resources/CS/css/cs_css.css?ver=4">
 </head>
 <%
 List<NoticeDTO> list = (List<NoticeDTO>) request.getAttribute("list"); // notice 리스트
-ArrayList<QnaDTO> list2 =(ArrayList<QnaDTO>) request.getAttribute("list2");
+List<QnaDTO> list2 =(List<QnaDTO>) request.getAttribute("list2");
 
 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm"); // 시간 형식 포맷
 int currentPage = (Integer) request.getAttribute("currentPage"); // 현재 페이지
@@ -32,8 +32,8 @@ if(endPage > pageCount) {
 	endPage = pageCount; // 총 페이지가 페이지 블럭의 마지막 페이지 보다 작다면 마지막 페이지에 전체 페이지의 값 대입
 }
 
-int currentPage2 = (Integer) request.getAttribute("currentPage"); // 현재 페이지
-int count2 = (Integer) request.getAttribute("count"); // 총 게시글 수
+int currentPage2 = (Integer) request.getAttribute("currentPage2"); // 현재 페이지
+int count2 = (Integer) request.getAttribute("count2"); // 총 게시글 수
 int pageCount2 = count2 / 10 + (count2 %10 == 0 ? 0 : 1); // 총 페이지수
 int pageBlock2 = 10; // 페이지 묶음
 int startPage2 = ((currentPage2-1)/pageBlock2)*pageBlock2+1; // 페이지 시작 번호
@@ -66,7 +66,7 @@ if(endPage2 > pageCount2) {
 								<th style="width: 8%;">조회수</th>
 							</tr>
 							<%
-							if (list == null) { // 리스트가 없다면 게시글이 0개임
+							if (list.isEmpty()) { // 리스트가 없다면 게시글이 0개임
 							%>
 							<tr>
 								<td colspan="4">작성된 공지사항이 없습니다.</td>
@@ -123,7 +123,7 @@ if(endPage2 > pageCount2) {
 						<div id="id1">
 					<div class="notice-box">
 					
-						<table border="1" bordercolor="white" class="notice-table" id="notice-table">
+						<table border="1" bordercolor="white" class="notice-table" id="qna-table">
 							<tr>
 								<td style="width: 8%;">글번호</td>
 								<td style="width: 8%;">아이디</td>
@@ -135,7 +135,7 @@ if(endPage2 > pageCount2) {
 							if (list2.isEmpty()) { // 리스트가 없다면 게시글이 0개임
 							%>
 							<tr>
-								<td colspan="4">작성된 공지사항이 없습니다.</td>
+								<td colspan="5">작성된 공지사항이 없습니다.</td>
 							</tr>
 							<%
 							} else {
@@ -143,18 +143,18 @@ if(endPage2 > pageCount2) {
 							%>
 							<tr>
 								<td style="width: 8%;"><%=list2.get(j).getNum() %></td>
-								<td style="width: 8%;" ><a href="qnaInfo?num=<%=list2.get(j).getNum()%>"><%= list2.get(j).getQuestionId() %></a></td>
+								<td style="width: 8%;" ><%= list2.get(j).getQuestionId() %></td>
 								<td style="width: 54%;"><a href="qnaInfo?num=<%=list2.get(j).getNum()%>"><%=list2.get(j).getQuestionTitle() %></a></td>
 								<td style="width: 22%;"><%=sdf.format(list2.get(j).getQuestionTime()) %></td>
-								<td style="width: 8%;"><a href="qnaInfo?num=<%=list2.get(j).getNum()%>"><%=list2.get(j).getStatus() %></td>
+								<td style="width: 8%;"><%=list2.get(j).getStatus() %></td>
 							</tr>
 							<% 
 							}
 
 							}
 							%>
-							<tr style="display: revert">
-								<td colspan="4" align="center">
+							<tr style="display: revert" class="table-last-tr">
+								<td colspan="5" align="center">
 								<%
 								if(startPage2 > pageBlock2) {
 								%>
@@ -164,7 +164,7 @@ if(endPage2 > pageCount2) {
 								
 								for(int j=startPage2; j <= endPage2; j++) {
 								%>
-								<span class="page-block" id="<%=j %>" onclick="pageSet(this);">[<%=j %>]</span> <!-- 현 페이지 묶음의 시작번호부터 끝번호 까지 출력 -->
+								<span class="page-block" id="<%=j %>" onclick="pageSet2(this);">[<%=j %>]</span> <!-- 현 페이지 묶음의 시작번호부터 끝번호 까지 출력 -->
 								<%
 								}
 								
@@ -185,7 +185,7 @@ if(endPage2 > pageCount2) {
 		</div>
 
 
-		<!--<jsp:include page="../Cs/cs_back.jsp"/>-->
+		
 		
 	</div>
 	<jsp:include page="../default/footer.jsp" />
@@ -264,7 +264,7 @@ if(endPage2 > pageCount2) {
 		var form2 = {currentPage2:Num2}; // form에 num 추가
 		
 		for(var j=0; j<=listSize2; j++) { // 페이지 이동시 리스트를 새로 가져오므로 기존에 있던 게시글 리스트들을 삭제함
-			document.getElementById("notice-table").deleteRow(1);
+			document.getElementById("qna-table").deleteRow(1);
 		}
 		$.ajax({
 			url : "pageSet",
@@ -298,7 +298,7 @@ if(endPage2 > pageCount2) {
 				}
 				%>
 				html += "</td></tr>";
-				$("#notice-table").append(html); //새로 추가한 html태그들을 테이블에 적용
+				$("#qna-table").append(html); //새로 추가한 html태그들을 테이블에 적용
 				listSize2 = list2.length; // list사이즈를 새로 가져온 리스트 사이즈로 변경
 			}, error : function() {
 				alert("문제 발생");

@@ -21,11 +21,19 @@
  		INSERT INTO QUESTION_BOARD VALUES(customer_service_seq.nextval,#{questionTitle},#{questionContent},#{questionId},
  		SYSDATE,NULL,NULL,'0')
  	</insert>
+ 	<select id="qnaBoard" resultMap="qna">
+		select B.* from(select rownum rn, A.* from
+        (select * from QUESTION_BOARD order by num desc)A)B where rn between #{s} and #{e}
+	</select>
+	<select id="userQnaBoard" resultMap="qna">
+		select B.* from(select rownum rn, A.* from
+        (select * from QUESTION_BOARD where QUESTION_ID=#{id} order by num desc)A)B where rn between #{s} and #{e}
+	</select>
  	<select id="qnaCount" resultType="Integer">
- 		select count(*) from qna
+ 		select count(*) from QUESTION_BOARD
  	</select>
  	<select id="qnaInfo" resultMap="qna">
- 		select * from qna where NUM=#{NUM}
+ 		select * from QUESTION_BOARD where NUM=#{NUM}
  	</select>
  	<delete id ="qnaDelete">
  		delete from qna where NUM =#{NUM}

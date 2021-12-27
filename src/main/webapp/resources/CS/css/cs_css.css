@@ -121,6 +121,12 @@
 		text-decoration: none;
 		color: black;
 	}
+	.table-last-tr {
+		border-bottom: none !important;
+	}
+	.table-last-tr>td {
+		border-bottom: none !important;
+	}
 	
 
 	

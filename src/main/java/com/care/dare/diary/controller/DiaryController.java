@@ -1,6 +1,6 @@
 package com.care.dare.diary.controller;
 
-/*import java.io.DataOutputStream;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -185,5 +185,5 @@ public class DiaryController {
 		String result = json.toString();
 		return result;
 	}
-}*/
+}
 

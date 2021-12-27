@@ -22,6 +22,7 @@ import com.care.dare.CS.DTO.NoticeDTO;
 import com.care.dare.CS.DTO.QnaDTO;
 import com.care.dare.CS.Service.CSService;
 import com.care.dare.CS.Service.CSService2;
+import com.care.dare.join.controller.MemberDTO;
 
 @Controller
 public class CSController {
@@ -36,13 +37,28 @@ public class CSController {
 		HttpSession session = req.getSession();
 		String noticePageNumber = (String) session.getAttribute("noticePageNumber"); // noticePageNumber 세션값을 받아옴 페이지 번호가 들어있음
 		int noticeCurrentPage = 0;
+		
+		MemberDTO dto = (MemberDTO) session.getAttribute("loginUser");
+		if(dto == null) {
+			return "redirect:error";
+		}
+		
 		if(noticePageNumber == null) {
 			noticeCurrentPage = 1; // 만약 noticePageNumber 세션값이 없다면 현재 페이지를 1페이지로 설정
 		} else {
 			noticeCurrentPage = Integer.parseInt(noticePageNumber); // noticePageNumber 페이지 번호를 int로 변경
 		}
+		
+		String qnaPageNumber = (String) session.getAttribute("qnaPageNumber"); // noticePageNumber 세션값을 받아옴 페이지 번호가 들어있음
+		int qnaCurrentPage = 0;
+		if(qnaPageNumber == null) {
+			qnaCurrentPage = 1; // 만약 noticePageNumber 세션값이 없다면 현재 페이지를 1페이지로 설정
+		} else {
+			qnaCurrentPage = Integer.parseInt(qnaPageNumber); // noticePageNumber 페이지 번호를 int로 변경
+		}
+		
 		service.csMain(model, noticeCurrentPage);
-		service2.QnaList(model);
+		service2.QnaList(model, qnaCurrentPage, dto);
 		return "Cs/cs01_sign";
 	}
 	
@@ -127,6 +143,12 @@ public class CSController {
 	public String noticeInfo(HttpServletRequest req, Model model, HttpServletResponse resp) throws IOException {
 		resp.setContentType("text/html; charset=utf-8"); // 응답 설정 변경
 		PrintWriter out = resp.getWriter(); // 화면 출력용 객체
+		HttpSession session = req.getSession();
+		MemberDTO dto = (MemberDTO) session.getAttribute("loginUser");
+		if(dto == null) {
+			return "error/loginError";
+		}
+		
 		String parameterNum = req.getParameter("num"); // 게시글 번호를 받아옴
 		if(parameterNum == null) { // 게시글 번호가 없다면 잘못된 접근임
 			out.print("<script> alert('잘못된 접근입니다.');"
@@ -137,20 +159,31 @@ public class CSController {
 		return "Cs/cs_noticeInfo";
 	}
 	
-	/*
+	
 	@RequestMapping(value = "qnaInfo")
 	public String qnaInfo(HttpServletRequest req, Model model, HttpServletResponse resp) throws IOException {
 		resp.setContentType("text/html; charset=utf-8"); // 응답 설정 변경
 		PrintWriter out = resp.getWriter(); // 화면 출력용 객체
+		HttpSession session = req.getSession();
+		MemberDTO userDto = (MemberDTO) session.getAttribute("loginUser");
+		if(userDto == null) {
+			return "error/loginError";
+		}
 		String parameterNum = req.getParameter("num"); // 게시글 번호를 받아옴
 		if(parameterNum == null) { // 게시글 번호가 없다면 잘못된 접근임
-			out.print("<script> alert('잘못된 접근입니다.');"
-					+"location.href='csMain'; </script>");
+			return "error/accessError";
 		}
 		int num = Integer.parseInt(parameterNum); // 게시글 번호를 int로 변경
-		service.qnaInfo(model, num);
+		QnaDTO dto = service2.qnaInfo(num);
+		if(dto == null) {
+			return "error/accessError";
+		}
+		if(!(dto.getQuestionId().equals(userDto.getId()))) {
+			return "error/accessError";
+		}
+		model.addAttribute("qna", dto);
 		return "Cs/cs_qnaInfo";
-	}*/
+	}
 	
 	
 	
