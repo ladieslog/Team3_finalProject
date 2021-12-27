@@ -1,4 +1,5 @@
 
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.care.dare.CS.DTO.QnaDTO"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.care.dare.CS.DTO.NoticeDTO"%>
@@ -17,7 +18,8 @@
 </head>
 <%
 List<NoticeDTO> list = (List<NoticeDTO>) request.getAttribute("list"); // notice 리스트
-List<QnaDTO> list2 = (List<QnaDTO>) request.getAttribute("list"); // notice 리스트
+ArrayList<QnaDTO> list2 =(ArrayList<QnaDTO>) request.getAttribute("list2");
+
 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm"); // 시간 형식 포맷
 int currentPage = (Integer) request.getAttribute("currentPage"); // 현재 페이지
 int count = (Integer) request.getAttribute("count"); // 총 게시글 수
@@ -51,6 +53,7 @@ if(endPage2 > pageCount2) {
 	<div>
 				<div style="align-items: center; display: flex; justify-content: center; height: 60px;">
 					<br> <span><b style="font-size: 30px; ">Notice</b></span>
+					<button type="button" class="cn4 mb-none notice-btn" onclick="location.href='notice'">추가하기</button>
 
 				</div>
 				<div id="id1">
@@ -114,10 +117,12 @@ if(endPage2 > pageCount2) {
 				<div style="align-items: center; display: flex; justify-content: center; height: 60px;">
 					<br> <span>
 					<b style="font-size: 30px;">Q & A</b></span>
+					<button type="button" class="cn4 mb-none notice-btn" onclick="location.href='qna'">추가하기</button>
 				</div>
 					</div>
 						<div id="id1">
 					<div class="notice-box">
+					
 						<table border="1" bordercolor="white" class="notice-table" id="notice-table">
 							<tr>
 								<td style="width: 8%;">글번호</td>
@@ -127,7 +132,7 @@ if(endPage2 > pageCount2) {
 								<td style="width: 8%;">답변확인</td>
 							</tr>
 							<%
-							if (list == null) { // 리스트가 없다면 게시글이 0개임
+							if (list2.isEmpty()) { // 리스트가 없다면 게시글이 0개임
 							%>
 							<tr>
 								<td colspan="4">작성된 공지사항이 없습니다.</td>
@@ -138,10 +143,10 @@ if(endPage2 > pageCount2) {
 							%>
 							<tr>
 								<td style="width: 8%;"><%=list2.get(j).getNum() %></td>
-								<td style="width: 8%;" ><a href="noticeInfo?num=<%=list2.get(j).getNum()%>"><%= list2.get(j).getQuestionId() %></a></td>
-								<td style="width: 54%;"><a href="noticeInfo?num=<%=list2.get(j).getNum()%>"><%=list2.get(j).getQuestionTitle() %></a></td>
+								<td style="width: 8%;" ><a href="qnaInfo?num=<%=list2.get(j).getNum()%>"><%= list2.get(j).getQuestionId() %></a></td>
+								<td style="width: 54%;"><a href="qnaInfo?num=<%=list2.get(j).getNum()%>"><%=list2.get(j).getQuestionTitle() %></a></td>
 								<td style="width: 22%;"><%=sdf.format(list2.get(j).getQuestionTime()) %></td>
-								<td style="width: 8%;"><a href="noticeInfo?num=<%=list2.get(j).getNum()%>"><%=list2.get(j).getStatus() %></td>
+								<td style="width: 8%;"><a href="qnaInfo?num=<%=list2.get(j).getNum()%>"><%=list2.get(j).getStatus() %></td>
 							</tr>
 							<% 
 							}
@@ -172,17 +177,18 @@ if(endPage2 > pageCount2) {
 								</td>
 							</tr>
 						</table>
-
+			 
 
 				<div class="in3"></div>
 			</div>
-</div>
+			</div>
 		</div>
 
 
 		<!--<jsp:include page="../Cs/cs_back.jsp"/>-->
-		<jsp:include page="../default/footer.jsp" />
+		
 	</div>
+	<jsp:include page="../default/footer.jsp" />
 
 <script src="${contextPath }/resources/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
@@ -249,7 +255,8 @@ if(endPage2 > pageCount2) {
 	var test2 = <%=endPage2%> // 페이지 묶음의 마지막 페이지 값
 	var listSize2 = <%=list2.size() %> // list 사이즈
 	
-	// 페이지 이동은 ajax로 처리함
+	// 페이지 이동은 ajax로 처리
+	
 	function pageSet2(data2) {
 		var test2 = data2.id;
 		
@@ -298,6 +305,7 @@ if(endPage2 > pageCount2) {
 			}
 		});
 	}
+	
 	
 </script>
 

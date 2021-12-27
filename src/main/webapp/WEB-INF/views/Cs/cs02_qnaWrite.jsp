@@ -19,48 +19,57 @@
 		<div class="b2">
 			<br>			
 				<br>
-			 
+				 <form action="qnaWrite" method="post" id="form">
 				<table class="bn3">
 				<tr>
 					<td class="wb"colspan="2"> <b class="bh2">Q&A class &nbsp;</b> </td>
-					<td class="wb"colspan="1"> <input type="text" name="" class="ch2"></td>
+					<td class="wb"colspan="1"> <input type="text" id="cla" class="ch2"></td>
 					<td class="ws"colspan="1"> </td>
 					<td class="wb"colspan="2"> <b class="bh2">&nbsp; writer &nbsp;</b></td>
-					<td class="wb"colspan="1"> <input type="text" name="" class="ch2"></td>
+					<td class="wb"colspan="1"> <input type="text" id="writer" name="writer" class="ch2"></td>
 				</tr>
 				<tr>
 					<td class="wb"colspan="2"> <b class="bh2">Q&A title &nbsp;</b>  </td>
-					<td class="wb"colspan="1"> <input type="text" name="" class="ch2"></td>
+					<td class="wb"colspan="1"> <input type="text" id="title" name="title" class="ch2"></td>
 					<td class="ws"colspan="1"> </td>
-					<td class="wb"colspan="2"><b class="bh2">&nbsp; write date &nbsp;</b> </td>
-					<td class="wb"colspan="1"> <input type="text" name="" class="ch2"></td>
+					<td class="wb"colspan="2">	</td>
+					<td class="wb"colspan="1"> </td>
 				</tr>
-				<tr class ="hb"></tr>
 			
 				<tr>
-					<td colspan="2"><b class="bh2">Q&A content &nbsp;</b> </td>
+					<td colspan="2" class="hb"><b class="bh2">Q&A content &nbsp;</b> </td>
 				</tr>
 				<tr> 
 					<td colspan="15">
-						<input type="text" name="" class="chb2">
+						<textarea name="content" class="chb2" id="editor"></textarea>
 					</td>
 				</tr>
 					
 		</table>	
+		</form>
 			<div class="eh1">
-				<input type="button" value="view list" class="bn4">
-				<input type="submit" value="commit" class="bn4">
+				<input type="button" value="작성"
+								class="cn4 mb-none mt-15 notice-btn" style="margin-right: 20px;" onclick="writeCheck();">
+				<button type="button" class="cn4 mb-none notice-btn" onclick="location.href='csMain'">돌아가기</button>
 			</div>
 		</div>
-
 	</div>
-	
-
-	<jsp:include page="../Cs/cs_back.jsp"/>
 	<jsp:include page="../default/footer.jsp"/>
 </div>
 	
-	
+		<script
+		src="<%=request.getContextPath()%>/resources/ckeditor/ckeditor.js"></script>
+	<script>
+	// ckEditor를 textarea태그에 적용 및 사이즈 조절
+		window.onload = function() {
+			ck = CKEDITOR.replace("editor", {
+				height : 250,
+				width : 1000
+			});
+		}
+	</script>
+	<script
+		src="<%=request.getContextPath()%>/resources/CS/script/notice_js.js"></script>
 	
 
 

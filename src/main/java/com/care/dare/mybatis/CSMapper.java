@@ -14,3 +14,4 @@ public interface CSMapper {
 	public int noticeDelete(int num);
 	public int noticeModify(NoticeDTO dto);
 }
+

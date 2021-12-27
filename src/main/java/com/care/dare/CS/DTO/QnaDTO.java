@@ -8,7 +8,7 @@ public class QnaDTO {
 	String questionContent;
 	String questionId;
 	Timestamp questionTime;
-	String AnswerContent;
+	String answerContent;
 	Timestamp answerTime;
 	String status;
 	
@@ -46,10 +46,10 @@ public class QnaDTO {
 		this.questionContent = questionContent;
 	}
 	public String getAnswerContent() {
-		return AnswerContent;
+		return answerContent;
 	}
 	public void setAnswerContent(String answerContent) {
-		AnswerContent = answerContent;
+		this.answerContent = answerContent;
 	}
 	public Timestamp getAnswerTime() {
 		return answerTime;

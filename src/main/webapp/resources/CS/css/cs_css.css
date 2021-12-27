@@ -19,7 +19,7 @@
 	
 	.bh2{ font-family: Georgia; font-size:24px; }
 	.ws{width: 90px;}
-	.hb {height: 50px;}	
+	.hb {float:center;}	
 	.eh1{float:right;}
 	.eh2{float: left;}
 	.eh3{margin-right: 100px;}

@@ -21,19 +21,13 @@
 				<br>
 			 
 				<table class="bn3">
-				<tr>
-					<td class="wb"colspan="2"> <b class="bh2">Q&A class &nbsp;</b> </td>
-					<td class="wb"colspan="1"> <input type="text" name="" class="ch2"></td>
-					<td class="ws"colspan="1"> </td>
-					<td class="wb"colspan="2"> <b class="bh2">&nbsp; writer &nbsp;</b></td>
-					<td class="wb"colspan="1"> <input type="text" name="" class="ch2"></td>
-				</tr>
+
 				<tr>
 					<td class="wb"colspan="2"> <b class="bh2">Q&A title &nbsp;</b>  </td>
 					<td class="wb"colspan="1"> <input type="text" name="" class="ch2"></td>
 					<td class="ws"colspan="1"> </td>
-					<td class="wb"colspan="2"><b class="bh2">&nbsp; write date &nbsp;</b> </td>
-					<td class="wb"colspan="1"> <input type="text" name="" class="ch2"></td>
+					<td class="wb"colspan="2"> </td>
+					<td class="wb"colspan="1"></td>
 				</tr>
 				<tr class ="hb"></tr>
 			
@@ -49,14 +43,12 @@
 		</table>	
 			<div class="eh1">
 				<input type="button" value="view list" class="bn4">
-				<input type="submit" value="commit" class="bn4">
+				<input type="submit" value="작성하기" class="bn4">
 			</div>
 		</div>
 
 	</div>
 	
-
-	<jsp:include page="../Cs/cs_back.jsp"/>
 	<jsp:include page="../default/footer.jsp"/>
 </div>
 	

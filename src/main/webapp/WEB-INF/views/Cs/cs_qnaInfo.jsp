@@ -1,3 +1,4 @@
+<%@page import="com.care.dare.CS.DTO.QnaDTO"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.care.dare.CS.DTO.NoticeDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -51,7 +52,7 @@
 </style>
 </head>
 <%
-	NoticeDTO dto = (NoticeDTO) request.getAttribute("noticeInfo"); // 해당 게시글 데이터
+	QnaDTO dto = (QnaDTO) request.getAttribute("qnaInfo"); // 해당 게시글 데이터
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm"); // 시간 형식 포맷
 	if(dto == null) {
 	%>
@@ -68,13 +69,13 @@
 	<div class="notice-view-wrap">
 		<div>
 			<div class="notice-view-title">
-				<div style="margin-top: 0;"><%=dto.getNum() %> | <%=dto.getTitle() %></div>
+				<div style="margin-top: 0;"><%=dto.getNum() %> | <%=dto.getQuestionTitle() %></div>
 				<div>
-					관리자 | <%=sdf.format(dto.getTime()) %> | <%=dto.getHit() %>
+					관리자 | <%=sdf.format(dto.getQuestionTime()) %> | <%=dto.getQuestionId() %>
 				</div>
 			</div>
 			<div class="notice-view-content">
-			<%=dto.getContent() %>
+			<%=dto.getQuestionContent() %>
 			</div>
 			<div class="notice-view-bottom" align="right">
 				<button type="button" class="wd-85" onclick="listPage();">목록으로</button>
@@ -102,7 +103,7 @@
 	}
 	function deletePage() {
 		if(confirm("정말 게시글을 삭제하시겠습니까?")) {
-			document.getElementById("noticeDelete").submit();
+			document.getElementById("qnaDelete").submit();
 		}
 	}
 </script>
