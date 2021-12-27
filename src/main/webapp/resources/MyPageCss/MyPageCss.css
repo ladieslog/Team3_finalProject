@@ -56,16 +56,19 @@
 		display: none;
 		background-color: #fff;
 		width: 500px;
-   		height: 300px;
+   		height: 250px;
+   		border-radius: 6px;
 	}
 	.cursor {
 		cursor:pointer;
 	}
 	#email-model-delete {
-		width: 30px;
+		width: 20px;
+		height: 20px;
 	}
 	.email-model-delete-box {
 		display: flex;
-    	justify-content: end;
+    	justify-content: space-between;
+    	align-items: center;
 	}
 	
