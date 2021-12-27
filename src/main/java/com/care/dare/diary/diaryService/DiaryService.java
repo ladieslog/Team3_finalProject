@@ -147,14 +147,7 @@ public class DiaryService {
 	}
 
 	
-<<<<<<< HEAD
-	public int diaryCount(String id) {
-		return mapper.diaryCount(id);
-	}
 
-
-=======
->>>>>>> 8c17a47c496c6a54cf17bd96e044a59943529062
 	public void diaryView(Model model, int num) throws Exception {
 		DiaryDTO dto = mapper.diaryView(num);
 		SimpleDateFormat sim = new SimpleDateFormat("yyyy-MM-dd");

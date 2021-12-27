@@ -10,7 +10,7 @@
 <script src="${contextPath }/resources/jquery-3.6.0.min.js"></script> <!-- 제이 쿼리 -->
 <script src="${contextPath }/resources/bootstrap.js"></script> <!-- 부트스트랩 (미사용) -->
 <link rel="stylesheet"
-	href="${contextPath }/resources/CS/css/cs_css.css">
+	href="${contextPath }/resources/CS/css/cs_css.css?ver=2">
 </head>
 <body>
 	<div>

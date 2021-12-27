@@ -76,7 +76,7 @@ public class CSController {
 					+"location.href='csMain'; </script>");
 		}
 	}
-	/*
+	
 	@RequestMapping(value = "qnaWrite", method = RequestMethod.POST)
 	public void qnaWrite(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		int result = service2.QnaWrite(req);
@@ -90,7 +90,7 @@ public class CSController {
 			out.print("<script> alert('질문 작성이 완료되었습니다.');"
 					+"location.href='csMain'; </script>");
 		}
-	}*/
+	}
 	
 	
 	

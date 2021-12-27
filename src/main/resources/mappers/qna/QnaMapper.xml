@@ -22,10 +22,10 @@
  		SYSDATE,NULL,NULL,'0')
  	</insert>
  	<select id="qnaCount" resultType="Integer">
- 		select count(*) from notice 
+ 		select count(*) from qna
  	</select>
  	<select id="qnaInfo" resultMap="qna">
- 		select * from notice where NUM=#{NUM}
+ 		select * from qna where NUM=#{NUM}
  	</select>
  	<delete id ="qnaDelete">
  		delete from qna where NUM =#{NUM}

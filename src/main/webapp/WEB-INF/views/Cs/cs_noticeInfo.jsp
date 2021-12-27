@@ -101,7 +101,7 @@
 		location.href = "csMain";
 	}
 	function modifyPage() {
-		document.getElementById("qnaModifyForm").submit();
+		document.getElementById("noticeModifyForm").submit();
 	}
 	function deletePage() {
 		if(confirm("정말 게시글을 삭제하시겠습니까?")) {
