@@ -19,9 +19,10 @@
 	
 	.bh2{ font-family: Georgia; font-size:24px; }
 	.ws{width: 90px;}
-	.hb {height: 50px;}	
+	.hb {float:center;}	
 	.eh1{float:right;}
 	.eh2{float: left;}
+	.eh3{margin-right: 100px;}
 	
 	
 	.c1{  background-color: #F6F6F6;}
@@ -63,6 +64,7 @@
 	.lb{ font-size: 40px; }
 	.nal{ margin-top: 80px;  width :1200px; height: 700px; background-color: #FFFF99;}
 	.bl{ width: 220px;}
+	
 	
 	/* ----------------------------------------- kjh 클래스 추가 ------------------------------*/
 	.fs-20 {
@@ -119,5 +121,7 @@
 		text-decoration: none;
 		color: black;
 	}
+	
+
 	
 	

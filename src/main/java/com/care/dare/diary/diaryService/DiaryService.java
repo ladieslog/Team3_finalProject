@@ -145,7 +145,9 @@ public class DiaryService {
 	public ArrayList<DiaryDTO> diaryBoard(int start, int end, String id, String search) {
 		return mapper.diaryBoard(start, end, id, search);
 	}
+
 	
+
 	public void diaryView(Model model, int num) throws Exception {
 		DiaryDTO dto = mapper.diaryView(num);
 		SimpleDateFormat sim = new SimpleDateFormat("yyyy-MM-dd");

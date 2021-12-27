@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.care.dare.mybatis.QnaMapper">
+ 	<resultMap type="com.care.dare.CS.DTO.QnaDTO" id="qna">
+ 		<id property="num" column="NUM"/>
+ 		<result property="questionTitle" column="QUESTION_TITLE"/>
+ 		<result property="questionContent" column="QUESTION_CONTENT"/>
+ 		<result property="questionId" column="QUESTION_ID"/>
+ 		<result property="questionTime" column="QUESTION_TIME"/>
+ 		<result property="answerContent" column="ANSWER_CONTENT"/>
+ 		<result property="answerTime" column="ANSWER_TIME"/>
+ 		<result property="status" column="STATUS"/>
+ 	</resultMap>
+ 	<select id="list2" resultMap="qna">
+ 		SELECT * FROM QUESTION_BOARD
+ 	</select>
+ 	<insert id="qnaWrite">
+ 		INSERT INTO QUESTION_BOARD VALUES(customer_service_seq.nextval,#{questionTitle},#{questionContent},#{questionId},
+ 		SYSDATE,NULL,NULL,'0')
+ 	</insert>
+ 	<select id="qnaCount" resultType="Integer">
+ 		select count(*) from qna
+ 	</select>
+ 	<select id="qnaInfo" resultMap="qna">
+ 		select * from qna where NUM=#{NUM}
+ 	</select>
+ 	<delete id ="qnaDelete">
+ 		delete from qna where NUM =#{NUM}
+ 	</delete>
+ 	<update id ="qnaModify">
+ 		update qna set title="#{title}, content =#{content} , time =sysdate where num = #{num}
+ 	</update>
+ </mapper>

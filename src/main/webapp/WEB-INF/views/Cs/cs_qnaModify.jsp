@@ -1,4 +1,4 @@
-<%@page import="com.care.dare.CS.DTO.NoticeDTO"%>
+<%@page import="com.care.dare.CS.DTO.QnaDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -11,10 +11,10 @@
 <script src="${contextPath }/resources/jquery-3.6.0.min.js"></script> <!-- 제이 쿼리 -->
 <script src="${contextPath }/resources/bootstrap.js"></script> <!-- 부트스트랩 (미사용) -->
 <link rel="stylesheet"
-	href="${contextPath }/resources/CS/css/cs_css.css?ver=2">
+	href="${contextPath }/resources/CS/css/cs_css.css">
 </head>
 <%
-	NoticeDTO dto = (NoticeDTO) request.getAttribute("noticeInfo");
+	QnaDTO dto = (QnaDTO) request.getAttribute("qnaInfo");
 	if(dto == null) {
 %>
 	<script>
@@ -32,7 +32,7 @@
 	// ckEditor를 textarea태그에 적용 및 사이즈 조절
 		window.onload = function() {
 			ck = CKEDITOR.replace("editor", {
-				height : 350,
+				height : 250,
 				width : 1000
 			});
 		}
@@ -46,11 +46,11 @@
 				<form action="noticeModify" method="post" id="form">
 				<input type="hidden" name="num" value="<%=dto.getNum() %>"/>
 					<table class="cn3">
-					<div style="height: 37px;">
 						<tr>
-							<td class="write-title"><b class="bh3 fs-20">Notice title</b></td>
+							<td class="write-title"><b class="bh3 fs-20"> notice
+									title &nbsp;</b></td>
 							<td colspan="14"><input type="text" name="title"
-								class="cha3 title-input" id="title" value="<%=dto.getTitle()%>"></td>
+								class="cha3 title-input" id="title" value="<%=dto.getQuestionTitle()%>"></td>
 							<!--<td  class="tb"> <b class="b">write date</b></td>  -->
 						</tr>
 						<tr class="rb"></tr>
@@ -62,10 +62,9 @@
 					<td><input type="text" name="" class="ch"></td> 
 				</tr>-->
 						<tr>
-							<td colspan="15" >
-								<!-- <input type="text" name="" class="chb3"> --> 
-								<textarea name="content" class="chb3" id="editor">
-								<%=dto.getContent() %></textarea>
+							<td colspan="15">
+								<!-- <input type="text" name="" class="chb3"> --> <textarea
+									name="content" class="chb3" id="editor"><%=dto.getQuestionContent() %></textarea>
 							</td>
 						</tr>
 						<tr>
@@ -75,7 +74,6 @@
 								<button type="button" class="cn4 mb-none notice-btn" onclick="hisback();">돌아가기</button>
 							</td>
 						</tr>
-						</div>
 					</table>
 				</form>
 			</div>
@@ -87,7 +85,7 @@
 	</div>
 	
 	<script
-		src="<%=request.getContextPath()%>/resources/CS/script/notice_js.js?ver=3"></script>
+		src="<%=request.getContextPath()%>/resources/CS/script/notice_js.js"></script>
 </body>
 <%
 	}
