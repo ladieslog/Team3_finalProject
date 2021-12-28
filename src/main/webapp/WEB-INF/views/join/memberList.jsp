@@ -46,9 +46,9 @@ MemberDTO dto = (MemberDTO)session1.getAttribute("loginUser");
 	<jsp:include page="/WEB-INF/views/default/header.jsp"/>
 	
 	<c:set var="search" value="${search1 }" />
-	
-	<div style="margin-top: 5px;">
-		<form action="memberList" style="display: flex; margin-left: 1249px;">
+	<div style="height: 650px;">
+	<div>
+		<form action="memberList" style="display: flex; margin-left: 1215px;">
 				<span style="font-weight: bold; color: gray;">아이디 검색</span>&nbsp;
 				<input type="text" id="search" name="search" value="${search1 }" style="border: 1px solid gray; border-radius: 6px;">
 				<input type="submit" value="♥" style="border: none; background: white; color: gray;">
@@ -72,12 +72,13 @@ MemberDTO dto = (MemberDTO)session1.getAttribute("loginUser");
 							
 					%>
 					<tr>
-					<td  class="center"><div><%=DTO.getId() %></div></td><td class="center"><div><%=DTO.getPwd() %></div></td><td  class="center"><div><%=DTO.getNickname() %></div></td><td id="addrr"><div id="addr" class="address" value= "<%=DTO.getAddr()%>"><%=DTO.getAddr()%></div></td><td id="emailr"><div class="address" id="email" value="<%=DTO.getEmail()%>"><%=DTO.getEmail() %></div></td><td  class="center"><div><%=DTO.getDiaryCount() %></div></td>
+					<td  class="center"><div><%=DTO.getId() %></div></td><td class="center"><div>********</div></td><td  class="center"><div><%=DTO.getNickname() %></div></td><td id="addrr"><div id="addr" class="address" value= "<%=DTO.getAddr()%>"><%=DTO.getAddr()%></div></td><td id="emailr"><div class="address" id="email" value="<%=DTO.getEmail()%>"><%=DTO.getEmail() %></div></td><td  class="center"><div><%=DTO.getDiaryCount() %></div></td>
 				</tr>
 					<%}}
 				%>
 				
 			</table>
+		</div>
 		</div>
 	<jsp:include page="/WEB-INF/views/default/footer.jsp"/>
 </body>
