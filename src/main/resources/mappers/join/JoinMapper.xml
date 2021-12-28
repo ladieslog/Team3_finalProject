@@ -23,7 +23,7 @@
 	select* from MEMBER_USER where id=#{id} and pwd=#{pwd}
 	</select>
 	<select id="memberList" resultMap="join">
-	select* from MEMBER_USER 
+	select* from MEMBER_USER where id like '%' || #{search} || '%'
 	</select>
 
 	<select id="myHome" resultMap="join">

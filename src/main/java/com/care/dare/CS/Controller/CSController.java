@@ -98,7 +98,6 @@ public class CSController {
 		int result = service2.QnaWrite(req);
 		resp.setContentType("text/html; charset=utf-8"); // 응답 설정 변경
 		PrintWriter out = resp.getWriter(); // 화면에 출력할 스트림
-		System.out.println(result);
 		if(result == 0) { // 공지 작성에 실패했을 경우
 			out.print("<script> alert('질문 작성에 실패했습니다.');"
 					+"location.href='csMain'; </script>");
@@ -123,18 +122,18 @@ public class CSController {
 		session.setAttribute("noticePageNumber", PageNum); // 세션에 페이지 번호 저장(현재 페이지 값임)
 		return list;
 	}
-	/*
-	@RequestMapping(value = "pageSet", method = RequestMethod.POST, produces="application/json; charset=utf-8")
+	
+	@RequestMapping(value = "pageSet2", method = RequestMethod.POST, produces="application/json; charset=utf-8")
 	@ResponseBody
-	public List<QnaDTO> pageSet(@RequestBody Map form, Model model, HttpServletRequest req) {
-		String PageNum = (String) form.get("currentPage");
+	public List<QnaDTO> pageSe2t(@RequestBody Map form, Model model, HttpServletRequest req) {
+		String PageNum = (String) form.get("currentPage2");
 		int currentPage = Integer.parseInt(PageNum); 
 		service.csMain(model, currentPage);
 		List<QnaDTO> list2 = (List<QnaDTO>) model.getAttribute("list2"); 
 		HttpSession session = req.getSession();
 		session.setAttribute("noticePageNumber", PageNum); 
 		return list2;
-	}*/
+	}
 	
 	
 	

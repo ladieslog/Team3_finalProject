@@ -53,7 +53,7 @@ if(endPage2 > pageCount2) {
 	<div>
 				<div style="align-items: center; display: flex; justify-content: center; height: 60px;">
 					<br> <span><b style="font-size: 30px; ">Notice</b></span>
-					<button type="button" class="cn4 mb-none notice-btn" onclick="location.href='notice'">추가하기</button>
+					<button type="button" style="margin-left: 1113px; width: 60px;" class="cn4 mb-none notice-btn" onclick="location.href='notice'">글작성</button>
 
 				</div>
 				<div id="id1">
@@ -113,11 +113,11 @@ if(endPage2 > pageCount2) {
 					</div>
 				</div>
 	</div>
-	<div style="margin-bottom:10px;">
+	<div>
 				<div style="align-items: center; display: flex; justify-content: center; height: 60px;">
 					<br> <span>
 					<b style="font-size: 30px;">Q & A</b></span>
-					<button type="button" class="cn4 mb-none notice-btn" onclick="location.href='qna'">추가하기</button>
+					<button type="button" style="margin-left: 1113px; width: 60px;" class="cn4 mb-none notice-btn" onclick="location.href='qna'">글작성</button>
 				</div>
 					</div>
 						<div id="id1">
@@ -267,7 +267,7 @@ if(endPage2 > pageCount2) {
 			document.getElementById("qna-table").deleteRow(1);
 		}
 		$.ajax({
-			url : "pageSet",
+			url : "pageSet2",
 			type : "POST",
 			data : JSON.stringify(form), //form을 json타입으로 변경
 			dataType : "json",
@@ -277,7 +277,7 @@ if(endPage2 > pageCount2) {
 				for(var j=0; j<list2.length; j++) { // 가져온 리스트의 사이즈 만큼 게시글 출력해서 태그로 만듦(html변수에 저장) 
 					html += "<tr><td style='width: 8%;'>" + list2[j].num2 + "</td>";
 					html += "<td style='width: 8%;'>" + "<a href='QnaInfo?num=" + list2[j].num + "'>" + list2[j].title + "</a></td>";
-					html += "<td style='width: 52%;'>" + "<a href='QnaInfo?num=" + list2[j].num + "'>" + list2[j].title + "</a></td>";
+					html += "<td style='width: 524%;'>" + "<a href='QnaInfo?num=" + list2[j].num + "'>" + list2[j].title + "</a></td>";
 					html += "<td style='width: 22%;'>" + list2[j].timestr2 + "</td>";
 					html += "<td style='width: 8%;'>" + list2[j].hit + "</td></tr>";
 				}

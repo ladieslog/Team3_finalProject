@@ -61,11 +61,10 @@ public class MemberServiceImp implements MemberService {
 		MemberDTO loginDTO= mapper.loginproc(dto);
 		return loginDTO;
 	}
-	public void memberList(Model model) {
-		String a = "";
-		ArrayList<MemberDTO>list=mapper.memberList();
+	public void memberList(Model model,String search) {
+		ArrayList<MemberDTO>list=mapper.memberList(search);
 		for(MemberDTO DTO: list) {
-			DTO.setDiaryCount(dm.diaryCount(DTO.getId(), a));
+			DTO.setDiaryCount(dm.diaryCount(DTO.getId(), search));
 		}
 		model.addAttribute("list", list);
 		

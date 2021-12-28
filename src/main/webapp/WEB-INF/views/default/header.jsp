@@ -40,7 +40,7 @@
 					<li><a href="MyHome" class="ab">My</a></li>
 					<li><a href="diaryBoard" class="ab">Diary</a></li>
 					<li><a href="#calendar" class="ab">Calendar</a></li>
-					<li><a href="#CS" class="ab">Cs</a></li>
+					<li><a href="csMain" class="ab">Cs</a></li>
 					<c:if test="${sessionScope.loginUser.id eq '3333'}">
 						<li><a href="memberList" class="ab">MemberList</a></li>
 					</c:if>
