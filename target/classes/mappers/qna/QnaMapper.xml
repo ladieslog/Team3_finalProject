@@ -32,6 +32,9 @@
  	<select id="qnaCount" resultType="Integer">
  		select count(*) from QUESTION_BOARD
  	</select>
+ 	<select id="userQnaCount" resultType="Integer">
+ 		select count(*) from QUESTION_BOARD where QUESTION_ID = #{id}
+ 	</select>
  	<select id="qnaInfo" resultMap="qna">
  		select * from QUESTION_BOARD where NUM=#{NUM}
  	</select>

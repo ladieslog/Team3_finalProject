@@ -40,7 +40,13 @@ public class CSService2 {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm"); // 시간 형식 포맷
 		
 		int count = 0; //총 게시글 수
-		count = mapper.qnaCount(); // 총 게시글 수를 가져옴
+		
+		if(userDto.getId().equals("3333")) {
+			count = mapper.qnaCount();
+		} else {
+			count = mapper.userQnaCount(userDto.getId());
+		}
+		
 		
 		List<QnaDTO> list = new ArrayList<>(); // 게시글들을 저장할 리스트
 		

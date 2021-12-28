@@ -15,6 +15,8 @@ public interface QnaMapper {
 
 	public int qnaCount();
 	
+	public int userQnaCount(String id);
+	
 	public ArrayList<QnaDTO> qnaBoard(@Param("s") int startRow, @Param("e") int endRow);
 	
 	public ArrayList<QnaDTO> userQnaBoard(@Param("s") int startRow, @Param("e") int endRow, @Param("id") String id);
