@@ -220,6 +220,6 @@
 	<jsp:include page="../default/footer.jsp"/>
 <script src="<%=request.getContextPath()%>/resources/jquery-3.6.0.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script type="text/javascript" src="${contextPath}/resources/diaryscript/diaryWriteScript.js?ver=1"></script>
+<script type="text/javascript" src="${contextPath}/resources/diaryscript/diaryWriteScript.js?ver=2"></script>
 </body>
 </html>

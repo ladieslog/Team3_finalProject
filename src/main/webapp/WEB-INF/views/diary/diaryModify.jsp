@@ -16,6 +16,7 @@
 </head>
 <body style="overflow-x: hidden">
 	<jsp:include page="../default/header.jsp"/>
+
 	<c:set var="dto" value="${diary}"></c:set>
 
 	<% HttpSession session1 = request.getSession();
@@ -31,6 +32,7 @@
 	   String indatestr1 = sim.format(ti);
 	   String outdatestr1 = sim.format(ti1);
 	%>
+
 	<div class="writewrap">
 	<div class="div">
 	<form id="form" action="writeUpdate" method="post">
@@ -302,7 +304,7 @@
 			<c:otherwise>
 			<div id="view4" style="display:none;">		
 						<div id="content4"  >
-							<textarea id="coment4" class='text fontname' style='height:430px; width:1050px;' name="coment4"></textarea>
+							<textarea id="coment4" class='text fontname' style='height:430px; width:1050px;' name="coment4">${dto.coment4}</textarea>
 					</div>
 					
 					<div id="image4" style="display:none;">
@@ -337,7 +339,7 @@
 			<c:when test="${dto.coment5 != null }">
 			<div id="view5" style="display:none;">		
 						<div id="content5" style="" >
-							<textarea id="coment5" class='text fontname' style='height:430px; width:1050px;' name="coment5">${dto.coment5 }</textarea>
+							<textarea id="coment5" class='text fontname' style='height:430px; width:1050px;' name="coment5">${dto.coment5}</textarea>
 					</div>
 					
 					<div id="image5" style="display:none;">
@@ -398,13 +400,13 @@
 				</c:when>
 				<c:when test="${dto.coment2 != null }">
 				<td class="td1">
-				<img class="td2" id="de2" style="display:none;" onclick="del2()" src="${contextPath }/resources/diaryimg/delete.png">
+				<img class="td2" id="de2" style="" onclick="del2()" src="${contextPath }/resources/diaryimg/delete.png">
 				<img id="previewimage2" style=""onclick="page1()" class="img" src="${contextPath }/resources/diaryimg/trip.png">
 				</td> 
 				</c:when>
 				<c:otherwise>
 				<td class="td1">
-				<img class="td2" id="de2" style="display:none;" onclick="del2()" src="${contextPath }/resources/diaryimg/delete.png">
+				<img class="td2" id="de2" style="" onclick="del2()" src="${contextPath }/resources/diaryimg/delete.png">
 				<img id="previewimage2" style=""onclick="page1()" class="img" src="${contextPath }/resources/diaryimg/diary_plus.png">
 				</td> 
 				</c:otherwise>	
@@ -413,19 +415,19 @@
 			<c:choose>
 				<c:when test="${dto.image3 != null }">
 				<td class="td1" id="pre1">
-				<img class="td2" id="de3" style="display:none;" onclick="del3()"  src="${contextPath }/resources/diaryimg/delete.png">
+				<img class="td2" id="de3" style="" onclick="del3()"  src="${contextPath }/resources/diaryimg/delete.png">
 				<img id="previewimage3" style=""onclick="page2()" class="img" src="<spring:url value='/image/${dto.image3 }'/>">
 				</td> 
 				</c:when>
 				<c:when test="${dto.coment3 != null }">
 				<td class="td1" id="pre1">
-				<img class="td2" id="de3" style="display:none;" onclick="del3()"  src="${contextPath }/resources/diaryimg/delete.png">
+				<img class="td2" id="de3" style="" onclick="del3()"  src="${contextPath }/resources/diaryimg/delete.png">
 				<img id="previewimage3" style=""onclick="page2()" class="img" src="${contextPath }/resources/diaryimg/trip.png">
 				</td> 
 				</c:when>
 				<c:otherwise>
 				<td class="td1" id="pre1"  style="display: none;">
-				<img class="td2" id="de3" style="display:none;" onclick="del3()"  src="${contextPath }/resources/diaryimg/delete.png">
+				<img class="td2" id="de3" style="" onclick="del3()"  src="${contextPath }/resources/diaryimg/delete.png">
 				<img id="previewimage3" style=""onclick="page2()" class="img" src="${contextPath }/resources/diaryimg/diary_plus.png">
 				</td> 
 				</c:otherwise>	
@@ -434,19 +436,19 @@
 			<c:choose>
 				<c:when test="${dto.image4 != null }">
 				<td class="td1" id="pre2">
-				<img class="td2" id="de4" style="display:none;" onclick="del4()"  src="${contextPath }/resources/diaryimg/delete.png">
+				<img class="td2" id="de4" style="" onclick="del4()"  src="${contextPath }/resources/diaryimg/delete.png">
 				<img id="previewimage4" style=" "onclick="page3()" class="img" src="<spring:url value='/image/${dto.image4 }'/>">
 				</td> 
 				</c:when>
 				<c:when test="${dto.coment4 != null }">
 				<td class="td1" id="pre2">
-				<img class="td2" id="de4" style="display:none;" onclick="del4()"  src="${contextPath }/resources/diaryimg/delete.png">
+				<img class="td2" id="de4" style="" onclick="del4()"  src="${contextPath }/resources/diaryimg/delete.png">
 				<img id="previewimage4" style=" "onclick="page3()" class="img" src="${contextPath }/resources/diaryimg/trip.png">
 				</td> 
 				</c:when>
 				<c:otherwise>
 				<td class="td1" id="pre2"  style="display: none;">
-				<img class="td2" id="de4" style="display:none;" onclick="del4()"  src="${contextPath }/resources/diaryimg/delete.png">
+				<img class="td2" id="de4" style="" onclick="del4()"  src="${contextPath }/resources/diaryimg/delete.png">
 				<img id="previewimage4" style=" "onclick="page3()" class="img" src="${contextPath }/resources/diaryimg/diary_plus.png">
 				</td> 
 				</c:otherwise>	
@@ -455,19 +457,19 @@
 			<c:choose>
 				<c:when test="${dto.image5 != null }">
 				<td class="td1" id="pre3">
-				<img class="td2" id="de5" style="display:none;" onclick="del5()"  src="${contextPath }/resources/diaryimg/delete.png">
+				<img class="td2" id="de5" style="" onclick="del5()"  src="${contextPath }/resources/diaryimg/delete.png">
 				<img id="previewimage5" style=""onclick="page4()" class="img" src="<spring:url value='/image/${dto.image5 }'/>">
 				</td> 
 				</c:when>
 				<c:when test="${dto.coment5 != null }">
 				<td class="td1" id="pre3">
-				<img class="td2" id="de5" style="display:none;" onclick="del5()"  src="${contextPath }/resources/diaryimg/delete.png">
+				<img class="td2" id="de5" style="" onclick="del5()"  src="${contextPath }/resources/diaryimg/delete.png">
 				<img id="previewimage5" style=""onclick="page4()" class="img" src="${contextPath }/resources/diaryimg/trip.png">
 				</td> 
 				</c:when>
 				<c:otherwise>
 				<td class="td1" id="pre3"  style="display: none;">
-				<img class="td2" id="de5" style="display:none;" onclick="del5()"  src="${contextPath }/resources/diaryimg/delete.png">
+				<img class="td2" id="de5" style="" onclick="del5()"  src="${contextPath }/resources/diaryimg/delete.png">
 				<img id="previewimage5" style=""onclick="page4()" class="img" src="${contextPath }/resources/diaryimg/diary_plus.png">
 				</td> 
 				</c:otherwise>	
@@ -489,8 +491,8 @@
 	
 	
 	</div>
-	
 	<jsp:include page="../default/footer.jsp"/>
+	
 <script src="<%=request.getContextPath()%>/resources/jquery-3.6.0.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="${contextPath}/resources/diaryscript/diaryModifyScript.js?ver=1"></script>
