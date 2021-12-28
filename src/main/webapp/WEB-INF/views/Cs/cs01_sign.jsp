@@ -50,7 +50,7 @@ if(endPage2 > pageCount2) {
 
 		<div class="a1">
 			<div class="a2">
-	<div>
+	<div style="margin-top: -20px;">
 				<div style="align-items: center; display: flex; justify-content: center; height: 60px;">
 					<br> <span><b style="font-size: 30px; ">Notice</b></span>
 					<button type="button" style="margin-left: 1113px; width: 60px;" class="cn4 mb-none notice-btn" onclick="location.href='notice'">글작성</button>
