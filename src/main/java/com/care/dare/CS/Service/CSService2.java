@@ -58,6 +58,14 @@ public class CSService2 {
 			}
 			for(QnaDTO dto : list) {
 				dto.setQuestionTimeStr(sdf.format(dto.getQuestionTime())); // 시간 타입을 String 변경해서 저장
+				if(dto.getAnswerTime() != null) {
+					dto.setAnswerTimeStr(sdf.format(dto.getAnswerTime()));
+				}
+				if(dto.getStatus().equals("1")) {
+					dto.setStatusStr("답변 완료");
+				} else {
+					dto.setStatusStr("답변 대기");
+				}
 			}
 		}
 		// model(request)에 값들을 저장

@@ -107,7 +107,7 @@ public class joinController {
 	}
 	
 	@PostMapping("myUpdate")
-	public void myUpdate(HttpServletRequest req,HttpServletResponse resp) throws IOException {
+	public void myUpdate(HttpServletRequest req,HttpServletResponse resp, Model model) throws IOException {
 		HttpSession sess = req.getSession();
 		resp.setContentType("text/html; charset=utf-8"); // 응답 설정 변경
         PrintWriter out = resp.getWriter(); // 화면 출력용 객체

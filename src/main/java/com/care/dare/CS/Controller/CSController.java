@@ -125,13 +125,14 @@ public class CSController {
 	
 	@RequestMapping(value = "pageSet2", method = RequestMethod.POST, produces="application/json; charset=utf-8")
 	@ResponseBody
-	public List<QnaDTO> pageSe2t(@RequestBody Map form, Model model, HttpServletRequest req) {
-		String PageNum = (String) form.get("currentPage2");
-		int currentPage = Integer.parseInt(PageNum); 
-		service.csMain(model, currentPage);
-		List<QnaDTO> list2 = (List<QnaDTO>) model.getAttribute("list2"); 
+	public List<QnaDTO> pageSet2(@RequestBody Map form, Model model, HttpServletRequest req) {
 		HttpSession session = req.getSession();
-		session.setAttribute("noticePageNumber", PageNum); 
+		MemberDTO dto = (MemberDTO) session.getAttribute("loginUser");
+		String PageNum = (String) form.get("currentPage2");
+		int currentPage = Integer.parseInt(PageNum);
+		service2.QnaList(model, currentPage, dto);
+		List<QnaDTO> list2 = (List<QnaDTO>) model.getAttribute("list2"); 
+		session.setAttribute("qnaPageNumber", PageNum); 
 		return list2;
 	}
 	
