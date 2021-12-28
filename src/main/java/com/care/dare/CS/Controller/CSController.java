@@ -98,7 +98,6 @@ public class CSController {
 		int result = service2.QnaWrite(req);
 		resp.setContentType("text/html; charset=utf-8"); // 응답 설정 변경
 		PrintWriter out = resp.getWriter(); // 화면에 출력할 스트림
-		System.out.println(result);
 		if(result == 0) { // 공지 작성에 실패했을 경우
 			out.print("<script> alert('질문 작성에 실패했습니다.');"
 					+"location.href='csMain'; </script>");
@@ -123,18 +122,19 @@ public class CSController {
 		session.setAttribute("noticePageNumber", PageNum); // 세션에 페이지 번호 저장(현재 페이지 값임)
 		return list;
 	}
-	/*
-	@RequestMapping(value = "pageSet", method = RequestMethod.POST, produces="application/json; charset=utf-8")
+	
+	@RequestMapping(value = "pageSet2", method = RequestMethod.POST, produces="application/json; charset=utf-8")
 	@ResponseBody
-	public List<QnaDTO> pageSet(@RequestBody Map form, Model model, HttpServletRequest req) {
-		String PageNum = (String) form.get("currentPage");
-		int currentPage = Integer.parseInt(PageNum); 
-		service.csMain(model, currentPage);
-		List<QnaDTO> list2 = (List<QnaDTO>) model.getAttribute("list2"); 
+	public List<QnaDTO> pageSet2(@RequestBody Map form, Model model, HttpServletRequest req) {
 		HttpSession session = req.getSession();
-		session.setAttribute("noticePageNumber", PageNum); 
+		MemberDTO dto = (MemberDTO) session.getAttribute("loginUser");
+		String PageNum = (String) form.get("currentPage2");
+		int currentPage = Integer.parseInt(PageNum);
+		service2.QnaList(model, currentPage, dto);
+		List<QnaDTO> list2 = (List<QnaDTO>) model.getAttribute("list2"); 
+		session.setAttribute("qnaPageNumber", PageNum); 
 		return list2;
-	}*/
+	}
 	
 	
 	
@@ -207,6 +207,28 @@ public class CSController {
 				out.print("<script> alert('게시글 삭제에 실패했습니다.');location.href='csMain';</script>");
 			} else {
 				out.print("<script> alert('게시글이 삭제되었습니다.');location.href='csMain';</script>");
+				
+			}
+		}
+		
+	}
+	
+	
+	@RequestMapping(value = "qnaDelete", method=RequestMethod.POST)
+	public void qnaDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		resp.setContentType("text/html; charset=utf-8"); // 응답 설정 변경
+		PrintWriter out = resp.getWriter(); // 화면 출력용 객체
+		String numstr = req.getParameter("num");
+		if(numstr == null) {
+			out.print("<script> alert('잘못된 접근입니다.');location.href='csMain';</script>");
+		} else {
+			int num = Integer.parseInt(numstr);
+			int result = service2.qnaDelete(num);
+			
+			if(result == 0) {
+				out.print("<script> alert('질문글 삭제에 실패했습니다.');location.href='csMain';</script>");
+			} else {
+				out.print("<script> alert('질문글이 삭제되었습니다.');location.href='csMain';</script>");
 				
 			}
 		}
