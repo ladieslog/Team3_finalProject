@@ -43,10 +43,10 @@ public class MapController {
 		SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
 		JSONArray jArray = new JSONArray();
 
-		String[] beforeWordsList = { "강원", "경기", "경남", "경북", "광주시", "광주", "대구", "대전", "부산", "서울", "울산", "인천", "전남",
+		String[] beforeWordsList = { "강원", "경기", "경남", "경북", "광주시", "광주", "부산", "대전", "대구", "서울", "울산", "인천", "전남",
 				"전북", "제주", "충남", "충북", "세종", "세종시" };
 
-		String[] AfterWordsList = { "강원도", "경기도", "경상남도", "경상북도", "광주시", "광주광역시", "대구광역시", "대전광역시", "부산광역시", "서울특별시",
+		String[] AfterWordsList = { "강원도", "경기도", "경상남도", "경상북도", "광주시", "광주광역시", "부산광역시", "대전광역시", "대구광역시", "서울특별시",
 				"울산광역시", "인천광역시", "전라남도", "전라북도", "제주특별자치도", "충청남도", "충청북도", "세종특별자치시", "세종특별자치시" };
 
 		for (MapDTO data : dataList) {
@@ -92,22 +92,22 @@ public class MapController {
 			jsonObj.put("title", data.getTitle());
 			jsonObj.put("person", data.getPerson());
 
-			String indateStr = simpleDate.format(data.getIndate());
-			jsonObj.put("start", indateStr);
-			String outdateStr = simpleDate.format(data.getOutdate());
-			jsonObj.put("end", outdateStr);
-
 			jsonObj.put("id", data.getId());
-
+			
 			jsonObj.put("location1", data.getLocation1());
 			jsonObj.put("location2", data.getLocation2());
 			jsonObj.put("location3", data.getLocation3());
+
+			String outdateStr = simpleDate.format(data.getOutdate());
+			jsonObj.put("end", outdateStr);
+			String indateStr = simpleDate.format(data.getIndate());
+			jsonObj.put("start", indateStr);
 
 			jsonObj.put("image", data.getImage1());
 
 			jArray.add(jsonObj);
 		}
-
+		System.out.println(jArray);
 		return jArray;
 	}
 }

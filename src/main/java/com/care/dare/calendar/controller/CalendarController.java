@@ -64,10 +64,18 @@ public class CalendarController {
 
 			if (Integer.parseInt(data.getPerson()) == 1) {
 				jsonObj.put("color", "#F15F5F");
-			} else if (Integer.parseInt(data.getPerson()) == 2) {
+			} 
+			
+			else if (Integer.parseInt(data.getPerson()) == 2) {
 				jsonObj.put("color", "#BCE55C");
-			} else {
+			} 
+			
+			else if (Integer.parseInt(data.getPerson()) == 3) {
 				jsonObj.put("color", "#6B66FF");
+			}
+			
+			else {
+				jsonObj.put("color", "#F2CB61");			
 			}
 
 			jArray.add(jsonObj);

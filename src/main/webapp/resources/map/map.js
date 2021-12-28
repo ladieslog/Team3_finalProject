@@ -2,11 +2,14 @@ var mapOptions,
 	regionGeoJson = [],
 	checkList = [],
 	checkListLength = 0,
-	arrayLoaction = [];
-
+	arrayLoaction = [],
+	markerArray = [],
+	polyLineArray = [];
 
 readDB();
 initMap();
+
+//===============================================================
 
 function readDB() {
 	$.ajax({
@@ -27,9 +30,8 @@ function readDB() {
 		}
 	});
 }
-//===============================================================
 
-function makeArrayLocation() {
+function makeArrayLocation() {	// ajax로 받은 데이터 중 location1, location2, location3 만 배열로 생성
 	let j = 0;
 	for (let i = 0; i < checkListLength; i++) {
 		(checkList[i].location1 == null) ?
@@ -41,13 +43,11 @@ function makeArrayLocation() {
 		(checkList[i].location3 == null) ?
 			(arrayLoaction[j++] = 'no Location!!') : (arrayLoaction[j++] = checkList[i].location3);
 	}
-	console.log(arrayLoaction);
 }
 
-var markerArray = [],
-	polyLineArray = [];
+var testarr = [];
 
-function makeMarker() {
+function geocoding() {	// 주소를 좌표로 변환 (마커를 찍기 전 좌표 구하기)
 	for (let i = 0; i < arrayLoaction.length; i++) {
 
 		if (arrayLoaction[i] != 'no Location!!') {
@@ -64,54 +64,109 @@ function makeMarker() {
 						var result = response.result, // 검색 결과의 컨테이너
 							items = result.items; // 검색 결과의 배열
 
-						var marker = new naver.maps.Marker({
-							position: new naver.maps.LatLng(items[0].point),
-							map: map
-						});
-						markerArray.push(items[0].point);
+						markerArray[i] = items[0].point;
+						if (i == arrayLoaction.length - 1) {
+							makeMarkers();
+						}
 					}
 				});
 		}
 	}
-	
-
-	for (let j = 0; j < (markerArray.length) / 3; j++) {
-		for (let k = 0; k < 3; k++) {
-			polyLineArray.push(markerArray[j]);
-		}
-		
-		console.log(polyLineArray[0].y);
-		console.log(polyLineArray[0].x);
-		console.log(polyLineArray[1].y);
-		console.log(polyLineArray[1].x);
-		console.log(polyLineArray[2].y);
-		console.log(polyLineArray[2].x);
-		
-		var polyline = new naver.maps.Polyline({
-			map: map,
-			path: [
-				new naver.maps.LatLng(polyLineArray[0].y), (polyLineArray[0].x),
-				new naver.maps.LatLng(polyLineArray[1].y), (polyLineArray[1].x),
-				new naver.maps.LatLng(polyLineArray[2].y), (polyLineArray[2].x)
-			],
-			strokeColor: '#5347AA',
-			strokeWeight: 2,
-		});
-	}
 }
 
+function makeMarkers() {	// 마커 찍기
+	var markerURL = "/root/resources/map/img/marker",
+		markerTail = ".png",
+		markerColor;
 
-/*console.log(cnt);
-if (cnt == 1) { var polyline1 = new naver.maps.Polyline({ map: map, path: polylineList, strokeColor: '#5347AA', strokeWeight: 2, }); }
-else if (cnt == 2) { var polyline2 = new naver.maps.Polyline({ map: map, path: polylineList, strokeColor: '#5347AA', strokeWeight: 2, }); }
-else { var polyline3 = new naver.maps.Polyline({ map: map, path: polylineList, strokeColor: '#5347AA', strokeWeight: 2, }); }*/
+	for (let i = 0; i < markerArray.length; i++) {
 
+		if (i % 3 == 0) {
+
+			if (checkList[i / 3].person == 1) {
+				markerColor = "Red";
+			}
+
+			else if (checkList[i / 3].person == 2) {
+				markerColor = "Parent";
+			}
+
+			else if (checkList[i / 3].person == 3) {
+				markerColor = "Blue";
+			}
+
+			else {
+				markerColor = "Black";
+			}
+		}
+
+		if (markerArray[i] != null) {
+			var marker = new naver.maps.Marker({
+				position: new naver.maps.LatLng(markerArray[i]),
+				map: map,
+				icon: markerURL + markerColor + markerTail
+			});
+		}
+	}
+
+	drawPolyline();
+}
+
+function drawPolyline() {	// 폴리라인 그리기
+	var cnt = 1,
+		polyLineColor;
+
+	for (let j = 0; j < markerArray.length; j++) {
+
+		if (j % 3 == 0) {
+
+			if (checkList[j / 3].person == 1) {
+				polyLineColor = "#FF3636";	// with markerRed
+			}
+
+			else if (checkList[j / 3].person == 2) {
+				polyLineColor = "#47C83E";	//with markerParent
+			}
+
+			else if (checkList[j / 3].person == 3) {
+				polyLineColor = "#6799FF";		//with markerBlue
+			}
+
+			else {
+				polyLineColor = "#353535";	//with markerBlack
+			}
+		}
+
+		if (cnt % 3 == 0) {
+
+			if (markerArray[cnt - 2] != null && markerArray[cnt - 1] != null) {
+
+				var polyLine = new naver.maps.Polyline({
+					path: [
+						new naver.maps.LatLng((markerArray[cnt - 3].y), (markerArray[cnt - 3].x)),
+						new naver.maps.LatLng((markerArray[cnt - 2].y), (markerArray[cnt - 2].x)),
+						new naver.maps.LatLng((markerArray[cnt - 1].y), (markerArray[cnt - 1].x))
+					],
+					map: map,
+					startIcon: naver.maps.PointingIcon.CIRCLE,
+					startIconSize: 12,
+					endIcon: naver.maps.PointingIcon.BLOCK_ARROW,
+					endIconSize: 12,
+					strokeColor: polyLineColor,
+					strokeOpacity: 1,
+					strokeWeight: 3,
+				})
+			}
+		}
+		cnt++;
+	}
+}
 
 //===============================================================
 
 
 function initMap() {
-	spinner(2000);
+	spinner(3000);
 	viewSelected(0);
 	mapSetOptions();
 	regionJsonLoop(1);
@@ -388,8 +443,6 @@ function startDataLayer(mapType) {
 					if (arrayLoaction[i].indexOf(feature.getProperty('area3')) != -1
 						&& arrayLoaction[i].indexOf(feature.getProperty('area2')) != -1) {
 
-						console.log(arrayLoaction[i]);
-						console.log(feature.getProperty('area3'));
 						var styleOptions = {
 							fillColor: '#FF9090',
 							fillOpacity: 1,
@@ -447,8 +500,8 @@ function startDataLayer(mapType) {
 	//===============================================================
 
 	if (mapType === 3 || mapType === 4) {
-		makeMarker();
-		//drawPolyline();
+		geocoding();
+
 	}
 
 	//===============================================================

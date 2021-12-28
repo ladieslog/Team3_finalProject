@@ -18,6 +18,6 @@
   	</resultMap>
   	
   	<select id="readForMap" resultMap="map">
-  		select num, title, person, indate, outdate, id, location1, location2, location3, image1 from diary_board where id=#{id}
+  		select num, title, person, indate, outdate, id, location1, location2, location3, image1 from diary_board where id=#{id} order by num
   	</select>
 </mapper>
