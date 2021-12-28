@@ -66,7 +66,7 @@ public class MemberServiceImp implements MemberService {
 		dto.setPwd(req.getParameter("pwd"));
 		MemberDTO loginDTO= mapper.loginproc(dto);
 		if(loginDTO != null) {
-			if(encoder.matches(dto.getPwd(), loginDTO.getPwd()) || dto.getPwd().equals(loginDTO.getPwd())) {
+			if(encoder.matches(dto.getPwd(), loginDTO.getPwd())) {
 				return loginDTO;
 			}
 		}
