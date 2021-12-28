@@ -35,9 +35,9 @@
 				<span><b style="font-size: 15px; font-family: HCR Batang; font-weight: bold;">${loginUser.nickname}님의 </b></span>
 				<span><b style="font-size: 15px; margin-left: 15px; font-family: HCR Batang; font-weight: bold;">${diaryCount}가지 추억</b></span>
 				&nbsp;&nbsp;
-				<form action="diaryBoard">
-				<input type="text" id="search" name="search" value="${search }">
-				<input type="submit" value="검색">
+				<form action="diaryBoard" style="display: flex;">
+				<input type="text" id="search" name="search" value="${search }" style="border: 1px solid white; border-radius: 6px;">
+				<input type="submit" value="♥" style="border: none; background: #DEF4F9; color: gray;">
 				</form>
 			</div>
 			<div class="flex-con-be mt-30">

@@ -53,7 +53,7 @@ if(endPage2 > pageCount2) {
 	<div>
 				<div style="align-items: center; display: flex; justify-content: center; height: 60px;">
 					<br> <span><b style="font-size: 30px; ">Notice</b></span>
-					<button type="button" class="cn4 mb-none notice-btn" onclick="location.href='notice'">추가하기</button>
+					<button type="button" style="margin-left: 1113px; width: 60px;" class="cn4 mb-none notice-btn" onclick="location.href='notice'">글작성</button>
 
 				</div>
 				<div id="id1">
@@ -113,11 +113,11 @@ if(endPage2 > pageCount2) {
 					</div>
 				</div>
 	</div>
-	<div style="margin-bottom:10px;">
+	<div>
 				<div style="align-items: center; display: flex; justify-content: center; height: 60px;">
 					<br> <span>
 					<b style="font-size: 30px;">Q & A</b></span>
-					<button type="button" class="cn4 mb-none notice-btn" onclick="location.href='qna'">추가하기</button>
+					<button type="button" style="margin-left: 1113px; width: 60px;" class="cn4 mb-none notice-btn" onclick="location.href='qna'">글작성</button>
 				</div>
 					</div>
 						<div id="id1">

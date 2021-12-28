@@ -18,9 +18,10 @@
 		<div class="c1 mr-auto notice-wrap">
 			<div class="c2 pd-none">
 				<form action="noticeWrite" method="post" id="form">
+				<div style="height: 38px;"></div>
 					<table class="cn3">
 						<tr>
-							<td class="write-title"><b class="bh3 fs-20"> notice
+							<td class="write-title"><b class="bh3 fs-20"> Notice
 									title &nbsp;</b></td>
 							<td colspan="14"><input type="text" name="title"
 								class="cha3 title-input" id="title"></td>
@@ -42,6 +43,7 @@
 							</td>
 						</tr>
 					</table>
+					
 				</form>
 			</div>
 		</div>
