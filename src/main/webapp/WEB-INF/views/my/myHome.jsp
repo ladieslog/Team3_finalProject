@@ -41,7 +41,7 @@
 				<div class="input-box">
 					<div>
 						<div class="left-text">비밀번호</div>
-						<div><input type="password" id="pwd" name="pwd" class="fontname"/></div>
+						<div><input type="password" id="pwd" name="pwd"  class="fontname"/></div>
 					</div>
 					<div>
 						<div class="right-text">주소</div>
