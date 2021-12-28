@@ -41,6 +41,7 @@ function makeArrayLocation() {
 		(checkList[i].location3 == null) ?
 			(arrayLoaction[j++] = 'no Location!!') : (arrayLoaction[j++] = checkList[i].location3);
 	}
+	console.log(arrayLoaction);
 }
 
 var markerArray = [],

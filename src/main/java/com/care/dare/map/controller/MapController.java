@@ -53,35 +53,39 @@ public class MapController {
 			boolean completeFlag1 = true, completeFlag2 = true, completeFlag3 = true;
 
 			for (int i = 0; i < beforeWordsList.length; i++) {
-				if (data.getLocation1().indexOf(beforeWordsList[i]) != -1 && completeFlag1) {
+				if (data.getLocation1() != null) {
+					if (data.getLocation1().indexOf(beforeWordsList[i]) != -1 && completeFlag1) {
 
-					if (data.getLocation1().indexOf(AfterWordsList[i]) == -1) {
-						String replace1 = data.getLocation1().replace(beforeWordsList[i], AfterWordsList[i]);
-						data.setLocation1(replace1);
+						if (data.getLocation1().indexOf(AfterWordsList[i]) == -1) {
+							String replace1 = data.getLocation1().replace(beforeWordsList[i], AfterWordsList[i]);
+							data.setLocation1(replace1);
 
+						}
+						completeFlag1 = false;
 					}
-					completeFlag1 = false;
 				}
 
-				if (data.getLocation2().indexOf(beforeWordsList[i]) != -1 && completeFlag2) {
+				if (data.getLocation2() != null) {
+					if (data.getLocation2().indexOf(beforeWordsList[i]) != -1 && completeFlag2) {
 
-					if (data.getLocation2().indexOf(AfterWordsList[i]) == -1) {
-						String replace2 = data.getLocation2().replace(beforeWordsList[i], AfterWordsList[i]);
-						data.setLocation2(replace2);
+						if (data.getLocation2().indexOf(AfterWordsList[i]) == -1) {
+							String replace2 = data.getLocation2().replace(beforeWordsList[i], AfterWordsList[i]);
+							data.setLocation2(replace2);
+						}
+						completeFlag2 = false;
 					}
-					completeFlag2 = false;
 				}
+				if (data.getLocation3() != null) {
+					if (data.getLocation3().indexOf(beforeWordsList[i]) != -1 && completeFlag3) {
 
-				if (data.getLocation3().indexOf(beforeWordsList[i]) != -1 && completeFlag3) {
-
-					if (data.getLocation3().indexOf(AfterWordsList[i]) == -1) {
-						String replace3 = data.getLocation3().replace(beforeWordsList[i], AfterWordsList[i]);
-						data.setLocation3(replace3);
+						if (data.getLocation3().indexOf(AfterWordsList[i]) == -1) {
+							String replace3 = data.getLocation3().replace(beforeWordsList[i], AfterWordsList[i]);
+							data.setLocation3(replace3);
+						}
+						completeFlag3 = false;
 					}
-					completeFlag3 = false;
 				}
 			}
-
 			JSONObject jsonObj = new JSONObject();
 
 			jsonObj.put("num", data.getNum());
