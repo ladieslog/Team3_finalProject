@@ -32,13 +32,16 @@
  	<select id="qnaCount" resultType="Integer">
  		select count(*) from QUESTION_BOARD
  	</select>
+ 	<select id="userQnaCount" resultType="Integer">
+ 		select count(*) from QUESTION_BOARD where QUESTION_ID = #{id}
+ 	</select>
  	<select id="qnaInfo" resultMap="qna">
  		select * from QUESTION_BOARD where NUM=#{NUM}
  	</select>
  	<delete id ="qnaDelete">
- 		delete from qna where NUM =#{NUM}
+ 		delete from QUESTION_BOARD  where NUM =#{NUM}
  	</delete>
  	<update id ="qnaModify">
- 		update qna set title="#{title}, content =#{content} , time =sysdate where num = #{num}
+ 		update QUESTION_BOARD  set title="#{title}, content =#{content} , time =sysdate where num = #{num}
  	</update>
  </mapper>

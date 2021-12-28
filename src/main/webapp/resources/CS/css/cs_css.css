@@ -127,6 +127,10 @@
 	.table-last-tr>td {
 		border-bottom: none !important;
 	}
+	.qna-wrap {
+		display: flex;
+		justify-content: center;
+	}
 	
 
 	

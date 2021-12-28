@@ -11,7 +11,7 @@
 
 <script src="${contextPath }/resources/jquery-3.6.0.min.js"></script>
 <script src="${contextPath }/resources/bootstrap.js"></script>
-<link rel="stylesheet" href="${contextPath }/resources/CS/css/cs_css.css">
+<link rel="stylesheet" href="${contextPath }/resources/CS/css/cs_css.css?ver=8">
 </head>
 <body>
 <div>
@@ -20,12 +20,12 @@
 
 %>
 	<jsp:include page="../default/header.jsp"/>
-	<div class="b1">
-		<div class="b2">
+	<div class="c1 mr-auto notice-wrap qna-wrap">
+		<div class="c2 pd-none">
 			<br>			
 				<br>
 				 <form action="qnaWrite" method="post" id="form">
-				<table class="bn3">
+				<table>
 				<tr>
 					<td class="wb"colspan="2"> <b class="bh2">Q&A title &nbsp;</b></td>
 					<td class="wb"colspan="1"> <input type="text" id="title" name="title" class="ch2"></td>
@@ -61,7 +61,7 @@
 	// ckEditor를 textarea태그에 적용 및 사이즈 조절
 		window.onload = function() {
 			ck = CKEDITOR.replace("editor", {
-				height : 250,
+				height : 350,
 				width : 1000
 			});
 		}

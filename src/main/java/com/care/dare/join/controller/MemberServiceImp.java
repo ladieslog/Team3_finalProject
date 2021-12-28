@@ -76,6 +76,7 @@ public class MemberServiceImp implements MemberService {
 
 	public int myUpdate(HttpServletRequest req, String id) {
 		MemberDTO dto = new MemberDTO();
+		HttpSession session = req.getSession();
 		dto.setId(id);
 		dto.setPwd(req.getParameter("pwd"));
 		dto.setNickname(req.getParameter("nickname"));
@@ -83,7 +84,11 @@ public class MemberServiceImp implements MemberService {
 		dto.setEmail(req.getParameter("email"));
 		dto.setMailnumber(Integer.parseInt(req.getParameter("zipcode")));
 		dto.setDetailaddr(req.getParameter("detailaddress"));
-		return mapper.myUpdate(dto);
+		int result = mapper.myUpdate(dto);
+		if(result == 1) {
+			session.setAttribute("loginUser", dto);
+		}
+		return result;
 	}
 	
 	public void accountDelete(MemberDTO dto, HttpServletResponse resp, Model model) {

@@ -40,7 +40,13 @@ public class CSService2 {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm"); // 시간 형식 포맷
 		
 		int count = 0; //총 게시글 수
-		count = mapper.qnaCount(); // 총 게시글 수를 가져옴
+		
+		if(userDto.getId().equals("3333")) {
+			count = mapper.qnaCount();
+		} else {
+			count = mapper.userQnaCount(userDto.getId());
+		}
+		
 		
 		List<QnaDTO> list = new ArrayList<>(); // 게시글들을 저장할 리스트
 		
@@ -52,6 +58,14 @@ public class CSService2 {
 			}
 			for(QnaDTO dto : list) {
 				dto.setQuestionTimeStr(sdf.format(dto.getQuestionTime())); // 시간 타입을 String 변경해서 저장
+				if(dto.getAnswerTime() != null) {
+					dto.setAnswerTimeStr(sdf.format(dto.getAnswerTime()));
+				}
+				if(dto.getStatus().equals("1")) {
+					dto.setStatusStr("답변 완료");
+				} else {
+					dto.setStatusStr("답변 대기");
+				}
 			}
 		}
 		// model(request)에 값들을 저장
@@ -64,7 +78,7 @@ public class CSService2 {
 		return mapper.qnaInfo(num);
 	}
 	public int qnaDelete(int num) {
-		return 0;
+		return mapper.qnaDelete(num);
 	}
 	
 	/*
