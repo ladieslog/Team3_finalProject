@@ -10,7 +10,7 @@
 <script src="${contextPath }/resources/jquery-3.6.0.min.js"></script> <!-- 제이 쿼리 -->
 <script src="${contextPath }/resources/bootstrap.js"></script> <!-- 부트스트랩 (미사용) -->
 <link rel="stylesheet"
-	href="${contextPath }/resources/CS/css/cs_css.css">
+	href="${contextPath }/resources/CS/css/cs_css.css?ver=2">
 </head>
 <body>
 	<div>
@@ -18,22 +18,17 @@
 		<div class="c1 mr-auto notice-wrap">
 			<div class="c2 pd-none">
 				<form action="noticeWrite" method="post" id="form">
+				<div style="height: 38px;"></div>
 					<table class="cn3">
 						<tr>
-							<td class="write-title"><b class="bh3 fs-20"> notice
+							<td class="write-title"><b class="bh3 fs-20"> Notice
 									title &nbsp;</b></td>
 							<td colspan="14"><input type="text" name="title"
 								class="cha3 title-input" id="title"></td>
 							<!--<td  class="tb"> <b class="b">write date</b></td>  -->
 						</tr>
 						<tr class="rb"></tr>
-						<!--
-				<tr>  
-					<td><b class="b"  colspan="1">write title</b> </td>
-					<td><input type="text" name="" class="ch"></td>
-					<td><b class="b"  colspan="1">write date</b> </td> <td  colspan="12"></td>
-					<td><input type="text" name="" class="ch"></td> 
-				</tr>-->
+
 						<tr>
 							<td colspan="15">
 								<!-- <input type="text" name="" class="chb3"> --> <textarea
@@ -48,6 +43,7 @@
 							</td>
 						</tr>
 					</table>
+					
 				</form>
 			</div>
 		</div>
@@ -69,7 +65,7 @@
 		}
 	</script>
 	<script
-		src="<%=request.getContextPath()%>/resources/CS/script/notice_js.js"></script>
+		src="<%=request.getContextPath()%>/resources/CS/script/notice_js.js?ver=3"></script>
 	
 </body>
 </html>

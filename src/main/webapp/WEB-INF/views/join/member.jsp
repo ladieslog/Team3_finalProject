@@ -144,13 +144,7 @@ $(document).ready(function() {
 			document.getElementById("pwd").focus();
 			return;
 		}
-		/*
-		if(blank_pattern2.test(document.getElementById("pwd").value) == true) {
-			document.getElementById("pwd").focus();
-			alert("패스워드에 공백은 입력하실 수 없습니다.");
-			return;
-		}
-		*/
+		
 		if(document.getElementById("pwd").value != document.getElementById("repwd").value) {
 			document.getElementById("repwd").focus();
 			alert("패스워드가 일치하지 않습니다.");
@@ -342,20 +336,7 @@ $(document).ready(function() {
 											<input type="hidden" id="idCk" value="0"/>
 								</tr>
 								<tr>
-<<<<<<< HEAD
-									<td>비밀번호</td>
-									<td><input type="password" id="pwd" name="pwd" size="20"></td>
-								</tr>
-								<tr>
-									<td>비밀번호 확인</td>
-									<td><input type="password" id="repwd" name="repwd" size="20"></td>
 
-								</tr>
-								<tr>
-									<td>닉네임</td>
-									<td><input name="nickname" id="nickname" size="20"></td>
-
-=======
 									<th>비밀번호</th>
 									<td><input type="password" name="pwd" id="pwd" size="20"></td>
 								</tr>
@@ -367,7 +348,7 @@ $(document).ready(function() {
 								<tr>
 									<th>닉네임</th>
 									<td><input name="nickname" id="nickname" size="20"></td>
->>>>>>> 9c87962353b939cb7d984fec3ee89f5e40546c97
+
 
 								</tr>
 								<tr>

@@ -19,6 +19,7 @@
 <c:set var="diaryList" value="${diaryList}" />
 <c:set var="currentPage" value="${currentPage }" />
 <c:set var="pageSize" value="${pageSize }" />
+<c:set var="search" value="${search }" />
 <c:set var="count" value="1"/>
 <c:if test="${currentPage==1 }">
 	<c:set var="count" value="2"/>
@@ -30,9 +31,14 @@
 	
 	<div class="diary-wrap">
 		<div class="diary-container">
-			<div>
+			<div style="display: flex;">
 				<span><b style="font-size: 15px; font-family: HCR Batang; font-weight: bold;">${loginUser.nickname}님의 </b></span>
 				<span><b style="font-size: 15px; margin-left: 15px; font-family: HCR Batang; font-weight: bold;">${diaryCount}가지 추억</b></span>
+				&nbsp;&nbsp;
+				<form action="diaryBoard" style="display: flex;">
+				<input type="text" id="search" name="search" value="${search }" style="border: 1px solid white; border-radius: 6px;">
+				<input type="submit" value="♥" style="border: none; background: #DEF4F9; color: gray;">
+				</form>
 			</div>
 			<div class="flex-con-be mt-30">
 			<c:if test="${currentPage == 1 }">
@@ -96,20 +102,20 @@
 					<c:set var="endPage" value="${pageCount }"/>
 				</c:if>
 				<c:if test="${startPage> pageBlock }">
-					<a style="font-size:18px; text-decoration: none; color:black" href="diaryBoard?currentPage=${startPage-10 }">←</a>
+					<a style="font-size:18px; text-decoration: none; color:black" href="diaryBoard?currentPage=${startPage-10 }&search=${search}">←</a>
 				</c:if>
 				<c:forEach var="i" begin="${startPage}" end="${endPage}">
 			<c:choose>
 				<c:when test="${i == currentPage }">
-					<a class="page" href="diaryBoard?currentPage=${i}">●</a>
+					<a class="page" href="#">●</a>
 				</c:when>
 				<c:otherwise>
-					<a class="page" href="diaryBoard?currentPage=${i}">○</a>				
+					<a class="page" href="diaryBoard?currentPage=${i}&search=${search}">○</a>				
 				</c:otherwise>
 			</c:choose>
 				</c:forEach>
 				<c:if test="${endPage < pageCount }">
-					<a style="font-size:18px; text-decoration: none; color:black" href="diaryBoard?currentPage=${startPage+10 }">→</a>
+					<a style="font-size:18px; text-decoration: none; color:black" href="diaryBoard?currentPage=${startPage+10 }&search=${search}">→</a>
 				</c:if>
 			</div>
 

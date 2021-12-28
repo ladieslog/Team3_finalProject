@@ -1,3 +1,4 @@
+<%@page import="com.care.dare.join.controller.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -10,57 +11,63 @@
 
 <script src="${contextPath }/resources/jquery-3.6.0.min.js"></script>
 <script src="${contextPath }/resources/bootstrap.js"></script>
-<link rel="stylesheet" href="${contextPath }/resources/CS/css/cs_css.css">
+<link rel="stylesheet" href="${contextPath }/resources/CS/css/cs_css.css?ver=8">
 </head>
 <body>
 <div>
+<%
+	MemberDTO dto = (MemberDTO) session.getAttribute("loginUser");
+
+%>
 	<jsp:include page="../default/header.jsp"/>
-	<div class="b1">
-		<div class="b2">
+	<div class="c1 mr-auto notice-wrap qna-wrap">
+		<div class="c2 pd-none">
 			<br>			
 				<br>
-			 
-				<table class="bn3">
+				 <form action="qnaWrite" method="post" id="form">
+				<table>
 				<tr>
-					<td class="wb"colspan="2"> <b class="bh2">Q&A class &nbsp;</b> </td>
-					<td class="wb"colspan="1"> <input type="text" name="" class="ch2"></td>
+					<td class="wb"colspan="2"> <b class="bh2">Q&A title &nbsp;</b></td>
+					<td class="wb"colspan="1"> <input type="text" id="title" name="title" class="ch2"></td>
 					<td class="ws"colspan="1"> </td>
 					<td class="wb"colspan="2"> <b class="bh2">&nbsp; writer &nbsp;</b></td>
-					<td class="wb"colspan="1"> <input type="text" name="" class="ch2"></td>
+					<td class="wb"colspan="1"> <input type="text" id="writer" name="writer" class="ch2" value="<%=dto.getId()%>" readonly></td>
 				</tr>
-				<tr>
-					<td class="wb"colspan="2"> <b class="bh2">Q&A title &nbsp;</b>  </td>
-					<td class="wb"colspan="1"> <input type="text" name="" class="ch2"></td>
-					<td class="ws"colspan="1"> </td>
-					<td class="wb"colspan="2"><b class="bh2">&nbsp; write date &nbsp;</b> </td>
-					<td class="wb"colspan="1"> <input type="text" name="" class="ch2"></td>
-				</tr>
-				<tr class ="hb"></tr>
 			
 				<tr>
-					<td colspan="2"><b class="bh2">Q&A content &nbsp;</b> </td>
+					<td colspan="2" class="hb"><b class="bh2">Q&A content &nbsp;</b> </td>
 				</tr>
 				<tr> 
 					<td colspan="15">
-						<input type="text" name="" class="chb2">
+						<textarea name="content" class="chb2" id="editor"></textarea>
 					</td>
 				</tr>
 					
 		</table>	
+		</form>
 			<div class="eh1">
-				<input type="button" value="view list" class="bn4">
-				<input type="submit" value="commit" class="bn4">
+				<input type="button" value="작성"
+								class="cn4 mb-none mt-15 notice-btn" style="margin-right: 20px;" onclick="writeCheck();">
+				<button type="button" class="cn4 mb-none notice-btn" onclick="location.href='csMain'">돌아가기</button>
 			</div>
 		</div>
-
 	</div>
-	
-
-	<jsp:include page="../Cs/cs_back.jsp"/>
 	<jsp:include page="../default/footer.jsp"/>
 </div>
 	
-	
+		<script
+		src="<%=request.getContextPath()%>/resources/ckeditor/ckeditor.js"></script>
+	<script>
+	// ckEditor를 textarea태그에 적용 및 사이즈 조절
+		window.onload = function() {
+			ck = CKEDITOR.replace("editor", {
+				height : 350,
+				width : 1000
+			});
+		}
+	</script>
+	<script
+		src="<%=request.getContextPath()%>/resources/CS/script/notice_js.js"></script>
 	
 
 

@@ -33,48 +33,46 @@ public class CalendarController {
 	@GetMapping(value = "/ajaxCal.do")
 	@ResponseBody
 	public JSONArray readDB(HttpServletRequest req, Model model) throws Exception {
-		
+
 		HttpSession session = req.getSession();
 		MemberDTO dto = (MemberDTO) session.getAttribute("loginUser");
 		service.readForCalendar(model, dto.getId());
-		
+
 		ArrayList<CalendarDTO> dataList = (ArrayList<CalendarDTO>) model.getAttribute("calendarData");
 		SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
 		JSONArray jArray = new JSONArray();
-		
-		for(CalendarDTO data : dataList) {
-			
+
+		for (CalendarDTO data : dataList) {
+
 			JSONObject jsonObj = new JSONObject();
-			
+
 			jsonObj.put("num", data.getNum());
-			
+
 			jsonObj.put("title", data.getTitle());
-			
-			String indateStr = simpleDate.format( data.getIndate() );
+
+			String indateStr = simpleDate.format(data.getIndate());
 			jsonObj.put("start", indateStr);
-			
+
 			String outdateStr = null;
 			Calendar cal = Calendar.getInstance();
 			cal.setTime(data.getOutdate());
 			cal.add(Calendar.DATE, 1);
 			outdateStr = simpleDate.format(cal.getTime());
 			jsonObj.put("end", outdateStr);
-			
-			jsonObj.put("location",data.getLocation1());
-			
-			if(Integer.parseInt(data.getPerson()) == 1) {
+
+			jsonObj.put("location", data.getLocation1());
+
+			if (Integer.parseInt(data.getPerson()) == 1) {
 				jsonObj.put("color", "#F15F5F");
-			}
-			else if(Integer.parseInt(data.getPerson()) == 2) {
+			} else if (Integer.parseInt(data.getPerson()) == 2) {
 				jsonObj.put("color", "#BCE55C");
-			}
-			else {
+			} else {
 				jsonObj.put("color", "#6B66FF");
 			}
-			
+
 			jArray.add(jsonObj);
 		}
-		
+
 		return jArray;
 	}
 }

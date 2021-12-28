@@ -17,9 +17,11 @@ public interface MemberService {
 	public MemberDTO idcheck(String id);
 	public int resister(HttpServletRequest req);
 	public MemberDTO loginproc(HttpServletRequest req);
-	public void memberList(Model model);
+	public void memberList(Model model,String search);
 	public void myHome(Model model,String id);
 	public int myUpdate(HttpServletRequest req,String id);
+	public void accountDelete(MemberDTO dto, HttpServletResponse resp, Model model);
+	public int emailCertified(String id);
 }
 
 

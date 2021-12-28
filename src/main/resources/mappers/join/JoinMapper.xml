@@ -20,10 +20,10 @@
 		insert into MEMBER_USER values(#{id}, #{pwd}, #{nickname}, #{addr}, #{email}, #{mailnumber}, #{detailaddr})
 	</insert>
 	<select id="loginproc" resultMap="join">
-	select* from MEMBER_USER where id=#{id} and pwd=#{pwd}
+	select* from MEMBER_USER where id=#{id}
 	</select>
 	<select id="memberList" resultMap="join">
-	select* from MEMBER_USER 
+	select* from MEMBER_USER where id like '%' || #{search} || '%'
 	</select>
 
 	<select id="myHome" resultMap="join">
@@ -34,4 +34,7 @@
 		update MEMBER_USER set pwd=#{pwd}, nickname=#{nickname}, addr=#{addr}, email=#{email}, mailnumber=#{mailnumber}, detailaddr=#{detailaddr} where id=#{id}
 	</update>
 	
+	<delete id="accountDelete">
+		delete from MEMBER_USER where id=#{id}
+	</delete>
 </mapper>

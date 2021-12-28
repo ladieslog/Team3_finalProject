@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -19,6 +20,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller 
@@ -57,8 +60,13 @@ public class joinController {
 	}
 
 	@GetMapping("memberList")
-	public String memberList(Model md) {
-		service.memberList(md);
+	public String memberList(Model md, HttpServletRequest req) {
+		String search = req.getParameter("search");
+		if(search == null) {
+			search = "";
+		}
+		service.memberList(md,search);
+		md.addAttribute("search1",search);
 		return "join/memberList";
 	}
 	@PostMapping("loginproc")
@@ -92,7 +100,6 @@ public class joinController {
 	@GetMapping("MyHome")
 	public String MyHome(Model model, HttpServletRequest req) {
 		HttpSession ses = req.getSession();
-		
 		if(ses.getAttribute("loginUser")==null) {
 			return "redirect:error";
 		}else {
@@ -103,7 +110,7 @@ public class joinController {
 	}
 	
 	@PostMapping("myUpdate")
-	public void myUpdate(HttpServletRequest req,HttpServletResponse resp) throws IOException {
+	public void myUpdate(HttpServletRequest req,HttpServletResponse resp, Model model) throws IOException {
 		HttpSession sess = req.getSession();
 		resp.setContentType("text/html; charset=utf-8"); // 응답 설정 변경
         PrintWriter out = resp.getWriter(); // 화면 출력용 객체
@@ -121,6 +128,46 @@ public class joinController {
 		
 	}
 	
+	@RequestMapping("accountDelete")
+	@ResponseBody
+	public ArrayList accountDelete(HttpServletRequest req, HttpServletResponse resp, Model model) throws IOException {
+		ArrayList list = new ArrayList();
+		/*
+		resp.setContentType("text/html; charset=utf-8"); // 응답 설정 변경
+        PrintWriter out = resp.getWriter(); // 화면 출력용 객체
+        */
+		HttpSession session = req.getSession();
+		MemberDTO ssDto = (MemberDTO) session.getAttribute("loginUser");
+		if(ssDto == null) {
+			model.addAttribute("error", "1491184513467160054");
+		}
+		service.accountDelete(ssDto, resp, model);
+		list.add(model.getAttribute("certified"));
+		return list;
+	}
+	/*
+	@RequestMapping("certifiedExit")
+	@ResponseBody
+	public void certifiedExit(HttpServletResponse resp) {
+		Cookie cookie = new Cookie("emailCertified", null);
+		cookie.setMaxAge(0);
+		resp.addCookie(cookie);
+	}
+	*/
+	
+	@RequestMapping(value = "emailCertified", method = RequestMethod.POST)
+	public void emailCertified(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		resp.setContentType("text/html; charset=utf-8"); // 응답 설정 변경
+        PrintWriter out = resp.getWriter(); // 화면 출력용 객체
+		HttpSession session = req.getSession();
+		MemberDTO dto = (MemberDTO) session.getAttribute("loginUser");
+		int result = service.emailCertified(dto.getId());
+		if(result == 0) {
+			out.print("<script> alert('회원 탈퇴에 실패했습니다');location.href='MyHome';</script>");
+		} else {
+			out.print("<script> alert('탈퇴되었습니다.');location.href='first';</script>");
+		}
+	}
 }
 
 

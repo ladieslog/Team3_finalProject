@@ -19,24 +19,46 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.care.dare.CS.DTO.NoticeDTO;
+import com.care.dare.CS.DTO.QnaDTO;
 import com.care.dare.CS.Service.CSService;
+import com.care.dare.CS.Service.CSService2;
+import com.care.dare.join.controller.MemberDTO;
 
 @Controller
 public class CSController {
 	@Autowired
 	CSService service;
 	
+	@Autowired
+	CSService2 service2;
+	
 	@RequestMapping(value = "csMain")
 	public String csMain(Model model, HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		String noticePageNumber = (String) session.getAttribute("noticePageNumber"); // noticePageNumber 세션값을 받아옴 페이지 번호가 들어있음
 		int noticeCurrentPage = 0;
+		
+		MemberDTO dto = (MemberDTO) session.getAttribute("loginUser");
+		if(dto == null) {
+			return "redirect:error";
+		}
+		
 		if(noticePageNumber == null) {
 			noticeCurrentPage = 1; // 만약 noticePageNumber 세션값이 없다면 현재 페이지를 1페이지로 설정
 		} else {
 			noticeCurrentPage = Integer.parseInt(noticePageNumber); // noticePageNumber 페이지 번호를 int로 변경
 		}
+		
+		String qnaPageNumber = (String) session.getAttribute("qnaPageNumber"); // noticePageNumber 세션값을 받아옴 페이지 번호가 들어있음
+		int qnaCurrentPage = 0;
+		if(qnaPageNumber == null) {
+			qnaCurrentPage = 1; // 만약 noticePageNumber 세션값이 없다면 현재 페이지를 1페이지로 설정
+		} else {
+			qnaCurrentPage = Integer.parseInt(qnaPageNumber); // noticePageNumber 페이지 번호를 int로 변경
+		}
+		
 		service.csMain(model, noticeCurrentPage);
+		service2.QnaList(model, qnaCurrentPage, dto);
 		return "Cs/cs01_sign";
 	}
 	
@@ -44,6 +66,17 @@ public class CSController {
 	public String notice() {
 		return "Cs/cs03_signWrite";
 	}
+	
+	@RequestMapping(value = "qna")
+	public String qna() {
+		return "Cs/cs02_qnaWrite";
+	}
+	
+	@RequestMapping(value = "qnaAnswer")
+	public String answer() {
+		return "Cs/cs06_qnaAnswer";
+	}
+	
 	
 	@RequestMapping(value = "noticeWrite", method = RequestMethod.POST)
 	public void noticeWrite(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -60,6 +93,23 @@ public class CSController {
 		}
 	}
 	
+	@RequestMapping(value = "qnaWrite", method = RequestMethod.POST)
+	public void qnaWrite(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		int result = service2.QnaWrite(req);
+		resp.setContentType("text/html; charset=utf-8"); // 응답 설정 변경
+		PrintWriter out = resp.getWriter(); // 화면에 출력할 스트림
+		if(result == 0) { // 공지 작성에 실패했을 경우
+			out.print("<script> alert('질문 작성에 실패했습니다.');"
+					+"location.href='csMain'; </script>");
+		} else { // 공지 작성에 성공했을경우
+			out.print("<script> alert('질문 작성이 완료되었습니다.');"
+					+"location.href='csMain'; </script>");
+		}
+	}
+	
+	
+	
+	
 	@RequestMapping(value = "pageSet", method = RequestMethod.POST, produces="application/json; charset=utf-8")
 	@ResponseBody
 	public List<NoticeDTO> pageSet(@RequestBody Map form, Model model, HttpServletRequest req) {
@@ -73,10 +123,32 @@ public class CSController {
 		return list;
 	}
 	
+	@RequestMapping(value = "pageSet2", method = RequestMethod.POST, produces="application/json; charset=utf-8")
+	@ResponseBody
+	public List<QnaDTO> pageSet2(@RequestBody Map form, Model model, HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		MemberDTO dto = (MemberDTO) session.getAttribute("loginUser");
+		String PageNum = (String) form.get("currentPage2");
+		int currentPage = Integer.parseInt(PageNum);
+		service2.QnaList(model, currentPage, dto);
+		List<QnaDTO> list2 = (List<QnaDTO>) model.getAttribute("list2"); 
+		session.setAttribute("qnaPageNumber", PageNum); 
+		return list2;
+	}
+	
+	
+	
+	
 	@RequestMapping(value = "noticeInfo")
 	public String noticeInfo(HttpServletRequest req, Model model, HttpServletResponse resp) throws IOException {
 		resp.setContentType("text/html; charset=utf-8"); // 응답 설정 변경
 		PrintWriter out = resp.getWriter(); // 화면 출력용 객체
+		HttpSession session = req.getSession();
+		MemberDTO dto = (MemberDTO) session.getAttribute("loginUser");
+		if(dto == null) {
+			return "error/loginError";
+		}
+		
 		String parameterNum = req.getParameter("num"); // 게시글 번호를 받아옴
 		if(parameterNum == null) { // 게시글 번호가 없다면 잘못된 접근임
 			out.print("<script> alert('잘못된 접근입니다.');"
@@ -86,6 +158,39 @@ public class CSController {
 		service.noticeInfo(model, num);
 		return "Cs/cs_noticeInfo";
 	}
+	
+	
+	@RequestMapping(value = "qnaInfo")
+	public String qnaInfo(HttpServletRequest req, Model model, HttpServletResponse resp) throws IOException {
+		resp.setContentType("text/html; charset=utf-8"); // 응답 설정 변경
+		PrintWriter out = resp.getWriter(); // 화면 출력용 객체
+		HttpSession session = req.getSession();
+		MemberDTO userDto = (MemberDTO) session.getAttribute("loginUser");
+		if(userDto == null) {
+			return "error/loginError";
+		}
+		String parameterNum = req.getParameter("num"); // 게시글 번호를 받아옴
+		if(parameterNum == null) { // 게시글 번호가 없다면 잘못된 접근임
+			return "error/accessError";
+		}
+		int num = Integer.parseInt(parameterNum); // 게시글 번호를 int로 변경
+		QnaDTO dto = service2.qnaInfo(num);
+		if(dto == null) {
+			return "error/accessError";
+		}
+		if(!(dto.getQuestionId().equals(userDto.getId()))) {
+			if(!(userDto.getId().equals("3333"))) {
+				return "error/accessError";
+			}
+		}
+		model.addAttribute("qna", dto);
+		return "Cs/cs_qnaInfo";
+	}
+	
+	
+	
+	
+	
 	
 	@RequestMapping(value = "noticeDelete", method=RequestMethod.POST)
 	public void infoDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -102,6 +207,28 @@ public class CSController {
 				out.print("<script> alert('게시글 삭제에 실패했습니다.');location.href='csMain';</script>");
 			} else {
 				out.print("<script> alert('게시글이 삭제되었습니다.');location.href='csMain';</script>");
+				
+			}
+		}
+		
+	}
+	
+	
+	@RequestMapping(value = "qnaDelete", method=RequestMethod.POST)
+	public void qnaDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		resp.setContentType("text/html; charset=utf-8"); // 응답 설정 변경
+		PrintWriter out = resp.getWriter(); // 화면 출력용 객체
+		String numstr = req.getParameter("num");
+		if(numstr == null) {
+			out.print("<script> alert('잘못된 접근입니다.');location.href='csMain';</script>");
+		} else {
+			int num = Integer.parseInt(numstr);
+			int result = service2.qnaDelete(num);
+			
+			if(result == 0) {
+				out.print("<script> alert('질문글 삭제에 실패했습니다.');location.href='csMain';</script>");
+			} else {
+				out.print("<script> alert('질문글이 삭제되었습니다.');location.href='csMain';</script>");
 				
 			}
 		}
@@ -144,5 +271,8 @@ public class CSController {
 	public String test2() {
 		return "test/Test2";
 	}
+	
+	
+	
 	
 }
