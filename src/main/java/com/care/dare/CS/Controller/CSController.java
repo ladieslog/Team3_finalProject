@@ -213,6 +213,28 @@ public class CSController {
 		
 	}
 	
+	
+	@RequestMapping(value = "qnaDelete", method=RequestMethod.POST)
+	public void qnaDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		resp.setContentType("text/html; charset=utf-8"); // 응답 설정 변경
+		PrintWriter out = resp.getWriter(); // 화면 출력용 객체
+		String numstr = req.getParameter("num");
+		if(numstr == null) {
+			out.print("<script> alert('잘못된 접근입니다.');location.href='csMain';</script>");
+		} else {
+			int num = Integer.parseInt(numstr);
+			int result = service2.qnaDelete(num);
+			
+			if(result == 0) {
+				out.print("<script> alert('질문글 삭제에 실패했습니다.');location.href='csMain';</script>");
+			} else {
+				out.print("<script> alert('질문글이 삭제되었습니다.');location.href='csMain';</script>");
+				
+			}
+		}
+		
+	}
+	
 	@RequestMapping(value = "noticeModifyForm", method=RequestMethod.POST)
 	public String noticeModifyForm(HttpServletRequest req, HttpServletResponse resp, Model model) throws IOException {
 		resp.setContentType("text/html; charset=utf-8"); // 응답 설정 변경

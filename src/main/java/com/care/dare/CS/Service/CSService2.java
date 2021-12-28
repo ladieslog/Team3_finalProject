@@ -64,7 +64,7 @@ public class CSService2 {
 		return mapper.qnaInfo(num);
 	}
 	public int qnaDelete(int num) {
-		return 0;
+		return mapper.qnaDelete(num);
 	}
 	
 	/*

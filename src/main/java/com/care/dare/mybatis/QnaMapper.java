@@ -20,4 +20,6 @@ public interface QnaMapper {
 	public ArrayList<QnaDTO> userQnaBoard(@Param("s") int startRow, @Param("e") int endRow, @Param("id") String id);
 	
 	public QnaDTO qnaInfo(int num);
+	
+	public int qnaDelete(int num);
 }
