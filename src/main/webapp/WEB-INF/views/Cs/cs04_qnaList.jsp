@@ -59,7 +59,7 @@
 	</div>
 	
 
-	<jsp:include page="../Cs/cs_back.jsp"/>
+	
 	<jsp:include page="../default/footer.jsp"/>
 </div>
 	

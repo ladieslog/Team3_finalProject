@@ -44,3 +44,31 @@
 	
 	.hr{ border: 1px solid #FFFFF4; }
 	.st{ text-align: center; font-size: 30px;  font-weight: bold; color: #5D5D5D; }
+	.email-model {
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		-webkit-transform: translate(-50%, -50%);
+		-moz-transform: translate(-50%, -50%);
+		-ms-transform: translate(-50%, -50%);
+		-o-transform: translate(-50%, -50%);
+		transform: translate(-50%, -50%);
+		display: none;
+		background-color: #fff;
+		width: 500px;
+   		height: 250px;
+   		border-radius: 6px;
+	}
+	.cursor {
+		cursor:pointer;
+	}
+	#email-model-delete {
+		width: 20px;
+		height: 20px;
+	}
+	.email-model-delete-box {
+		display: flex;
+    	justify-content: space-between;
+    	align-items: center;
+	}
+	

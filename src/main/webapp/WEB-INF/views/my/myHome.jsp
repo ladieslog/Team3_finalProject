@@ -7,99 +7,20 @@
 <head>
 <meta charset="UTF-8">
 <title>마이페이지</title>
-<link rel="stylesheet" href="${contextPath }/resources/MyPageCss/MyPageCss.css?ver=1">
+<link rel="stylesheet" href="${contextPath }/resources/MyPageCss/MyPageCss.css?ver=3">
 <script src="${contextPath }/resources/jquery-3.6.0.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script>
-	function addrSearch() {
-		new daum.Postcode({
-	        oncomplete: function(data) {
-	        	// R : 도로명, J : 지번
-	          	console.log("data.userSelectedType : " + data.userSelectedType);
-	          	console.log("data.roadAddress : " + data.roadAddress);
-	          	console.log("data.jibunAddress : " + data.jibunAddress);
-	          	console.log("data.zonecode : " + data.zonecode);
-	          	var addr = data.roadAddress;
-	          	
-	          	$("#zipcode").val(data.zonecode);
-	          	$("#address").val(addr);
-	        }
-	    }).open();
-	}
-	
-	var blank_pattern1 = /^\s+|\s+$/g; // 공백만 있을 경우
-	var regType1 = /^[A-Za-z0-9+]*$/;
-	var reg_email = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/; // 이메일 체크
-
-	
-	function modify(){
-		if(document.getElementById("pwd").value == "" || document.getElementById("pwd").value.replace(blank_pattern1, '') == "") {
-			alert("패스워드를 입력해 주세요.");
-			document.getElementById("pwd").focus();
-			return;
-		}
-		if(document.getElementById("pwd").value.length > 16 || 8 > document.getElementById("pwd").value.length) {
-			alert("패스워드는 8~16자 사이로 입력해 주세요.");
-			document.getElementById("pwd").focus();
-			return;
-		}
-		if(document.getElementById("pwd").value != document.getElementById("repwd").value) {
-			document.getElementById("repwd").focus();
-			alert("패스워드가 일치하지 않습니다.");
-			return;
-		}
-		
-		if(document.getElementById("nickname").value == "" || document.getElementById("nickname").value.replace(blank_pattern1, '') == "") {
-			alert("닉네임을 입력해 주세요.");
-			document.getElementById("nickname").focus();
-			return;
-		}
-		if(document.getElementById("nickname").value.length > 12 || 2 > document.getElementById("nickname").value.length) {
-			alert("닉네임은 2~12자 사이로 입력해 주세요.");
-			document.getElementById("nickname").focus();
-			return;
-		}
-		if(document.getElementById("zipcode").value == "" || document.getElementById("zipcode").value.replace(blank_pattern1, '') == "") {
-			alert("주소를 입력해 주세요.");
-			return;
-		}
-		
-		if(document.getElementById("detailaddress").value == "" || document.getElementById("detailaddress").value.replace(blank_pattern1, '') == "") {
-			alert("상세주소를 입력해 주세요.");
-			document.getElementById("detailaddress").focus();
-			return;
-		}
-		if(document.getElementById("detailaddress").value.length > 30) {
-			alert("상세주소는 30자 이내로 입력해 주세요.");
-			document.getElementById("detailaddress").focus();
-			return;
-		}
-		
-		if(document.getElementById("email").value == "" || document.getElementById("email").value.replace(blank_pattern1, '') == "") {
-			alert("이메일을 입력해 주세요.");
-			document.getElementById("email").focus();
-			return;
-		}
-		
-		if(!(reg_email.test(document.getElementById("email").value))) {
-			alert("이메일 형식에 맞게 입력해 주세요.");
-			document.getElementById("email").focus();
-			return;
-		}
-		
-		
-		if(document.getElementById("email").value.length > 30 || 10 > document.getElementById("email").value.length) {
-			alert("이메일은 10~30자 사이로 입력해 주세요.");
-			document.getElementById("email").focus();
-			return;
-		}
-		
-		document.getElementById("mod").submit()
-	}
-</script>
 </head>
 <body style="overflow-x: hidden;">
-
+<%
+	if(request.getParameter("error") != null) {
+		if(request.getParameter("error").equals("1491184513467160054")) {
+			System.out.println("실행");
+			response.sendRedirect("error");
+		}
+		
+	}
+%>
 	<jsp:include page="../default/header.jsp"/>
 		<div class="my-wrap">
 			<form id="mod" action="myUpdate" method="post">
@@ -152,11 +73,75 @@
 			<hr class="hr">
 				<div align="center" style="margin-top: 32px; margin-left: 542px;" class="btn-div">
 					<button type="button" onclick="modify()">수정 완료</button>
-					<button type="button">회원 탈퇴</button>
+					<button type="button" onclick="accountDelete();">회원 탈퇴</button>
 				</div>
 				
 			</form>
 		</div>
+		
+		<div class="email-model" id="email-model">
+			<div style="padding: 20px;">
+				<form action="emailCertified" method="post" id="model-form">
+					<div class="email-model-delete-box">
+						<span style="font-size: 27pt; font-family: Georgia; color: #6E94CC;">Tripnote</span>
+						<img src="${contextPath }/resources/diaryimg/delete.png" class="cursor" id="email-model-delete" onclick="modelExit();"/>
+					</div>
+					<div style="margin-top: 15px; font-weight: bold;">
+						등록된 회원 이메일로 인증번호를 보냈습니다.<br> 
+						인증번호를 입력하시고 탈퇴 버튼을 누르면 탈퇴가 완료됩니다.<br> 
+					</div>
+					<div style="display: flex; justify-content: center; align-items: center; margin-top: 5px; font-weight: bold;">
+					인증 번호 : <input style="width: 101px; margin-left: 15px; border: 1px solid black;" type="text" name="certified" id="certified"/>
+					</div>
+					<div style="display: flex; justify-content: center; align-items: center; margin-top: 5px; font-weight: bold;">
+						남은 시간 : &nbsp;<span id="time">3 : 0</span>
+						<button style="margin-left: 15px; background-color: white; border: 1px solid black;" type="button" onclick="emailCertified();">탈퇴하기</button>
+					</div>
+					<div style="font-size: 10pt; margin-top: 10px;">
+					<span style="color: gray;">*인증번호를 받지 못했다면 이메일주소를 확인하세요</span></div>
+					<div style="font-size: 10pt;">
+					<span style="color: gray;">*또는 관리자에게 <a href="" style="color: gray;">문의</a> 바랍니다.</span></div>
+				</form>
+			</div>
+		</div>
 	<jsp:include page="../default/footer.jsp"/>
+<script src="${contextPath }/resources/MyPageScript/MyPageScript.js?ver=7"></script>
+<script type="text/javascript">
+	//탈퇴 버튼 클릭시 이메일 전송 메소드
+	var certifiedNum = "";
+	function accountDelete() {
+		if(confirm("정말로 탈퇴하시겠습니까?")) {
+			$.ajax({
+				url : "accountDelete",
+				type : "GET",
+				dataType : "json",
+				success : function(list) {
+					$("#email-model").css('display', 'block');
+					certifiedNum = list[0];
+					TimerStart();
+				}, error : function() {
+					alert("문제 발생");
+				}
+			})
+		}
+	}
+	
+	function emailCertified() {
+		if(SetTime < 0) {
+			alert("인증 시간이 지났습니다. 창 종료후 다시 진행해주세요.");
+			return;
+		}
+		if(document.getElementById("certified").value == "" || document.getElementById("certified").value.replace(blank_pattern1, '') == "") {
+			alert("인증번호를 입력해 주세요.");
+			document.getElementById("certified").focus();
+			return;
+		}
+		if(document.getElementById("certified").value != certifiedNum) {
+			alert("인증번호가 틀립니다.");
+			return;
+		}
+		document.getElementById("model-form").submit();
+	}
+</script>
 </body>
 </html>

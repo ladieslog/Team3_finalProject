@@ -15,12 +15,14 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.care.dare.diary.dto.DiaryDTO;
+import com.care.dare.join.controller.MemberDTO;
 import com.care.dare.mybatis.DiaryMapper;
 
 
@@ -29,7 +31,10 @@ public class DiaryService {
 	@Autowired DiaryMapper mapper;
 	public void writeSave(HttpServletRequest req) throws Exception {	// 다이어리 작성 DB 저장
 		DiaryDTO dto = new DiaryDTO();
-		dto.setId("3333");	
+		HttpSession sessi = req.getSession();
+		MemberDTO dt = (MemberDTO)sessi.getAttribute("loginUser");
+		
+		dto.setId(dt.getId());
 
 		SimpleDateFormat sm = new SimpleDateFormat("yyyy-MM-dd");
 		Date date1 = null;
@@ -137,10 +142,12 @@ public class DiaryService {
 		return file;
 	}*/
 	
-	public ArrayList<DiaryDTO> diaryBoard(int start, int end, String id) {
-		return mapper.diaryBoard(start, end, id);
+	public ArrayList<DiaryDTO> diaryBoard(int start, int end, String id, String search) {
+		return mapper.diaryBoard(start, end, id, search);
 	}
+
 	
+
 	public void diaryView(Model model, int num) throws Exception {
 		DiaryDTO dto = mapper.diaryView(num);
 		SimpleDateFormat sim = new SimpleDateFormat("yyyy-MM-dd");
@@ -289,8 +296,8 @@ public class DiaryService {
 		mapper.writeUpdate(dto);
 	}
 
-	public int diaryCount(String id) {
-		return mapper.diaryCount(id);
+	public int diaryCount(String id,String search) {
+		return mapper.diaryCount(id,search);
 	}
 	
 }

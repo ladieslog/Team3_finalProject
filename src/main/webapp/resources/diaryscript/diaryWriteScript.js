@@ -4,6 +4,9 @@
 	var check4 = 0;
 	var check5 = 0;
 	var pageNum = 1;
+	
+	var blank_pattern1 = /^\s+|\s+$/g;
+	
 function readURL1(input) {	
 	var file = input.files[0] 
 	console.log(file)
@@ -55,9 +58,10 @@ function page0(){
 	}
 	if(pageNum == 2){
 		if(check2 == 0){
-			if(document.getElementById("coment2").value == ""){
-				alert('글 내용이 없습니다.')
-				return ;
+			if(document.getElementById("coment2").value == "" || document.getElementById("coment2").value.replace(blank_pattern1, '') == "") {
+				alert("글 내용이 없습니다.");
+				document.getElementById("coment2").focus();
+				return;
 			}
 			if(document.getElementById("coment2").value.length >= 100) {
 				alert('글 내용은 100글자를 초과할 수 없습니다.')
@@ -67,9 +71,11 @@ function page0(){
 			if(document.getElementById("imgChk2").value == '0'){
 				alert('이미지가 없습니다.')
 				return ;
-			}if(document.getElementById("comentimage2").value == ""){
-				alert('글 내용이 없습니다.')
-				return ;
+			}
+			if(document.getElementById("comentimage2").value == "" || document.getElementById("comentimage2").value.replace(blank_pattern1, '') == "") {
+				alert("글 내용이 없습니다.");
+				document.getElementById("comentimage2").focus();
+				return;
 			}
 			if(document.getElementById("comentimage2").value.length >= 100) {
 				alert('글 내용은 100글자를 초과할 수 없습니다.')
@@ -79,9 +85,10 @@ function page0(){
 	}
 	if(pageNum == 3){
 		if(check3 == 0){
-			if(document.getElementById("coment3").value == ""){
-				alert('글 내용이 없습니다.')
-				return ;
+			if(document.getElementById("coment3").value == "" || document.getElementById("coment3").value.replace(blank_pattern1, '') == "") {
+				alert("글 내용이 없습니다.");
+				document.getElementById("coment3").focus();
+				return;
 			}
 			if(document.getElementById("coment3").value.length >= 100) {
 				alert('글 내용은 100글자를 초과할 수 없습니다.')
@@ -91,9 +98,11 @@ function page0(){
 			if(document.getElementById("imgChk3").value == '0'){
 				alert('이미지가 없습니다.')
 				return ;
-			}if(document.getElementById("comentimage3").value == ""){
-				alert('글 내용이 없습니다.')
-				return ;
+			}
+			if(document.getElementById("comentimage3").value == "" || document.getElementById("comentimage3").value.replace(blank_pattern1, '') == "") {
+				alert("글 내용이 없습니다.");
+				document.getElementById("comentimage3").focus();
+				return;
 			}
 			if(document.getElementById("comentimage3").value.length >= 100) {
 				alert('글 내용은 100글자를 초과할 수 없습니다.')
@@ -103,9 +112,10 @@ function page0(){
 	}
 	if(pageNum == 4){
 		if(check4 == 0){
-			if(document.getElementById("coment4").value == ""){
-				alert('글 내용이 없습니다.')
-				return ;
+			if(document.getElementById("coment4").value == "" || document.getElementById("coment4").value.replace(blank_pattern1, '') == "") {
+				alert("글 내용이 없습니다.");
+				document.getElementById("coment4").focus();
+				return;
 			}
 			if(document.getElementById("coment4").value.length >= 100) {
 				alert('글 내용은 100글자를 초과할 수 없습니다.')
@@ -115,9 +125,10 @@ function page0(){
 			if(document.getElementById("imgChk4").value == '0'){
 				alert('이미지가 없습니다.')
 				return ;
-			}if(document.getElementById("comentimage4").value == ""){
-				alert('글 내용이 없습니다.')
-				return ;
+			}if(document.getElementById("comentimage4").value == "" || document.getElementById("comentimage4").value.replace(blank_pattern1, '') == "") {
+				alert("글 내용이 없습니다.");
+				document.getElementById("comentimage4").focus();
+				return;
 			}
 			if(document.getElementById("comentimage4").value.length >= 100) {
 				alert('글 내용은 100글자를 초과할 수 없습니다.')
@@ -127,9 +138,10 @@ function page0(){
 	}
 	if(pageNum == 5){
 		if(check5 == 0){
-			if(document.getElementById("coment5").value == ""){
-				alert('글 내용이 없습니다.')
-				return ;
+			if(document.getElementById("coment5").value == "" || document.getElementById("coment5").value.replace(blank_pattern1, '') == "") {
+				alert("글 내용이 없습니다.");
+				document.getElementById("coment5").focus();
+				return;
 			}
 			if(document.getElementById("coment5").value.length >= 100) {
 				alert('글 내용은 100글자를 초과할 수 없습니다.')
@@ -139,9 +151,10 @@ function page0(){
 			if(document.getElementById("imgChk5").value == '0'){
 				alert('이미지가 없습니다.')
 				return ;
-			}if(document.getElementById("comentimage5").value == ""){
-				alert('글 내용이 없습니다.')
-				return ;
+			}if(document.getElementById("comentimage5").value == "" || document.getElementById("comentimage5").value.replace(blank_pattern1, '') == "") {
+				alert("글 내용이 없습니다.");
+				document.getElementById("comentimage5").focus();
+				return;
 			}
 			if(document.getElementById("comentimage5").value.length >= 100) {
 				alert('글 내용은 100글자를 초과할 수 없습니다.')
@@ -177,9 +190,10 @@ function page1(){
 	
 	if(pageNum == 1){
 		if(check1 == 0){
-			if(document.getElementById("coment1").value == ""){
-				alert('글 내용이 없습니다.')
-				return ;
+			if(document.getElementById("coment1").value == "" || document.getElementById("coment1").value.replace(blank_pattern1, '') == "") {
+				alert("글 내용이 없습니다.");
+				document.getElementById("coment1").focus();
+				return;
 			}
 			if(document.getElementById("coment1").value.length >= 100) {
 				alert('글 내용은 100글자를 초과할 수 없습니다.')
@@ -189,9 +203,10 @@ function page1(){
 			if(document.getElementById("imgChk1").value == '0'){
 				alert('이미지가 없습니다.')
 				return ;
-			}if(document.getElementById("comentimage1").value == ""){
-				alert('글 내용이 없습니다.')
-				return ;
+			}if(document.getElementById("comentimage1").value == "" || document.getElementById("comentimage1").value.replace(blank_pattern1, '') == "") {
+				alert("글 내용이 없습니다.");
+				document.getElementById("comentimage1").focus();
+				return;
 			}
 			if(document.getElementById("comentimage1").value.length >= 100) {
 				alert('글 내용은 100글자를 초과할 수 없습니다.')
@@ -201,9 +216,10 @@ function page1(){
 	}
 	if(pageNum == 3){
 		if(check3 == 0){
-			if(document.getElementById("coment3").value == ""){
-				alert('글 내용이 없습니다.')
-				return ;
+			if(document.getElementById("coment3").value == "" || document.getElementById("coment3").value.replace(blank_pattern1, '') == "") {
+				alert("글 내용이 없습니다.");
+				document.getElementById("coment3").focus();
+				return;
 			}
 			if(document.getElementById("coment3").value.length >= 100) {
 				alert('글 내용은 100글자를 초과할 수 없습니다.')
@@ -213,9 +229,10 @@ function page1(){
 			if(document.getElementById("imgChk3").value == '0'){
 				alert('이미지가 없습니다.')
 				return ;
-			}if(document.getElementById("comentimage3").value == ""){
-				alert('글 내용이 없습니다.')
-				return ;
+			}if(document.getElementById("comentimage3").value == "" || document.getElementById("comentimage3").value.replace(blank_pattern1, '') == "") {
+				alert("글 내용이 없습니다.");
+				document.getElementById("comentimage3").focus();
+				return;
 			}
 			if(document.getElementById("comentimage3").value.length >= 100) {
 				alert('글 내용은 100글자를 초과할 수 없습니다.')
@@ -225,9 +242,10 @@ function page1(){
 	}
 	if(pageNum == 4){
 		if(check4 == 0){
-			if(document.getElementById("coment4").value == ""){
-				alert('글 내용이 없습니다.')
-				return ;
+			if(document.getElementById("coment4").value == "" || document.getElementById("coment4").value.replace(blank_pattern1, '') == "") {
+				alert("글 내용이 없습니다.");
+				document.getElementById("coment4").focus();
+				return;
 			}
 			if(document.getElementById("coment4").value.length >= 100) {
 				alert('글 내용은 100글자를 초과할 수 없습니다.')
@@ -237,9 +255,10 @@ function page1(){
 			if(document.getElementById("imgChk4").value == '0'){
 				alert('이미지가 없습니다.')
 				return ;
-			}if(document.getElementById("comentimage4").value == ""){
-				alert('글 내용이 없습니다.')
-				return ;
+			}if(document.getElementById("comentimage4").value == "" || document.getElementById("comentimage4").value.replace(blank_pattern1, '') == "") {
+				alert("글 내용이 없습니다.");
+				document.getElementById("comentimage4").focus();
+				return;
 			}
 			if(document.getElementById("comentimage4").value.length >= 100) {
 				alert('글 내용은 100글자를 초과할 수 없습니다.')
@@ -249,9 +268,10 @@ function page1(){
 	}
 	if(pageNum == 5){
 		if(check5 == 0){
-			if(document.getElementById("coment5").value == ""){
-				alert('글 내용이 없습니다.')
-				return ;
+			if(document.getElementById("coment5").value == "" || document.getElementById("coment5").value.replace(blank_pattern1, '') == "") {
+				alert("글 내용이 없습니다.");
+				document.getElementById("coment5").focus();
+				return;
 			}
 			if(document.getElementById("coment5").value.length >= 100) {
 				alert('글 내용은 100글자를 초과할 수 없습니다.')
@@ -261,9 +281,10 @@ function page1(){
 			if(document.getElementById("imgChk5").value == '0'){
 				alert('이미지가 없습니다.')
 				return ;
-			}if(document.getElementById("comentimage5").value == ""){
-				alert('글 내용이 없습니다.')
-				return ;
+			}if(document.getElementById("comentimage5").value == "" || document.getElementById("comentimage5").value.replace(blank_pattern1, '') == "") {
+				alert("글 내용이 없습니다.");
+				document.getElementById("comentimage5").focus();
+				return;
 			}
 			if(document.getElementById("comentimage5").value.length >= 100) {
 				alert('글 내용은 100글자를 초과할 수 없습니다.')
@@ -353,9 +374,10 @@ function page2(){
 	
 	if(pageNum == 1){
 		if(check1 == 0){
-			if(document.getElementById("coment1").value == ""){
-				alert('글 내용이 없습니다.')
-				return ;
+			if(document.getElementById("coment1").value == "" || document.getElementById("coment1").value.replace(blank_pattern1, '') == "") {
+				alert("글 내용이 없습니다.");
+				document.getElementById("coment1").focus();
+				return;
 			}
 			if(document.getElementById("coment1").value.length >= 100) {
 				alert('글 내용은 100글자를 초과할 수 없습니다.')
@@ -365,9 +387,10 @@ function page2(){
 			if(document.getElementById("imgChk1").value == '0'){
 				alert('이미지가 없습니다.')
 				return ;
-			}if(document.getElementById("comentimage1").value == ""){
-				alert('글 내용이 없습니다.')
-				return ;
+			}if(document.getElementById("comentimage1").value == "" || document.getElementById("comentimage1").value.replace(blank_pattern1, '') == "") {
+				alert("글 내용이 없습니다.");
+				document.getElementById("comentimage1").focus();
+				return;
 			}
 			if(document.getElementById("comentimage1").value.length >= 100) {
 				alert('글 내용은 100글자를 초과할 수 없습니다.')
@@ -377,9 +400,10 @@ function page2(){
 	}
 	if(pageNum == 2){
 		if(check2 == 0){
-			if(document.getElementById("coment2").value == ""){
-				alert('글 내용이 없습니다.')
-				return ;
+			if(document.getElementById("coment2").value == "" || document.getElementById("coment2").value.replace(blank_pattern1, '') == "") {
+				alert("글 내용이 없습니다.");
+				document.getElementById("coment2").focus();
+				return;
 			}
 			if(document.getElementById("coment2").value.length >= 100) {
 				alert('글 내용은 100글자를 초과할 수 없습니다.')
@@ -389,9 +413,10 @@ function page2(){
 			if(document.getElementById("imgChk2").value == '0'){
 				alert('이미지가 없습니다.')
 				return ;
-			}if(document.getElementById("comentimage2").value == ""){
-				alert('글 내용이 없습니다.')
-				return ;
+			}if(document.getElementById("comentimage2").value == "" || document.getElementById("comentimage2").value.replace(blank_pattern1, '') == "") {
+				alert("글 내용이 없습니다.");
+				document.getElementById("comentimage2").focus();
+				return;
 			}
 			if(document.getElementById("comentimage2").value.length >= 100) {
 				alert('글 내용은 100글자를 초과할 수 없습니다.')
@@ -401,9 +426,10 @@ function page2(){
 	}
 	if(pageNum == 4){
 		if(check4 == 0){
-			if(document.getElementById("coment4").value == ""){
-				alert('글 내용이 없습니다.')
-				return ;
+			if(document.getElementById("coment4").value == "" || document.getElementById("coment4").value.replace(blank_pattern1, '') == "") {
+				alert("글 내용이 없습니다.");
+				document.getElementById("coment4").focus();
+				return;
 			}
 			if(document.getElementById("coment4").value.length >= 100) {
 				alert('글 내용은 100글자를 초과할 수 없습니다.')
@@ -413,9 +439,10 @@ function page2(){
 			if(document.getElementById("imgChk4").value == '0'){
 				alert('이미지가 없습니다.')
 				return ;
-			}if(document.getElementById("comentimage4").value == ""){
-				alert('글 내용이 없습니다.')
-				return ;
+			}if(document.getElementById("comentimage4").value == "" || document.getElementById("comentimage4").value.replace(blank_pattern1, '') == "") {
+				alert("글 내용이 없습니다.");
+				document.getElementById("comentimage4").focus();
+				return;
 			}
 			if(document.getElementById("comentimage4").value.length >= 100) {
 				alert('글 내용은 100글자를 초과할 수 없습니다.')
@@ -425,9 +452,10 @@ function page2(){
 	}
 	if(pageNum == 5){
 		if(check5 == 0){
-			if(document.getElementById("coment5").value == ""){
-				alert('글 내용이 없습니다.')
-				return ;
+			if(document.getElementById("coment5").value == "" || document.getElementById("coment5").value.replace(blank_pattern1, '') == "") {
+				alert("글 내용이 없습니다.");
+				document.getElementById("coment5").focus();
+				return;
 			}
 			if(document.getElementById("coment4").value.length >= 100) {
 				alert('글 내용은 100글자를 초과할 수 없습니다.')
@@ -437,9 +465,10 @@ function page2(){
 			if(document.getElementById("imgChk5").value == '0'){
 				alert('이미지가 없습니다.')
 				return ;
-			}if(document.getElementById("comentimage5").value == ""){
-				alert('글 내용이 없습니다.')
-				return ;
+			}if(document.getElementById("comentimage5").value == "" || document.getElementById("comentimage5").value.replace(blank_pattern1, '') == "") {
+				alert("글 내용이 없습니다.");
+				document.getElementById("comentimage5").focus();
+				return;
 			}
 			if(document.getElementById("comentimage5").value.length >= 100) {
 				alert('글 내용은 100글자를 초과할 수 없습니다.')
@@ -525,9 +554,10 @@ function page3(){
 	
 	if(pageNum == 1){
 		if(check1 == 0){
-			if(document.getElementById("coment1").value == ""){
-				alert('글 내용이 없습니다.')
-				return ;
+			if(document.getElementById("coment1").value == "" || document.getElementById("coment1").value.replace(blank_pattern1, '') == "") {
+				alert("글 내용이 없습니다.");
+				document.getElementById("coment1").focus();
+				return;
 			}
 			if(document.getElementById("coment1").value.length >= 100) {
 				alert('글 내용은 100글자를 초과할 수 없습니다.')
@@ -537,9 +567,10 @@ function page3(){
 			if(document.getElementById("imgChk1").value == '0'){
 				alert('이미지가 없습니다.')
 				return ;
-			}if(document.getElementById("comentimage1").value == ""){
-				alert('글 내용이 없습니다.')
-				return ;
+			}if(document.getElementById("comentimage1").value == "" || document.getElementById("comentimage1").value.replace(blank_pattern1, '') == "") {
+				alert("글 내용이 없습니다.");
+				document.getElementById("comentimage1").focus();
+				return;
 			}
 			if(document.getElementById("comentimage1").value.length >= 100) {
 				alert('글 내용은 100글자를 초과할 수 없습니다.')
@@ -549,9 +580,10 @@ function page3(){
 	}
 	if(pageNum == 2){
 		if(check2 == 0){
-			if(document.getElementById("coment2").value == ""){
-				alert('글 내용이 없습니다.')
-				return ;
+			if(document.getElementById("coment2").value == "" || document.getElementById("coment2").value.replace(blank_pattern1, '') == "") {
+				alert("글 내용이 없습니다.");
+				document.getElementById("coment2").focus();
+				return;
 			}
 			if(document.getElementById("coment2").value.length >= 100) {
 				alert('글 내용은 100글자를 초과할 수 없습니다.')
@@ -561,9 +593,10 @@ function page3(){
 			if(document.getElementById("imgChk2").value == '0'){
 				alert('이미지가 없습니다.')
 				return ;
-			}if(document.getElementById("comentimage2").value == ""){
-				alert('글 내용이 없습니다.')
-				return ;
+			}if(document.getElementById("comentimage2").value == "" || document.getElementById("comentimage2").value.replace(blank_pattern1, '') == "") {
+				alert("글 내용이 없습니다.");
+				document.getElementById("comentimage2").focus();
+				return;
 			}
 			if(document.getElementById("comentimage2").value.length >= 100) {
 				alert('글 내용은 100글자를 초과할 수 없습니다.')
@@ -573,9 +606,10 @@ function page3(){
 	}
 	if(pageNum == 3){
 		if(check3 == 0){
-			if(document.getElementById("coment3").value == ""){
-				alert('글 내용이 없습니다.')
-				return ;
+			if(document.getElementById("coment3").value == "" || document.getElementById("coment3").value.replace(blank_pattern1, '') == "") {
+				alert("글 내용이 없습니다.");
+				document.getElementById("coment3").focus();
+				return;
 			}
 			if(document.getElementById("coment3").value.length >= 100) {
 				alert('글 내용은 100글자를 초과할 수 없습니다.')
@@ -585,9 +619,10 @@ function page3(){
 			if(document.getElementById("imgChk3").value == '0'){
 				alert('이미지가 없습니다.')
 				return ;
-			}if(document.getElementById("comentimage3").value == ""){
-				alert('글 내용이 없습니다.')
-				return ;
+			}if(document.getElementById("comentimage3").value == "" || document.getElementById("comentimage3").value.replace(blank_pattern1, '') == "") {
+				alert("글 내용이 없습니다.");
+				document.getElementById("comentimage3").focus();
+				return;
 			}
 			if(document.getElementById("comentimage3").value.length >= 100) {
 				alert('글 내용은 100글자를 초과할 수 없습니다.')
@@ -597,9 +632,10 @@ function page3(){
 	}
 	if(pageNum == 5){
 		if(check5 == 0){
-			if(document.getElementById("coment5").value == ""){
-				alert('글 내용이 없습니다.')
-				return ;
+			if(document.getElementById("coment5").value == "" || document.getElementById("coment5").value.replace(blank_pattern1, '') == "") {
+				alert("글 내용이 없습니다.");
+				document.getElementById("coment5").focus();
+				return;
 			}
 			if(document.getElementById("coment5").value.length >= 100) {
 				alert('글 내용은 100글자를 초과할 수 없습니다.')
@@ -609,9 +645,10 @@ function page3(){
 			if(document.getElementById("imgChk5").value == '0'){
 				alert('이미지가 없습니다.')
 				return ;
-			}if(document.getElementById("comentimage5").value == ""){
-				alert('글 내용이 없습니다.')
-				return ;
+			}if(document.getElementById("comentimage5").value == "" || document.getElementById("comentimage5").value.replace(blank_pattern1, '') == "") {
+				alert("글 내용이 없습니다.");
+				document.getElementById("comentimage5").focus();
+				return;
 			}
 			if(document.getElementById("comentimage5").value.length >= 100) {
 				alert('글 내용은 100글자를 초과할 수 없습니다.')
@@ -697,9 +734,10 @@ function page4(){
 	
 	if(pageNum == 1){
 		if(check1 == 0){
-			if(document.getElementById("coment1").value == ""){
-				alert('글 내용이 없습니다.')
-				return ;
+			if(document.getElementById("coment1").value == "" || document.getElementById("coment1").value.replace(blank_pattern1, '') == "") {
+				alert("글 내용이 없습니다.");
+				document.getElementById("coment1").focus();
+				return;
 			}
 			if(document.getElementById("coment1").value.length >= 100) {
 				alert('글 내용은 100글자를 초과할 수 없습니다.')
@@ -709,9 +747,10 @@ function page4(){
 			if(document.getElementById("imgChk1").value == '0'){
 				alert('이미지가 없습니다.')
 				return ;
-			}if(document.getElementById("comentimage1").value == ""){
-				alert('글 내용이 없습니다.')
-				return ;
+			}if(document.getElementById("comentimage1").value == "" || document.getElementById("comentimage1").value.replace(blank_pattern1, '') == "") {
+				alert("글 내용이 없습니다.");
+				document.getElementById("comentimage1").focus();
+				return;
 			}
 			if(document.getElementById("comentimage1").value.length >= 100) {
 				alert('글 내용은 100글자를 초과할 수 없습니다.')
@@ -721,9 +760,10 @@ function page4(){
 	}
 	if(pageNum == 2){
 		if(check2 == 0){
-			if(document.getElementById("coment2").value == ""){
-				alert('글 내용이 없습니다.')
-				return ;
+			if(document.getElementById("coment2").value == "" || document.getElementById("coment2").value.replace(blank_pattern1, '') == "") {
+				alert("글 내용이 없습니다.");
+				document.getElementById("coment2").focus();
+				return;
 			}
 			if(document.getElementById("coment2").value.length >= 100) {
 				alert('글 내용은 100글자를 초과할 수 없습니다.')
@@ -733,9 +773,10 @@ function page4(){
 			if(document.getElementById("imgChk2").value == '0'){
 				alert('이미지가 없습니다.')
 				return ;
-			}if(document.getElementById("comentimage2").value == ""){
-				alert('글 내용이 없습니다.')
-				return ;
+			}if(document.getElementById("comentimage2").value == "" || document.getElementById("comentimage2").value.replace(blank_pattern1, '') == "") {
+				alert("글 내용이 없습니다.");
+				document.getElementById("comentimage2").focus();
+				return;
 			}
 			if(document.getElementById("comentimage2").value.length >= 100) {
 				alert('글 내용은 100글자를 초과할 수 없습니다.')
@@ -745,9 +786,10 @@ function page4(){
 	}
 	if(pageNum == 3){
 		if(check3 == 0){
-			if(document.getElementById("coment3").value == ""){
-				alert('글 내용이 없습니다.')
-				return ;
+			if(document.getElementById("coment3").value == "" || document.getElementById("coment3").value.replace(blank_pattern1, '') == "") {
+				alert("글 내용이 없습니다.");
+				document.getElementById("coment3").focus();
+				return;
 			}
 			if(document.getElementById("coment3").value.length >= 100) {
 				alert('글 내용은 100글자를 초과할 수 없습니다.')
@@ -757,9 +799,10 @@ function page4(){
 			if(document.getElementById("imgChk3").value == '0'){
 				alert('이미지가 없습니다.')
 				return ;
-			}if(document.getElementById("comentimage3").value == ""){
-				alert('글 내용이 없습니다.')
-				return ;
+			}if(document.getElementById("comentimage3").value == "" || document.getElementById("comentimage3").value.replace(blank_pattern1, '') == "") {
+				alert("글 내용이 없습니다.");
+				document.getElementById("comentimage3").focus();
+				return;
 			}
 			if(document.getElementById("comentimage3").value.length >= 100) {
 				alert('글 내용은 100글자를 초과할 수 없습니다.')
@@ -769,9 +812,10 @@ function page4(){
 	}
 	if(pageNum == 4){
 		if(check4 == 0){
-			if(document.getElementById("coment4").value == ""){
-				alert('글 내용이 없습니다.')
-				return ;
+			if(document.getElementById("coment4").value == "" || document.getElementById("coment4").value.replace(blank_pattern1, '') == "") {
+				alert("글 내용이 없습니다.");
+				document.getElementById("coment4").focus();
+				return;
 			}
 			if(document.getElementById("coment4").value.length >= 100) {
 				alert('글 내용은 100글자를 초과할 수 없습니다.')
@@ -781,9 +825,10 @@ function page4(){
 			if(document.getElementById("imgChk4").value == '0'){
 				alert('이미지가 없습니다.')
 				return ;
-			}if(document.getElementById("comentimage4").value == ""){
-				alert('글 내용이 없습니다.')
-				return ;
+			}if(document.getElementById("comentimage4").value == "" || document.getElementById("comentimage4").value.replace(blank_pattern1, '') == "") {
+				alert("글 내용이 없습니다.");
+				document.getElementById("comentimage4").focus();
+				return;
 			}
 			if(document.getElementById("comentimage4").value.length >= 100) {
 				alert('글 내용은 100글자를 초과할 수 없습니다.')
@@ -1313,14 +1358,19 @@ function del5(){
 	check5 = 0;
 }
 
+	
+
 function register(){
-	if(document.getElementById("title").value == ""){
-		alert('제목을 입력해주세요'); return;
+	if(document.getElementById("title").value == "" || document.getElementById("title").value.replace(blank_pattern1, '') == "") {
+		alert("제목을 입력해 주세요.");
+		document.getElementById("title").focus();
+		return;
 	}
+	
 	if(document.getElementById("title").value.length >= 20){
 		alert('제목을 20자 이내로 작성해주세요'); return;
 	}
-	if(document.getElementById("place").value == ""){
+	if(document.getElementById("place1").value == ""){
 		alert('지역을 입력해주세요'); return;
 	}
 	if(document.getElementById("indate").value == "") {
@@ -1348,9 +1398,10 @@ function register(){
 	}
 	if(pageNum == 1){
 		if(check1 == 0){
-			if(document.getElementById("coment1").value == ""){
-				alert('글 내용이 없습니다.')
-				return ;
+			if(document.getElementById("coment1").value == "" || document.getElementById("coment1").value.replace(blank_pattern1, '') == "") {
+				alert("글 내용이 없습니다.");
+				document.getElementById("coment1").focus();
+				return;
 			}
 			if(document.getElementById("coment1").value.length >= 100) {
 				alert('글 내용은 100글자를 초과할 수 없습니다.')
@@ -1360,9 +1411,10 @@ function register(){
 			if(document.getElementById("imgChk1").value == '0'){
 				alert('이미지가 없습니다.')
 				return ;
-			}if(document.getElementById("comentimage1").value == ""){
-				alert('글 내용이 없습니다.')
-				return ;
+			}if(document.getElementById("comentimage1").value == "" || document.getElementById("comentimage1").value.replace(blank_pattern1, '') == "") {
+				alert("글 내용이 없습니다.");
+				document.getElementById("comentimage1").focus();
+				return;
 			}
 			if(document.getElementById("comentimage1").value.length >= 100) {
 				alert('글 내용은 100글자를 초과할 수 없습니다.')
@@ -1372,9 +1424,10 @@ function register(){
 	}
 	if(pageNum == 2){
 		if(check2 == 0){
-			if(document.getElementById("coment2").value == ""){
-				alert('글 내용이 없습니다.')
-				return ;
+			if(document.getElementById("coment2").value == "" || document.getElementById("coment2").value.replace(blank_pattern1, '') == "") {
+				alert("글 내용이 없습니다.");
+				document.getElementById("coment2").focus();
+				return;
 			}
 			if(document.getElementById("coment2").value.length >= 100) {
 				alert('글 내용은 100글자를 초과할 수 없습니다.')
@@ -1384,9 +1437,10 @@ function register(){
 			if(document.getElementById("imgChk2").value == '0'){
 				alert('이미지가 없습니다.')
 				return ;
-			}if(document.getElementById("comentimage2").value == ""){
-				alert('글 내용이 없습니다.')
-				return ;
+			}if(document.getElementById("comentimage2").value == "" || document.getElementById("comentimage2").value.replace(blank_pattern1, '') == "") {
+				alert("글 내용이 없습니다.");
+				document.getElementById("comentimage2").focus();
+				return;
 			}
 			if(document.getElementById("comentimage2").value.length >= 100) {
 				alert('글 내용은 100글자를 초과할 수 없습니다.')
@@ -1396,9 +1450,10 @@ function register(){
 	}
 	if(pageNum == 3){
 		if(check3 == 0){
-			if(document.getElementById("coment3").value == ""){
-				alert('글 내용이 없습니다.')
-				return ;
+			if(document.getElementById("coment3").value == "" || document.getElementById("coment3").value.replace(blank_pattern1, '') == "") {
+				alert("글 내용이 없습니다.");
+				document.getElementById("coment3").focus();
+				return;
 			}
 			if(document.getElementById("coment3").value.length >= 100) {
 				alert('글 내용은 100글자를 초과할 수 없습니다.')
@@ -1408,9 +1463,10 @@ function register(){
 			if(document.getElementById("imgChk3").value == '0'){
 				alert('이미지가 없습니다.')
 				return ;
-			}if(document.getElementById("comentimage3").value == ""){
-				alert('글 내용이 없습니다.')
-				return ;
+			}if(document.getElementById("comentimage3").value == "" || document.getElementById("comentimage3").value.replace(blank_pattern1, '') == "") {
+				alert("글 내용이 없습니다.");
+				document.getElementById("comentimage3").focus();
+				return;
 			}
 			if(document.getElementById("comentimage3").value.length >= 100) {
 				alert('글 내용은 100글자를 초과할 수 없습니다.')
@@ -1420,9 +1476,10 @@ function register(){
 	}
 	if(pageNum == 4){
 		if(check4 == 0){
-			if(document.getElementById("coment4").value == ""){
-				alert('글 내용이 없습니다.')
-				return ;
+			if(document.getElementById("coment4").value == "" || document.getElementById("coment4").value.replace(blank_pattern1, '') == "") {
+				alert("글 내용이 없습니다.");
+				document.getElementById("coment4").focus();
+				return;
 			}
 			if(document.getElementById("coment4").value.length >= 100) {
 				alert('글 내용은 100글자를 초과할 수 없습니다.')
@@ -1432,9 +1489,10 @@ function register(){
 			if(document.getElementById("imgChk4").value == '0'){
 				alert('이미지가 없습니다.')
 				return ;
-			}if(document.getElementById("comentimage4").value == ""){
-				alert('글 내용이 없습니다.')
-				return ;
+			}if(document.getElementById("comentimage4").value == "" || document.getElementById("comentimage4").value.replace(blank_pattern1, '') == "") {
+				alert("글 내용이 없습니다.");
+				document.getElementById("comentimage4").focus();
+				return;
 			}
 			if(document.getElementById("comentimage4").value.length >= 100) {
 				alert('글 내용은 100글자를 초과할 수 없습니다.')
@@ -1444,9 +1502,10 @@ function register(){
 	}
 	if(pageNum == 5){
 		if(check5 == 0){
-			if(document.getElementById("coment5").value == ""){
-				alert('글 내용이 없습니다.')
-				return ;
+			if(document.getElementById("coment5").value == "" || document.getElementById("coment5").value.replace(blank_pattern1, '') == "") {
+				alert("글 내용이 없습니다.");
+				document.getElementById("coment5").focus();
+				return;
 			}
 			if(document.getElementById("coment5").value.length >= 100) {
 				alert('글 내용은 100글자를 초과할 수 없습니다.')
@@ -1456,9 +1515,10 @@ function register(){
 			if(document.getElementById("imgChk5").value == '0'){
 				alert('이미지가 없습니다.')
 				return ;
-			}if(document.getElementById("comentimage5").value == ""){
-				alert('글 내용이 없습니다.')
-				return ;
+			}if(document.getElementById("comentimage5").value == "" || document.getElementById("comentimage5").value.replace(blank_pattern1, '') == "") {
+				alert("글 내용이 없습니다.");
+				document.getElementById("comentimage5").focus();
+				return;
 			}
 			if(document.getElementById("comentimage5").value.length >= 100) {
 				alert('글 내용은 100글자를 초과할 수 없습니다.')

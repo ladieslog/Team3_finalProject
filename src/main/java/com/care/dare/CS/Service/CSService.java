@@ -1,6 +1,7 @@
 package com.care.dare.CS.Service;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,7 +34,7 @@ public class CSService {
 		int count = 0; //총 게시글 수
 		count = mapper.noticeCount(); // 총 게시글 수를 가져옴
 		
-		List<NoticeDTO> list = null; // 게시글들을 저장할 리스트
+		List<NoticeDTO> list = new ArrayList<>(); // 게시글들을 저장할 리스트
 		
 		if(count > 0) {
 			list = mapper.noticeBoard(startRow, endRow); // 해당 페이지의 게시글들을 가져와서 저장 (ex : 1~10까지의 게시글들을 가져와서 저장)

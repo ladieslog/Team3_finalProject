@@ -34,4 +34,7 @@
 		update MEMBER_USER set pwd=#{pwd}, nickname=#{nickname}, addr=#{addr}, email=#{email}, mailnumber=#{mailnumber}, detailaddr=#{detailaddr} where id=#{id}
 	</update>
 	
+	<delete id="accountDelete">
+		delete from MEMBER_USER where id=#{id}
+	</delete>
 </mapper>
