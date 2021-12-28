@@ -1526,7 +1526,44 @@ function register(){
 			}
 			
 		}
+		
 	}
+	var str1 = document.getElementById("coment1").value;
+	var str2 = document.getElementById("coment2").value;
+	var str3 = document.getElementById("coment3").value;
+	var str4 = document.getElementById("coment4").value;
+	var str5 = document.getElementById("coment5").value;
+	str1 = str1.replaceAll("\n", "\\n");
+	document.getElementById("coment1").value = str1;
+	
+	str2 = str2.replaceAll("\n", "\\n");
+	document.getElementById("coment2").value = str2;
+	
+	str3 = str3.replaceAll("\n", "\\n");
+	document.getElementById("coment3").value = str3;
+	
+	str4 = str4.replaceAll("\n", "\\n");
+	document.getElementById("coment4").value = str4;
+	
+	str5 = str5.replaceAll("\n", "\\n");
+	document.getElementById("coment5").value = str5;
+	
+	var s1 = document.getElementById("comentimage1").value;
+	var s2 = document.getElementById("comentimage2").value;
+	var s3 = document.getElementById("comentimage3").value;
+	var s4 = document.getElementById("comentimage4").value;
+	var s5 = document.getElementById("comentimage5").value;
+	s1 = s1.replaceAll("\n", "");
+	document.getElementById("comentimage1").value = s1;
+	s2 = s2.replaceAll("\n", "");
+	document.getElementById("comentimage2").value = s2;
+	s3 = s3.replaceAll("\n", "");
+	document.getElementById("comentimage3").value = s3;
+	s4 = s4.replaceAll("\n", "");
+	document.getElementById("comentimage4").value = s4;
+	s5 = s5.replaceAll("\n", "");
+	document.getElementById("comentimage5").value = s5;
+	
 	
 	document.getElementById("form").submit()
 }
