@@ -44,7 +44,17 @@ MemberDTO dto = (MemberDTO)session1.getAttribute("loginUser");
 	%>
 <%ArrayList<MemberDTO> list=(ArrayList<MemberDTO>)request.getAttribute("list"); %>
 	<jsp:include page="/WEB-INF/views/default/header.jsp"/>
-		<div class="listwrap" style="margin-top: 20px;">
+	
+	<c:set var="search" value="${search1 }" />
+	
+	<div style="margin-top: 5px;">
+		<form action="memberList" style="display: flex; margin-left: 1335px;">
+				<input type="text" id="search" name="search" value="${search1 }" style="border: 1px solid gray; border-radius: 6px;">
+				<input type="submit" value="♥" style="border: none; background: white; color: gray;">
+		</form>
+		</div>
+		<div class="listwrap">
+		
 			<table align="center" border="0" bordercolor="white" 
 					class="memberList-table">
 				<tr class= "tableHeader">
