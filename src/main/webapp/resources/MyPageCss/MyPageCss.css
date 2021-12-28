@@ -6,7 +6,7 @@
 		margin: 40px 0;
 	}
 	.my-wrap {
-		background-color: #D9E5FF;
+		background-color:#FFFFf1;
 		display: flex;
 		justify-content: center;
 		height: 650px;
@@ -34,7 +34,7 @@
 		font-size: 15px;
 	}
 	button {
-		background-color: #D9E5FF; font-weight: bold; color: #353535; border-color: #D9E5FF;
+		background-color: #FFFFf1; font-weight: bold; color: #353535; border-color: #FFFFf1;
 	}
 	.btn-div>button {
 		margin: 0 5px;
@@ -42,7 +42,7 @@
 	}
 	.fontname{ font-family: HCR Batang; font-weight: bold;}
 	
-	.hr{ border: 1px solid #FFFFF4; }
+	.hr{ border: 1px solid #FFA7A7; }
 	.st{ text-align: center; font-size: 30px;  font-weight: bold; color: #5D5D5D; }
 	.email-model {
 		position: fixed;
