@@ -57,8 +57,13 @@ public class joinController {
 		return "join/login";
 	}
 	@GetMapping("memberList")
-	public String memberList(Model md) {
-		service.memberList(md);
+	public String memberList(Model md, HttpServletRequest req) {
+		String search = req.getParameter("search");
+		if(search == null) {
+			search = "";
+		}
+		service.memberList(md,search);
+		md.addAttribute("search1",search);
 		return "join/memberList";
 	}
 	@PostMapping("loginproc")
