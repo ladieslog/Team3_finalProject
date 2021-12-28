@@ -48,12 +48,13 @@ MemberDTO dto = (MemberDTO)session1.getAttribute("loginUser");
 	<c:set var="search" value="${search1 }" />
 	
 	<div style="margin-top: 5px;">
-		<form action="memberList" style="display: flex; margin-left: 1335px;">
+		<form action="memberList" style="display: flex; margin-left: 1249px;">
+				<span style="font-weight: bold; color: gray;">아이디 검색</span>&nbsp;
 				<input type="text" id="search" name="search" value="${search1 }" style="border: 1px solid gray; border-radius: 6px;">
 				<input type="submit" value="♥" style="border: none; background: white; color: gray;">
 		</form>
 		</div>
-		<div class="listwrap">
+		<div class="listwrap" style="margin-top: 5px;">
 		
 			<table align="center" border="0" bordercolor="white" 
 					class="memberList-table">
