@@ -1644,7 +1644,12 @@ $(document).click(function(e){
 // 현재 문서를 클릭했을때 이벤트 발생
     if (!$(e.target).is('#placeList')) { // 클릭한 영역의 id가 placeList가 아니라면
     	if(!$(e.target).is('#placeinput')) // 클릭한 영역의 id가 placeinput이 아니라면 (이거 넣어줘야 input창을 클릭했을때 placeinput가 보여짐)
-    	document.getElementById("placeList").style.display='none';
+    	document.getElementById("placeList").style.display='visible';
     }
 
 });
+
+
+function mapSearch() {
+	document.getElementById("mapwrap").style.visibility='visible';
+}
