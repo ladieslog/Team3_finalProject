@@ -1782,8 +1782,10 @@ function mapSearch(){
 	    if (places.road_address_name) {
 	        itemStr += '    <span>' + places.road_address_name + '</span>' +
 	                    '   <span class="jibun gray">' +  places.address_name  + '</span>';
+			el.id = places.road_address_name;
 	    } else {
 	        itemStr += '    <span>' +  places.address_name  + '</span>'; 
+			el.id = places.address_name;
 	    }
 	                 
 	      itemStr += '  <span class="tel">' + places.phone  + '</span>' +
@@ -1791,9 +1793,11 @@ function mapSearch(){
 
 	    el.innerHTML = itemStr;
 	    el.className = 'item';
-
+		el.setAttribute('onClick', 'setplace(this)');
+		
 	    return el;
 	}
+	
 
 	// 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
 	function addMarker(position, idx, title) {
@@ -1869,4 +1873,14 @@ function mapSearch(){
 	    while (el.hasChildNodes()) {
 	        el.removeChild (el.lastChild);
 	    }
+	}
+	
+	function mapnone(){
+		document.getElementById("non").style.visibility="hidden";
+	}
+
+	function setplace(data){
+		var pl = data.getAttribute('id');
+		document.getElementById("place").value=pl;
+		document.getElementById("non").style.visibility="hidden";
 	}

@@ -230,9 +230,10 @@
     <div id="menu_wrap" class="bg_white">
         <div class="option">
             <div>
-                <form onsubmit="searchPlaces(); return false;">
-                    키워드 : <input type="text" value="이태원 맛집" id="keyword" size="15"> 
+                <form onsubmit="searchPlaces(); return false;" style="display: flex; justify-content: center; align-items: center;">
+                    키워드 : <input type="text" value="KG아이티뱅크" id="keyword" size="15"> 
                     <button type="submit">검색하기</button> 
+                    <img src="${contextPath }/resources/diaryimg/delete.png" style="height: 10px; width: 10px; margin-left: 5px;" onclick="mapnone()">
                 </form>
             </div>
         </div>

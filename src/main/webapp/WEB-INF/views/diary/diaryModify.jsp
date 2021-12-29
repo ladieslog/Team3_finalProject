@@ -11,7 +11,7 @@
 <head>
 <meta charset="UTF-8">
 <title>다이어리 수정페이지</title>
-<link rel="stylesheet" href="${contextPath }/resources/diarycss/diaryWriteCss.css">
+<link rel="stylesheet" href="${contextPath }/resources/diarycss/diaryWriteCss.css?ver=1">
 
 </head>
 <body style="overflow-x: hidden">
@@ -40,7 +40,7 @@
 	<div class="modal" id="modal" style="display:none;">
 		<div class="b">
 		<input type="text" id="place" class="te2 fontname" readonly>
-		<input type="button" value="Search" onclick="mailnum()" class="sub">
+		<input type="button" value="Search" onclick="mapSearch()" class="sub">
 		<input type="button" value="Save" onclick="save()" class="sub">
 		<input type="button" value="Cancle" onclick="cancle()" class="sub">
 		<input type="hidden" name="place1" id="place1" value="${dto.location1 }">
@@ -493,8 +493,29 @@
 	</div>
 	<jsp:include page="../default/footer.jsp"/>
 	
+	<div id="non" style="visibility: hidden;">
+	<div class="map_wrap" id="mapwrap">
+    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;display: none;"></div>
+
+    <div id="menu_wrap" class="bg_white">
+        <div class="option">
+            <div>
+                <form onsubmit="searchPlaces(); return false;" style="display: flex; justify-content: center; align-items: center;">
+                    키워드 : <input type="text" value="KG아이티뱅크" id="keyword" size="15"> 
+                    <button type="submit">검색하기</button> 
+                    <img src="${contextPath }/resources/diaryimg/delete.png" style="height: 10px; width: 10px; margin-left: 5px;" onclick="mapnone()">
+                </form>
+            </div>
+        </div>
+        <hr>
+        <ul id="placesList"></ul>
+        <div id="pagination"></div>
+    </div>
+</div>
+</div>
+	
 <script src="<%=request.getContextPath()%>/resources/jquery-3.6.0.min.js"></script>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script type="text/javascript" src="${contextPath}/resources/diaryscript/diaryModifyScript.js?ver=5"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e5d72e7cbb7ab20aa12aa5a72991fde0&libraries=services"></script>
+<script type="text/javascript" src="${contextPath}/resources/diaryscript/diaryModifyScript.js?ver=2"></script>
 </body>
 </html>
