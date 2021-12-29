@@ -38,7 +38,6 @@ public class MapController {
 		MemberDTO dto = (MemberDTO) session.getAttribute("loginUser");
 		service.readForMap(model, dto.getId());
 
-		@SuppressWarnings("unchecked")
 		ArrayList<MapDTO> dataList = (ArrayList<MapDTO>) model.getAttribute("mapData");
 		SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
 		JSONArray jArray = new JSONArray();
@@ -49,10 +48,12 @@ public class MapController {
 		String[] AfterWordsList = { "강원도", "경기도", "경상남도", "경상북도", "광주시", "광주광역시", "부산광역시", "대전광역시", "대구광역시", "서울특별시",
 				"울산광역시", "인천광역시", "전라남도", "전라북도", "제주특별자치도", "충청남도", "충청북도", "세종특별자치시", "세종특별자치시" };
 
+		
 		for (MapDTO data : dataList) {
 			boolean completeFlag1 = true, completeFlag2 = true, completeFlag3 = true;
-
-			for (int i = 0; i < beforeWordsList.length; i++) {
+			int location3NullFlag = 0;
+			
+			for (int i = 0; i < beforeWordsList.length; i++) {	// 도, 광역시 줄임 이름을 풀네임으로 변환
 				if (data.getLocation1() != null) {
 					if (data.getLocation1().indexOf(beforeWordsList[i]) != -1 && completeFlag1) {
 
@@ -75,6 +76,7 @@ public class MapController {
 						completeFlag2 = false;
 					}
 				}
+
 				if (data.getLocation3() != null) {
 					if (data.getLocation3().indexOf(beforeWordsList[i]) != -1 && completeFlag3) {
 
@@ -82,10 +84,14 @@ public class MapController {
 							String replace3 = data.getLocation3().replace(beforeWordsList[i], AfterWordsList[i]);
 							data.setLocation3(replace3);
 						}
-						completeFlag3 = false;
 					}
 				}
+
+				if(data.getLocation2() != null && data.getLocation3() == null){
+					location3NullFlag = 1;
+				}
 			}
+			
 			JSONObject jsonObj = new JSONObject();
 
 			jsonObj.put("num", data.getNum());
@@ -93,11 +99,18 @@ public class MapController {
 			jsonObj.put("person", data.getPerson());
 
 			jsonObj.put("id", data.getId());
-			
+
 			jsonObj.put("location1", data.getLocation1());
 			jsonObj.put("location2", data.getLocation2());
-			jsonObj.put("location3", data.getLocation3());
-
+			
+			if(location3NullFlag == 0) {
+				jsonObj.put("location3", data.getLocation3());
+			}
+			
+			else {
+				jsonObj.put("location3", data.getLocation2());
+			}
+			
 			String outdateStr = simpleDate.format(data.getOutdate());
 			jsonObj.put("end", outdateStr);
 			String indateStr = simpleDate.format(data.getIndate());

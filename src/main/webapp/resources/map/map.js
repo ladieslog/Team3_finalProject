@@ -6,10 +6,12 @@ var mapOptions,
 	markerArray = [],
 	polyLineArray = [];
 
+var markers = [],
+	infoWindows = [];
+
 readDB();
 initMap();
 
-//===============================================================
 
 function readDB() {
 	$.ajax({
@@ -33,6 +35,8 @@ function readDB() {
 
 function makeArrayLocation() {	// ajax로 받은 데이터 중 location1, location2, location3 만 배열로 생성
 	let j = 0;
+	console.log("checkList");
+	console.log(checkList);
 	for (let i = 0; i < checkListLength; i++) {
 		(checkList[i].location1 == null) ?
 			(arrayLoaction[j++] = 'no Location!!') : (arrayLoaction[j++] = checkList[i].location1);
@@ -45,11 +49,9 @@ function makeArrayLocation() {	// ajax로 받은 데이터 중 location1, locati
 	}
 }
 
-var testarr = [];
-
 function geocoding() {	// 주소를 좌표로 변환 (마커를 찍기 전 좌표 구하기)
-	for (let i = 0; i < arrayLoaction.length; i++) {
 
+	for (let i = 0; i < arrayLoaction.length; i++) {
 		if (arrayLoaction[i] != 'no Location!!') {
 			naver.maps.Service.geocode({
 				address: arrayLoaction[i]
@@ -65,8 +67,10 @@ function geocoding() {	// 주소를 좌표로 변환 (마커를 찍기 전 좌�
 							items = result.items; // 검색 결과의 배열
 
 						markerArray[i] = items[0].point;
+
 						if (i == arrayLoaction.length - 1) {
-							makeMarkers();
+							markers.push(markerArray);
+							setTimeout("makeMarkers()", 500);
 						}
 					}
 				});
@@ -78,7 +82,7 @@ function makeMarkers() {	// 마커 찍기
 	var markerURL = "/root/resources/map/img/marker",
 		markerTail = ".png",
 		markerColor;
-
+	console.log(markerArray);
 	for (let i = 0; i < markerArray.length; i++) {
 
 		if (i % 3 == 0) {
@@ -88,15 +92,15 @@ function makeMarkers() {	// 마커 찍기
 			}
 
 			else if (checkList[i / 3].person == 2) {
-				markerColor = "Parent";
+				markerColor = "Green";
 			}
 
 			else if (checkList[i / 3].person == 3) {
-				markerColor = "Blue";
+				markerColor = "Purple";
 			}
 
 			else {
-				markerColor = "Black";
+				markerColor = "Yellow";
 			}
 		}
 
@@ -121,25 +125,26 @@ function drawPolyline() {	// 폴리라인 그리기
 		if (j % 3 == 0) {
 
 			if (checkList[j / 3].person == 1) {
-				polyLineColor = "#FF3636";	// with markerRed
+				polyLineColor = "#F15F5F";	// with markerRed
 			}
 
 			else if (checkList[j / 3].person == 2) {
-				polyLineColor = "#47C83E";	//with markerParent
+				polyLineColor = "#9FC93C";	//with markerGreen
 			}
 
 			else if (checkList[j / 3].person == 3) {
-				polyLineColor = "#6799FF";		//with markerBlue
+				polyLineColor = "#6B66FF";	//with markerPurple
 			}
 
 			else {
-				polyLineColor = "#353535";	//with markerBlack
+				polyLineColor = "#FFBB00";	//with markerYellow
 			}
 		}
 
 		if (cnt % 3 == 0) {
 
 			if (markerArray[cnt - 2] != null && markerArray[cnt - 1] != null) {
+
 
 				var polyLine = new naver.maps.Polyline({
 					path: [
@@ -162,11 +167,8 @@ function drawPolyline() {	// 폴리라인 그리기
 	}
 }
 
-//===============================================================
-
-
 function initMap() {
-	spinner(3000);
+	spinner(2000);
 	viewSelected(0);
 	mapSetOptions();
 	regionJsonLoop(1);
@@ -206,7 +208,7 @@ function closeLoadingWithMask() {
 }
 
 var coloringMap = '<button class="mapButton1">Coloring Map</button>';
-var tripNoteMap = '<button class="mapButton2">TripNote Map</button>';
+var tripNoteMap = '<button class="mapButton2">Tripnote Map</button>';
 
 naver.maps.Event.once(map, 'init_stylemap', function() {
 	var coloringMapControl = new naver.maps.CustomControl(coloringMap, {
@@ -239,92 +241,92 @@ function viewSelected(naverCode) {
 	var coordinate,
 		zoomLevel;
 
-	if (naverCode === 0) {
+	if (naverCode == 0) {
 		coordinate = [35.797336021559566, 127.61588108068118];
 		zoomLevel = 7;
 	}
 
-	else if (naverCode === 1) {
+	else if (naverCode == 1) {
 		coordinate = [37.77875952149849, 128.45614856831327];
 		zoomLevel = 9;
 	}
 
-	else if (naverCode === 2) {
+	else if (naverCode == 2) {
 		coordinate = [37.58828996787081, 127.13976342063229];
 		zoomLevel = 9;
 	}
 
-	else if (naverCode === 3) {
+	else if (naverCode == 3) {
 		coordinate = [35.312485951670965, 128.35904991977813];
 		zoomLevel = 9;
 	}
 
-	else if (naverCode === 4) {
+	else if (naverCode == 4) {
 		coordinate = [36.43746228571184, 128.8171692594408];
 		zoomLevel = 9;
 	}
 
-	else if (naverCode === 5) {
+	else if (naverCode == 5) {
 		coordinate = [35.161845215083254, 126.85388112266982];
 		zoomLevel = 11;
 	}
 
-	else if (naverCode === 6) {
+	else if (naverCode == 6) {
 		coordinate = [35.8383974839094, 128.5668823913586];
 		zoomLevel = 11;
 	}
 
-	else if (naverCode === 7) {
+	else if (naverCode == 7) {
 		coordinate = [36.34661102368089, 127.40585548936683];
 		zoomLevel = 11;
 	}
 
-	else if (naverCode === 8) {
+	else if (naverCode == 8) {
 		coordinate = [35.173219844383105, 129.04001281778324];
 		zoomLevel = 11;
 	}
 
-	else if (naverCode === 9) {
+	else if (naverCode == 9) {
 		coordinate = [37.558033800475805, 127.00829015424965];
 		zoomLevel = 11;
 	}
 
-	else if (naverCode === 10) {
+	else if (naverCode == 10) {
 		coordinate = [35.55768272122909, 129.25686823889524];
 		zoomLevel = 11;
 	}
 
-	else if (naverCode === 11) {
+	else if (naverCode == 11) {
 		coordinate = [37.59638345853803, 126.57388688320925];
 		zoomLevel = 9;
 	}
 
-	else if (naverCode === 12) {
+	else if (naverCode == 12) {
 		coordinate = [34.85810739384981, 126.80346385232812];
 		zoomLevel = 9;
 	}
 
-	else if (naverCode === 13) {
+	else if (naverCode == 13) {
 		coordinate = [35.6885872249758, 127.15127296373089];
 		zoomLevel = 9;
 	}
 
-	else if (naverCode === 14) {
+	else if (naverCode == 14) {
 		coordinate = [33.376879301851545, 126.57380581097621];
 		zoomLevel = 11;
 	}
 
-	else if (naverCode === 15) {
+	else if (naverCode == 15) {
 		coordinate = [36.50970606936858, 126.91170070309774];
 		zoomLevel = 9;
 	}
 
-	else if (naverCode === 16) {
+	else if (naverCode == 16) {
 		coordinate = [36.640848853510505, 127.99312538689517];
 		zoomLevel = 9;
 	}
 
-	else if (naverCode === 17) {
+	else if (naverCode == 17) {
 		coordinate = [36.569344588666596, 127.24219219853576];
 		zoomLevel = 11;
 	}
@@ -366,12 +368,13 @@ function regionJsonLoop(mapType) {
 		urlSuffix = '.json',
 		loadCount = 0;
 
+	spinner(2000);
+
 	naver.maps.Event.once(map, 'init_stylemap', function() {
 		var keyword;
-		spinner(2000);
 
 		for (var i = 1; i < 268; i++) {
-			if (mapType === 1 || mapType === 3) {
+			if (mapType == 1 || mapType == 3) {
 				keyword = i + '';
 			}
 
@@ -379,11 +382,11 @@ function regionJsonLoop(mapType) {
 				keyword = (268 - i) + '';
 			}
 
-			if (keyword.length === 1) {
+			if (keyword.length == 1) {
 				keyword = '00' + keyword;
 			}
 
-			else if (keyword.length === 2) {
+			else if (keyword.length == 2) {
 				keyword = '0' + keyword;
 			}
 
@@ -394,7 +397,7 @@ function regionJsonLoop(mapType) {
 						regionGeoJson[idx] = geojson;
 						loadCount++;
 
-						if (loadCount === 267) {
+						if (loadCount == 267) {
 							startDataLayer(mapType);
 						}
 					}
@@ -415,7 +418,7 @@ function startDataLayer(mapType) {
 	makeArrayLocation();
 	map.data.setStyle(function(feature) {
 
-		if (mapType === 1 || mapType === 2) {
+		if (mapType == 1 || mapType == 2) {	// Coloring Map
 
 			if (feature.getProperty('area2') == '') {	// 도, 광역시
 				var styleOptions = {
@@ -469,7 +472,7 @@ function startDataLayer(mapType) {
 			}
 		}
 
-		else if (mapType === 3 || mapType === 4) {	// 트립노트지도
+		else if (mapType == 3 || mapType == 4) {	// TripNote Map
 			if (feature.getProperty('area2') == '') {	// 도, 광역시
 				var styleOptions = {
 					fillColor: '#F6F6F6',
@@ -497,15 +500,11 @@ function startDataLayer(mapType) {
 		map.data.addGeoJson(geojson);
 	});
 
-	//===============================================================
 
-	if (mapType === 3 || mapType === 4) {
+	if (mapType == 3 || mapType == 4) {
 		geocoding();
 
 	}
-
-	//===============================================================
-
 
 	map.data.addListener('click', function(e) {
 		var feature = e.feature,
@@ -516,8 +515,12 @@ function startDataLayer(mapType) {
 		regionGeoJson = [];
 
 		//1:컬러링 도,광역시 / 2:컬러링 시군구 / 3: 트립노트 도,광역시/ 4: 트립노트 시군구
-		if (mapType === 1 || mapType === 2) {
+		if (mapType == 1) {
 			regionJsonLoop(2);
+		}
+
+		else if (mapType == 2) {
+			regionJsonLoop(4);
 		}
 
 		else {
@@ -528,6 +531,8 @@ function startDataLayer(mapType) {
 	map.data.addListener('mouseover', function(e) { // 마우스 올린 상태
 		var feature = e.feature,
 			regionName;
+
+		console.log(feature)
 
 		if (feature.getProperty('area3') == '') {
 			regionName = feature.getProperty('area1')
@@ -560,3 +565,28 @@ function startDataLayer(mapType) {
 		map.data.revertStyle();
 	});
 }
+/*
+// 해당 마커의 인덱스를 seq라는 클로저 변수로 저장하는 이벤트 핸들러를 반환합니다.
+function getClickHandler(seq) {
+	var infoWindow = new naver.maps.InfoWindow({
+		content: '<div style="width:150px;text-align:center;padding:10px;">The Letter is <b>"' + key.substr(0, 1) + '"</b>.</div>'
+	});
+
+	return function(e) {
+		console.log(markers);
+		var marker = markers[seq],
+			infoWindow = infoWindows[seq];
+
+		if (infoWindow.getMap()) {
+			infoWindow.close();
+		} else {
+			infoWindow.open(map, marker);
+		}
+	}
+}
+
+infoWindows.push(infoWindow);
+
+for (var i = 0, ii = markers.length; i < ii; i++) {
+	naver.maps.Event.addListener(markers[i], 'click', getClickHandler(i));
+}*/

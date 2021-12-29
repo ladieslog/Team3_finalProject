@@ -62,20 +62,20 @@ public class CalendarController {
 
 			jsonObj.put("location", data.getLocation1());
 
-			if (Integer.parseInt(data.getPerson()) == 1) {
+			if (Integer.parseInt(data.getPerson()) == 1) {	// red
 				jsonObj.put("color", "#F15F5F");
 			} 
 			
-			else if (Integer.parseInt(data.getPerson()) == 2) {
+			else if (Integer.parseInt(data.getPerson()) == 2) {	//green
 				jsonObj.put("color", "#BCE55C");
 			} 
 			
-			else if (Integer.parseInt(data.getPerson()) == 3) {
+			else if (Integer.parseInt(data.getPerson()) == 3) {	// purple
 				jsonObj.put("color", "#6B66FF");
 			}
 			
-			else {
-				jsonObj.put("color", "#F2CB61");			
+			else {	// yellow
+				jsonObj.put("color", "#F2CB61");	
 			}
 
 			jArray.add(jsonObj);
