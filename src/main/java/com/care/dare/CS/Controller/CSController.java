@@ -271,6 +271,35 @@ public class CSController {
 		return "test/Test2";
 	}
 	
+	@RequestMapping(value = "qnaModifyForm", method=RequestMethod.POST)
+	public String qnaModifyForm(HttpServletRequest req, HttpServletResponse resp, Model model) throws IOException {
+		resp.setContentType("text/html; charset=utf-8"); // 응답 설정 변경
+		PrintWriter out = resp.getWriter(); // 화면 출력용 객체
+		String numstr = req.getParameter("num");
+		if(numstr == null) {
+			out.print("<script> alert('잘못된 접근입니다.');</script>");
+			return "redirect:csMain";
+		} else {
+			int num = Integer.parseInt(numstr);
+			service.noticeInfo(model, num);
+			return "Cs/cs_qnaModify";
+		}
+	}
+	
+	@RequestMapping(value="qnaModify", method=RequestMethod.POST)
+	public void qnaModify(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		resp.setContentType("text/html; charset=utf-8"); // 응답 설정 변경
+		PrintWriter out = resp.getWriter(); // 화면 출력용 객체
+		int result = service2.qnaModify(req);
+		if(result == 0) {
+			out.print("<script> alert('공지 수정에 실패했습니다.');location.href='csMain';</script>");
+		} else {
+			out.print("<script> alert('공지 수정이 완료되었습니다.');location.href='csMain';</script>");
+		}
+	}
+	
+
+	
 	
 	
 	

@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
-import com.care.dare.CS.DTO.NoticeDTO;
 import com.care.dare.CS.DTO.QnaDTO;
 import com.care.dare.join.controller.MemberDTO;
 import com.care.dare.mybatis.QnaMapper;
@@ -73,7 +72,7 @@ public class CSService2 {
 		return mapper.qnaDelete(num);
 	}
 	
-	/*
+	
 	public int qnaModify(HttpServletRequest req) {
 		QnaDTO dto2 =new QnaDTO();
 		dto2.setNum(Integer.parseInt(req.getParameter("num")));
@@ -84,7 +83,7 @@ public class CSService2 {
 		dto2.setStatus(req.getParameter("status"));
 		return mapper.qnaModify(dto2);
 	}
-	*/
+	
 	
 	
 	
