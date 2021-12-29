@@ -25,18 +25,15 @@
 			<br>			
 				<br>
 				 <form action="qnaWrite" method="post" id="form">
-				<table>
+				<table border="1px;">
 				<tr>
-					<td class="wb"colspan="2"> <b class="bh2">Q&A title &nbsp;</b></td>
+					<td class="wb"colspan="2" style="width: 80px;"> <b class="bh2">Q&A title &nbsp;</b></td>
 					<td class="wb"colspan="1"> <input type="text" id="title" name="title" class="ch2"></td>
 					<td class="ws"colspan="1"> </td>
 					<td class="wb"colspan="2"> <b class="bh2">&nbsp; writer &nbsp;</b></td>
 					<td class="wb"colspan="1"> <input type="text" id="writer" name="writer" class="ch2" value="<%=dto.getId()%>" readonly></td>
 				</tr>
-			
-				<tr>
-					<td colspan="2" class="hb"><b class="bh2">Q&A content &nbsp;</b> </td>
-				</tr>
+				
 				<tr> 
 					<td colspan="15">
 						<textarea name="content" class="chb2" id="editor"></textarea>

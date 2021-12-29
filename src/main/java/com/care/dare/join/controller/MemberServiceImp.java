@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
@@ -29,6 +30,11 @@ public class MemberServiceImp implements MemberService {
 	@Autowired JoinMapper mapper;
 	@Autowired DiaryMapper dm;
 	@Autowired JavaMailSender mailSender;
+	BCryptPasswordEncoder encoder;
+	
+	public MemberServiceImp() {
+		encoder = new BCryptPasswordEncoder();
+	}
 	public MemberDTO idcheck(String id) {
 		MemberDTO dto= mapper.idcheck(id);
 		return dto;
@@ -46,7 +52,7 @@ public class MemberServiceImp implements MemberService {
 	public int resister(HttpServletRequest req) {
 		MemberDTO dto=new MemberDTO();
 		dto.setId(req.getParameter("id"));
-		dto.setPwd(req.getParameter("pwd"));
+		dto.setPwd(encoder.encode(req.getParameter("pwd")));
 		dto.setNickname(req.getParameter("nickname"));
 		dto.setAddr(req.getParameter("address"));
 		dto.setEmail(req.getParameter("email"));
@@ -59,7 +65,12 @@ public class MemberServiceImp implements MemberService {
 		dto.setId(req.getParameter("id"));
 		dto.setPwd(req.getParameter("pwd"));
 		MemberDTO loginDTO= mapper.loginproc(dto);
-		return loginDTO;
+		if(loginDTO != null) {
+			if(encoder.matches(dto.getPwd(), loginDTO.getPwd())) {
+				return loginDTO;
+			}
+		}
+		return null;
 	}
 	public void memberList(Model model,String search) {
 		ArrayList<MemberDTO>list=mapper.memberList(search);
@@ -76,14 +87,19 @@ public class MemberServiceImp implements MemberService {
 
 	public int myUpdate(HttpServletRequest req, String id) {
 		MemberDTO dto = new MemberDTO();
+		HttpSession session = req.getSession();
 		dto.setId(id);
-		dto.setPwd(req.getParameter("pwd"));
+		dto.setPwd(encoder.encode(req.getParameter("pwd")));
 		dto.setNickname(req.getParameter("nickname"));
 		dto.setAddr(req.getParameter("address"));
 		dto.setEmail(req.getParameter("email"));
 		dto.setMailnumber(Integer.parseInt(req.getParameter("zipcode")));
 		dto.setDetailaddr(req.getParameter("detailaddress"));
-		return mapper.myUpdate(dto);
+		int result = mapper.myUpdate(dto);
+		if(result == 1) {
+			session.setAttribute("loginUser", dto);
+		}
+		return result;
 	}
 	
 	public void accountDelete(MemberDTO dto, HttpServletResponse resp, Model model) {

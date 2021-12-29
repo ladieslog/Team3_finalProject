@@ -196,7 +196,10 @@ public class DiaryService {
 	
 	public void writeUpdate(HttpServletRequest req) throws Exception {	// 다이어리 작성 업데이트 DB 저장
 		DiaryDTO dto = new DiaryDTO();
-		dto.setId("3333");	
+		HttpSession sessi = req.getSession();
+		MemberDTO dt = (MemberDTO)sessi.getAttribute("loginUser");
+		dto.setId(dt.getId());
+		System.out.println(req.getParameter("coment3"));
 		dto.setNum(Integer.parseInt(req.getParameter("num")));
 		SimpleDateFormat sm = new SimpleDateFormat("yyyy-MM-dd");
 		Date date1 = null;

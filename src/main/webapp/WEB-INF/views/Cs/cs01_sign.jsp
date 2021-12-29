@@ -50,7 +50,7 @@ if(endPage2 > pageCount2) {
 
 		<div class="a1">
 			<div class="a2">
-	<div>
+	<div style="margin-top: -20px;">
 				<div style="align-items: center; display: flex; justify-content: center; height: 60px;">
 					<br> <span><b style="font-size: 30px; ">Notice</b></span>
 					<button type="button" style="margin-left: 1113px; width: 60px;" class="cn4 mb-none notice-btn" onclick="location.href='notice'">글작성</button>
@@ -125,11 +125,11 @@ if(endPage2 > pageCount2) {
 					
 						<table border="1" bordercolor="white" class="notice-table" id="qna-table">
 							<tr>
-								<td style="width: 8%;">글번호</td>
-								<td style="width: 8%;">아이디</td>
-								<td style="width: 54%;">제목</td>
-								<td style="width: 22%;">작성시간</td>
-								<td style="width: 8%;">답변확인</td>
+								<th style="width: 8%;">글번호</th>
+								<th style="width: 8%;">아이디</th>
+								<th style="width: 54%;">제목</th>
+								<th style="width: 22%;">작성시간</th>
+								<th style="width: 8%;">답변확인</th>
 							</tr>
 							<%
 							if (list2.isEmpty()) { // 리스트가 없다면 게시글이 0개임
@@ -145,8 +145,8 @@ if(endPage2 > pageCount2) {
 								<td style="width: 8%;"><%=list2.get(j).getNum() %></td>
 								<td style="width: 8%;" ><%= list2.get(j).getQuestionId() %></td>
 								<td style="width: 54%;"><a href="qnaInfo?num=<%=list2.get(j).getNum()%>"><%=list2.get(j).getQuestionTitle() %></a></td>
-								<td style="width: 22%;"><%=sdf.format(list2.get(j).getQuestionTime()) %></td>
-								<td style="width: 8%;"><%=list2.get(j).getStatus() %></td>
+								<td style="width: 22%;"><%=list2.get(j).getQuestionTimeStr() %></td>
+								<td style="width: 8%;"><%=list2.get(j).getStatusStr() %></td>
 							</tr>
 							<% 
 							}
@@ -202,9 +202,7 @@ if(endPage2 > pageCount2) {
 		var Num = data.id; // 선택한 페이지 번호의 id값을 가져옴, id값에는 페이지 번호가 들어있음 (ex: 2번 페이지 클릭시 id는 2가 들어온다
 		var form = {currentPage:Num}; // form에 num 추가
 		
-		for(var i=0; i<=listSize; i++) { // 페이지 이동시 리스트를 새로 가져오므로 기존에 있던 게시글 리스트들을 삭제함
-			document.getElementById("notice-table").deleteRow(1);
-		}
+		
 		$.ajax({
 			url : "pageSet",
 			type : "POST",
@@ -237,6 +235,9 @@ if(endPage2 > pageCount2) {
 				%>
 				html += "</td></tr>";
 				$("#notice-table").append(html); //새로 추가한 html태그들을 테이블에 적용
+				for(var i=0; i<=listSize; i++) { // 페이지 이동시 리스트를 새로 가져오므로 기존에 있던 게시글 리스트들을 삭제함
+					document.getElementById("notice-table").deleteRow(1);
+				}
 				listSize = list.length; // list사이즈를 새로 가져온 리스트 사이즈로 변경
 			}, error : function() {
 				alert("문제 발생");
@@ -259,27 +260,25 @@ if(endPage2 > pageCount2) {
 	
 	function pageSet2(data2) {
 		var test2 = data2.id;
-		
+		console.log(test2);
 		var Num2 = data2.id; // 선택한 페이지 번호의 id값을 가져옴, id값에는 페이지 번호가 들어있음 (ex: 2번 페이지 클릭시 id는 2가 들어온다
 		var form2 = {currentPage2:Num2}; // form에 num 추가
 		
-		for(var j=0; j<=listSize2; j++) { // 페이지 이동시 리스트를 새로 가져오므로 기존에 있던 게시글 리스트들을 삭제함
-			document.getElementById("qna-table").deleteRow(1);
-		}
+		
 		$.ajax({
 			url : "pageSet2",
 			type : "POST",
-			data : JSON.stringify(form), //form을 json타입으로 변경
+			data : JSON.stringify(form2), //form을 json타입으로 변경
 			dataType : "json",
 			contentType : "application/json; charset=utf-8",
 			success : function(list2) {
 				let html = ""; // 새로 생성한 html태그들을 저장할 변수
 				for(var j=0; j<list2.length; j++) { // 가져온 리스트의 사이즈 만큼 게시글 출력해서 태그로 만듦(html변수에 저장) 
-					html += "<tr><td style='width: 8%;'>" + list2[j].num2 + "</td>";
-					html += "<td style='width: 8%;'>" + "<a href='QnaInfo?num=" + list2[j].num + "'>" + list2[j].title + "</a></td>";
-					html += "<td style='width: 524%;'>" + "<a href='QnaInfo?num=" + list2[j].num + "'>" + list2[j].title + "</a></td>";
-					html += "<td style='width: 22%;'>" + list2[j].timestr2 + "</td>";
-					html += "<td style='width: 8%;'>" + list2[j].hit + "</td></tr>";
+					html += "<tr><td style='width: 8%;'>" + list2[j].num + "</td>";
+					html += "<td style='width: 8%;'>" + list2[j].questionId + "</td>";
+					html += "<td style='width: 54%;'>" + "<a href='qnaInfo?num=" + list2[j].num + "'>" + list2[j].questionTitle + "</a></td>";
+					html += "<td style='width: 22%;'>" + list2[j].questionTimeStr + "</td>";
+					html += "<td style='width: 8%;'>" + list2[j].statusStr + "</td></tr>";
 				}
 				html += "<tr style='display: revert'><td colspan='4' align='center'>"; // 페이지 리스트 윗 html 코드와 동일함
 				<% if(startPage2 > pageBlock2) {
@@ -289,7 +288,7 @@ if(endPage2 > pageCount2) {
 				} 
 				for(int j=startPage2; j <= endPage2; j++) { 
 				%>
-				html += "<span class='page-block' id=<%=j %> onclick='pageSet(this);'>" + "[" + <%=j %> + "] " + "</span>";
+				html += "<span class='page-block' id=<%=j %> onclick='pageSet2(this);'>" + "[" + <%=j %> + "] " + "</span>";
 				<%
 				} if(endPage2 < pageCount2) {
 				%>
@@ -299,6 +298,9 @@ if(endPage2 > pageCount2) {
 				%>
 				html += "</td></tr>";
 				$("#qna-table").append(html); //새로 추가한 html태그들을 테이블에 적용
+				for(var j=0; j<=listSize2; j++) { // 페이지 이동시 리스트를 새로 가져오므로 기존에 있던 게시글 리스트들을 삭제함
+					document.getElementById("qna-table").deleteRow(1);
+				}
 				listSize2 = list2.length; // list사이즈를 새로 가져온 리스트 사이즈로 변경
 			}, error : function() {
 				alert("문제 발생");

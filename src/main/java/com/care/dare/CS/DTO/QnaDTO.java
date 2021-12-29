@@ -13,7 +13,14 @@ public class QnaDTO {
 	String status;
 	String questionTimeStr;
 	String answerTimeStr;
+	String statusStr;
 	
+	public String getStatusStr() {
+		return statusStr;
+	}
+	public void setStatusStr(String statusStr) {
+		this.statusStr = statusStr;
+	}
 	public String getQuestionTimeStr() {
 		return questionTimeStr;
 	}

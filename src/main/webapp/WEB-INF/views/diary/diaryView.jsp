@@ -14,7 +14,7 @@
 <script src="${contextPath }/resources/jquery-3.6.0.min.js"></script>
 
 </head>
-<body style="overflow-x: hidden ">
+<body style="overflow-x: hidden">
 	<% HttpSession session1 = request.getSession();
 		if(session1.getAttribute("loginUser") == null){
 			response.sendRedirect("error");
@@ -34,6 +34,7 @@
 				<td class="td" rowspan="5"></td>
 				<td rowspan="5" colspan="1">
 				<input id="check" type="hidden" value="0">
+				
 				<div class="divsize" id="imgtext" style="display:none;">
 				<div >
 				<div class="imgsize">
@@ -58,15 +59,15 @@
 						<script type="text/javascript">
 							document.getElementById("imgtext").style.display="flex";
 							document.getElementById("check").value="2";		
-							$('#view1').attr('src', '<spring:url value='/image/${dto.image1}'/>' )
-							document.getElementById("txtview1").value="${dto.coment1}"
+							$('#view1').attr('src', "<spring:url value='/image/${dto.image1}'/>")
+							document.getElementById("txtview1").value="${dto.coment1}";
 						</script>					
 					</c:when>
 					<c:otherwise>
 						<script type="text/javascript">
 							document.getElementById("textarea").style.display="flex";
 							document.getElementById("check").value="1";
-							document.getElementById("textView1").value="${dto.coment1}"
+							document.getElementById("textView1").value="${dto.coment1}";
 						</script>
 					</c:otherwise>
 				</c:choose>
@@ -77,10 +78,10 @@
 				<td class="td1">
 				<c:choose>
 					<c:when test="${dto.image1==null }">
-						<img class="img" id="preView1" onclick="imgView1()" src="${contextPath}/resources/diaryimg/note_View.png">
+						<img class="img" id="preView1" onclick="imgView1()" src="${contextPath}/resources/diaryimg/note_View.png"/>
 					</c:when>
 					<c:otherwise>
-						<img class="img" id="preView1" onclick="imgView1()" src="<spring:url value='/image/${dto.image1}'/>">
+						<img class="img" id="preView1" onclick="imgView1()" src="<spring:url value='/image/${dto.image1}'/>"/>
 					</c:otherwise>
 				</c:choose>
 				</td>
@@ -97,14 +98,12 @@
 				<td class="td1">
 				<c:choose>
 					<c:when test="${dto.image2!=null }">
-						<img class="img" id="preView2" onclick="imgView2()" src="<spring:url value='/image/${dto.image2}'/>">
+						<img class="img" id="preView2" onclick="imgView2()" src="<spring:url value='/image/${dto.image2}'/>"/>
 					</c:when>
 					<c:when test="${dto.coment2!=null }">
-						<img class="img" id="preView2" onclick="imgView2()" src="${contextPath }/resources/diaryimg/note_View.png">
+						<img class="img" id="preView2" onclick="imgView2()" src="${contextPath }/resources/diaryimg/note_View.png"/>
 					</c:when>
-					<c:otherwise>
-						
-					</c:otherwise>
+					<c:otherwise></c:otherwise>
 				</c:choose>
 				</td>
 			</tr>
@@ -129,14 +128,12 @@
 				<td class="td1">
 				<c:choose>
 					<c:when test="${dto.image3!=null }">
-						<img class="img" id="preView3" onclick="imgView3()" src="<spring:url value='/image/${dto.image3}'/>">
+						<img class="img" id="preView3" onclick="imgView3()" src="<spring:url value='/image/${dto.image3}'/>"/>
 					</c:when>
 					<c:when test="${dto.coment3!=null }">
-						<img class="img" id="preView3" onclick="imgView3()" src="${contextPath }/resources/diaryimg/note_View.png">
+						<img class="img" id="preView3" onclick="imgView3()" src="${contextPath }/resources/diaryimg/note_View.png"/>
 					</c:when>
-					<c:otherwise>
-						
-					</c:otherwise>
+					<c:otherwise></c:otherwise>
 				</c:choose>
 				</td>
 			</tr>
@@ -148,14 +145,12 @@
 				<td class="td1">
 				<c:choose>
 					<c:when test="${dto.image4!=null }">
-						<img class="img" id="preView4" onclick="imgView4()" src="<spring:url value='/image/${dto.image4}'/>">
+						<img class="img" id="preView4" onclick="imgView4()" src="<spring:url value='/image/${dto.image4}'/>"/>
 					</c:when>
 					<c:when test="${dto.coment4!=null }">
-						<img class="img" id="preView4" onclick="imgView4()" src="${contextPath }/resources/diaryimg/note_View.png">
+						<img class="img" id="preView4" onclick="imgView4()" src="${contextPath }/resources/diaryimg/note_View.png"/>
 					</c:when>
-					<c:otherwise>
-						
-					</c:otherwise>
+					<c:otherwise></c:otherwise>
 				</c:choose>
 				</td>
 			</tr>
@@ -167,14 +162,12 @@
 				<td class="td1">
 				<c:choose>
 					<c:when test="${dto.image5!=null }">
-						<img class="img" id="preView5" onclick="imgView5()" src="<spring:url value='/image/${dto.image5}'/>">
+						<img class="img" id="preView5" onclick="imgView5()" src="<spring:url value='/image/${dto.image5}'/>"/>
 					</c:when>
 					<c:when test="${dto.coment5!=null }">
-						<img class="img" id="preView5" onclick="imgView5()" src="${contextPath }/resources/diaryimg/note_View.png">
+						<img class="img" id="preView5" onclick="imgView5()" src="${contextPath }/resources/diaryimg/note_View.png"/>
 					</c:when>
-					<c:otherwise>
-						
-					</c:otherwise>
+					<c:otherwise></c:otherwise>
 				</c:choose>
 				</td>
 			</tr>
@@ -206,7 +199,7 @@
 	
 	<script type="text/javascript">
 	function imgView1(){
-		if($("#preView1").attr('src') == "${contextPath }/resources/diaryimg/note_View.png"){
+		if($("#preView1").attr("src") == "${contextPath }/resources/diaryimg/note_View.png"){
 			document.getElementById("imgtext").style.display="none"
 			document.getElementById("textarea").style.display="flex"
 			document.getElementById("textView1").value="${dto.coment1}"
@@ -214,72 +207,63 @@
 			document.getElementById("imgtext").style.display="flex"
 			document.getElementById("textarea").style.display="none"
 				
-			$('#view1').attr('src', "<spring:url value='/image/${dto.image1}'/>")
+			$("#view1").attr("src", "<spring:url value='/image/${dto.image1}'/>")
 			document.getElementById("txtview1").value="${dto.coment1}"
 		}
 	}
 	
 	function imgView2(){
-		if($("#preView2").attr('src') == "${contextPath }/resources/diaryimg/note_View.png"){
+		if($("#preView2").attr("src") == "${contextPath }/resources/diaryimg/note_View.png"){
 			document.getElementById("imgtext").style.display="none"
 			document.getElementById("textarea").style.display="flex"
 			document.getElementById("textView1").value="${dto.coment2}"
-			
 		}else{
 			document.getElementById("imgtext").style.display="flex"
-			document.getElementById("textarea").style.display="none"
-				
-			$('#view1').attr('src', "<spring:url value='/image/${dto.image2}'/>")
+			document.getElementById("textarea").style.display="none"	
+			$("#view1").attr("src", "<spring:url value='/image/${dto.image2}'/>")
 			document.getElementById("txtview1").value="${dto.coment2}"
-
 		}
 	}
 	
 	function imgView3(){
-		if($("#preView3").attr('src') == "${contextPath }/resources/diaryimg/note_View.png"){
+		if($("#preView3").attr("src") == "${contextPath }/resources/diaryimg/note_View.png"){
 			document.getElementById("imgtext").style.display="none"
 			document.getElementById("textarea").style.display="flex"
 			document.getElementById("textView1").value="${dto.coment3}"
-			
 		}else{
 			document.getElementById("imgtext").style.display="flex"
 			document.getElementById("textarea").style.display="none"
 				
-			$('#view1').attr('src', "<spring:url value='/image/${dto.image3}'/>")
+			$("#view1").attr("src", "<spring:url value='/image/${dto.image3}'/>")
 			document.getElementById("txtview1").value="${dto.coment3}"
-
 		}
 	}
 	
 	function imgView4(){
-		if($("#preView4").attr('src') == "${contextPath }/resources/diaryimg/note_View.png"){
+		if($("#preView4").attr("src") == "${contextPath }/resources/diaryimg/note_View.png"){
 			document.getElementById("imgtext").style.display="none"
 			document.getElementById("textarea").style.display="flex"
 			document.getElementById("textView1").value="${dto.coment4}"
-			
 		}else{
 			document.getElementById("imgtext").style.display="flex"
 			document.getElementById("textarea").style.display="none"
 				
-			$('#view1').attr('src', "<spring:url value='/image/${dto.image4}'/>")
+			$("#view1").attr("src", "<spring:url value='/image/${dto.image4}'/>")
 			document.getElementById("txtview1").value="${dto.coment4}"
-
 		}
 	}
 	
 	function imgView5(){
-		if($("#preView5").attr('src') == "${contextPath }/resources/diaryimg/note_View.png"){
+		if($("#preView5").attr("src") == "${contextPath }/resources/diaryimg/note_View.png"){
 			document.getElementById("imgtext").style.display="none"
 			document.getElementById("textarea").style.display="flex"
 			document.getElementById("textView1").value="${dto.coment5}"
-			
 		}else{
 			document.getElementById("imgtext").style.display="flex"
 			document.getElementById("textarea").style.display="none"
 				
-			$('#view1').attr('src', "<spring:url value='/image/${dto.image5}'/>")
+			$("#view1").attr("src", "<spring:url value='/image/${dto.image5}'/>")
 			document.getElementById("txtview1").value="${dto.coment5}"
-
 		}
 	}
 	
@@ -288,8 +272,6 @@
 			document.getElementById("deleteCheck").value = "1"
 			document.getElementById("form").submit()
 		}
-		
-		
 	}
 	</script>
 </body>
