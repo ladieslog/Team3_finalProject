@@ -1648,12 +1648,3 @@ $(document).click(function(e){
     }
 
 });
-
-function mailnum(){
-	new daum.Postcode({
-            oncomplete: function(data) {
-		var hdr=data.roadAddress;
-		$("#place").val(hdr)
-            }
-        }).open();
-}
