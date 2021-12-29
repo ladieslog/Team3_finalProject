@@ -51,9 +51,11 @@ public class MapController {
 		
 		for (MapDTO data : dataList) {
 			boolean completeFlag1 = true, completeFlag2 = true, completeFlag3 = true;
+			int location2NullFlag = 0;
 			int location3NullFlag = 0;
 			
 			for (int i = 0; i < beforeWordsList.length; i++) {	// 도, 광역시 줄임 이름을 풀네임으로 변환
+				
 				if (data.getLocation1() != null) {
 					if (data.getLocation1().indexOf(beforeWordsList[i]) != -1 && completeFlag1) {
 
@@ -76,6 +78,7 @@ public class MapController {
 						completeFlag2 = false;
 					}
 				}
+				
 
 				if (data.getLocation3() != null) {
 					if (data.getLocation3().indexOf(beforeWordsList[i]) != -1 && completeFlag3) {
@@ -87,8 +90,12 @@ public class MapController {
 					}
 				}
 
-				if(data.getLocation2() != null && data.getLocation3() == null){
+				if(data.getLocation2() == null && data.getLocation3() == null){
 					location3NullFlag = 1;
+				}
+				
+				if(data.getLocation2() != null && data.getLocation3() == null){
+					location3NullFlag = 2;
 				}
 			}
 			
@@ -101,13 +108,20 @@ public class MapController {
 			jsonObj.put("id", data.getId());
 
 			jsonObj.put("location1", data.getLocation1());
-			jsonObj.put("location2", data.getLocation2());
+			
 			
 			if(location3NullFlag == 0) {
+				jsonObj.put("location2", data.getLocation2());
 				jsonObj.put("location3", data.getLocation3());
 			}
 			
+			else if(location3NullFlag == 1) {
+				jsonObj.put("location2", data.getLocation1());
+				jsonObj.put("location3", data.getLocation1());
+			}
+			
 			else {
+				jsonObj.put("location2", data.getLocation2());
 				jsonObj.put("location3", data.getLocation2());
 			}
 			
@@ -120,7 +134,7 @@ public class MapController {
 
 			jArray.add(jsonObj);
 		}
-		System.out.println(jArray);
+
 		return jArray;
 	}
 }

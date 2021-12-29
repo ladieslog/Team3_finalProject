@@ -1,30 +1,32 @@
-var mapOptions,
+let mapOptions,
 	regionGeoJson = [],
-	checkList = [],
-	checkListLength = 0,
-	arrayLoaction = [],
-	markerArray = [],
-	polyLineArray = [];
-
-var markers = [],
+	readDBArray = [],
+	loactionArray = [],
+	geocodeArray = [],
+	polyLineArray = [],
+	markerInfoArray = [],
+	marker,
+	markers = [],
 	infoWindows = [];
+
+
 
 readDB();
 initMap();
 
 
 function readDB() {
+
 	$.ajax({
 		url: "/root/ajaxMap.do",
 		Type: "POST",
-		data: checkList,
+		data: readDBArray,
 		dataType: "json",
 		success: function(data) {
 			if (data.length == 0)
 				alert("결과가 없습니다");
 			else {
-				checkList = data;
-				checkListLength = data.length;
+				readDBArray = data;
 			}
 		},
 		error: function() {
@@ -34,27 +36,27 @@ function readDB() {
 }
 
 function makeArrayLocation() {	// ajax로 받은 데이터 중 location1, location2, location3 만 배열로 생성
+
 	let j = 0;
-	console.log("checkList");
-	console.log(checkList);
-	for (let i = 0; i < checkListLength; i++) {
-		(checkList[i].location1 == null) ?
-			(arrayLoaction[j++] = 'no Location!!') : (arrayLoaction[j++] = checkList[i].location1);
 
-		(checkList[i].location2 == null) ?
-			(arrayLoaction[j++] = 'no Location!!') : (arrayLoaction[j++] = checkList[i].location2);
+	for (let i = 0; i < readDBArray.length; i++) {
+		(readDBArray[i].location1 == null) ?
+			(loactionArray[j++] = 'no Location!!') : (loactionArray[j++] = readDBArray[i].location1);
 
-		(checkList[i].location3 == null) ?
-			(arrayLoaction[j++] = 'no Location!!') : (arrayLoaction[j++] = checkList[i].location3);
+		(readDBArray[i].location2 == null) ?
+			(loactionArray[j++] = 'no Location!!') : (loactionArray[j++] = readDBArray[i].location2);
+
+		(readDBArray[i].location3 == null) ?
+			(loactionArray[j++] = 'no Location!!') : (loactionArray[j++] = readDBArray[i].location3);
 	}
 }
 
 function geocoding() {	// 주소를 좌표로 변환 (마커를 찍기 전 좌표 구하기)
 
-	for (let i = 0; i < arrayLoaction.length; i++) {
-		if (arrayLoaction[i] != 'no Location!!') {
+	for (let i = 0; i < loactionArray.length; i++) {
+		if (loactionArray[i] != 'no Location!!') {
 			naver.maps.Service.geocode({
-				address: arrayLoaction[i]
+				address: loactionArray[i]
 			},
 
 				function(status, response) {
@@ -63,13 +65,13 @@ function geocoding() {	// 주소를 좌표로 변환 (마커를 찍기 전 좌�
 					}
 
 					else {
-						var result = response.result, // 검색 결과의 컨테이너
+						let result = response.result, // 검색 결과의 컨테이너
 							items = result.items; // 검색 결과의 배열
 
-						markerArray[i] = items[0].point;
+						geocodeArray[i] = items[0].point;
 
-						if (i == arrayLoaction.length - 1) {
-							markers.push(markerArray);
+						if (i == loactionArray.length - 1) {
+							markers.push(geocodeArray);
 							setTimeout("makeMarkers()", 500);
 						}
 					}
@@ -79,23 +81,26 @@ function geocoding() {	// 주소를 좌표로 변환 (마커를 찍기 전 좌�
 }
 
 function makeMarkers() {	// 마커 찍기
-	var markerURL = "/root/resources/map/img/marker",
+
+	let markerURL = "/root/resources/map/img/marker",
 		markerTail = ".png",
 		markerColor;
-	console.log(markerArray);
-	for (let i = 0; i < markerArray.length; i++) {
+	let num = 0;
+	markerInfoArray = [];
+
+	for (let i = 0; i < geocodeArray.length; i++) {
 
 		if (i % 3 == 0) {
 
-			if (checkList[i / 3].person == 1) {
+			if (readDBArray[i / 3].person == 1) {
 				markerColor = "Red";
 			}
 
-			else if (checkList[i / 3].person == 2) {
+			else if (readDBArray[i / 3].person == 2) {
 				markerColor = "Green";
 			}
 
-			else if (checkList[i / 3].person == 3) {
+			else if (readDBArray[i / 3].person == 3) {
 				markerColor = "Purple";
 			}
 
@@ -104,12 +109,22 @@ function makeMarkers() {	// 마커 찍기
 			}
 		}
 
-		if (markerArray[i] != null) {
-			var marker = new naver.maps.Marker({
-				position: new naver.maps.LatLng(markerArray[i]),
+		if (geocodeArray[i] != null) {
+
+			num = parseInt(i / 3);
+			marker = new naver.maps.Marker({
+				title: readDBArray[num].title,
+				position: new naver.maps.LatLng(geocodeArray[i]),
 				map: map,
-				icon: markerURL + markerColor + markerTail
+				icon: {
+					url: markerURL + markerColor + markerTail,
+					anchor: new naver.maps.Point(15, 32)
+				},
+				zIndex: 800
+
 			});
+
+			markerInfoArray.push(marker);
 		}
 	}
 
@@ -117,22 +132,23 @@ function makeMarkers() {	// 마커 찍기
 }
 
 function drawPolyline() {	// 폴리라인 그리기
-	var cnt = 1,
+
+	let cnt = 1,
 		polyLineColor;
 
-	for (let j = 0; j < markerArray.length; j++) {
+	for (let j = 0; j < geocodeArray.length; j++) {
 
 		if (j % 3 == 0) {
 
-			if (checkList[j / 3].person == 1) {
+			if (readDBArray[j / 3].person == 1) {
 				polyLineColor = "#F15F5F";	// with markerRed
 			}
 
-			else if (checkList[j / 3].person == 2) {
+			else if (readDBArray[j / 3].person == 2) {
 				polyLineColor = "#9FC93C";	//with markerGreen
 			}
 
-			else if (checkList[j / 3].person == 3) {
+			else if (readDBArray[j / 3].person == 3) {
 				polyLineColor = "#6B66FF";	//with markerPurple
 			}
 
@@ -143,14 +159,28 @@ function drawPolyline() {	// 폴리라인 그리기
 
 		if (cnt % 3 == 0) {
 
-			if (markerArray[cnt - 2] != null && markerArray[cnt - 1] != null) {
-
-
-				var polyLine = new naver.maps.Polyline({
+			if (geocodeArray[cnt - 3].x == geocodeArray[cnt - 2].x && geocodeArray[cnt - 3].y == geocodeArray[cnt - 2].y) {	// 등록된 주소가 하나일 경우 화살표 없는 라인으로 그리기
+				let polyLine = new naver.maps.Polyline({
 					path: [
-						new naver.maps.LatLng((markerArray[cnt - 3].y), (markerArray[cnt - 3].x)),
-						new naver.maps.LatLng((markerArray[cnt - 2].y), (markerArray[cnt - 2].x)),
-						new naver.maps.LatLng((markerArray[cnt - 1].y), (markerArray[cnt - 1].x))
+						new naver.maps.LatLng((geocodeArray[cnt - 3].y), (geocodeArray[cnt - 3].x)),
+						new naver.maps.LatLng((geocodeArray[cnt - 2].y), (geocodeArray[cnt - 2].x)),
+						new naver.maps.LatLng((geocodeArray[cnt - 1].y), (geocodeArray[cnt - 1].x))
+					],
+					map: map,
+					startIcon: naver.maps.PointingIcon.CIRCLE,
+					startIconSize: 12,
+					strokeColor: polyLineColor,
+					strokeOpacity: 1,
+					strokeWeight: 3,
+				})
+			}
+
+			else {
+				let polyLine = new naver.maps.Polyline({	// 화살표를 포함한 라인으로 그리기
+					path: [
+						new naver.maps.LatLng((geocodeArray[cnt - 3].y), (geocodeArray[cnt - 3].x)),
+						new naver.maps.LatLng((geocodeArray[cnt - 2].y), (geocodeArray[cnt - 2].x)),
+						new naver.maps.LatLng((geocodeArray[cnt - 1].y), (geocodeArray[cnt - 1].x))
 					],
 					map: map,
 					startIcon: naver.maps.PointingIcon.CIRCLE,
@@ -163,11 +193,15 @@ function drawPolyline() {	// 폴리라인 그리기
 				})
 			}
 		}
+
 		cnt++;
 	}
+
+	console.log(markerInfoArray);
 }
 
 function initMap() {
+
 	spinner(2000);
 	viewSelected(0);
 	mapSetOptions();
@@ -175,16 +209,18 @@ function initMap() {
 }
 
 function spinner(time) {
+
 	LoadingWithMask();
 	setTimeout("closeLoadingWithMask()", time);
 }
 
 function LoadingWithMask() {
-	var maskHeight = $(document).height();
-	var maskWidth = window.document.body.clientWidth;
 
-	var mask = "<div id='mask' style='position:absolute; z-index:5000; background-color:#000000; display:none;'></div>";
-	var loadingImg = '';
+	let maskHeight = $(document).height();
+	let maskWidth = window.document.body.clientWidth;
+
+	let mask = "<div id='mask' style='position:absolute; z-index:5000; background-color:#000000; display:none;'></div>";
+	let loadingImg = '';
 
 	loadingImg += "<div id='loadingImg'>";
 	loadingImg += "<img src='/root/resources/map/img/Spinner.gif' style='position:absolute; left: 50%; top: 50%; transform:translate(-50%, -50%); display: block;'/>";
@@ -203,19 +239,21 @@ function LoadingWithMask() {
 }
 
 function closeLoadingWithMask() {
+
 	$('#mask, #loadingImg').hide();
 	$('#mask, #loadingImg').empty();
 }
 
-var coloringMap = '<button class="mapButton1">Coloring Map</button>';
-var tripNoteMap = '<button class="mapButton2">Tripnote Map</button>';
+const coloringMap = '<button class="mapButton1">Coloring Map</button>';
+const tripNoteMap = '<button class="mapButton2">Tripnote Map</button>';
 
 naver.maps.Event.once(map, 'init_stylemap', function() {
-	var coloringMapControl = new naver.maps.CustomControl(coloringMap, {
+
+	let coloringMapControl = new naver.maps.CustomControl(coloringMap, {
 		position: naver.maps.Position.TOP_LEFT
 	});
 
-	var tripNoteMapControl = new naver.maps.CustomControl(tripNoteMap, {
+	let tripNoteMapControl = new naver.maps.CustomControl(tripNoteMap, {
 		position: naver.maps.Position.TOP_LEFT
 	});
 
@@ -238,7 +276,8 @@ naver.maps.Event.once(map, 'init_stylemap', function() {
 });
 
 function viewSelected(naverCode) {
-	var coordinate,
+
+	let coordinate,
 		zoomLevel;
 
 	if (naverCode == 0) {
@@ -351,6 +390,7 @@ function viewSelected(naverCode) {
 }
 
 function mapSetOptions() {
+
 	map.setOptions({
 		mapDataControl: false,
 		zoomControl: true,
@@ -363,17 +403,17 @@ function mapSetOptions() {
 }
 
 function regionJsonLoop(mapType) {
-	var HOME_PATH = '/root/resources/map',
-		urlPrefix = HOME_PATH + '/detailRegionJson/detail',
+
+	let urlPrefix = '/root/resources/map/detailRegionJson/detail',
 		urlSuffix = '.json',
 		loadCount = 0;
 
 	spinner(2000);
 
 	naver.maps.Event.once(map, 'init_stylemap', function() {
-		var keyword;
+		let keyword;
 
-		for (var i = 1; i < 268; i++) {
+		for (let i = 1; i < 268; i++) {
 			if (mapType == 1 || mapType == 3) {
 				keyword = i + '';
 			}
@@ -413,9 +453,10 @@ function regionJsonLoop(mapType) {
 
 function startDataLayer(mapType) {
 
-	var tooltip = $('<div style="position:absolute;z-index:1000;padding:5px 10px;background-color:#fff;border:solid 2px #000; font-family: HCR Batang; font-weight:bold; font-size:14px;pointer-events:none;display:none;"></div>');
+	const tooltip = $('<div style="position:absolute;z-index:1000;padding:5px 10px;background-color:#fff;border:solid 2px #000; font-family: HCR Batang; font-weight:bold; font-size:14px;pointer-events:none;display:none;"></div>');
 	tooltip.appendTo(map.getPanes().floatPane);
 	makeArrayLocation();
+
 	map.data.setStyle(function(feature) {
 
 		if (mapType == 1 || mapType == 2) {	// Coloring Map
@@ -426,7 +467,8 @@ function startDataLayer(mapType) {
 					fillOpacity: 0,
 					strokeColor: '#FFFFFF',
 					strokeWeight: 2,
-					strokeOpacity: 1
+					strokeOpacity: 1,
+					zIndex : 500
 				};
 			}
 
@@ -436,36 +478,39 @@ function startDataLayer(mapType) {
 					fillOpacity: 0,
 					strokeColor: '#FFFFFF',
 					strokeWeight: 1,
-					strokeOpacity: 0.5
+					strokeOpacity: 0.5,
+					zIndex : 500
 				};
 			}
 
-			for (let i = 0; i < arrayLoaction.length; i++) { // 여행기록이 있는 지역 색칠
+			for (let i = 0; i < loactionArray.length; i++) { // 여행기록이 있는 지역 색칠
 
 				if (feature.getProperty('area3') != '') {
-					if (arrayLoaction[i].indexOf(feature.getProperty('area3')) != -1
-						&& arrayLoaction[i].indexOf(feature.getProperty('area2')) != -1) {
+					if (loactionArray[i].indexOf(feature.getProperty('area3')) != -1
+						&& loactionArray[i].indexOf(feature.getProperty('area2')) != -1) {
 
 						var styleOptions = {
 							fillColor: '#FF9090',
 							fillOpacity: 1,
 							strokeColor: '#FFFFFF',
 							strokeWeight: 1,
-							strokeOpacity: 0.5
+							strokeOpacity: 0.5,
+							zIndex : 500
 						};
 					}
 				}
 
 				else if (feature.getProperty('area2') != '') {
-					if (arrayLoaction[i].indexOf(feature.getProperty('area2')) != -1
-						&& arrayLoaction[i].indexOf(feature.getProperty('area1')) != -1) {
+					if (loactionArray[i].indexOf(feature.getProperty('area2')) != -1
+						&& loactionArray[i].indexOf(feature.getProperty('area1')) != -1) {
 
 						var styleOptions = {
 							fillColor: '#FF9090',
 							fillOpacity: 1,
 							strokeColor: '#FFFFFF',
 							strokeWeight: 1,
-							strokeOpacity: 0.5
+							strokeOpacity: 0.5,
+							zIndex : 500
 						};
 					}
 				}
@@ -479,7 +524,8 @@ function startDataLayer(mapType) {
 					fillOpacity: 0,
 					strokeColor: '#FFFFFF',
 					strokeWeight: 2,
-					strokeOpacity: 1
+					strokeOpacity: 1,
+					zIndex : 500
 				};
 			}
 			else {
@@ -488,7 +534,8 @@ function startDataLayer(mapType) {
 					fillOpacity: 0,
 					strokeColor: '#FFFFFF',
 					strokeWeight: 1,
-					strokeOpacity: 0.5
+					strokeOpacity: 0.5,
+					zIndex : 500
 				};
 			}
 		}
@@ -500,39 +547,48 @@ function startDataLayer(mapType) {
 		map.data.addGeoJson(geojson);
 	});
 
-
 	if (mapType == 3 || mapType == 4) {
 		geocoding();
-
 	}
 
-	map.data.addListener('click', function(e) {
-		var feature = e.feature,
-			naverCodeInt = parseInt(feature.getProperty('navercode'));
+	if (mapType != 4) {
 
-		viewSelected(naverCodeInt);
-		mapSetOptions();
-		regionGeoJson = [];
+		map.data.addListener('click', function(e) {
+			let feature = e.feature,
+				naverCodeInt = parseInt(feature.getProperty('navercode'));
 
-		//1:컬러링 도,광역시 / 2:컬러링 시군구 / 3: 트립노트 도,광역시/ 4: 트립노트 시군구
-		if (mapType == 1) {
-			regionJsonLoop(2);
+			console.log(feature);
+
+			viewSelected(naverCodeInt);
+			mapSetOptions();
+			regionGeoJson = [];
+
+			//1:컬러링 도,광역시 / 2:컬러링 시군구 / 3: 트립노트 도,광역시/ 4: 트립노트 시군구
+
+			if (mapType == 1) {
+				regionJsonLoop(2);
+			}
+
+			else if (mapType == 2) {
+				regionJsonLoop(4);
+			}
+
+			else {
+				regionJsonLoop(4);
+			}
+		});
+	}
+
+	else {
+		// 해당 마커의 인덱스를 seq라는 클로저 변수로 저장하는 이벤트 핸들러를 반환합니다.
+		for (let i = 0; i < markerInfoArray.length; i++) {
+			naver.maps.Event.addListener(markerInfoArray[i], 'click', getClickHandler(i));
 		}
-
-		else if (mapType == 2) {
-			regionJsonLoop(4);
-		}
-
-		else {
-			regionJsonLoop(4);
-		}
-	});
+	}
 
 	map.data.addListener('mouseover', function(e) { // 마우스 올린 상태
-		var feature = e.feature,
+		let feature = e.feature,
 			regionName;
-
-		console.log(feature)
 
 		if (feature.getProperty('area3') == '') {
 			regionName = feature.getProperty('area1')
@@ -556,7 +612,7 @@ function startDataLayer(mapType) {
 			fillOpacity: 0.3,
 			strokeColor: '#FFFFFF',
 			strokeWeight: 1,
-			strokeOpacity: 1
+			strokeOpacity: 1,
 		});
 	});
 
@@ -564,29 +620,57 @@ function startDataLayer(mapType) {
 		tooltip.hide().empty();
 		map.data.revertStyle();
 	});
-}
-/*
-// 해당 마커의 인덱스를 seq라는 클로저 변수로 저장하는 이벤트 핸들러를 반환합니다.
-function getClickHandler(seq) {
-	var infoWindow = new naver.maps.InfoWindow({
-		content: '<div style="width:150px;text-align:center;padding:10px;">The Letter is <b>"' + key.substr(0, 1) + '"</b>.</div>'
+
+	naver.maps.Event.addListener(map, 'idle', function() {
+		updateMarkers(map, markerInfoArray);
 	});
+}
 
-	return function(e) {
-		console.log(markers);
-		var marker = markers[seq],
-			infoWindow = infoWindows[seq];
+function updateMarkers(map, markers) {
 
-		if (infoWindow.getMap()) {
-			infoWindow.close();
-		} else {
-			infoWindow.open(map, marker);
+	let mapBounds = map.getBounds();
+	let marker, position;
+
+	for (let i = 0; i < markerInfoArray.length; i++) {
+		marker = markers[i]
+		position = marker.getPosition();
+
+		if (mapBounds.hasLatLng(position)) {
+			showMarker(map, marker);
+		}
+
+		else {
+			hideMarker(map, marker);
 		}
 	}
 }
 
-infoWindows.push(infoWindow);
+function showMarker(map, marker) {
 
-for (var i = 0, ii = markers.length; i < ii; i++) {
-	naver.maps.Event.addListener(markers[i], 'click', getClickHandler(i));
-}*/
+	if (marker.setMap()) return;
+	marker.setMap(map);
+}
+
+function hideMarker(map, marker) {
+
+	if (!marker.setMap()) return;
+	marker.setMap(null);
+}
+
+
+
+function getClickHandler(seq) {
+	console.log("clickclickclickclickclick");
+	console.log(seq);
+
+	return function(e) {
+		let testmarker = markerInfoArray[seq],
+			infoWindow = infoWindows[seq];
+		console.log("markerInfoArray[i]markerInfoArray[i]markerInfoArray[i]");
+		/*if (infoWindow.getMap()) {
+			infoWindow.close();
+		} else {
+			infoWindow.open(map, testmarker);
+		}*/
+	}
+}
