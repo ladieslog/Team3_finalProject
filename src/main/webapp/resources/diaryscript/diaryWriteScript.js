@@ -1648,6 +1648,7 @@ $(document).click(function(e){
     }
 
 });
+<<<<<<< HEAD
 
 
 
@@ -1870,3 +1871,5 @@ function mapSearch(){
 	        el.removeChild (el.lastChild);
 	    }
 	}
+=======
+>>>>>>> master
