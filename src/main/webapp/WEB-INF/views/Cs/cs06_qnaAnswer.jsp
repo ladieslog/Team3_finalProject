@@ -1,119 +1,72 @@
-<%@page import="com.care.dare.CS.DTO.QnaDTO"%>
-<%@page import="java.text.SimpleDateFormat"%>
-<%@page import="com.care.dare.CS.DTO.NoticeDTO"%>
+<%@page import="com.care.dare.join.controller.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="contextPath" value="<%=request.getContextPath() %>"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-	.notice-view-wrap {
-		background-color: #F6F6F6;
-		/* height: 650px; */
-		padding: 28px 391px 28px 423px;
-		
-	}
-	.notice-view-title {
-		border-bottom: 1px solid #FFA7A7;
-	}
-	.notice-view-title>div {
-		margin: 10px 0;
-	}
-	.notice-view-content {
-		padding: 20px 15px;
-		min-height: 450px;
-		background: #FFFFF9; font-weight: bold;
-  	    font-family: HCR Batang; overflow-x: auto;
-	}
-	.notice-view-bottom {
-		border-top: 1px solid #FFA7A7;
- 		padding-top: 10px;
-	}
-	.notice-view-bottom button {
-		background-color: #F6F6F6;
-    	border-color: #F6F6F6;
-    	border-radius: 6px;
-    	height: 30px; font-weight: bold;
-    font-family: HCR Batang;
-	}
-	.wd-85 {
-		width: 85px;
-	}
-	.wd-60 {
-		width: 60px;
-	}
-	form {
-		display: inline;
-	}
-	img {
-		max-width: 100%;
-	}
-</style>
+
+<script src="${contextPath }/resources/jquery-3.6.0.min.js"></script>
+<script src="${contextPath }/resources/bootstrap.js"></script>
+<link rel="stylesheet" href="${contextPath }/resources/CS/css/cs_css.css?ver=8">
 </head>
+<body>
+<div>
 <%
-	QnaDTO dto = (QnaDTO) request.getAttribute("qna"); // 해당 게시글 데이터
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm"); // 시간 형식 포맷
+	MemberDTO dto = (MemberDTO) session.getAttribute("loginUser");
+
 %>
-<body style="overflow-x: hidden;">
 	<jsp:include page="../default/header.jsp"/>
-	
-	<div class="notice-view-wrap">
-		<div>
-			<div class="notice-view-title">
-				<div style="margin-top: 0;"><%=dto.getNum() %> | <%=dto.getQuestionTitle() %></div>
-				<div>
-					관리자 | <%=sdf.format(dto.getQuestionTime()) %> | 
-					<%
-						if(dto.getStatus().equals("0")) {
-					%>
-					답변 대기
-					<%
-						} else {
-					%>
-					답변 완료
-					<%
-						}
-					%>
-				</div>
-			</div>
-			<div class="notice-view-content">
-			<%=dto.getQuestionContent() %>
-			</div>
-			<div class="notice-view-bottom" align="right">
-				<button type="button" class="wd-85" onclick="listPage();">이전으로</button>
-				<form action="qnaModifyForm" method="post" id="qnaModifyForm">
-					<button type="button" class="wd-60" onclick="modifyPage();">수정</button>
-					<input type="hidden" name="num" value="<%=dto.getNum() %>"/>
-				</form>
-				<form action="qnaDelete" method="post" id="qnaDelete">
-					<button type="button" class="wd-60" onclick="deletePage();">삭제</button>
-					<input type="hidden" name="num" value="<%=dto.getNum() %>"/>
-				</form>
+	<div class="c1 mr-auto notice-wrap qna-wrap">
+		<div class="c2 pd-none">
+			<br>			
+				<br>
+				 <form action="qnaWrite" method="post" id="form">
+				<table border="1px;">
+				<tr>
+					<td class="wb"colspan="2" style="width: 80px;"> <b class="bh2">답변제목 &nbsp;</b></td>
+					<td class="wb"colspan="1"> <input type="text" id="title" name="title" class="ch2"></td>
+					<td class="ws"colspan="1"> </td>
+					<td class="wb"colspan="2"> <b class="bh2">&nbsp; 답변자 &nbsp;</b></td>
+					<td class="wb"colspan="1"> <input type="text" id="writer" name="writer" class="ch2" value="<%=dto.getId()%>" readonly></td>
+				</tr>
+				
+				<tr> 
+					<td colspan="15">
+						<textarea name="content" class="chb2" id="editor"></textarea>
+					</td>
+				</tr>
+					
+		</table>	
+		</form>
+			<div class="eh1">
+				<input type="button" value="작성"
+								class="cn4 mb-none mt-15 notice-btn" style="margin-right: 20px;" onclick="writeCheck();">
+				<button type="button" class="cn4 mb-none notice-btn" onclick="location.href='qnaInfo'">돌아가기</button>
 			</div>
 		</div>
 	</div>
-	
 	<jsp:include page="../default/footer.jsp"/>
+</div>
 	
-<script src="${contextPath }/resources/jquery-3.6.0.min.js"></script>
-<script type="text/javascript">
-	function listPage() {
-		location.href = "qnaModifyForm";
-	}
-	function modifyPage() {
-		document.getElementById("qnaModifyForm").submit();
-	}
-	function deletePage() {
-		if(confirm("정말 게시글을 삭제하시겠습니까?")) {
-			document.getElementById("qnaDelete").submit();
+		<script
+		src="<%=request.getContextPath()%>/resources/ckeditor/ckeditor.js"></script>
+	<script>
+	// ckEditor를 textarea태그에 적용 및 사이즈 조절
+		window.onload = function() {
+			ck = CKEDITOR.replace("editor", {
+				height : 350,
+				width : 1000
+			});
 		}
-	}
-</script>
-</body>
+	</script>
+	<script
+		src="<%=request.getContextPath()%>/resources/CS/script/notice_js.js"></script>
 	
 
+
+</body>
 </html>
