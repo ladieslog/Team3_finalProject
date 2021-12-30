@@ -5,7 +5,7 @@
 	.div{ text-align: center;}
 	.div2{ margin-right: -227px;}
 	.text{font-size: 15px; border-radius: 5px; border-color: white;}
-	.table{display: flex; justify-content: center; align-items: center; margin-top: 20px;}
+	.table{display: flex; justify-content: center; align-items: center;}
 	.te1{ width:300px; border-radius: 5px; border-color: white;}
 	.te2{ width:150px; border-radius: 5px; border-color: white;}
 	.te3{ width:100px; border-radius: 5px; border-color: white;}
@@ -23,7 +23,8 @@
 	.btnwi{ background-color: #DEF4F9 ; color:black; border-radius: 5px; border-color: #DEF4F9; 
 			font-family: Georgia; font-size:18px;}
 	
-	.modal{   position: fixed;  top: 29%;  left: 45.6%; }
+	.modal{   margin-top: 5px;
+    margin-left: 171px; }
 	.placeList{ width: 158px;  background-color: white;  left: 45.6%;  border-radius: 5px;  position: absolute; }
 	.placeList>div{ display: flex; justify-content: space-between;  align-items: center; display: none;}
 
