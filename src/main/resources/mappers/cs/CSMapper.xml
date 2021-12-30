@@ -30,7 +30,4 @@
 	<update id="noticeModify">
 		update notice set title = #{title}, content = #{content}, time = sysdate where num = #{num}
 	</update>
-	<select id="ansInfo" resultMap="ansInfo">
-		select * from 
-	</select>
 </mapper>

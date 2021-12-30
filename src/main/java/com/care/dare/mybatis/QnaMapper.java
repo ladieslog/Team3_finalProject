@@ -26,4 +26,6 @@ public interface QnaMapper {
 	public int qnaDelete(int num);
 
 	public int qnaModify(QnaDTO dto);
+	
+	
 }
