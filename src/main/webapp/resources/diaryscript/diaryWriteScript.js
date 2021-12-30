@@ -1569,12 +1569,13 @@ function register(){
 }
 
 function modal(){
-	document.getElementById("modal").style.display='block';
+	document.getElementById("modal").style.visibility="visible";
 	document.getElementById("place").value = "";
 }
 
 function cancle(){
-	document.getElementById("modal").style.display='none';
+	document.getElementById("modal").style.visibility="hidden";
+	document.getElementById("non").style.visibility="hidden";
 }
 
 function save(){
@@ -1592,7 +1593,7 @@ function save(){
 	}else{
 		alert('경유지는 3개만 등록가능합니다')
 	}
-	document.getElementById("modal").style.display='none';
+	document.getElementById("modal").style.visibility='hidden';
 }
 
 

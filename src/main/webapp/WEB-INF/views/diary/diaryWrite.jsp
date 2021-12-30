@@ -8,7 +8,8 @@
 <meta charset="UTF-8">
 <title>다이어리 작성페이지</title>
 
-<link rel="stylesheet" href="${contextPath }/resources/diarycss/diaryWriteCss.css?ver=9">
+
+<link rel="stylesheet" href="${contextPath }/resources/diarycss/diaryWriteCss.css?ver=1">
 
 </head>
 <body style="overflow-x: hidden">
@@ -24,17 +25,7 @@
 	
 	
 	<form id="form" action="writeSave" method="post" enctype="multipart/form-data">
-	<div class="modal" id="modal" style="display:none;">
-		<div class="b">
-		<input type="text" id="place" class="te2" readonly>
-		<input type="button" value="Search" onclick="mapSearch()" class="sub">
-		<input type="button" value="Save" onclick="save()" class="sub">
-		<input type="button" value="Cancle" onclick="cancle()" class="sub">
-		<input type="hidden" name="place1" id="place1" value="">
-		<input type="hidden" name="place2" id="place2" value="">
-		<input type="hidden" name="place3" id="place3" value="">
-		</div>
-	</div>
+	
 	<div class="div2">
 	<br><br>
 	<sapn class="b">Title</sapn> 
@@ -69,6 +60,17 @@
 		<div id="pla3">
 			<div id="placename3"></div>
 			<img src="${contextPath }/resources/diaryimg/delete.png" class="placedel" id="placedel3" onclick="delete3();"/>
+		</div>
+	</div>
+	<div class="modal" id="modal" style="visibility: hidden;">
+		<div class="b">
+		<input type="text" id="place" class="te2" readonly>
+		<input type="button" value="Search" onclick="mapSearch()" class="sub">
+		<input type="button" value="Save" onclick="save()" class="sub">
+		<input type="button" value="Cancle" onclick="cancle()" class="sub">
+		<input type="hidden" name="place1" id="place1" value="">
+		<input type="hidden" name="place2" id="place2" value="">
+		<input type="hidden" name="place3" id="place3" value="">
 		</div>
 	</div>
 	
@@ -230,10 +232,10 @@
     <div id="menu_wrap" class="bg_white">
         <div class="option">
             <div>
-                <form onsubmit="searchPlaces(); return false;" style="display: flex; justify-content: center; align-items: center;">
-                    키워드 : <input type="text" value="KG아이티뱅크" id="keyword" size="15"> 
-                    <button type="submit">검색하기</button> 
-                    <img src="${contextPath }/resources/diaryimg/delete.png" style="height: 10px; width: 10px; margin-left: 5px;" onclick="mapnone()">
+                <form onsubmit="searchPlaces(); return false;" style="display: flex; align-items: center;margin-left: 5px;font-weight: bold;">
+                    키워드 : &nbsp;<input type="text" value="KG아이티뱅크" id="keyword" size="15" style="border: 1px solid gray; border-radius: 5px;"> 
+                    <button type="submit" style="border: none; color:gray;">♥</button> 
+                    <img src="${contextPath }/resources/diaryimg/delete.png" style="height: 10px; width: 10px; margin-left: 124px; margin-bottom: 10px;" onclick="mapnone()">
                 </form>
             </div>
         </div>
@@ -246,6 +248,6 @@
 
 <script src="<%=request.getContextPath()%>/resources/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e5d72e7cbb7ab20aa12aa5a72991fde0&libraries=services"></script>
-<script type="text/javascript" src="${contextPath}/resources/diaryscript/diaryWriteScript.js?ver=2"></script>
+<script type="text/javascript" src="${contextPath}/resources/diaryscript/diaryWriteScript.js?ver=1"></script>
 </body>
 </html>

@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>마이페이지</title>
-<link rel="stylesheet" href="${contextPath }/resources/MyPageCss/MyPageCss.css?ver=2">
+<link rel="stylesheet" href="${contextPath }/resources/MyPageCss/MyPageCss.css?ver=1">
 <script src="${contextPath }/resources/jquery-3.6.0.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>

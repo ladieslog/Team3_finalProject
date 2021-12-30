@@ -38,9 +38,10 @@
 				<form action="noticeModify" method="post" id="form">
 				<input type="hidden" name="num" value="<%=dto.getNum() %>"/>
 					<table class="cn3">
+					<tr style="height: 35px;"></tr>
 						<tr>
-							<td class="write-title"><b class="bh3 fs-20"> notice
-									title &nbsp;</b></td>
+							<td class="write-title"><b class="bh3 fs-20"> Q&A
+									Title &nbsp;</b></td>
 							<td colspan="14"><input type="text" name="title"
 								class="cha3 title-input" id="title" value="<%=dto.getQuestionTitle()%>"></td>
 							<!--<td  class="tb"> <b class="b">write date</b></td>  -->

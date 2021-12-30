@@ -22,7 +22,7 @@
 					<table class="cn3">
 						<tr>
 							<td class="write-title"><b class="bh3 fs-20"> Notice
-									title &nbsp;</b></td>
+									Title &nbsp;</b></td>
 							<td colspan="14"><input type="text" name="title"
 								class="cha3 title-input" id="title"></td>
 							<!--<td  class="tb"> <b class="b">write date</b></td>  -->
