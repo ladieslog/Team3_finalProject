@@ -82,8 +82,11 @@ public class CSController {
 		return "Cs/cs05_signList";
 	}
 	
-	@RequestMapping(value = "qnaAnswer")
-	public String answer() {
+	@RequestMapping(value = "qnaAnswer", method=RequestMethod.POST)
+	public String answer(HttpServletRequest req, Model model) {
+		int num = Integer.parseInt(req.getParameter("num"));
+		model.addAttribute("num", num);
+		model.addAttribute("title", req.getParameter("title"));
 		return "Cs/cs06_qnaAnswer";
 	}
 	
@@ -301,9 +304,21 @@ public class CSController {
 		}
 	}
 	
+	@RequestMapping(value = "answerWrite", method=RequestMethod.POST)
+	public void answerWrite(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		resp.setContentType("text/html; charset=utf-8"); // 응답 설정 변경
+		PrintWriter out = resp.getWriter(); // 화면 출력용 객체
+		int result = service2.answerWrite(req);
+		if(result == 0) { 
+			out.print("<script> alert('답변 등록에 실패했습니다.');"
+					+"location.href='csMain'; </script>");
+		} else { 
+			out.print("<script> alert('답변 등록이 완료되었습니다.');"
+					+"location.href='csMain'; </script>");
+		}
+	}
+	
 
-	
-	
 	
 	
 }

@@ -27,5 +27,6 @@ public interface QnaMapper {
 
 	public int qnaModify(QnaDTO dto);
 	
+	public int answerWrite(QnaDTO dto);
 	
 }

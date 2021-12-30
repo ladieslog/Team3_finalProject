@@ -44,4 +44,7 @@
  	<update id ="qnaModify">
  		update QUESTION_BOARD  set QUESTION_TITLE=#{questionTitle}, QUESTION_CONTENT =#{questionContent} where num = #{num} 
  	</update>
+ 	<update id="answerWrite">
+ 		update QUESTION_BOARD set ANSWER_CONTENT=#{answerContent}, ANSWER_TIME=SYSDATE, STATUS='1' where num=#{num}
+ 	</update>
  </mapper>

@@ -24,14 +24,15 @@
 		<div class="c2 pd-none">
 			<br>			
 				<br>
-				 <form action="qnaWrite" method="post" id="form">
+				 <form action="answerWrite" method="post" id="form">
+				 <input type="hidden" name="num" value="<%=request.getAttribute("num") %>"/>
 				<table border="1px;">
 				<tr>
 					<td class="wb"colspan="2" style="width: 80px;"> <b class="bh2">답변제목 &nbsp;</b></td>
-					<td class="wb"colspan="1"> <input type="text" id="title" name="title" class="ch2"></td>
+					<td class="wb"colspan="1"> <input type="text" id="title" class="ch2" value="<%=request.getAttribute("title") %>" readonly/></td>
 					<td class="ws"colspan="1"> </td>
 					<td class="wb"colspan="2"> <b class="bh2">&nbsp; 답변자 &nbsp;</b></td>
-					<td class="wb"colspan="1"> <input type="text" id="writer" name="writer" class="ch2" value="<%=dto.getId()%>" readonly></td>
+					<td class="wb"colspan="1"> <input type="text" id="writer" name="writer" class="ch2" value="관리자" readonly></td>
 				</tr>
 				
 				<tr> 

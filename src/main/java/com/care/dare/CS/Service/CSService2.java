@@ -89,6 +89,13 @@ public class CSService2 {
 		return mapper.qnaModify(dto2);
 	}
 	
+	public int answerWrite(HttpServletRequest req) {
+		QnaDTO dto = new QnaDTO();
+		dto.setNum(Integer.parseInt(req.getParameter("num")));
+		dto.setAnswerContent(req.getParameter("content"));
+		return mapper.answerWrite(dto);
+	}
+	
 	
 	
 	

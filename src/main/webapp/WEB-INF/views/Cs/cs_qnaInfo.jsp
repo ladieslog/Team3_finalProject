@@ -89,7 +89,12 @@
 				<%
 					if(userDto.getId().equals("3333")) {
 				%>
-				<button type="button" class="wd-85" onclick="AnswerPage();">대답하기</button>
+				<form action="qnaAnswer" method="post" id="qnaAnswer">
+					<button type="button" class="wd-85" onclick="AnswerPage();">대답하기</button>
+					<input type="hidden" name="title" value="<%=dto.getQuestionTitle() %>"/>
+					<input type="hidden" name="num" value="<%=dto.getNum() %>"/>
+				</form>
+				
 				<%
 					}
 				%>
@@ -114,7 +119,7 @@
 		location.href = "csMain";
 	}
 	function AnswerPage() {
-		location.href = "qnaAnswer";
+		document.getElementById("qnaAnswer").submit();
 	}
 	function modifyPage() {
 		document.getElementById("qnaModifyForm").submit();
