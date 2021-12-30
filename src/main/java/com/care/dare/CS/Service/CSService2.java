@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
-import com.care.dare.CS.DTO.NoticeDTO;
 import com.care.dare.CS.DTO.QnaDTO;
 import com.care.dare.join.controller.MemberDTO;
 import com.care.dare.mybatis.QnaMapper;
@@ -81,18 +80,22 @@ public class CSService2 {
 		return mapper.qnaDelete(num);
 	}
 	
-	/*
+	
 	public int qnaModify(HttpServletRequest req) {
 		QnaDTO dto2 =new QnaDTO();
 		dto2.setNum(Integer.parseInt(req.getParameter("num")));
-		dto2.setQuestionTitle(req.getParameter("questionTitle"));
-		dto2.setQuestionContent(req.getParameter("questionContent"));
-		dto2.setQuestionId(req.getParameter("questionId"));
-		dto2.setAnswerContent(req.getParameter("answercontent"));
-		dto2.setStatus(req.getParameter("status"));
+		dto2.setQuestionTitle(req.getParameter("title"));
+		dto2.setQuestionContent(req.getParameter("content"));
 		return mapper.qnaModify(dto2);
 	}
-	*/
+	
+	public int answerWrite(HttpServletRequest req) {
+		QnaDTO dto = new QnaDTO();
+		dto.setNum(Integer.parseInt(req.getParameter("num")));
+		dto.setAnswerContent(req.getParameter("content"));
+		return mapper.answerWrite(dto);
+	}
+	
 	
 	
 	

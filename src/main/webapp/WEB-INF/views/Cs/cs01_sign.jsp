@@ -50,7 +50,7 @@ if(endPage2 > pageCount2) {
 
 		<div class="a1">
 			<div class="a2">
-	<div>
+	<div style="margin-top: -20px;">
 				<div style="align-items: center; display: flex; justify-content: center; height: 60px;">
 					<br> <span><b style="font-size: 30px; ">Notice</b></span>
 					<button type="button" style="margin-left: 1113px; width: 60px;" class="cn4 mb-none notice-btn" onclick="location.href='notice'">글작성</button>
@@ -135,7 +135,7 @@ if(endPage2 > pageCount2) {
 							if (list2.isEmpty()) { // 리스트가 없다면 게시글이 0개임
 							%>
 							<tr>
-								<td colspan="5">작성된 공지사항이 없습니다.</td>
+								<td colspan="5">작성된 Q&A가 없습니다.</td>
 							</tr>
 							<%
 							} else {

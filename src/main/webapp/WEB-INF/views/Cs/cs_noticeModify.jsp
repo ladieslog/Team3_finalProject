@@ -48,7 +48,7 @@
 					<table class="cn3">
 					<div style="height: 37px;">
 						<tr>
-							<td class="write-title"><b class="bh3 fs-20">Notice title</b></td>
+							<td class="write-title"><b class="bh3 fs-20">Notice Title</b></td>
 							<td colspan="14"><input type="text" name="title"
 								class="cha3 title-input" id="title" value="<%=dto.getTitle()%>"></td>
 							<!--<td  class="tb"> <b class="b">write date</b></td>  -->

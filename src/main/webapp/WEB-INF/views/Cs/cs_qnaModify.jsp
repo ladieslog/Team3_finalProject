@@ -15,14 +15,6 @@
 </head>
 <%
 	QnaDTO dto = (QnaDTO) request.getAttribute("qnaInfo");
-	if(dto == null) {
-%>
-	<script>
-		alert("잘못된 접근입니다.");
-		location.href = "csMain";
-	</script>
-<%
-	} else {
 %>
 <body>
 <!-- ckeditor.js 연결 -->
@@ -32,7 +24,7 @@
 	// ckEditor를 textarea태그에 적용 및 사이즈 조절
 		window.onload = function() {
 			ck = CKEDITOR.replace("editor", {
-				height : 250,
+				height : 350,
 				width : 1000
 			});
 		}
@@ -46,9 +38,10 @@
 				<form action="noticeModify" method="post" id="form">
 				<input type="hidden" name="num" value="<%=dto.getNum() %>"/>
 					<table class="cn3">
+					<tr style="height: 35px;"></tr>
 						<tr>
-							<td class="write-title"><b class="bh3 fs-20"> notice
-									title &nbsp;</b></td>
+							<td class="write-title"><b class="bh3 fs-20"> Q&A
+									Title &nbsp;</b></td>
 							<td colspan="14"><input type="text" name="title"
 								class="cha3 title-input" id="title" value="<%=dto.getQuestionTitle()%>"></td>
 							<!--<td  class="tb"> <b class="b">write date</b></td>  -->
@@ -87,8 +80,5 @@
 	<script
 		src="<%=request.getContextPath()%>/resources/CS/script/notice_js.js"></script>
 </body>
-<%
-	}
-%>
 
 </html>
