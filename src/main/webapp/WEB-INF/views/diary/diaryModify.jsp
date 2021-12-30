@@ -11,7 +11,7 @@
 <head>
 <meta charset="UTF-8">
 <title>다이어리 수정페이지</title>
-<link rel="stylesheet" href="${contextPath }/resources/diarycss/diaryWriteCss.css?ver=1">
+<link rel="stylesheet" href="${contextPath }/resources/diarycss/diaryWriteCss.css?ver=7">
 
 </head>
 <body style="overflow-x: hidden">
