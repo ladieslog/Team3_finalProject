@@ -15,14 +15,6 @@
 </head>
 <%
 	QnaDTO dto = (QnaDTO) request.getAttribute("qnaInfo");
-	if(dto == null) {
-%>
-	<script>
-		alert("잘못된 접근입니다.");
-		location.href = "csMain";
-	</script>
-<%
-	} else {
 %>
 <body>
 <!-- ckeditor.js 연결 -->
@@ -32,7 +24,7 @@
 	// ckEditor를 textarea태그에 적용 및 사이즈 조절
 		window.onload = function() {
 			ck = CKEDITOR.replace("editor", {
-				height : 250,
+				height : 350,
 				width : 1000
 			});
 		}
@@ -87,8 +79,5 @@
 	<script
 		src="<%=request.getContextPath()%>/resources/CS/script/notice_js.js"></script>
 </body>
-<%
-	}
-%>
 
 </html>

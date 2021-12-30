@@ -45,7 +45,7 @@
 			<div class="eh1">
 				<input type="button" value="작성"
 								class="cn4 mb-none mt-15 notice-btn" style="margin-right: 20px;" onclick="writeCheck();">
-				<button type="button" class="cn4 mb-none notice-btn" onclick="location.href='qnaInfo'">돌아가기</button>
+				<button type="button" class="cn4 mb-none notice-btn" onclick="history.back()">돌아가기</button>
 			</div>
 		</div>
 	</div>

@@ -1,3 +1,4 @@
+<%@page import="com.care.dare.join.controller.MemberDTO"%>
 <%@page import="com.care.dare.CS.DTO.QnaDTO"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.care.dare.CS.DTO.NoticeDTO"%>
@@ -57,6 +58,7 @@
 <%
 	QnaDTO dto = (QnaDTO) request.getAttribute("qna"); // 해당 게시글 데이터
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm"); // 시간 형식 포맷
+	MemberDTO userDto = (MemberDTO) session.getAttribute("loginUser");
 %>
 <body style="overflow-x: hidden;">
 	<jsp:include page="../default/header.jsp"/>
@@ -66,7 +68,7 @@
 			<div class="notice-view-title">
 				<div style="margin-top: 0;"><%=dto.getNum() %> | <%=dto.getQuestionTitle() %></div>
 				<div>
-					관리자 | <%=sdf.format(dto.getQuestionTime()) %> | 
+					<%=dto.getQuestionId() %> | <%=sdf.format(dto.getQuestionTime()) %> | 
 					<%
 						if(dto.getStatus().equals("0")) {
 					%>
@@ -84,7 +86,13 @@
 			<%=dto.getQuestionContent() %>
 			</div>
 			<div class="notice-view-bottom" align="right">
+				<%
+					if(userDto.getId().equals("3333")) {
+				%>
 				<button type="button" class="wd-85" onclick="AnswerPage();">대답하기</button>
+				<%
+					}
+				%>
 				<button type="button" class="wd-85" onclick="listPage();">목록으로</button>
 				<form action="qnaModifyForm" method="post" id="qnaModifyForm">
 					<button type="button" class="wd-60" onclick="modifyPage();">수정</button>

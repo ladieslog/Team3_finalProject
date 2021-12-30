@@ -265,7 +265,7 @@ public class CSController {
 	public void noticeModify(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		resp.setContentType("text/html; charset=utf-8"); // 응답 설정 변경
 		PrintWriter out = resp.getWriter(); // 화면 출력용 객체
-		int result = service.noticeModify(req);
+		int result = service2.qnaModify(req);
 		if(result == 0) {
 			out.print("<script> alert('공지 수정에 실패했습니다.');location.href='csMain';</script>");
 		} else {
@@ -273,29 +273,20 @@ public class CSController {
 		}
 	}
 	
-	@RequestMapping(value="test")
-	public String test() {
-		return "test/Test";
-	}
-	
-	@RequestMapping(value="test2")
-	public String test2() {
-		return "test/Test2";
-	}
 	
 	@RequestMapping(value = "qnaModifyForm", method=RequestMethod.POST)
 	public String qnaModifyForm(HttpServletRequest req, HttpServletResponse resp, Model model) throws IOException {
+		req.setCharacterEncoding("UTF-8");
 		resp.setContentType("text/html; charset=utf-8"); // 응답 설정 변경
-		PrintWriter out = resp.getWriter(); // 화면 출력용 객체
+		PrintWriter out = resp.getWriter(); // 화면 출력용 객체\
 		String numstr = req.getParameter("num");
-		if(numstr == null) {
-			out.print("<script> alert('잘못된 접근입니다.');</script>");
-			return "redirect:csMain";
-		} else {
-			int num = Integer.parseInt(numstr);
-			service.noticeInfo(model, num);
-			return "Cs/cs_qnaModify";
+		int num = Integer.parseInt(numstr);
+		QnaDTO dto = service2.qnaInfo(num);
+		if(dto == null) {
+			return "error/accessError";
 		}
+		model.addAttribute("qnaInfo", dto);
+		return "Cs/cs_qnaModify";
 	}
 	
 	@RequestMapping(value="qnaModify", method=RequestMethod.POST)
@@ -304,9 +295,9 @@ public class CSController {
 		PrintWriter out = resp.getWriter(); // 화면 출력용 객체
 		int result = service2.qnaModify(req);
 		if(result == 0) {
-			out.print("<script> alert('공지 수정에 실패했습니다.');location.href='csMain';</script>");
+			out.print("<script> alert('Q&A 질문 수정에 실패했습니다.');location.href='csMain';</script>");
 		} else {
-			out.print("<script> alert('공지 수정이 완료되었습니다.');location.href='csMain';</script>");
+			out.print("<script> alert('Q&A 질문 수정이 완료되었습니다.');location.href='csMain';</script>");
 		}
 	}
 	

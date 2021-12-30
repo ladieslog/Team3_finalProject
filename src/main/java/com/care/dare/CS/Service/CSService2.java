@@ -84,11 +84,8 @@ public class CSService2 {
 	public int qnaModify(HttpServletRequest req) {
 		QnaDTO dto2 =new QnaDTO();
 		dto2.setNum(Integer.parseInt(req.getParameter("num")));
-		dto2.setQuestionTitle(req.getParameter("questionTitle"));
-		dto2.setQuestionContent(req.getParameter("questionContent"));
-		dto2.setQuestionId(req.getParameter("questionId"));
-		dto2.setAnswerContent(req.getParameter("answercontent"));
-		dto2.setStatus(req.getParameter("status"));
+		dto2.setQuestionTitle(req.getParameter("title"));
+		dto2.setQuestionContent(req.getParameter("content"));
 		return mapper.qnaModify(dto2);
 	}
 	

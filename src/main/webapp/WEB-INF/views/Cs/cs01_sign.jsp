@@ -135,7 +135,7 @@ if(endPage2 > pageCount2) {
 							if (list2.isEmpty()) { // 리스트가 없다면 게시글이 0개임
 							%>
 							<tr>
-								<td colspan="5">작성된 공지사항이 없습니다.</td>
+								<td colspan="5">작성된 Q&A가 없습니다.</td>
 							</tr>
 							<%
 							} else {
