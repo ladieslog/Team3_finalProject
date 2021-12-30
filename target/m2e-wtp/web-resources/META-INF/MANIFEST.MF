@@ -1,5 +1,10 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: Admin
 Build-Jdk: 15.0.1
+=======
+Built-By: matia
+Build-Jdk: 11.0.12
+>>>>>>> 5e80a441ffc891fc8735b15c19e8ec014f59a550
 Created-By: Maven Integration for Eclipse
 

@@ -1,3 +1,4 @@
+<%@page import="com.care.dare.join.controller.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -10,49 +11,60 @@
 
 <script src="${contextPath }/resources/jquery-3.6.0.min.js"></script>
 <script src="${contextPath }/resources/bootstrap.js"></script>
-<link rel="stylesheet" href="${contextPath }/resources/CS/css/cs_css.css">
+<link rel="stylesheet" href="${contextPath }/resources/CS/css/cs_css.css?ver=8">
 </head>
 <body>
 <div>
+<%
+	MemberDTO dto = (MemberDTO) session.getAttribute("loginUser");
+
+%>
 	<jsp:include page="../default/header.jsp"/>
-	<div class="b1">
-		<div class="b2">
+	<div class="c1 mr-auto notice-wrap qna-wrap">
+		<div class="c2 pd-none">
 			<br>			
 				<br>
-			 
-				<table class="bn3">
-
+				 <form action="qnaWrite" method="post" id="form">
+				<table border="1px;">
 				<tr>
-					<td class="wb"colspan="2"> <b class="bh2">Q&A title &nbsp;</b>  </td>
-					<td class="wb"colspan="1"> <input type="text" name="" class="ch2"></td>
+					<td class="wb"colspan="2" style="width: 80px;"> <b class="bh2">답변제목 &nbsp;</b></td>
+					<td class="wb"colspan="1"> <input type="text" id="title" name="title" class="ch2"></td>
 					<td class="ws"colspan="1"> </td>
-					<td class="wb"colspan="2"> </td>
-					<td class="wb"colspan="1"></td>
+					<td class="wb"colspan="2"> <b class="bh2">&nbsp; 답변자 &nbsp;</b></td>
+					<td class="wb"colspan="1"> <input type="text" id="writer" name="writer" class="ch2" value="<%=dto.getId()%>" readonly></td>
 				</tr>
-				<tr class ="hb"></tr>
-			
-				<tr>
-					<td colspan="2"><b class="bh2">Q&A answer &nbsp;</b> </td>
-				</tr>
+				
 				<tr> 
 					<td colspan="15">
-						<input type="text" name="" class="chb2">
+						<textarea name="content" class="chb2" id="editor"></textarea>
 					</td>
 				</tr>
 					
 		</table>	
+		</form>
 			<div class="eh1">
-				<input type="button" value="view list" class="bn4">
-				<input type="submit" value="작성하기" class="bn4">
+				<input type="button" value="작성"
+								class="cn4 mb-none mt-15 notice-btn" style="margin-right: 20px;" onclick="writeCheck();">
+				<button type="button" class="cn4 mb-none notice-btn" onclick="location.href='qnaInfo'">돌아가기</button>
 			</div>
 		</div>
-
 	</div>
-	
 	<jsp:include page="../default/footer.jsp"/>
 </div>
 	
-	
+		<script
+		src="<%=request.getContextPath()%>/resources/ckeditor/ckeditor.js"></script>
+	<script>
+	// ckEditor를 textarea태그에 적용 및 사이즈 조절
+		window.onload = function() {
+			ck = CKEDITOR.replace("editor", {
+				height : 350,
+				width : 1000
+			});
+		}
+	</script>
+	<script
+		src="<%=request.getContextPath()%>/resources/CS/script/notice_js.js"></script>
 	
 
 
