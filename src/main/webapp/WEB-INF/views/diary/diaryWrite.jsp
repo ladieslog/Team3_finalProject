@@ -8,11 +8,8 @@
 <meta charset="UTF-8">
 <title>다이어리 작성페이지</title>
 
-<<<<<<< HEAD
+
 <link rel="stylesheet" href="${contextPath }/resources/diarycss/diaryWriteCss.css?ver=1">
-=======
-<link rel="stylesheet" href="${contextPath }/resources/diarycss/diaryWriteCss.css?ver=9">
->>>>>>> master
 
 </head>
 <body style="overflow-x: hidden">

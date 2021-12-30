@@ -66,8 +66,8 @@
 	<div class="notice-view-wrap">
 		<div>
 			<div class="notice-view-title">
-				<div style="margin-top: 0;"><%=dto.getNum() %> | <%=dto.getQuestionTitle() %></div>
-				<div>
+				<div style="margin-top: 0;margin-left: 14px;font-weight: bold;font-family: HCR Batang;"><%=dto.getNum() %> | <%=dto.getQuestionTitle() %></div>
+				<div style="margin-left: 14px; font-weight: bold; font-family: HCR Batang;">
 					<%=dto.getQuestionId() %> | <%=sdf.format(dto.getQuestionTime()) %> | 
 					<%
 						if(dto.getStatus().equals("0")) {
@@ -89,7 +89,7 @@
 				<%
 					if(userDto.getId().equals("3333")) {
 				%>
-				<button type="button" class="wd-85" onclick="AnswerPage();">대답하기</button>
+				<button type="button" class="wd-85" onclick="AnswerPage();">답변하기</button>
 				<%
 					}
 				%>

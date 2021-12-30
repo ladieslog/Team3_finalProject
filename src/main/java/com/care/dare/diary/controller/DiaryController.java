@@ -119,6 +119,11 @@ public class DiaryController {
 	public String Notsession() {
 		return "diary/Notsession";
 	}
+	@RequestMapping("500error")
+	public String Not500() {
+		return "diary/Not500";
+	}
+	
 	
 	@RequestMapping("diaryView")
 	public String diaryView(Model model, @RequestParam("num")int num) {
