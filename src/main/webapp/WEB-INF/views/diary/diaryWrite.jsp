@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>다이어리 작성페이지</title>
 
-<link rel="stylesheet" href="${contextPath }/resources/diarycss/diaryWriteCss.css?ver=2">
+<link rel="stylesheet" href="${contextPath }/resources/diarycss/diaryWriteCss.css?ver=9">
 
 </head>
 <body style="overflow-x: hidden">
