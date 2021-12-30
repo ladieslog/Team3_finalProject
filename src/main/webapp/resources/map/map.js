@@ -86,6 +86,12 @@ function makeMarkers(mapType) {	// 마커 찍기
 	let num = 0;
 	markerInfoArray = [];
 
+	console.log("readDBArray");
+	console.log(readDBArray);
+
+	console.log("geocodeArray");
+	console.log(geocodeArray);
+
 	for (let i = 0; i < geocodeArray.length; i++) {
 
 		if (i % 3 == 0) {
@@ -109,9 +115,9 @@ function makeMarkers(mapType) {	// 마커 찍기
 
 		if (geocodeArray[i] != null) {
 
-			num = parseInt(i / 3);
+			numForReadDBArray = parseInt(i / 3);
 			marker = new naver.maps.Marker({
-				title: readDBArray[num].title,
+				title: readDBArray[numForReadDBArray].title,
 				position: new naver.maps.LatLng(geocodeArray[i]),
 				map: map,
 				icon: {
@@ -122,13 +128,22 @@ function makeMarkers(mapType) {	// 마커 찍기
 				zIndex: 800
 			});
 
+			var contentString = [
+				'<div class="iw_inner">',
+				'   <h3>' + marker.title + '</h3>',
+				'   <p> ' + readDBArray[numForReadDBArray].start + ' ~ ' + readDBArray[numForReadDBArray].end + '<br />',
+				'       <img src=" /root/image/' + readDBArray[numForReadDBArray].image + '" width="200px" height="100" alt="image" class="thumb" /><br />',
+				'       <a href="http://localhost:8085/root/diaryView?num=' + readDBArray[numForReadDBArray].num + '"target="_self">상세보기</a>',
+				'   </p>',
+				'</div>'
+			].join('');
+
 			var infoWindow = new naver.maps.InfoWindow({
-				content: '<div style="width:150px;text-align:center;padding:10px;">"' + marker.title + '"</b>.</div>'
+				content: contentString
 			});
 
 			markerInfoArray.push(marker);
 			infoWindows.push(infoWindow);
-
 		}
 	}
 
