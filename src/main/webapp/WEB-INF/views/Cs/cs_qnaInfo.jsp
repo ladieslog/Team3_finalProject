@@ -29,9 +29,12 @@
 		min-height: 450px;
 		background: #FFFFF9; font-weight: bold;
   	    font-family: HCR Batang; overflow-x: auto;
+  	    border-bottom: 1px solid #FFA7A7;
+	}
+	.answer-content {
+		min-height: 100px;
 	}
 	.notice-view-bottom {
-		border-top: 1px solid #FFA7A7;
  		padding-top: 10px;
 	}
 	.notice-view-bottom button {
@@ -65,8 +68,9 @@
 	
 	<div class="notice-view-wrap">
 		<div>
+			<h1>QUESTION</h1>
 			<div class="notice-view-title">
-				<div style="margin-top: 0;"><%=dto.getNum() %> | <%=dto.getQuestionTitle() %></div>
+				<div><%=dto.getNum() %> | <%=dto.getQuestionTitle() %></div>
 				<div>
 					<%=dto.getQuestionId() %> | <%=sdf.format(dto.getQuestionTime()) %> | 
 					<%
@@ -85,28 +89,62 @@
 			<div class="notice-view-content">
 			<%=dto.getQuestionContent() %>
 			</div>
+			<%
+				if(dto.getStatus().equals("1")) {	
+			%>
+			<div id="answer-box" style="margin-top: 30px; display: none;">
+				<h1>Answer</h1>
+				<div class="notice-view-title">
+					<div>관리자 | <%=sdf.format(dto.getAnswerTime()) %></div>
+				</div>
+				<div class="notice-view-content answer-content">
+				<%=dto.getAnswerContent() %>
+				</div>
+			</div>
+			<%
+				}
+			%>
 			<div class="notice-view-bottom" align="right">
 				<%
-					if(userDto.getId().equals("3333")) {
+					if(userDto.getId().equals("3333") && dto.getStatus().equals("0")) {
 				%>
 				<form action="qnaAnswer" method="post" id="qnaAnswer">
-					<button type="button" class="wd-85" onclick="AnswerPage();">대답하기</button>
+					<button type="button" class="wd-85" onclick="AnswerPage();">답변하기</button>
 					<input type="hidden" name="title" value="<%=dto.getQuestionTitle() %>"/>
 					<input type="hidden" name="num" value="<%=dto.getNum() %>"/>
 				</form>
 				
 				<%
 					}
+					if(dto.getStatus().equals("1")) {
+				%>
+					<button type="button" class="wd-85" onclick="answerInfo();" id="answerBtn">답변보기</button>
+				<%
+					}
 				%>
 				<button type="button" class="wd-85" onclick="listPage();">목록으로</button>
-				<form action="qnaModifyForm" method="post" id="qnaModifyForm">
-					<button type="button" class="wd-60" onclick="modifyPage();">수정</button>
-					<input type="hidden" name="num" value="<%=dto.getNum() %>"/>
-				</form>
-				<form action="qnaDelete" method="post" id="qnaDelete">
-					<button type="button" class="wd-60" onclick="deletePage();">삭제</button>
-					<input type="hidden" name="num" value="<%=dto.getNum() %>"/>
-				</form>
+				<%
+					if(dto.getStatus().equals("0")) {
+				%>
+					<form action="qnaModifyForm" method="post" id="qnaModifyForm">
+						<button type="button" class="wd-60" onclick="modifyPage();">수정</button>
+						<input type="hidden" name="num" value="<%=dto.getNum() %>"/>
+					</form>
+				<%
+					}
+				%>
+				
+				<%
+					if(dto.getStatus().equals("0") || userDto.getId().equals("3333")) {
+				%>
+					<form action="qnaDelete" method="post" id="qnaDelete">
+						<button type="button" class="wd-60" onclick="deletePage();">삭제</button>
+						<input type="hidden" name="num" value="<%=dto.getNum() %>"/>
+					</form>
+				<%
+					}
+				%>
+				
 			</div>
 		</div>
 	</div>
@@ -127,6 +165,17 @@
 	function deletePage() {
 		if(confirm("정말 게시글을 삭제하시겠습니까?")) {
 			document.getElementById("qnaDelete").submit();
+		}
+	}
+	
+	var answerSwitch = 1;
+	function answerInfo() {
+		$("#answer-box").slideToggle(500);
+		answerSwitch = answerSwitch * -1;
+		if(answerSwitch == -1) {
+			document.getElementById("answerBtn").innerText = "답변닫기";
+		} else {
+			document.getElementById("answerBtn").innerText = "답변보기";
 		}
 	}
 </script>
