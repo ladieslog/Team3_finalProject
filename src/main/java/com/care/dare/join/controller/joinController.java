@@ -55,8 +55,15 @@ public class joinController {
 	}
 
 	@GetMapping("login")
-	public String login() {
-		return "join/login";
+	public String login(HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		MemberDTO dto = (MemberDTO) session.getAttribute("loginUser");
+		if(dto == null) {
+			return "join/login";
+		} else {
+			return "redirect:diaryBoard";
+		}
+		
 	}
 
 	@GetMapping("memberList")
@@ -64,6 +71,11 @@ public class joinController {
 		String search = req.getParameter("search");
 		if(search == null) {
 			search = "";
+		}
+		HttpSession session = req.getSession();
+		MemberDTO dto = (MemberDTO) session.getAttribute("loginUser");
+		if(dto == null) {
+			return "redirect:error";
 		}
 		service.memberList(md,search);
 		md.addAttribute("search1",search);

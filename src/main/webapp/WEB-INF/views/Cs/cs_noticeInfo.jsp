@@ -1,3 +1,4 @@
+<%@page import="com.care.dare.join.controller.MemberDTO"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.care.dare.CS.DTO.NoticeDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -56,6 +57,7 @@
 <%
 	NoticeDTO dto = (NoticeDTO) request.getAttribute("noticeInfo"); // 해당 게시글 데이터
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm"); // 시간 형식 포맷
+	MemberDTO userDto = (MemberDTO) session.getAttribute("loginUser");
 	if(dto == null) {
 	%>
 	<script>
@@ -81,14 +83,20 @@
 			</div>
 			<div class="notice-view-bottom" align="right">
 				<button type="button" class="wd-85" onclick="listPage();">목록으로</button>
-				<form action="noticeModifyForm" method="post" id="noticeModifyForm">
-					<button type="button" class="wd-60" onclick="modifyPage();">수정</button>
-					<input type="hidden" name="num" value="<%=dto.getNum() %>"/>
-				</form>
-				<form action="noticeDelete" method="post" id="noticeDelete">
+				<%
+					if(userDto.getId().equals("3333")) {
+				%>
+					<form action="noticeModifyForm" method="post" id="noticeModifyForm">
+						<button type="button" class="wd-60" onclick="modifyPage();">수정</button>
+						<input type="hidden" name="num" value="<%=dto.getNum() %>"/>
+					</form>
+					<form action="noticeDelete" method="post" id="noticeDelete">
 					<button type="button" class="wd-60" onclick="deletePage();">삭제</button>
 					<input type="hidden" name="num" value="<%=dto.getNum() %>"/>
 				</form>
+				<%
+					}
+				%>
 			</div>
 		</div>
 	</div>

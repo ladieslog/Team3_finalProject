@@ -23,8 +23,7 @@
 	<div class="c1 mr-auto notice-wrap qna-wrap">
 		<div class="c2 pd-none">
 			<br>			
-				<br>
-				 <form action="qnaWrite" method="post" id="form">
+				 <form action="qnaWrite" method="post" id="form" style="margin-top: 10px;">
 				<table>
 				<tr>
 					<td class="wb"colspan="2" style="width: 80px;"> <b class="bh2">Q&A Title &nbsp;</b></td>
