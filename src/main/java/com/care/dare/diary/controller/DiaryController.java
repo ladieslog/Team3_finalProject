@@ -48,7 +48,7 @@ public class DiaryController {
 			search = "";
 		}
 		if(session.getAttribute("loginUser")==null) {
-			return "redirect:error";
+			return "redirect:loginError";
 		}else {
 		MemberDTO dto1 = (MemberDTO)session.getAttribute("loginUser");
 		int pageSize = 0;
@@ -120,6 +120,10 @@ public class DiaryController {
 	@RequestMapping("500error")
 	public String Not500() {
 		return "error/Not500";
+	}
+	@RequestMapping("loginError")
+	public String loginError() {
+		return "error/loginError";
 	}
 	
 	

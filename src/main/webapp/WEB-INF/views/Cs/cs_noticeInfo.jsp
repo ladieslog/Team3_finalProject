@@ -57,7 +57,7 @@
 <%
 	NoticeDTO dto = (NoticeDTO) request.getAttribute("noticeInfo"); // 해당 게시글 데이터
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm"); // 시간 형식 포맷
-	MemberDTO userDto = (MemberDTO) request.getAttribute("loginUser");
+	MemberDTO userDto = (MemberDTO) session.getAttribute("loginUser");
 	if(dto == null) {
 	%>
 	<script>
