@@ -22,14 +22,12 @@ function readDB() {
 		data: readDBArray,
 		dataType: "json",
 		success: function(data) {
-			if (data.length == 0)
-				alert("결과가 없습니다");
-			else {
-				readDBArray = data;
-			}
+			readDBArray = data;
+
 		},
+		
 		error: function() {
-			//alert("에러");
+			alert("에러");
 		}
 	});
 }
@@ -474,8 +472,9 @@ function regionJsonLoop(mapType) {
 						}
 					}
 				}(i - 1),
+				
 				error: function() {
-					//alert("에러");
+					alert("에러");
 				}
 			});
 		}
@@ -681,7 +680,7 @@ function hideMarker(map, marker) {
 }
 
 function getClickHandler(seq) {
-	
+
 	return function(e) {
 		let testmarker = markerInfoArray[seq],
 			infoWindow = infoWindows[seq];
