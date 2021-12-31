@@ -28,15 +28,12 @@ public class MapController {
 	@RequestMapping("/map")
 	public String viewMap(HttpServletRequest req) {
 		HttpSession session = req.getSession();
-		System.out.println(session.getAttribute("loginUser"));
 		
 		if (session.getAttribute("loginUser") == null) {
-			return "redirect:error";
+			return "redirect:loginError";
 		}
 		return "map/map";
 	}
-
-	
 
 	@GetMapping(value = "/ajaxMap.do")
 	@ResponseBody
@@ -73,13 +70,11 @@ public class MapController {
 																					// 포함되기 때문에 구분하기 위함
 							replace1 = data.getLocation1().replace(beforeWordsList[i], AfterWordsList[i]);
 							data.setLocation1(replace1);
-							System.out.println(data.getLocation1());
 						}
 
 						if (data.getLocation1().indexOf(testtest) != -1) {
 							replace1 = data.getLocation1().replace(testtest, aftertest);
 							data.setLocation1(replace1);
-							System.out.println(data.getLocation1());
 						}
 						completeFlag1 = false;
 					}
@@ -96,7 +91,6 @@ public class MapController {
 						if (data.getLocation1().indexOf(testtest) != -1) {
 							replace1 = data.getLocation1().replace(testtest, aftertest);
 							data.setLocation1(replace1);
-							System.out.println(data.getLocation1());
 						}
 
 						completeFlag2 = false;
@@ -114,7 +108,6 @@ public class MapController {
 						if (data.getLocation1().indexOf(testtest) != -1) {
 							replace1 = data.getLocation1().replace(testtest, aftertest);
 							data.setLocation1(replace1);
-							System.out.println(data.getLocation1());
 						}
 					}
 				}
@@ -159,11 +152,9 @@ public class MapController {
 			jsonObj.put("start", indateStr);
 
 			jsonObj.put("image", data.getImage1());
-			System.out.println();
 			jArray.add(jsonObj);
 		}
 
-		System.out.println(jArray);
 		return jArray;
 	}
 }

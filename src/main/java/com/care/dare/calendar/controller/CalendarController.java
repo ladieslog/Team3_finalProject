@@ -26,7 +26,12 @@ public class CalendarController {
 	CalendarService service;
 
 	@RequestMapping("/calendar")
-	public String viewCalendar() {
+	public String viewCalendar(HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		
+		if (session.getAttribute("loginUser") == null) {
+			return "redirect:loginError";
+		}
 		return "calendar/calendar";
 	}
 
