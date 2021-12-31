@@ -117,11 +117,11 @@ public class DiaryController {
 	}
 	@RequestMapping("error")
 	public String Notsession() {
-		return "diary/Notsession";
+		return "error/Notsession";
 	}
 	@RequestMapping("500error")
 	public String Not500() {
-		return "diary/Not500";
+		return "error/Not500";
 	}
 	
 	

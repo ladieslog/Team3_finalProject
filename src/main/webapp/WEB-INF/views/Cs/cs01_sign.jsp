@@ -1,4 +1,5 @@
 
+<%@page import="com.care.dare.join.controller.MemberDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.care.dare.CS.DTO.QnaDTO"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -42,7 +43,7 @@ int endPage2 = startPage2 + pageBlock2 - 1; // 페이지 마지막 번호
 if(endPage2 > pageCount2) {
 	endPage2 = pageCount2; // 총 페이지가 페이지 블럭의 마지막 페이지 보다 작다면 마지막 페이지에 전체 페이지의 값 대입
 }
-
+	MemberDTO userDto = (MemberDTO) session.getAttribute("loginUser");
 %>
 <body style="overflow-x: hidden">
 	<div>
@@ -53,7 +54,14 @@ if(endPage2 > pageCount2) {
 	<div style="margin-top: -20px;">
 				<div style="align-items: center; display: flex; justify-content: center; height: 60px;">
 					<br> <span><b style="font-size: 30px; ">Notice</b></span>
-					<button type="button" style="margin-left: 1113px; width: 60px;" class="cn4 mb-none notice-btn" onclick="location.href='notice'">글작성</button>
+					<%
+						if(userDto.getId().equals("3333")) {
+					%>
+						<button type="button" style="margin-left: 1113px; width: 60px;" class="cn4 mb-none notice-btn" onclick="location.href='notice'">글작성</button>
+					<%
+						}
+					%>
+					
 
 				</div>
 				<div id="id1">
