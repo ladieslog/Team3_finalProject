@@ -25,7 +25,7 @@ function readDB() {
 			readDBArray = data;
 
 		},
-		
+
 		error: function() {
 			alert("에러");
 		}
@@ -33,7 +33,7 @@ function readDB() {
 }
 
 function makeArrayLocation() {	// ajax로 받은 데이터 중 location1, location2, location3 만 배열로 생성
-
+	console.log(readDBArray);
 	let j = 0;
 
 	for (let i = 0; i < readDBArray.length; i++) {
@@ -49,7 +49,8 @@ function makeArrayLocation() {	// ajax로 받은 데이터 중 location1, locati
 }
 
 function geocoding(mapType) {	// 주소를 좌표로 변환 (마커를 찍기 전 좌표 구하기)
-
+	console.log(loactionArray);
+	
 	for (let i = 0; i < loactionArray.length; i++) {
 		if (loactionArray[i] != 'no Location!!') {
 			naver.maps.Service.geocode({
@@ -66,7 +67,8 @@ function geocoding(mapType) {	// 주소를 좌표로 변환 (마커를 찍기 �
 							items = result.items; // 검색 결과의 배열
 
 						geocodeArray[i] = items[0].point;
-
+						console.log(i);
+						console.log(geocodeArray[i]);
 						if (i == loactionArray.length - 1) {
 							setTimeout(makeMarkers(mapType), 500)
 						}
@@ -114,7 +116,8 @@ function makeMarkers(mapType) {	// 마커 찍기
 				map: map,
 				icon: {
 					url: markerURL + markerColor + markerTail,
-					anchor: new naver.maps.Point(15, 32)
+
+					anchor: new naver.maps.Point(10, 21)
 				},
 
 				zIndex: 800
@@ -140,19 +143,12 @@ function makeMarkers(mapType) {	// 마커 찍기
 		}
 	}
 
-	if (mapType == 2) {
-		for (let i = 0; i < markerInfoArray.length; i++) {
-			let markers = markerInfoArray[i];
-			markers.setMap(null);
-		}
+	for (let i = 0; i < markerInfoArray.length; i++) {
+		naver.maps.Event.addListener(markerInfoArray[i], 'click', getClickHandler(i));
+
 	}
 
-	else {
-		for (let i = 0; i < markerInfoArray.length; i++) {
-			naver.maps.Event.addListener(markerInfoArray[i], 'click', getClickHandler(i));
-
-		}
-
+	if (mapType != 2) {
 		drawPolyline();
 	}
 }
@@ -194,7 +190,7 @@ function drawPolyline() {	// 폴리라인 그리기
 					],
 					map: map,
 					startIcon: naver.maps.PointingIcon.CIRCLE,
-					startIconSize: 12,
+					startIconSize: 10,
 					strokeColor: polyLineColor,
 					strokeOpacity: 1,
 					strokeWeight: 3,
@@ -211,9 +207,9 @@ function drawPolyline() {	// 폴리라인 그리기
 					],
 					map: map,
 					startIcon: naver.maps.PointingIcon.CIRCLE,
-					startIconSize: 12,
+					startIconSize: 10,
 					endIcon: naver.maps.PointingIcon.BLOCK_ARROW,
-					endIconSize: 12,
+					endIconSize: 10,
 					strokeColor: polyLineColor,
 					strokeOpacity: 1,
 					strokeWeight: 3,
@@ -464,7 +460,11 @@ function regionJsonLoop(mapType) {
 						loadCount++;
 
 						if (loadCount == 267) {
-							if (mapType == 2 || mapType == 3 || mapType == 4) {
+							if (mapType == 1) {
+								markerInfoArray = [];
+							}
+
+							else {
 								geocoding(mapType);
 							}
 
@@ -472,7 +472,7 @@ function regionJsonLoop(mapType) {
 						}
 					}
 				}(i - 1),
-				
+
 				error: function() {
 					alert("에러");
 				}
@@ -577,9 +577,6 @@ function startDataLayer(mapType) {
 	regionGeoJson.forEach(function(geojson) {
 		map.data.addGeoJson(geojson);
 	});
-
-
-
 
 	if (mapType != 4) {
 
