@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -169,8 +170,14 @@ public class DiaryController {
 	}
 	
 	@RequestMapping("diaryModify")
-		public String diaryModify(@RequestParam("num")int num, Model model) throws Exception {
-			ds.diaryModify(num, model);
+		public String diaryModify(@RequestParam("num")int num, Model model, HttpServletRequest req) throws Exception {
+			HttpSession session = req.getSession();
+			MemberDTO userDto = (MemberDTO) session.getAttribute("loginUser");
+			DiaryDTO dto = ds.diaryModify(num);
+			if(!(dto.getId().equals(userDto.getId()))) {
+				return "redirect:error";
+			}
+			model.addAttribute("diary",dto);
 			return "diary/diaryModify";
 		}
 	
