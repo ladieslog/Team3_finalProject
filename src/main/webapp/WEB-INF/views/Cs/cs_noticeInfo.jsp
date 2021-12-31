@@ -1,3 +1,4 @@
+<%@page import="com.care.dare.join.controller.MemberDTO"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.care.dare.CS.DTO.NoticeDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -9,53 +10,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet"
+	href="${contextPath }/resources/CS/css/cs_css.css">
 <style type="text/css">
-	.notice-view-wrap {
-		background-color: #F6F6F6;
-		/* height: 650px; */
-		padding: 28px 391px 28px 423px;
-		
-	}
-	.notice-view-title {
-		border-bottom: 1px solid #FFA7A7;
-	}
-	.notice-view-title>div {
-		margin: 10px 0;
-	}
-	.notice-view-content {
-		padding: 20px 15px;
-		min-height: 450px;
-		background: #FFFFF9; font-weight: bold;
-  	    font-family: HCR Batang; overflow-x: auto;
-	}
-	.notice-view-bottom {
-		border-top: 1px solid #FFA7A7;
- 		padding-top: 10px;
-	}
-	.notice-view-bottom button {
-		background-color: #F6F6F6;
-    	border-color: #F6F6F6;
-    	border-radius: 6px;
-    	height: 30px; font-weight: bold;
-    font-family: HCR Batang;
-	}
-	.wd-85 {
-		width: 85px;
-	}
-	.wd-60 {
-		width: 60px;
-	}
-	form {
-		display: inline;
-	}
-	img {
-		max-width: 100%;
-	}
+
 </style>
 </head>
 <%
 	NoticeDTO dto = (NoticeDTO) request.getAttribute("noticeInfo"); // 해당 게시글 데이터
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm"); // 시간 형식 포맷
+	MemberDTO userDto = (MemberDTO) session.getAttribute("loginUser");
 	if(dto == null) {
 	%>
 	<script>
@@ -81,14 +45,20 @@
 			</div>
 			<div class="notice-view-bottom" align="right">
 				<button type="button" class="wd-85" onclick="listPage();">목록으로</button>
-				<form action="noticeModifyForm" method="post" id="noticeModifyForm">
-					<button type="button" class="wd-60" onclick="modifyPage();">수정</button>
-					<input type="hidden" name="num" value="<%=dto.getNum() %>"/>
-				</form>
-				<form action="noticeDelete" method="post" id="noticeDelete">
+				<%
+					if(userDto.getId().equals("3333")) {
+				%>
+					<form action="noticeModifyForm" method="post" id="noticeModifyForm">
+						<button type="button" class="wd-60" onclick="modifyPage();">수정</button>
+						<input type="hidden" name="num" value="<%=dto.getNum() %>"/>
+					</form>
+					<form action="noticeDelete" method="post" id="noticeDelete">
 					<button type="button" class="wd-60" onclick="deletePage();">삭제</button>
 					<input type="hidden" name="num" value="<%=dto.getNum() %>"/>
 				</form>
+				<%
+					}
+				%>
 			</div>
 		</div>
 	</div>

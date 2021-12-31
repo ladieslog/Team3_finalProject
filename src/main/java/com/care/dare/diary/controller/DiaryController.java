@@ -43,15 +43,14 @@ public class DiaryController {
 		resp.setContentType("text/html; charset=utf-8"); // 응답 설정 변경
         PrintWriter out = resp.getWriter(); // 화면 출력용 객체
 		HttpSession session = req.getSession();
-		System.out.println(session.getAttribute("loginUser"));
 		String search = req.getParameter("search");
 		if(search == null) {
 			search = "";
 		}
 		if(session.getAttribute("loginUser")==null) {
-			return "redirect:error";
+			return "redirect:loginError";
 		}else {
-			MemberDTO dto1 = (MemberDTO)session.getAttribute("loginUser");
+		MemberDTO dto1 = (MemberDTO)session.getAttribute("loginUser");
 		int pageSize = 0;
 		int diaryCount = ds.diaryCount(dto1.getId(),search);
 		model.addAttribute("diaryCount", diaryCount);
@@ -75,7 +74,6 @@ public class DiaryController {
 			endRow = pageNum * pageSize - 1;
 		}
 		
-		System.out.println(search);;
 		ArrayList<DiaryDTO> arr = ds.diaryBoard(startRow, endRow, dto1.getId(),search);
 		SimpleDateFormat sim = new SimpleDateFormat("yyyy-MM-dd");
 		int count = 0;
@@ -117,11 +115,15 @@ public class DiaryController {
 	}
 	@RequestMapping("error")
 	public String Notsession() {
-		return "diary/Notsession";
+		return "error/Notsession";
 	}
 	@RequestMapping("500error")
 	public String Not500() {
-		return "diary/Not500";
+		return "error/Not500";
+	}
+	@RequestMapping("loginError")
+	public String loginError() {
+		return "error/loginError";
 	}
 	
 	

@@ -63,24 +63,27 @@ public class CSController {
 	}
 	
 	@RequestMapping(value = "notice")
-	public String notice() {
-		return "Cs/cs03_signWrite";
+	public String notice(HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		MemberDTO dto = (MemberDTO) session.getAttribute("loginUser");
+		if(dto != null) {
+			if(dto.getId().equals("3333")) {
+				return "Cs/cs03_signWrite";
+			}
+		}
+		return "redirect:error";
 	}
 	
 	@RequestMapping(value = "qna")
-	public String qna() {
+	public String qna(HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		MemberDTO dto = (MemberDTO) session.getAttribute("loginUser");
+		if(dto == null) {
+			return "error/loginError";
+		}
 		return "Cs/cs02_qnaWrite";
 	}
 	
-	@RequestMapping(value = "an1")
-	public String an1() {
-		return "Cs/cs04_qnaList";
-	}
-	
-	@RequestMapping(value = "an2")
-	public String an2() {
-		return "Cs/cs05_signList";
-	}
 	
 	@RequestMapping(value = "qnaAnswer", method=RequestMethod.POST)
 	public String answer(HttpServletRequest req, Model model) {
@@ -268,7 +271,7 @@ public class CSController {
 	public void noticeModify(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		resp.setContentType("text/html; charset=utf-8"); // 응답 설정 변경
 		PrintWriter out = resp.getWriter(); // 화면 출력용 객체
-		int result = service2.qnaModify(req);
+		int result = service.noticeModify(req);
 		if(result == 0) {
 			out.print("<script> alert('공지 수정에 실패했습니다.');location.href='csMain';</script>");
 		} else {
