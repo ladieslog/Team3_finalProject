@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.care.dare.mybatis.CalendarMapper">
+	<resultMap id="calendar" type="com.care.dare.calendar.dto.CalendarDTO">
+		<result property="num" column="num"/>
+		<result property="title" column="title"/>
+		<result property="person" column="person"/>
+		<result property="indate" column="indate"/>
+		<result property="outdate" column="outdate"/>
+		<result property="id" column="id"/>
+		<result property="location1" column="location1"/>
+	</resultMap>
+
+	<select id="readForCalendar" resultMap="calendar">
+  		select num, title, person, indate, outdate, id, location1 from diary_board where id=#{id}
+  	</select>
+</mapper>

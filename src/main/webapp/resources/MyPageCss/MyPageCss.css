@@ -6,7 +6,7 @@
 		margin: 40px 0;
 	}
 	.my-wrap {
-		background-color:#E0FFDB;
+		background-color:#F6F6F6;
 		display: flex;
 		justify-content: center;
 		height: 650px;
@@ -34,7 +34,7 @@
 		font-size: 15px;
 	}
 	button {
-		background-color: #E0FFDB; font-weight: bold; color: #353535; border-color: #E0FFDB;
+		background-color: #F6F6F6; font-weight: bold; color: #353535; border-color: #F6F6F6;
 	}
 	.btn-div>button {
 		margin: 0 5px;
