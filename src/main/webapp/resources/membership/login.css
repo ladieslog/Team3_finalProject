@@ -1,6 +1,6 @@
 @charset "EUC-KR";
 .membership-form {
 	background-image:
-		url("../welcome.png");
+		url("../joinImage/welcome.png");
 	background-repeat: no-repeat;	background-position: center center;	background-size: 515px;
 		height: 792px;	margin-top: 50px;	display:flex;	}
