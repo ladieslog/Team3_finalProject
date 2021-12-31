@@ -13,49 +13,7 @@
 <link rel="stylesheet"
 	href="${contextPath }/resources/CS/css/cs_css.css">
 <style type="text/css">
-	<%--
-	.notice-view-wrap {
-		background-color: #F6F6F6;
-		/* height: 650px; */
-		padding: 28px 391px 28px 423px;
-		
-	}
-	.notice-view-title {
-		border-bottom: 1px solid #FFA7A7;
-	}
-	.notice-view-title>div {
-		margin: 10px 0;
-	}
-	.notice-view-content {
-		padding: 20px 15px;
-		min-height: 450px;
-		background: #FFFFF9; font-weight: bold;
-  	    font-family: HCR Batang; overflow-x: auto;
-	}
-	.notice-view-bottom {
-		border-top: 1px solid #FFA7A7;
- 		padding-top: 10px;
-	}
-	.notice-view-bottom button {
-		background-color: #F6F6F6;
-    	border-color: #F6F6F6;
-    	border-radius: 6px;
-    	height: 30px; font-weight: bold;
-    font-family: HCR Batang;
-	}
-	.wd-85 {
-		width: 85px;
-	}
-	.wd-60 {
-		width: 60px;
-	}
-	form {
-		display: inline;
-	}
-	img {
-		max-width: 100%;
-	}
-	--%>
+
 </style>
 </head>
 <%
