@@ -95,8 +95,17 @@ if(endPage2 > pageCount2) {
 								}
 								
 								for(int i=startPage; i <= endPage; i++) {
+									if(i == currentPage) {
 								%>
-								<span class="page-block" id="<%=i %>" onclick="pageSet(this);">[<%=i %>]</span>
+									<span class="page-block" style="color: black;;">[<%=i %>]</span>
+								<%
+									} else {
+								%>
+									<span class="page-block" id="<%=i %>" onclick="pageSet(this);" style="color: gray;">[<%=i %>]</span>
+								<%
+									}
+								%>
+								
 								 <!-- 현 페이지 묶음의 시작번호부터 끝번호 까지 출력 -->
 								<%
 								}
@@ -163,8 +172,17 @@ if(endPage2 > pageCount2) {
 								}
 								
 								for(int j=startPage2; j <= endPage2; j++) {
+									if(j == currentPage2) {
 								%>
-								<span class="page-block" id="<%=j %>" onclick="pageSet2(this);">[<%=j %>]</span> <!-- 현 페이지 묶음의 시작번호부터 끝번호 까지 출력 -->
+								<span class="page-block" style="color:black;">[<%=j %>]</span> <!-- 현 페이지 묶음의 시작번호부터 끝번호 까지 출력 -->
+								<%
+									} else {
+								%>
+								<span class="page-block" id="<%=j %>" onclick="pageSet2(this);" style="color:gray;">[<%=j %>]</span> <!-- 현 페이지 묶음의 시작번호부터 끝번호 까지 출력 -->
+								<%
+									}
+								%>
+								
 								<%
 								}
 								
@@ -202,7 +220,6 @@ if(endPage2 > pageCount2) {
 		var Num = data.id; // 선택한 페이지 번호의 id값을 가져옴, id값에는 페이지 번호가 들어있음 (ex: 2번 페이지 클릭시 id는 2가 들어온다
 		var form = {currentPage:Num}; // form에 num 추가
 		
-		
 		$.ajax({
 			url : "pageSet",
 			type : "POST",
@@ -223,11 +240,17 @@ if(endPage2 > pageCount2) {
 				 html += "<span class='page-block'>[이전]</span>";
 				<%	
 				} 
-				for(int i=startPage; i <= endPage; i++) { 
 				%>
-				html += "<span class='page-block' id=<%=i %> onclick='pageSet(this);'>" + "[" + <%=i %> + "] " + "</span>";
+				for(var i=<%=startPage%>; i <= <%=endPage%>; i++) { 
+					if(i == Num) {
+						html += "<span class='page-block' style='color: black;'>" + "[" + i + "] " + "</span>";
+					} else {
+						html += "<span class='page-block' id=" + i +" onclick='pageSet(this);' style='color: gray;'>" + "[" + i + "] " + "</span>";
+					}
+				
+				}
 				<%
-				} if(endPage < pageCount) {
+				 if(endPage < pageCount) {
 				%>
 				html += "<span class='page-block'>[다음]</span>";
 				<%
@@ -280,17 +303,23 @@ if(endPage2 > pageCount2) {
 					html += "<td style='width: 22%;'>" + list2[j].questionTimeStr + "</td>";
 					html += "<td style='width: 8%;'>" + list2[j].statusStr + "</td></tr>";
 				}
-				html += "<tr style='display: revert'><td colspan='4' align='center'>"; // 페이지 리스트 윗 html 코드와 동일함
+				html += "<tr style='display: revert'><td colspan='5' align='center'>"; // 페이지 리스트 윗 html 코드와 동일함
 				<% if(startPage2 > pageBlock2) {
 				%>
 				 html += "<span class='page-block'>[이전]</span>";
 				<%	
-				} 
-				for(int j=startPage2; j <= endPage2; j++) { 
+				}
 				%>
-				html += "<span class='page-block' id=<%=j %> onclick='pageSet2(this);'>" + "[" + <%=j %> + "] " + "</span>";
+				for(var j=<%=startPage2%>; j <= <%=endPage2%>; j++) { 
+				if(j == Num2) {
+					html += "<span class='page-block' style='color: black;'>" + "[" + j + "] " + "</span>";
+				} else {
+					html += "<span class='page-block' id=" + j + " onclick='pageSet2(this);' style='color: gray;'>" + "[" + j + "] " + "</span>";
+				}
+				
+				}
 				<%
-				} if(endPage2 < pageCount2) {
+				if(endPage2 < pageCount2) {
 				%>
 				html += "<span class='page-block'>[다음]</span>";
 				<%
