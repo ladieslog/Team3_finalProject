@@ -42,6 +42,9 @@
  		delete from QUESTION_BOARD  where NUM =#{NUM}
  	</delete>
  	<update id ="qnaModify">
- 		update QUESTION_BOARD  set title="#{title}, content =#{content} , time =sysdate where num = #{num}
+ 		update QUESTION_BOARD  set QUESTION_TITLE=#{questionTitle}, QUESTION_CONTENT =#{questionContent} where num = #{num} 
+ 	</update>
+ 	<update id="answerWrite">
+ 		update QUESTION_BOARD set ANSWER_CONTENT=#{answerContent}, ANSWER_TIME=SYSDATE, STATUS='1' where num=#{num}
  	</update>
  </mapper>

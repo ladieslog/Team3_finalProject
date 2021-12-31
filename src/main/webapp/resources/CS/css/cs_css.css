@@ -13,12 +13,12 @@
 	.bn3{display: flex; justify-content: center; align-items: center; margin-top: 20px;}
 	.bn4{background-color: #DEF4F9 ; font-size: 15px; color:black; border-radius: 5px; border-color: #DEF4F9; font-family: Georgia; margin-bottom:70px;}
 	
-	.ch2{background-color: white; width :250px; height:25px; border-radius: 5px; border-color: #DEF4F9;}
+	.ch2{background-color: white; width :250px; height:15px; border-radius: 5px; border-color: white;}
 	.cha3{background-color: white; width :1000px; height:30px; border-radius: 5px; border-color: #F6F6F6;font-family: HCR Batang; font-weight: bold;}
 	.chb2{background-color: white; width :1000px; height:350px; border-radius: 5px; border-color: #DEF4F9;}
 	
-	.bh2{ font-family: Georgia; font-size:24px; }
-	.ws{width: 90px;}
+	.bh2{font-size:20px; }
+	.ws{width: 301px;}
 	.hb {float:center;}	
 	.eh1{float:right;}
 	.eh2{float: left;}
@@ -37,7 +37,7 @@
 	
 	.chb3{background-color: white; width :1200px; height:450px; border-radius: 5px; border-color: #DEF4F9;}
 	
-	.bh3{ font-family: Georgia; font-size:24px; text-align: center;}
+	.bh3{font-size:24px; text-align: center;}
 	.rb{height: 15px;}
 	
 

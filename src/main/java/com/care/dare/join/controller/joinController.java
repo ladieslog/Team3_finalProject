@@ -48,14 +48,17 @@ public class joinController {
         	out.print("<script> alert('회원가입에 성공하였습니다.');location.href='login';</script>");
         }
 	}
+
 	@GetMapping("membership")
 	public String membership() {
 		return "join/member";
 	}
+
 	@GetMapping("login")
 	public String login() {
 		return "join/login";
 	}
+
 	@GetMapping("memberList")
 	public String memberList(Model md, HttpServletRequest req) {
 		String search = req.getParameter("search");
@@ -76,7 +79,8 @@ public class joinController {
         }else {
         	HttpSession session= req.getSession();
         	session.setAttribute("loginUser",DTO);
-        	out.print("<script> alert('로그인 되었습니다.');location.href='diaryBoard';</script>"); 
+        	session.setMaxInactiveInterval(60 * 60 * 24);
+        	out.print("<script> alert('로그인 되었습니다.');location.href='map';</script>"); 
         }
 	}
 	

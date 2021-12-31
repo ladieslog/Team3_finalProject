@@ -11,7 +11,7 @@
 
 <script src="${contextPath }/resources/jquery-3.6.0.min.js"></script>
 <script src="${contextPath }/resources/bootstrap.js"></script>
-<link rel="stylesheet" href="${contextPath }/resources/CS/css/cs_css.css?ver=8">
+<link rel="stylesheet" href="${contextPath }/resources/CS/css/cs_css.css?ver=1">
 </head>
 <body>
 <div>
@@ -23,20 +23,17 @@
 	<div class="c1 mr-auto notice-wrap qna-wrap">
 		<div class="c2 pd-none">
 			<br>			
-				<br>
-				 <form action="qnaWrite" method="post" id="form">
+				 <form action="qnaWrite" method="post" id="form" style="margin-top: 10px;">
 				<table>
 				<tr>
-					<td class="wb"colspan="2"> <b class="bh2">Q&A title &nbsp;</b></td>
-					<td class="wb"colspan="1"> <input type="text" id="title" name="title" class="ch2"></td>
+					<td class="wb"colspan="2" style="width: 80px;"> <b class="bh2">Q&A Title &nbsp;</b></td>
+					<td class="wb"colspan="1" style="width: 320px;"> <input type="text" id="title" name="title" class="ch2"></td>
+					<td class="wb"colspan="2" style="width: 60px;"> <b class="bh2">Writer &nbsp;</b></td>
+					<td class="wb"colspan="1" > 
+					<input type="text" id="writer" name="writer" class="ch2" value="<%=dto.getId()%>" readonly style="width: 117px;text-align: center;"></td>
 					<td class="ws"colspan="1"> </td>
-					<td class="wb"colspan="2"> <b class="bh2">&nbsp; writer &nbsp;</b></td>
-					<td class="wb"colspan="1"> <input type="text" id="writer" name="writer" class="ch2" value="<%=dto.getId()%>" readonly></td>
 				</tr>
-			
-				<tr>
-					<td colspan="2" class="hb"><b class="bh2">Q&A content &nbsp;</b> </td>
-				</tr>
+				<tr style="height: 15px;"></tr>
 				<tr> 
 					<td colspan="15">
 						<textarea name="content" class="chb2" id="editor"></textarea>
