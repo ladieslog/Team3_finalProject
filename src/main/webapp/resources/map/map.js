@@ -86,12 +86,6 @@ function makeMarkers(mapType) {	// 마커 찍기
 	let num = 0;
 	markerInfoArray = [];
 
-	console.log("readDBArray");
-	console.log(readDBArray);
-
-	console.log("geocodeArray");
-	console.log(geocodeArray);
-
 	for (let i = 0; i < geocodeArray.length; i++) {
 
 		if (i % 3 == 0) {
@@ -131,15 +125,16 @@ function makeMarkers(mapType) {	// 마커 찍기
 			var contentString = [
 				'<div class="iw_inner">',
 				'   <h3>' + marker.title + '</h3>',
-				'   <p> ' + readDBArray[numForReadDBArray].start + ' ~ ' + readDBArray[numForReadDBArray].end + '<br />',
-				'       <img src=" /root/image/' + readDBArray[numForReadDBArray].image + '" width="200px" height="100" alt="image" class="thumb" /><br />',
-				'       <a href="http://localhost:8085/root/diaryView?num=' + readDBArray[numForReadDBArray].num + '"target="_self">상세보기</a>',
+				'   	<p> ' + readDBArray[numForReadDBArray].start + ' ~ ' + readDBArray[numForReadDBArray].end + '<br />',
+				'       <img src=" /root/image/' + readDBArray[numForReadDBArray].image + '" style = "width:200px; height:100px; margin-top:10px;" alt="image" class="thumb"  /><br />',
+				'       <a href="http://localhost:8085/root/diaryView?num=' + readDBArray[numForReadDBArray].num + '"target="_self" style = "color: gray; text-decoration: none;" >상세보기</a>',
 				'   </p>',
 				'</div>'
 			].join('');
 
 			var infoWindow = new naver.maps.InfoWindow({
-				content: contentString
+				content: contentString,
+				borderColor: "Parent"
 			});
 
 			markerInfoArray.push(marker);
@@ -593,9 +588,6 @@ function startDataLayer(mapType) {
 			let feature = e.feature,
 				naverCodeInt = parseInt(feature.getProperty('navercode'));
 
-			console.log("feature 11111111");
-			console.log(feature);
-
 			viewSelected(naverCodeInt);
 			mapSetOptions();
 			regionGeoJson = [];
@@ -688,10 +680,8 @@ function hideMarker(map, marker) {
 	marker.setMap(null);
 }
 
-
-
 function getClickHandler(seq) {
-	console.log("getClickHandler 실행됨");
+	
 	return function(e) {
 		let testmarker = markerInfoArray[seq],
 			infoWindow = infoWindows[seq];

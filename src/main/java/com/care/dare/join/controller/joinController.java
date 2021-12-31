@@ -80,7 +80,7 @@ public class joinController {
         	HttpSession session= req.getSession();
         	session.setAttribute("loginUser",DTO);
         	session.setMaxInactiveInterval(60 * 60 * 24);
-        	out.print("<script> alert('로그인 되었습니다.');location.href='diaryBoard';</script>"); 
+        	out.print("<script> alert('로그인 되었습니다.');location.href='map';</script>"); 
         }
 	}
 	
