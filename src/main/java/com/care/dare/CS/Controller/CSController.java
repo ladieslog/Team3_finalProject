@@ -271,7 +271,7 @@ public class CSController {
 	public void noticeModify(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		resp.setContentType("text/html; charset=utf-8"); // 응답 설정 변경
 		PrintWriter out = resp.getWriter(); // 화면 출력용 객체
-		int result = service2.qnaModify(req);
+		int result = service.noticeModify(req);
 		if(result == 0) {
 			out.print("<script> alert('공지 수정에 실패했습니다.');location.href='csMain';</script>");
 		} else {
