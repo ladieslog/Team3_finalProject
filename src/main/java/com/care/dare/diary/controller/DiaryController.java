@@ -110,7 +110,11 @@ public class DiaryController {
 	}
 	
 	@RequestMapping("diaryWrite")
-	public String diaryWrite() {
+	public String diaryWrite(HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		if(session.getAttribute("loginUser") == null) {
+			return "redirect:loginError";
+		}
 		return "diary/diaryWrite";
 	}
 	@RequestMapping("error")
@@ -128,12 +132,19 @@ public class DiaryController {
 	
 	
 	@RequestMapping("diaryView")
-	public String diaryView(Model model, @RequestParam("num")int num) {
+	public String diaryView(HttpServletRequest req, Model model, @RequestParam("num")int num) {
+		HttpSession session = req.getSession();
+		MemberDTO loginUser = (MemberDTO) session.getAttribute("loginUser");
+		DiaryDTO dto = null;
 		try {
-			ds.diaryView(model, num);
+			dto = ds.diaryView(num);
+			if(!(dto.getId().equals(loginUser.getId()))) {
+				return "redirect:error";
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		model.addAttribute("diary",dto);
 		return "diary/diaryView";
 	}
 	

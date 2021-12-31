@@ -148,14 +148,13 @@ public class DiaryService {
 
 	
 
-	public void diaryView(Model model, int num) throws Exception {
+	public DiaryDTO diaryView(int num) throws Exception {
 		DiaryDTO dto = mapper.diaryView(num);
 		SimpleDateFormat sim = new SimpleDateFormat("yyyy-MM-dd");
 		dto.setIndatestr(sim.format(dto.getIndate()));
 		dto.setOutdatestr(sim.format(dto.getOutdate()));
-
 		
-		model.addAttribute("diary",dto);
+		return dto;
 	}
 	
 /*	public void imgFile(byte[] bt,int count) throws Exception {
