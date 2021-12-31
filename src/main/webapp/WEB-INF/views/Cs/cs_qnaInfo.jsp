@@ -11,7 +11,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet"
+	href="${contextPath }/resources/CS/css/cs_css.css">
 <style type="text/css">
+<%--
 	.notice-view-wrap {
 		background-color: #F6F6F6;
 		/* height: 650px; */
@@ -56,6 +59,7 @@
 	img {
 		max-width: 100%;
 	}
+	--%>
 </style>
 </head>
 <%
