@@ -13,5 +13,6 @@ public interface CSMapper {
 	public NoticeDTO noticeInfo(int num);
 	public int noticeDelete(int num);
 	public int noticeModify(NoticeDTO dto);
+	public int noticeHit(int num);
 }
 

@@ -71,7 +71,7 @@ public class MemberServiceImp implements MemberService {
 	public void memberList(Model model,String search) {
 		ArrayList<MemberDTO>list=mapper.memberList(search);
 		for(MemberDTO DTO: list) {
-			DTO.setDiaryCount(dm.diaryCount(DTO.getId(), search));
+			DTO.setDiaryCount(dm.userDiaryCount(DTO.getId()));
 		}
 		model.addAttribute("list", list);
 		

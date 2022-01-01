@@ -20,14 +20,7 @@
 	NoticeDTO dto = (NoticeDTO) request.getAttribute("noticeInfo"); // 해당 게시글 데이터
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm"); // 시간 형식 포맷
 	MemberDTO userDto = (MemberDTO) session.getAttribute("loginUser");
-	if(dto == null) {
-	%>
-	<script>
-		alert("잘못된 접근입니다.");
-		location.href = "csMain";
-	</script>
-	<%
-	} else{
+	
 	%>
 <body style="overflow-x: hidden;">
 	<jsp:include page="../default/header.jsp"/>
@@ -80,9 +73,4 @@
 	}
 </script>
 </body>
-	
-	<%
-	}
-%>
-
 </html>

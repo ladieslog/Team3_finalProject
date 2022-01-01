@@ -48,8 +48,8 @@ public class CSService {
 		model.addAttribute("count", count);
 	}
 	
-	public void noticeInfo(Model model, int num) {
-		model.addAttribute("noticeInfo", mapper.noticeInfo(num));
+	public NoticeDTO noticeInfo(int num) {
+		return mapper.noticeInfo(num);
 	}
 	public int noticeDelete(int num) {
 		return mapper.noticeDelete(num);
@@ -61,5 +61,9 @@ public class CSService {
 		dto.setTitle(req.getParameter("title"));
 		dto.setContent(req.getParameter("content"));
 		return mapper.noticeModify(dto);
+	}
+	
+	public void noticeHit(int num) {
+		mapper.noticeHit(num);
 	}
 }

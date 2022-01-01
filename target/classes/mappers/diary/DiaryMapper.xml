@@ -46,6 +46,9 @@
 	<select id="diaryCount" resultType="Integer">
 		select count(*) from diary_board where id=#{id} and title like '%' || #{search} || '%'
 	</select>
+	<select id="userDiaryCount" resultType="Integer">
+		select count(*) from diary_board where id=#{id}
+	</select>
 	
 	<select id="diaryView" resultMap="diary">
 		select * from diary_board where num=#{num}
