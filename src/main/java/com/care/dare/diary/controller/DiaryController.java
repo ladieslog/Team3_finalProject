@@ -49,7 +49,7 @@ public class DiaryController {
 			search = "";
 		}
 		if(session.getAttribute("loginUser")==null) {
-			return "redirect:loginError";
+			return "error/loginError";
 		}else {
 		MemberDTO dto1 = (MemberDTO)session.getAttribute("loginUser");
 		int pageSize = 0;
@@ -114,7 +114,7 @@ public class DiaryController {
 	public String diaryWrite(HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		if(session.getAttribute("loginUser") == null) {
-			return "redirect:loginError";
+			return "error/loginError";
 		}
 		return "diary/diaryWrite";
 	}
@@ -133,17 +133,16 @@ public class DiaryController {
 	
 	
 	@RequestMapping("diaryView")
-	public String diaryView(HttpServletRequest req, Model model, @RequestParam("num")int num) {
+	public String diaryView(HttpServletRequest req, Model model, @RequestParam("num")int num) throws Exception {
 		HttpSession session = req.getSession();
 		MemberDTO loginUser = (MemberDTO) session.getAttribute("loginUser");
+		if(loginUser == null) {
+			return "error/loginError";
+		}
 		DiaryDTO dto = null;
-		try {
-			dto = ds.diaryView(num);
-			if(!(dto.getId().equals(loginUser.getId()))) {
-				return "redirect:error";
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		dto = ds.diaryView(num);
+		if(!(dto.getId().equals(loginUser.getId()))) {
+			return "error/Notsession";
 		}
 		model.addAttribute("diary",dto);
 		return "diary/diaryView";
@@ -173,9 +172,12 @@ public class DiaryController {
 		public String diaryModify(@RequestParam("num")int num, Model model, HttpServletRequest req) throws Exception {
 			HttpSession session = req.getSession();
 			MemberDTO userDto = (MemberDTO) session.getAttribute("loginUser");
+			if(userDto == null) {
+				return "error/loginError";
+			}
 			DiaryDTO dto = ds.diaryModify(num);
 			if(!(dto.getId().equals(userDto.getId()))) {
-				return "redirect:error";
+				return "error/Notsession";
 			}
 			model.addAttribute("diary",dto);
 			return "diary/diaryModify";
