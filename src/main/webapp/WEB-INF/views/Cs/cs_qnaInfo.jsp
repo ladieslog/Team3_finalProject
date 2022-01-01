@@ -15,7 +15,7 @@
 	.notice-view-wrap {
 		background-color: #F6F6F6;
 		/* height: 650px; */
-		padding: 28px 391px 28px 423px;
+		padding: 2px 391px 11px 423px;
 		
 	}
 	.notice-view-title {
