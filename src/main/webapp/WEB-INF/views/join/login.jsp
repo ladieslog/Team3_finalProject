@@ -20,28 +20,7 @@
 
 var blank_pattern1 = /^\s+|\s+$/g; // 공백만 있을 경우
 var regType1 = /^[A-Za-z0-9+]*$/;
-		/*
-		frm= document.regFrm;
-		if (id=""){
-			alert("아이디를 입력해 주세요.");
-			frm.id.focus();
-			return;
-		}
-		url = "idCheck.jsp?id=" + id;
-		window
-			.open(url, "IDCheck", "width=300, height=150");
-	*/
 	
-/*
-	function zipCheck(){
-		url = "zipSearch.jsp?check=n";
-		window
-			.open(url, "ZipCodeSearch",
-					"width=500, height=300, scrollbars=yes");
-	}
-*/
-
-
 function join(){
 	location.href="membership"
 }
@@ -78,7 +57,7 @@ function logincheck(){
 
 </script>
 
-<link href="<c:url value="/resources/membership/login.css?ver=1"/>"
+<link href="<c:url value="/resources/membership/login.css?ver=3"/>"
     rel="stylesheet">
 <style type="text/css">
 
@@ -105,7 +84,7 @@ input {	border-radius: 21px;	border: none;	font-family: HCR Batang; font-weight:
 	<div class="container membership-form">
 		<div>
 		<a href="first">
-			<img src="<%=request.getContextPath()%>/resources/화살표.png" style="width: 60px; margin-top: 396px; margin-left:235px;">
+			<img src="<%=request.getContextPath()%>/resources/joinImage/화살표.png" style="width: 60px; margin-top: 396px; margin-left:235px;">
 		</a>	
 		</div>
 		<br />
