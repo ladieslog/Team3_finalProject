@@ -100,7 +100,7 @@
 					<div style="font-size: 10pt; margin-top: 10px;">
 					<span style="color: gray;">*인증번호를 받지 못했다면 이메일주소를 확인하세요</span></div>
 					<div style="font-size: 10pt;">
-					<span style="color: gray;">*또는 관리자에게 <a href="" style="color: gray;">문의</a> 바랍니다.</span></div>
+					<span style="color: gray;">*또는 관리자에게 <a href="csMain" style="color: gray;">문의</a> 바랍니다.</span></div>
 				</form>
 			</div>
 		</div>

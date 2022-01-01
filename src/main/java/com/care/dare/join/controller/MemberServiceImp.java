@@ -39,11 +39,7 @@ public class MemberServiceImp implements MemberService {
 		MemberDTO dto= mapper.idcheck(id);
 		return dto;
 	}
-	/*
-	public void setDao(MemberDao dao) { 
-		this.dao = dao; 
-		} 
-	*/
+	
 	// 회원가입 
 	@Override 
 	public void memberJoinProcess(MemberDTO dto) {
@@ -75,7 +71,7 @@ public class MemberServiceImp implements MemberService {
 	public void memberList(Model model,String search) {
 		ArrayList<MemberDTO>list=mapper.memberList(search);
 		for(MemberDTO DTO: list) {
-			DTO.setDiaryCount(dm.diaryCount(DTO.getId(), search));
+			DTO.setDiaryCount(dm.userDiaryCount(DTO.getId()));
 		}
 		model.addAttribute("list", list);
 		
@@ -120,12 +116,6 @@ public class MemberServiceImp implements MemberService {
 			sb.append(Certified);
 			helper.setText(sb.toString(), true);
 			mailSender.send(message);
-			/*
-			Cookie cookie = new Cookie("emailCertified", Certified);
-			cookie.setComment("트립노트 탈퇴 이메일 인증");
-			cookie.setMaxAge(60*3);
-			resp.addCookie(cookie);
-			*/
 			model.addAttribute("certified", Certified);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

@@ -72,7 +72,7 @@ MemberDTO dto = (MemberDTO)session1.getAttribute("loginUser");
 							
 					%>
 					<tr>
-					<td  class="center"><div><%=DTO.getId() %></div></td><td class="center"><div>********</div></td><td  class="center"><div><%=DTO.getNickname() %></div></td><td id="addrr"><div id="addr" class="address" value= "<%=DTO.getAddr()%>"><%=DTO.getAddr()%></div></td><td id="emailr"><div class="address" id="email" value="<%=DTO.getEmail()%>"><%=DTO.getEmail() %></div></td><td  class="center"><div><%=DTO.getDiaryCount() %></div></td>
+					<td  class="center"><div><%=DTO.getId() %></div></td><td class="center"><div>********</div></td><td  class="center"><div><%=DTO.getNickname() %></div></td><td id="addrr"><div id="addr" class="address" value= "<%=DTO.getAddr()%> <%=DTO.getDetailaddr()%>"><%=DTO.getAddr()%> <%=DTO.getDetailaddr() %></div></td><td id="emailr"><div class="address" id="email" value="<%=DTO.getEmail()%>"><%=DTO.getEmail() %></div></td><td  class="center"><div><%=DTO.getDiaryCount() %></div></td>
 				</tr>
 					<%}}
 				%>

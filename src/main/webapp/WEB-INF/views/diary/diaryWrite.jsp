@@ -248,6 +248,6 @@
 
 <script src="<%=request.getContextPath()%>/resources/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e5d72e7cbb7ab20aa12aa5a72991fde0&libraries=services"></script>
-<script type="text/javascript" src="${contextPath}/resources/diaryscript/diaryWriteScript.js?ver=1"></script>
+<script type="text/javascript" src="${contextPath}/resources/diaryscript/diaryWriteScript.js?ver=2"></script>
 </body>
 </html>

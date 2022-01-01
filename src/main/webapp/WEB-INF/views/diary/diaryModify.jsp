@@ -19,12 +19,6 @@
 
 	<c:set var="dto" value="${diary}"></c:set>
 
-	<% HttpSession session1 = request.getSession();
-		if(session1.getAttribute("loginUser") == null){
-			response.sendRedirect("error");
-		}
-	%>
-
 	<% SimpleDateFormat sim = new SimpleDateFormat("yyyy-MM-dd");
 		 DiaryDTO dto = (DiaryDTO)request.getAttribute("diary");
 		 Timestamp ti = dto.getIndate();
@@ -516,6 +510,6 @@
 	
 <script src="<%=request.getContextPath()%>/resources/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e5d72e7cbb7ab20aa12aa5a72991fde0&libraries=services"></script>
-<script type="text/javascript" src="${contextPath}/resources/diaryscript/diaryModifyScript.js?ver=1"></script>
+<script type="text/javascript" src="${contextPath}/resources/diaryscript/diaryModifyScript.js?ver=2"></script>
 </body>
 </html>

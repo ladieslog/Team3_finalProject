@@ -1765,8 +1765,8 @@ var FullCalendar = (function(exports) {
 		initialView: '',
 		aspectRatio: 1.35,
 		headerToolbar: {
-			start: 'title',
-			center: '',
+			start: '',
+			center: 'title',
 			end: 'today prev,next',
 		},
 		weekends: true,

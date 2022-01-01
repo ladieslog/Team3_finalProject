@@ -148,14 +148,13 @@ public class DiaryService {
 
 	
 
-	public void diaryView(Model model, int num) throws Exception {
+	public DiaryDTO diaryView(int num) throws Exception {
 		DiaryDTO dto = mapper.diaryView(num);
 		SimpleDateFormat sim = new SimpleDateFormat("yyyy-MM-dd");
 		dto.setIndatestr(sim.format(dto.getIndate()));
 		dto.setOutdatestr(sim.format(dto.getOutdate()));
-
 		
-		model.addAttribute("diary",dto);
+		return dto;
 	}
 	
 /*	public void imgFile(byte[] bt,int count) throws Exception {
@@ -173,25 +172,9 @@ public class DiaryService {
 		mapper.diaryDelete(num);
 	}
 	
-	public void diaryModify(int num,Model model) throws Exception {
+	public DiaryDTO diaryModify(int num) throws Exception {
 		DiaryDTO dto = mapper.diaryView(num);
-		if(dto.getImage1() != null) {
-	//		imgFile(dto.getImage1(),1);
-		}
-		if(dto.getImage2() != null) {
-	//		imgFile(dto.getImage2(),2);
-		}
-		if(dto.getImage3() != null) {
-	//		imgFile(dto.getImage3(),3);
-		}
-		if(dto.getImage4() != null) {
-//			imgFile(dto.getImage4(),4);
-		}
-		if(dto.getImage5() != null) {
-//			imgFile(dto.getImage5(),5);
-		}
-		model.addAttribute("diary",dto);
-		
+		return dto;	
 	}
 	
 	public void writeUpdate(HttpServletRequest req) throws Exception {	// 다이어리 작성 업데이트 DB 저장

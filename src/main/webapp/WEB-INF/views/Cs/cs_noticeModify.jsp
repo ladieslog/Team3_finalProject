@@ -15,14 +15,6 @@
 </head>
 <%
 	NoticeDTO dto = (NoticeDTO) request.getAttribute("noticeInfo");
-	if(dto == null) {
-%>
-	<script>
-		alert("잘못된 접근입니다.");
-		location.href = "csMain";
-	</script>
-<%
-	} else {
 %>
 <body>
 <!-- ckeditor.js 연결 -->
@@ -89,8 +81,5 @@
 	<script
 		src="<%=request.getContextPath()%>/resources/CS/script/notice_js.js?ver=3"></script>
 </body>
-<%
-	}
-%>
 
 </html>
