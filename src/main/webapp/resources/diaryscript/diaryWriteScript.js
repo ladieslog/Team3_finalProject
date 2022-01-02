@@ -1362,13 +1362,13 @@ function del5(){
 
 function register(){
 	if(document.getElementById("title").value == "" || document.getElementById("title").value.replace(blank_pattern1, '') == "") {
-		alert("제목을 입력해 주세요.");
+		("제목을 입력해 주세요.");
 		document.getElementById("title").focus();
 		return;
 	}
 	
 	if(document.getElementById("title").value.length >= 20){
-		alert('제목을 20자 이내로 작성해주세요'); return;
+		('제목을 20자 이내로 작성해주세요'); return;
 	}
 	if(document.getElementById("place1").value == ""){
 		alert('지역을 입력해주세요'); return;

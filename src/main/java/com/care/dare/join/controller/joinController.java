@@ -167,6 +167,7 @@ public class joinController {
 		if(result == 0) {
 			out.print("<script> alert('회원 탈퇴에 실패했습니다');location.href='MyHome';</script>");
 		} else {
+			session.invalidate();
 			out.print("<script> alert('탈퇴되었습니다.');location.href='first';</script>");
 		}
 	}
