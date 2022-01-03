@@ -81,6 +81,9 @@ public class CSController {
 		if(dto == null) {
 			return "error/loginError";
 		}
+		if(dto.getId().equals("3333")) {
+			return "error/Notsession";
+		}
 		return "Cs/cs02_qnaWrite";
 	}
 	
