@@ -145,10 +145,7 @@ public class joinController {
 	@ResponseBody
 	public ArrayList accountDelete(HttpServletRequest req, HttpServletResponse resp, Model model) throws IOException {
 		ArrayList list = new ArrayList();
-		/*
-		resp.setContentType("text/html; charset=utf-8"); // 응답 설정 변경
-        PrintWriter out = resp.getWriter(); // 화면 출력용 객체
-        */
+		
 		HttpSession session = req.getSession();
 		MemberDTO ssDto = (MemberDTO) session.getAttribute("loginUser");
 		if(ssDto == null) {
@@ -158,15 +155,7 @@ public class joinController {
 		list.add(model.getAttribute("certified"));
 		return list;
 	}
-	/*
-	@RequestMapping("certifiedExit")
-	@ResponseBody
-	public void certifiedExit(HttpServletResponse resp) {
-		Cookie cookie = new Cookie("emailCertified", null);
-		cookie.setMaxAge(0);
-		resp.addCookie(cookie);
-	}
-	*/
+	
 	
 	@RequestMapping(value = "emailCertified", method = RequestMethod.POST)
 	public void emailCertified(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -178,6 +167,7 @@ public class joinController {
 		if(result == 0) {
 			out.print("<script> alert('회원 탈퇴에 실패했습니다');location.href='MyHome';</script>");
 		} else {
+			session.invalidate();
 			out.print("<script> alert('탈퇴되었습니다.');location.href='first';</script>");
 		}
 	}

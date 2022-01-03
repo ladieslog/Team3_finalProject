@@ -30,7 +30,7 @@ public class CalendarController {
 		HttpSession session = req.getSession();
 		
 		if (session.getAttribute("loginUser") == null) {
-			return "redirect:loginError";
+			return "error/loginError";
 		}
 		return "calendar/calendar";
 	}

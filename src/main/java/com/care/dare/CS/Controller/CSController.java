@@ -40,7 +40,7 @@ public class CSController {
 		
 		MemberDTO dto = (MemberDTO) session.getAttribute("loginUser");
 		if(dto == null) {
-			return "redirect:error";
+			return "error/loginError";
 		}
 		
 		if(noticePageNumber == null) {
@@ -71,7 +71,7 @@ public class CSController {
 				return "Cs/cs03_signWrite";
 			}
 		}
-		return "redirect:error";
+		return "error/Notsession";
 	}
 	
 	@RequestMapping(value = "qna")
@@ -161,18 +161,24 @@ public class CSController {
 		resp.setContentType("text/html; charset=utf-8"); // 응답 설정 변경
 		PrintWriter out = resp.getWriter(); // 화면 출력용 객체
 		HttpSession session = req.getSession();
+		
 		MemberDTO dto = (MemberDTO) session.getAttribute("loginUser");
-		if(dto == null) {
+		if(dto == null) { // 세션이 없다면 로그인 에러 메세지 이동
 			return "error/loginError";
 		}
-		
 		String parameterNum = req.getParameter("num"); // 게시글 번호를 받아옴
-		if(parameterNum == null) { // 게시글 번호가 없다면 잘못된 접근임
-			out.print("<script> alert('잘못된 접근입니다.');"
-					+"location.href='csMain'; </script>");
+		if(parameterNum == null) {
+			return "error/Notsession";
 		}
 		int num = Integer.parseInt(parameterNum); // 게시글 번호를 int로 변경
-		service.noticeInfo(model, num);
+		NoticeDTO noticeDto = service.noticeInfo(num); // 받아온 게시글 번호로 게시글을 가져옴
+		if(noticeDto == null) { // 게시글이 없다면 에러 페이지로 ㅣ동
+			return "error/Notsession";
+		}
+		
+		service.noticeHit(num); // 게시글이 있다면 조회수 1 증가
+		noticeDto = service.noticeInfo(num); // 페이지에서 조회수를 실시간으로 적용하기 위해서 다시 게시글 정보를 받아옴, 방금전에 조회수 1 올렸으므로
+		model.addAttribute("noticeInfo", noticeDto); // 게시글 정보 저장
 		return "Cs/cs_noticeInfo";
 	}
 	
@@ -182,22 +188,24 @@ public class CSController {
 		resp.setContentType("text/html; charset=utf-8"); // 응답 설정 변경
 		PrintWriter out = resp.getWriter(); // 화면 출력용 객체
 		HttpSession session = req.getSession();
+
 		MemberDTO userDto = (MemberDTO) session.getAttribute("loginUser");
 		if(userDto == null) {
 			return "error/loginError";
 		}
 		String parameterNum = req.getParameter("num"); // 게시글 번호를 받아옴
 		if(parameterNum == null) { // 게시글 번호가 없다면 잘못된 접근임
-			return "error/accessError";
+			return "error/Notsession";
 		}
 		int num = Integer.parseInt(parameterNum); // 게시글 번호를 int로 변경
 		QnaDTO dto = service2.qnaInfo(num);
 		if(dto == null) {
-			return "error/accessError";
+			return "error/Notsession";
 		}
+		
 		if(!(dto.getQuestionId().equals(userDto.getId()))) {
 			if(!(userDto.getId().equals("3333"))) {
-				return "error/accessError";
+				return "error/Notsession";
 			}
 		}
 		model.addAttribute("qna", dto);
@@ -214,18 +222,14 @@ public class CSController {
 		resp.setContentType("text/html; charset=utf-8"); // 응답 설정 변경
 		PrintWriter out = resp.getWriter(); // 화면 출력용 객체
 		String numstr = req.getParameter("num");
-		if(numstr == null) {
-			out.print("<script> alert('잘못된 접근입니다.');location.href='csMain';</script>");
+		int num = Integer.parseInt(numstr);
+		int result = service.noticeDelete(num);
+		
+		if(result == 0) {
+			out.print("<script> alert('게시글 삭제에 실패했습니다.');location.href='csMain';</script>");
 		} else {
-			int num = Integer.parseInt(numstr);
-			int result = service.noticeDelete(num);
-			
-			if(result == 0) {
-				out.print("<script> alert('게시글 삭제에 실패했습니다.');location.href='csMain';</script>");
-			} else {
-				out.print("<script> alert('게시글이 삭제되었습니다.');location.href='csMain';</script>");
-				
-			}
+			out.print("<script> alert('게시글이 삭제되었습니다.');location.href='csMain';</script>");
+		
 		}
 		
 	}
@@ -236,18 +240,13 @@ public class CSController {
 		resp.setContentType("text/html; charset=utf-8"); // 응답 설정 변경
 		PrintWriter out = resp.getWriter(); // 화면 출력용 객체
 		String numstr = req.getParameter("num");
-		if(numstr == null) {
-			out.print("<script> alert('잘못된 접근입니다.');location.href='csMain';</script>");
+		int num = Integer.parseInt(numstr);
+		int result = service2.qnaDelete(num);
+		
+		if(result == 0) {
+			out.print("<script> alert('질문글 삭제에 실패했습니다.');location.href='csMain';</script>");
 		} else {
-			int num = Integer.parseInt(numstr);
-			int result = service2.qnaDelete(num);
-			
-			if(result == 0) {
-				out.print("<script> alert('질문글 삭제에 실패했습니다.');location.href='csMain';</script>");
-			} else {
-				out.print("<script> alert('질문글이 삭제되었습니다.');location.href='csMain';</script>");
-				
-			}
+			out.print("<script> alert('질문글이 삭제되었습니다.');location.href='csMain';</script>");
 		}
 		
 	}
@@ -257,14 +256,10 @@ public class CSController {
 		resp.setContentType("text/html; charset=utf-8"); // 응답 설정 변경
 		PrintWriter out = resp.getWriter(); // 화면 출력용 객체
 		String numstr = req.getParameter("num");
-		if(numstr == null) {
-			out.print("<script> alert('잘못된 접근입니다.');</script>");
-			return "redirect:csMain";
-		} else {
-			int num = Integer.parseInt(numstr);
-			service.noticeInfo(model, num);
-			return "Cs/cs_noticeModify";
-		}
+		int num = Integer.parseInt(numstr);
+		NoticeDTO dto = service.noticeInfo(num);
+		model.addAttribute("noticeInfo", dto);
+		return "Cs/cs_noticeModify";
 	}
 	
 	@RequestMapping(value="noticeModify", method=RequestMethod.POST)
@@ -288,9 +283,6 @@ public class CSController {
 		String numstr = req.getParameter("num");
 		int num = Integer.parseInt(numstr);
 		QnaDTO dto = service2.qnaInfo(num);
-		if(dto == null) {
-			return "error/accessError";
-		}
 		model.addAttribute("qnaInfo", dto);
 		return "Cs/cs_qnaModify";
 	}

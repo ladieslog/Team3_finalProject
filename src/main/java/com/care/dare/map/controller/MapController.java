@@ -30,7 +30,7 @@ public class MapController {
 		HttpSession session = req.getSession();
 		
 		if (session.getAttribute("loginUser") == null) {
-			return "redirect:loginError";
+			return "error/loginError";
 		}
 		return "map/map";
 	}
