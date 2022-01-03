@@ -91,20 +91,6 @@ function addrSearch() {
 		document.getElementById("time").innerHTML = "";
 	}
 
-	/*
-	// 종료시 인증번호 쿠키를 삭제하는 메소드
-	function certifiedExit() {
-		$.ajax({
-			url : "certifiedExit",
-			type : "GET",
-			success : function() {
-				
-			}, error : function() {
-				alert("문제 발생");
-			}
-		})
-	}
-	*/
 	var SetTime = 180;   
     function msg_time() {   // 1초씩 카운트 
         m = Math.floor(SetTime / 60) + " : " + (SetTime % 60); // 남은 시간 계산         
