@@ -84,7 +84,7 @@
 				%>
 				<button type="button" class="wd-85" onclick="listPage();">목록으로</button>
 				<%
-					if(dto.getStatus().equals("0")) {
+					if(dto.getStatus().equals("0") && dto.getQuestionId().equals(userDto.getId())) {
 				%>
 					<form action="qnaModifyForm" method="post" id="qnaModifyForm">
 						<button type="button" class="wd-60" onclick="modifyPage();">수정</button>

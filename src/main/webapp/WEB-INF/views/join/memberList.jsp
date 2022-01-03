@@ -10,7 +10,7 @@
 <html>
 <head>
 
-<link href="<c:url value="/resources/membership/memberList.css" />"
+<link href="<c:url value="/resources/membership/memberList.css?ver=2" />"
     rel="stylesheet">
 
 	<script src = "${path }/resources/jquery-3.6.0.min.js">
