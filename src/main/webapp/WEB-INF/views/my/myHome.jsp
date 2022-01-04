@@ -79,6 +79,7 @@
 			</form>
 		</div>
 		
+		
 		<div class="email-model" id="email-model">
 			<div style="padding: 20px;">
 				<form action="emailCertified" method="post" id="model-form">
