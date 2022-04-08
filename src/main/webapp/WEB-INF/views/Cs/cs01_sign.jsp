@@ -134,7 +134,13 @@ if(endPage2 > pageCount2) {
 				<div style="align-items: center; display: flex; justify-content: center; height: 60px;">
 					<br> <span>
 					<b style="font-size: 30px;">Q & A</b></span>
-					<button type="button" style="margin-left: 1113px; width: 60px;" class="cn4 mb-none notice-btn" onclick="location.href='qna'">글작성</button>
+					<%
+						if(!(userDto.getId().equals("3333"))) {
+					%>
+						<button type="button" style="margin-left: 1113px; width: 60px;" class="cn4 mb-none notice-btn" onclick="location.href='qna'">글작성</button>
+					<%
+						}
+					%>
 				</div>
 					</div>
 						<div id="id1">

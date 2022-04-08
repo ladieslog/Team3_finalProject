@@ -30,4 +30,7 @@
 	<update id="noticeModify">
 		update notice set title = #{title}, content = #{content}, time = sysdate where num = #{num}
 	</update>
+	<update id="noticeHit">
+		update notice set hit = hit + 1 where num = #{num}
+	</update>
 </mapper>

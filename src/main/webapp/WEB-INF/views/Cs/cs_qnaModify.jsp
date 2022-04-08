@@ -35,7 +35,7 @@
 		<jsp:include page="../default/header.jsp" />
 		<div class="c1 mr-auto notice-wrap">
 			<div class="c2 pd-none">
-				<form action="noticeModify" method="post" id="form">
+				<form action="qnaModify" method="post" id="form">
 				<input type="hidden" name="num" value="<%=dto.getNum() %>"/>
 					<table class="cn3">
 					<tr style="height: 35px;"></tr>

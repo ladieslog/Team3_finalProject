@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -48,7 +49,7 @@ public class DiaryController {
 			search = "";
 		}
 		if(session.getAttribute("loginUser")==null) {
-			return "redirect:loginError";
+			return "error/loginError";
 		}else {
 		MemberDTO dto1 = (MemberDTO)session.getAttribute("loginUser");
 		int pageSize = 0;
@@ -110,7 +111,11 @@ public class DiaryController {
 	}
 	
 	@RequestMapping("diaryWrite")
-	public String diaryWrite() {
+	public String diaryWrite(HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		if(session.getAttribute("loginUser") == null) {
+			return "error/loginError";
+		}
 		return "diary/diaryWrite";
 	}
 	@RequestMapping("error")
@@ -128,12 +133,18 @@ public class DiaryController {
 	
 	
 	@RequestMapping("diaryView")
-	public String diaryView(Model model, @RequestParam("num")int num) {
-		try {
-			ds.diaryView(model, num);
-		} catch (Exception e) {
-			e.printStackTrace();
+	public String diaryView(HttpServletRequest req, Model model, @RequestParam("num")int num) throws Exception {
+		HttpSession session = req.getSession();
+		MemberDTO loginUser = (MemberDTO) session.getAttribute("loginUser");
+		if(loginUser == null) {
+			return "error/loginError";
 		}
+		DiaryDTO dto = null;
+		dto = ds.diaryView(num);
+		if(!(dto.getId().equals(loginUser.getId()))) {
+			return "error/Notsession";
+		}
+		model.addAttribute("diary",dto);
 		return "diary/diaryView";
 	}
 	
@@ -158,8 +169,17 @@ public class DiaryController {
 	}
 	
 	@RequestMapping("diaryModify")
-		public String diaryModify(@RequestParam("num")int num, Model model) throws Exception {
-			ds.diaryModify(num, model);
+		public String diaryModify(@RequestParam("num")int num, Model model, HttpServletRequest req) throws Exception {
+			HttpSession session = req.getSession();
+			MemberDTO userDto = (MemberDTO) session.getAttribute("loginUser");
+			if(userDto == null) {
+				return "error/loginError";
+			}
+			DiaryDTO dto = ds.diaryModify(num);
+			if(!(dto.getId().equals(userDto.getId()))) {
+				return "error/Notsession";
+			}
+			model.addAttribute("diary",dto);
 			return "diary/diaryModify";
 		}
 	
